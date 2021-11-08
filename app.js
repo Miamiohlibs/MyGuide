@@ -14,9 +14,7 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', async (req, res) => {
-  res.send('Hello world!');
-});
+require('./routes')(app);
 
 const PORT = '9909';
 app.listen(PORT, function () {
