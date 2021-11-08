@@ -6,6 +6,6 @@
             "0"
         ],
         "useAuth": "true",
-        "authType": "CAS",
+        "authType": "CAS"
     }
 }

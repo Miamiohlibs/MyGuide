@@ -1,3 +1,4 @@
+const config = require('config');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
@@ -16,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 require('./routes')(app);
 
-const PORT = '9909';
+const PORT = config.get('app.port') || '4000';
 app.listen(PORT, function () {
   console.log(
     `Localhost app listening on port ${PORT}! Go to http://localhost:${PORT}/`
