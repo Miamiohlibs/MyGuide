@@ -2,6 +2,7 @@
     "mode": "dev",
     "app": {
         "port": "9909",
+        "onServer": "false",
         "allowed_group_ids": [
             "0"
         ],

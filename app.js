@@ -9,6 +9,9 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const MemoryStore = require('session-memory-store')(session);
 
+global.onServer =
+  config.has('app.onServer') && config.get('app.onServer') === 'true';
+
 const app = express();
 app.use(cookieParser());
 
