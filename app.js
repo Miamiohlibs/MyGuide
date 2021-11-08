@@ -1,5 +1,5 @@
 const config = require('config');
-
+const logger = require('./services/Logger');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
@@ -11,6 +11,7 @@ const MemoryStore = require('session-memory-store')(session);
 
 global.onServer =
   config.has('app.onServer') && config.get('app.onServer') === 'true';
+logger.debug('On Server: ' + global.onServer);
 
 const app = express();
 app.use(cookieParser());
