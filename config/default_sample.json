@@ -1,0 +1,11 @@
+{
+    "mode": "dev",
+    "app": {
+        "port": "9909",
+        "allowed_group_ids": [
+            "0"
+        ],
+        "useAuth": "true",
+        "authType": "CAS",
+    }
+}
