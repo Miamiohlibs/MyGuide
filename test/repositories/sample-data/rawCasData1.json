@@ -1,0 +1,43 @@
+{
+    "user": "pollystu",
+    "attributes": {
+        "displayName": [
+            "Polly Glott"
+        ],
+        "muohioeduCurrentCourseSubjectNumber": [
+            "SPN101",
+            "CLS101",
+            "LAT201",
+            "KOR101",
+            "RUS101",
+            "GER101",
+            "ENG101"
+        ],
+        "muohioeduPrimaryAffiliation": [
+            "student"
+        ],
+        "uid": [
+            "langstu"
+        ],
+        "eduPersonPrimaryAffiliation": [
+            "student"
+        ],
+        "muohioeduPrimaryLocationCode": [
+            "oxf"
+        ],
+        "eduPersonPrincipalName": [
+            "langstu@miamioh.edu"
+        ],
+        "muohioeduMajorCode": [],
+        "givenName": [
+            "Polly"
+        ],
+        "muohioeduMajor": [],
+        "muohioeduPrimaryLocation": [
+            "Oxford"
+        ],
+        "muohioeduPrimaryAffiliationCode": [
+            "und"
+        ]
+    }
+}

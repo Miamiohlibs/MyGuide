@@ -1,0 +1,46 @@
+{
+    "userId": {
+        "field": "user",
+        "fieldType": "string"
+    },
+    "userType": {
+        "field": "attributes.eduPersonAffiliation",
+        "fieldType": "arrayOfOne"
+    },
+    "fullName": {
+        "field": "attributes.displayName",
+        "fieldType": "arrayOfOne"
+    },
+    "givenName": {
+        "field": "attributes.givenName",
+        "fieldType": "arrayOfOne"
+    },
+    "email": {
+        "field": "attributes.eduPersonPrincipalName",
+        "fieldType": "arrayOfOne"
+    },
+    "divisionCode": {
+        "field": "attributes.muohioeduDivisionCode",
+        "fieldType": "array"
+    },
+    "divisionName": {
+        "field": "attributes.muohioeduDivision",
+        "fieldType": "array"
+    },
+    "departmentName": {
+        "field": "attributes.muohioeduDepartment",
+        "fieldType": "array"
+    },
+    "departmentCode": {
+        "field": "attributes.muohioeduDepartmentCode",
+        "fieldType": "array"
+    },
+    "coursesTaken": {
+        "field": "attributes.muohioeduCurrentCourseSubjectNumber",
+        "fieldType": "array"
+    },
+    "coursesTaught": {
+        "field": "attributes.muohioeduCurrentTeachingSubjectNumber",
+        "fieldType": "array"
+    }
+}
