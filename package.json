@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "https": "^1.0.0",
+    "node-cas-client": "^1.0.0",
     "session-memory-store": "^1.0.0",
     "winston": "^3.3.3"
   }

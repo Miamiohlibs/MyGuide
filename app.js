@@ -9,6 +9,8 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const MemoryStore = require('session-memory-store')(session);
 
+const app = express();
+
 global.onServer =
   config.has('app.onServer') && config.get('app.onServer') === 'true';
 logger.debug('On Server: ' + global.onServer);
@@ -27,9 +29,7 @@ if (global.onServer === true) {
   app.use(casClient.core());
 }
 
-const app = express();
 app.use(cookieParser());
-
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.set('views', path.resolve(__dirname, 'views'));
 app.set('view engine', 'ejs');
