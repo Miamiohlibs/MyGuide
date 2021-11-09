@@ -3,10 +3,30 @@
     "app": {
         "port": "9909",
         "onServer": "false",
+        "useAuth": "true",
+        "authType": "CAS",
         "allowed_group_ids": [
             "0"
-        ],
-        "useAuth": "true",
-        "authType": "CAS"
+        ]
+    },
+    "server": {
+        "hostname": "zimbabwe",
+        "key": "/path/to/cert.key",
+        "cert": "/path/to/cert.crt"
+    },
+    "CAS": {
+        "sessionName": "NSESSIONID",
+        "secret": "This is my very long secret key",
+        "servicePrefix": "https://myguideserver.yourorg.edu:9909",
+        "serverPath": "https://casserver.yourorg.edu"
+    },
+    "logLevels": {
+        "error": "daily",
+        "warn": "false",
+        "info": "monthly",
+        "http": "false",
+        "verbose": "false",
+        "debug": "daily",
+        "silly": "false"
     }
 }

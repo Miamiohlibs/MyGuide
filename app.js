@@ -13,6 +13,20 @@ global.onServer =
   config.has('app.onServer') && config.get('app.onServer') === 'true';
 logger.debug('On Server: ' + global.onServer);
 
+if (global.onServer === true) {
+  if (config.get('app.authType') == 'CAS') {
+    app.use(
+      session({
+        name: config.get('CAS.sessionName'),
+        secret: config.get('CAS.secret'),
+        store: new MemoryStore(), // or other session store
+      })
+    );
+  }
+  const casClient = require('./middleware/cas-client');
+  app.use(casClient.core());
+}
+
 const app = express();
 app.use(cookieParser());
 
@@ -25,8 +39,26 @@ app.use(express.urlencoded({ extended: true }));
 require('./routes')(app);
 
 const PORT = config.get('app.port') || '4000';
-app.listen(PORT, function () {
-  console.log(
-    `Localhost app listening on port ${PORT}! Go to http://localhost:${PORT}/`
-  );
-});
+if (global.onServer === true) {
+  const server = config.get('server');
+
+  https
+    .createServer(
+      {
+        key: fs.readFileSync(server.key),
+        cert: fs.readFileSync(server.cert),
+      },
+      app
+    )
+    .listen(PORT, function () {
+      console.log(
+        `Server app listening on port ${PORT}! Go to https://${server.host}:${PORT}/`
+      );
+    });
+} else {
+  app.listen(PORT, function () {
+    console.log(
+      `Localhost app listening on port ${PORT}! Go to http://localhost:${PORT}/`
+    );
+  });
+}
