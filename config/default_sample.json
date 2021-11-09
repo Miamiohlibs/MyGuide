@@ -10,7 +10,7 @@
         ]
     },
     "server": {
-        "hostname": "zimbabwe",
+        "hostname": "fully-qualified.domain.org",
         "key": "/path/to/cert.key",
         "cert": "/path/to/cert.crt"
     },
