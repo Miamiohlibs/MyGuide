@@ -25,16 +25,15 @@ module.exports = class UserInfo {
   // return this.userDataPackage(); // returns subject info for user
 
   getAttributesFromCasData() {
-    console.log(this.userDataMap);
     for (let prop in this.userDataMap) {
       let fieldPath = this.userDataMap[prop].field;
       let fieldType = this.userDataMap[prop].fieldType;
       if (fieldType == 'arrayOfOne') {
         fieldPath += '[0]';
       }
+      // get the value for each property from its expected path
       let value = _.get(this.rawUserData, fieldPath);
       if (value !== undefined) {
-        console.log(prop, value);
         this.attr[prop] = value;
       }
     }
