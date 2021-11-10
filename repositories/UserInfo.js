@@ -12,6 +12,7 @@ module.exports = class UserInfo {
     this.rawUserData = opts.rawUserData;
     this.userDataMap = opts.userDataMap;
     this.subjectDataMap = opts.subjectDataMap;
+    this.attr = {};
   }
   // switch (this.authType) {
   //   case 'CAS':
@@ -23,5 +24,19 @@ module.exports = class UserInfo {
 
   // return this.userDataPackage(); // returns subject info for user
 
-  getAttributesFromCasData() {}
+  getAttributesFromCasData() {
+    console.log(this.userDataMap);
+    for (let prop in this.userDataMap) {
+      let fieldPath = this.userDataMap[prop].field;
+      let fieldType = this.userDataMap[prop].fieldType;
+      if (fieldType == 'arrayOfOne') {
+        fieldPath += '[0]';
+      }
+      let value = _.get(this.rawUserData, fieldPath);
+      if (value !== undefined) {
+        console.log(prop, value);
+        this.attr[prop] = value;
+      }
+    }
+  }
 };
