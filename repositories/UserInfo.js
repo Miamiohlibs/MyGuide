@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 module.exports = class UserInfo {
   constructor(opts) {
     /* opts expects:
@@ -20,4 +22,6 @@ module.exports = class UserInfo {
   // this.addUserCustomizations(); // updates this.userAttributes
 
   // return this.userDataPackage(); // returns subject info for user
+
+  getAttributesFromCasData() {}
 };
