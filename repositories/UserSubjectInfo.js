@@ -5,6 +5,7 @@ module.exports = class UserSubjectInfo {
     this.user = userLoginInfo;
     this.map = subjectMap;
     this.subjects = [];
+    this.subjectNames = [];
     this.libguideSubjects = [];
   }
 

@@ -30,6 +30,11 @@ describe('UserSubjectInfo: constructor', () => {
     expect(obj.subjects).to.be.an.array();
     expect(obj.subjects.length).to.equal(0);
   });
+  it('should create an object with a blank property "subjects"', () => {
+    expect(obj).to.have.property('subjectNames');
+    expect(obj.subjectNames).to.be.an.array();
+    expect(obj.subjectNames.length).to.equal(0);
+  });
   it('should create an object with a blank property "libguideSubjects"', () => {
     expect(obj).to.have.property('libguideSubjects');
     expect(obj.libguideSubjects).to.be.an.array();
