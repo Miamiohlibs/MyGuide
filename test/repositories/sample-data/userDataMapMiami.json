@@ -19,19 +19,19 @@
         "field": "attributes.eduPersonPrincipalName",
         "fieldType": "arrayOfOne"
     },
-    "divisionCode": {
+    "divisionCodes": {
         "field": "attributes.muohioeduDivisionCode",
         "fieldType": "array"
     },
-    "divisionName": {
+    "divisionNames": {
         "field": "attributes.muohioeduDivision",
         "fieldType": "array"
     },
-    "departmentName": {
+    "departmentNames": {
         "field": "attributes.muohioeduDepartment",
         "fieldType": "array"
     },
-    "departmentCode": {
+    "departmentCodes": {
         "field": "attributes.muohioeduDepartmentCode",
         "fieldType": "array"
     },
@@ -41,6 +41,14 @@
     },
     "coursesTaught": {
         "field": "attributes.muohioeduCurrentTeachingSubjectNumber",
+        "fieldType": "array"
+    },
+    "majorNames": {
+        "field": "attributes.muohioeduMajor",
+        "fieldType": "array"
+    },
+    "majorCodes": {
+        "field": "attributes.muohioeduMajorCode",
         "fieldType": "array"
     }
 }
