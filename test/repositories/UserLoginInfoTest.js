@@ -65,4 +65,15 @@ describe('UserLoginInfo: getAttributesFromCasData', () => {
     expect(obj.attr.coursesTaken.length).to.equal(7);
     expect(obj.attr.coursesTaken[0]).to.equal('SPN101');
   });
+  it('should get an array of 2 majors', () => {
+    expect(obj).to.have.property('attr');
+    expect(obj.attr).to.have.property('majorCodes');
+    expect(obj.attr.majorCodes).to.be.an('array');
+    expect(obj.attr.majorCodes.length).to.equal(2);
+    expect(obj.attr.majorCodes[0]).to.equal('AS52');
+    expect(obj.attr).to.have.property('majorNames');
+    expect(obj.attr.majorNames).to.be.an('array');
+    expect(obj.attr.majorNames.length).to.equal(2);
+    expect(obj.attr.majorNames[1]).to.equal('Global & Intercultural Studies');
+  });
 });
