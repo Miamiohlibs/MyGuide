@@ -24,11 +24,4 @@ module.exports = function (req) {
   userSubjectInfo.reduceSubjectsToNames();
   userSubjectInfo.removeTempData();
   return userSubjectInfo;
-  // obj.addSubjectsFromMajors();
-  // obj.addSubjectsFromCourses();
-  // obj.reduceSubjectsToNames();
-  // obj.removeMap();
-  // console.log(obj);
-  // return userLoginInfo;
-  // return rawUserData;
 };
