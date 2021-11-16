@@ -65,11 +65,13 @@ module.exports = class UserSubjectInfo {
 
   // Reduce Subjects to Names
   reduceSubjectsToNames() {
-    this.subjects = this.subjects.map((subj) => subj.name);
+    this.user.attr.subjects = this.subjects.map((subj) => subj.name);
   }
 
   // unlink map
-  removeMap() {
+  removeTempData() {
     delete this.map;
+    delete this.courses;
+    delete this.subjects;
   }
 };
