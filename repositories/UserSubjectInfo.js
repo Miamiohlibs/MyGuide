@@ -6,8 +6,6 @@ module.exports = class UserSubjectInfo {
     this.courses = [];
     this.map = subjectMap;
     this.subjects = [];
-    this.subjectNames = [];
-    this.libguideSubjects = [];
     if (this.user.attr.hasOwnProperty('coursesTaken')) {
       this.courses = this.courses.concat(this.user.attr.coursesTaken);
     }
@@ -63,5 +61,10 @@ module.exports = class UserSubjectInfo {
         this.subjects.push(subject);
       }
     });
+  }
+
+  // Reduce Subjects to Names
+  reduceSubjectsToNames() {
+    this.subjects = this.subjects.map((subj) => subj.name);
   }
 };
