@@ -67,4 +67,9 @@ module.exports = class UserSubjectInfo {
   reduceSubjectsToNames() {
     this.subjects = this.subjects.map((subj) => subj.name);
   }
+
+  // unlink map
+  removeMap() {
+    delete this.map;
+  }
 };
