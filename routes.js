@@ -1,5 +1,5 @@
 const config = require('config');
-const getUserInfo = require('./services/getUserInfo');
+const getUserLoginInfo = require('./services/getUserInfo');
 
 module.exports = function (app) {
   app.get('/', async (req, res) => {

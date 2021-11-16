@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const should = require('chai').should;
 const chaiArrays = require('chai-arrays');
 chai.use(chaiArrays);
-const UserInfo = require('../../repositories/UserInfo');
+const UserLoginInfo = require('../../repositories/UserLoginInfo');
 
 const rawCasData1 = require('./sample-data/rawCasData1.json');
 const userDataMapMiami = require('./sample-data/userDataMapMiami.json');
@@ -14,8 +14,8 @@ const opts1 = {
   userDataMap: userDataMapMiami,
 };
 
-describe('UserInfo: constructor', () => {
-  let obj = new UserInfo(opts1);
+describe('UserLoginInfo: constructor', () => {
+  let obj = new UserLoginInfo(opts1);
   it('should know it has CAS data', () => {
     expect(obj).to.have.property('authType');
     expect(obj.authType).to.equal('CAS');
@@ -29,14 +29,14 @@ describe('UserInfo: constructor', () => {
     expect(obj.rawUserData.attributes).to.have.property('displayName');
     expect(obj.rawUserData.attributes.displayName[0]).to.equal('Polly Glott');
   });
-  it('should know to map Cas.user to UserInfo.userId', () => {
+  it('should know to map Cas.user to UserLoginInfo.userId', () => {
     expect(obj.userDataMap).to.have.property('userId');
     expect(obj.userDataMap.userId).to.have.property('field');
     expect(obj.userDataMap.userId.field).to.equal('user');
     expect(obj.userDataMap.userId).to.have.property('fieldType');
     expect(obj.userDataMap.userId.fieldType).to.equal('string');
   });
-  it('should know to map Cas.attributes.displayName to UserInfo.fullName', () => {
+  it('should know to map Cas.attributes.displayName to UserLoginInfo.fullName', () => {
     expect(obj.userDataMap).to.have.property('fullName');
     expect(obj.userDataMap.fullName).to.have.property('field');
     expect(obj.userDataMap.fullName.field).to.equal('attributes.displayName');
@@ -45,8 +45,8 @@ describe('UserInfo: constructor', () => {
   });
 });
 
-describe('UserInfo: getAttributesFromCasData', () => {
-  let obj = new UserInfo(opts1);
+describe('UserLoginInfo: getAttributesFromCasData', () => {
+  let obj = new UserLoginInfo(opts1);
   obj.getAttributesFromCasData();
   it('should get a userId of "pollystu" from rawUserData', () => {
     expect(obj).to.have.property('attr');

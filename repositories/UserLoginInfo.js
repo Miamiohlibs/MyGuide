@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-module.exports = class UserInfo {
+module.exports = class UserLoginInfo {
   constructor(opts) {
     /* opts expects:
         authType
