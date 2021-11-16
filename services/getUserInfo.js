@@ -1,5 +1,8 @@
 const config = require('config');
-let rawData;
+const UserLoginInfo = require('../repositories/UserLoginInfo');
+const UserSubjectInfo = require('../repositories/UserSubjectInfo');
+const userDataMap = require('../config/cas_field_map.json');
+let rawData, userLoginInfo;
 
 module.exports = function (req) {
   switch (config.get('app.authType')) {
@@ -9,6 +12,11 @@ module.exports = function (req) {
       } else if (global.onServer) {
         rawUserData = req.session.cas;
       }
+      userLoginInfo = new UserLoginInfo({ rawUserData, userDataMap });
+      userLoginInfo.getAttributesFromCasData();
+      userLoginInfo.removeDataMap();
   }
-  return rawUserData;
+
+  // return userLoginInfo;
+  // return rawUserData;
 };

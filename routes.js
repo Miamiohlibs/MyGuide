@@ -3,7 +3,7 @@ const getUserLoginInfo = require('./services/getUserInfo');
 
 module.exports = function (app) {
   app.get('/', async (req, res) => {
-    let userInfo = getUserInfo(req);
+    let userInfo = getUserLoginInfo(req);
     res.send(userInfo);
   });
 };
