@@ -1,0 +1,130 @@
+{
+    "authType": "CAS",
+    "rawUserData": {
+        "user": "pollystu",
+        "attributes": {
+            "displayName": [
+                "Polly Glott"
+            ],
+            "muohioeduCurrentCourseSubjectNumber": [
+                "SPN101",
+                "CLS101",
+                "LAT201",
+                "KOR101",
+                "RUS101",
+                "GER101",
+                "ENG101"
+            ],
+            "muohioeduPrimaryAffiliation": [
+                "student"
+            ],
+            "uid": [
+                "pollystu"
+            ],
+            "eduPersonPrimaryAffiliation": [
+                "student"
+            ],
+            "muohioeduPrimaryLocationCode": [
+                "oxf"
+            ],
+            "eduPersonPrincipalName": [
+                "langstu@miamioh.edu"
+            ],
+            "muohioeduMajorCode": [
+                "AS52",
+                "AP49"
+            ],
+            "givenName": [
+                "Polly"
+            ],
+            "muohioeduMajor": [
+                "Spanish",
+                "Global & Intercultural Studies"
+            ],
+            "muohioeduPrimaryLocation": [
+                "Oxford"
+            ],
+            "muohioeduPrimaryAffiliationCode": [
+                "und"
+            ]
+        }
+    },
+    "userDataMap": {
+        "userId": {
+            "field": "user",
+            "fieldType": "string"
+        },
+        "userType": {
+            "field": "attributes.muohioeduPrimaryAffiliation",
+            "fieldType": "arrayOfOne"
+        },
+        "fullName": {
+            "field": "attributes.displayName",
+            "fieldType": "arrayOfOne"
+        },
+        "givenName": {
+            "field": "attributes.givenName",
+            "fieldType": "arrayOfOne"
+        },
+        "email": {
+            "field": "attributes.eduPersonPrincipalName",
+            "fieldType": "arrayOfOne"
+        },
+        "divisionCodes": {
+            "field": "attributes.muohioeduDivisionCode",
+            "fieldType": "array"
+        },
+        "divisionNames": {
+            "field": "attributes.muohioeduDivision",
+            "fieldType": "array"
+        },
+        "departmentNames": {
+            "field": "attributes.muohioeduDepartment",
+            "fieldType": "array"
+        },
+        "departmentCodes": {
+            "field": "attributes.muohioeduDepartmentCode",
+            "fieldType": "array"
+        },
+        "coursesTaken": {
+            "field": "attributes.muohioeduCurrentCourseSubjectNumber",
+            "fieldType": "array"
+        },
+        "coursesTaught": {
+            "field": "attributes.muohioeduCurrentTeachingSubjectNumber",
+            "fieldType": "array"
+        },
+        "majorNames": {
+            "field": "attributes.muohioeduMajor",
+            "fieldType": "array"
+        },
+        "majorCodes": {
+            "field": "attributes.muohioeduMajorCode",
+            "fieldType": "array"
+        }
+    },
+    "attr": {
+        "userId": "pollystu",
+        "userType": "student",
+        "fullName": "Polly Glott",
+        "givenName": "Polly",
+        "email": "langstu@miamioh.edu",
+        "coursesTaken": [
+            "SPN101",
+            "CLS101",
+            "LAT201",
+            "KOR101",
+            "RUS101",
+            "GER101",
+            "ENG101"
+        ],
+        "majorNames": [
+            "Spanish",
+            "Global & Intercultural Studies"
+        ],
+        "majorCodes": [
+            "AS52",
+            "AP49"
+        ]
+    }
+}
