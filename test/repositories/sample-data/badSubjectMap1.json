@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Academic Affairs",
+        "libguides": [
+            "Educational Leadership"
+        ],
+        "regCodes": [
+            {
+                "regCode": "ACC",
+                "regName": "Academic Affairs"
+            }
+        ]
+    },
+    {
+        "name": "Accountancy",
+        "libguides": [
+            "Accountancy"
+        ],
+        "regCodes": [
+            {
+                "regCode": "ACC",
+                "regName": "Accountancy"
+            }
+        ],
+        "majorCodes": [
+            {
+                "majorCode": "BU01",
+                "majorName": "Accountancy"
+            }
+        ],
+        "deptCodes": [
+            {
+                "deptCode": "acc",
+                "deptName": "Accountancy"
+            }
+        ]
+    }
+]

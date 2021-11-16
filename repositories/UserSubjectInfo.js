@@ -9,10 +9,10 @@ module.exports = class UserSubjectInfo {
   }
 
   getSubjByRegCode(regCode) {
-    // let res = _.filter(this.map, { regCodes: [{ regCode: regCode }] });
-    // if (res.length == 1) {
-    //   return res[0];
-    // }
-    // return false;
+    let res = _.filter(this.map, { regCodes: [{ regCode: regCode }] });
+    if (res.length == 1) {
+      return res[0];
+    }
+    return false;
   }
 };
