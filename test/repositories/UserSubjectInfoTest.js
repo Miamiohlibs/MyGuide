@@ -73,3 +73,29 @@ describe('UserSubjectInfo: getSubjByRegCode', () => {
     expect(badRes).to.be.false;
   });
 });
+
+describe('UserSubjectInfo: getRegCodeFromCourseNumber', () => {
+  let reAlphaCodeFirst = /^([A-Z]+)/;
+  let reUnorderedAlpha = /([A-Z]+)/;
+  let reLowerCaseAlphaCode = /([a-z]+)/;
+  it('should get "ACC" from "ACC123",/^([A-Z])+/', () => {
+    let res = obj.getRegCodeFromCourseNumber('ACC123', reAlphaCodeFirst);
+    expect(res).to.equal('ACC');
+  });
+  it('should get false from "143sdalKA",/^([A-Z])+/', () => {
+    let res = obj.getRegCodeFromCourseNumber('143sdalKA', reAlphaCodeFirst);
+    expect(res).to.be.false;
+  });
+  it('should get "ACC" from "123ACC",/([A-Z])+/', () => {
+    let res = obj.getRegCodeFromCourseNumber('ACC123', reUnorderedAlpha);
+    expect(res).to.equal('ACC');
+  });
+  it('should get "KA" from "143sdalKA",/([A-Z])+/', () => {
+    let res = obj.getRegCodeFromCourseNumber('143sdalKA', reUnorderedAlpha);
+    expect(res).to.equal('KA');
+  });
+  it('should get "acc" from "acc123",/([a-z])+/', () => {
+    let res = obj.getRegCodeFromCourseNumber('acc123', reLowerCaseAlphaCode);
+    expect(res).to.equal('acc');
+  });
+});
