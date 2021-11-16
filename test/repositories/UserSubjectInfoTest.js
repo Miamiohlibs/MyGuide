@@ -98,4 +98,13 @@ describe('UserSubjectInfo: getRegCodeFromCourseNumber', () => {
     let res = obj.getRegCodeFromCourseNumber('acc123', reLowerCaseAlphaCode);
     expect(res).to.equal('acc');
   });
+  // the ([A-Z]+)\d+ pattern should be assumed if no pattern specified
+  it('should get "ACC" from "ACC123" with no pattern specified', () => {
+    let res = obj.getRegCodeFromCourseNumber('ACC123');
+    expect(res).to.equal('ACC');
+  });
+  it('should get false from "143sdalKA" with no pattern specified', () => {
+    let res = obj.getRegCodeFromCourseNumber('143sdalKA');
+    expect(res).to.be.false;
+  });
 });

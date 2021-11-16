@@ -17,7 +17,7 @@ module.exports = class UserSubjectInfo {
     return false;
   }
 
-  getRegCodeFromCourseNumber(courseNumber, regex) {
+  getRegCodeFromCourseNumber(courseNumber, regex = /(^[A-Z]+)/) {
     // const str = 'ACC123';
     // const re = /(^[A-Z]+)/;
     const found = courseNumber.match(regex);
