@@ -14,12 +14,8 @@ module.exports = class UserInfo {
     this.subjectDataMap = opts.subjectDataMap;
     this.attr = {};
   }
-  // switch (this.authType) {
-  //   case 'CAS':
-  //     this.getAttributesFromCasData(); // creates this.userAttributes
-  //     break;
-  // }
 
+  // this will come late:
   // this.addUserCustomizations(); // updates this.userAttributes
 
   // return this.userDataPackage(); // returns subject info for user
