@@ -17,7 +17,7 @@
             "student"
         ],
         "uid": [
-            "langstu"
+            "pollystu"
         ],
         "eduPersonPrimaryAffiliation": [
             "student"
@@ -28,11 +28,17 @@
         "eduPersonPrincipalName": [
             "langstu@miamioh.edu"
         ],
-        "muohioeduMajorCode": [],
+        "muohioeduMajorCode": [
+            "AS52",
+            "AP49"
+        ],
         "givenName": [
             "Polly"
         ],
-        "muohioeduMajor": [],
+        "muohioeduMajor": [
+            "Spanish",
+            "Global & Intercultural Studies"
+        ],
         "muohioeduPrimaryLocation": [
             "Oxford"
         ],
