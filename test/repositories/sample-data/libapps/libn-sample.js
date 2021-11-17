@@ -1,0 +1,216 @@
+const librarians = [
+  {
+    created_by: '1480',
+    nickname: '',
+    first_name: 'Jean-Luc',
+    signature: '',
+    title: null,
+    last_name: 'Picard',
+    created: '2014-03-24 19:46:56',
+    updated: '2020-02-11 21:53:53',
+    profile: {
+      widget_other: '',
+      widget_la: '',
+      customer_id: 583,
+      page: null,
+      id: 5521,
+      display: {
+        disp_widget_other: '0',
+      },
+      account_id: 1811,
+      url: 'https://libguides.lib.fake.edu/prf.php?account_id=1811',
+      en_page: 1,
+      connect: {
+        linkedin: '',
+        email: 'picardjl@fake.edu',
+        facebook: '',
+        website: 'http://www.users.muohio.edu/picardjl',
+        skype: '',
+        address: 'King Library 212\n(513)555-6231 (Office)\npicardjl@fake.edu',
+        twitter: 'https://twitter.com/miamiulibraries',
+      },
+      box: {
+        title: 'Your Librarian',
+      },
+      image: {
+        show: 1,
+        file: 'JLPicard.jpg',
+        url: '',
+      },
+      updated: '2019-08-16 19:19:51',
+      created: '2014-05-26 13:56:34',
+    },
+    id: '1811',
+    email: 'picardjl@fake.edu',
+    subjects: [
+      {
+        slug_id: '0',
+        id: '11150',
+        name: 'Family Science and Social Work',
+      },
+      {
+        slug_id: '0',
+        name: 'Social Work',
+        id: '11151',
+      },
+    ],
+  },
+  {
+    created_by: '0',
+    nickname: '',
+    signature:
+      'Kathryn Janeway, Business Librarian\nMiami University\n219A Laws Hall\nOxford, OH 45056\n513-555-4144\njanewak@fake.edu',
+    first_name: 'Kathryn',
+    title: 'Business Librarian',
+    last_name: 'Janeway',
+    created: '2009-03-27 22:56:08',
+    updated: '2020-02-12 22:39:36',
+    profile: {
+      account_id: 8190,
+      url: 'https://libguides.lib.fake.edu/prf.php?account_id=8190',
+      en_page: 1,
+      box: {
+        title: 'Your Librarian',
+      },
+      connect: {
+        linkedin: '',
+        facebook: '',
+        email: 'janewak@fake.edu',
+        website: '',
+        skype: '',
+        address:
+          '<b>219A Laws Hall<br/>(513) 555-4144<br/> <a href="mailto:janewak@fake.edu">janewak@fake.edu</a></b>',
+        twitter: '',
+      },
+      image: {
+        url: '',
+        file: 'Kathryn_Janeway_-_tenure_photo.jpg',
+        show: 1,
+      },
+      updated: '2019-09-25 19:22:22',
+      created: '2014-05-26 13:56:33',
+      widget_other:
+        '<h4>Office Hours</h4><p style="text-align:left;"><strong><span style="font-size: 10.5pt; font-family: Arial, sans-serif;"></span><span style="color:#B22222;">FSB Office Hours - 3083 FSB - 10-12 on Mondays.  OTHER days and times, please come by my office 219A Laws Hall or call or email me.</strong></p>\n',
+      customer_id: 583,
+      page: null,
+      id: 5520,
+      display: {
+        disp_connect_social: '0',
+        disp_connect_libraries: '1',
+        disp_widget_la: '0',
+        disp_widget_other: '1',
+      },
+    },
+    id: '8190',
+    email: 'janewak@miamiOH.edu',
+    subjects: [
+      {
+        name: 'Accountancy',
+        id: '11143',
+        slug_id: '0',
+      },
+      {
+        slug_id: '4004',
+        name: 'Business',
+        id: '4593',
+      },
+      {
+        slug_id: '0',
+        id: '30445',
+        name: 'Entrepreneurship',
+      },
+      {
+        slug_id: '0',
+        id: '11153',
+        name: 'Finance',
+      },
+      {
+        id: '11166',
+        name: 'Management',
+        slug_id: '0',
+      },
+      {
+        slug_id: '0',
+        name: 'Marketing',
+        id: '8427',
+      },
+    ],
+  },
+  {
+    email: 'siskob@fake.edu',
+    id: '8191',
+    subjects: [
+      {
+        slug_id: '0',
+        id: '8452',
+        name: 'Area Studies',
+      },
+      {
+        name: 'Global & Intercultural Studies',
+        id: '75002',
+        slug_id: '0',
+      },
+      {
+        id: '8454',
+        name: 'International Studies',
+        slug_id: '0',
+      },
+      {
+        id: '8445',
+        name: 'Languages',
+        slug_id: '0',
+      },
+      {
+        name: 'Latin American Studies',
+        id: '11162',
+        slug_id: '0',
+      },
+    ],
+    profile: {
+      display: {
+        disp_widget_la: '1',
+        disp_widget_other: '0',
+        disp_widget_lc: '1',
+      },
+      id: 5522,
+      page: {
+        working: '',
+        redirect: '',
+      },
+      customer_id: 583,
+      widget_la: '',
+      widget_other: '',
+      created: '2014-05-26 13:56:34',
+      updated: '2020-02-11 20:14:07',
+      image: {
+        file: 'O16514_Benjamin_Sisko__1_.jpg',
+        show: 1,
+      },
+      connect: {
+        skype: '',
+        website: '',
+        phone: '',
+        linkedin: '',
+        email: 'siskob@fake.edu',
+        facebook: '',
+        twitter: 'http://twitter.com/MULkatie',
+      },
+      box: {
+        title: 'Subject Guide',
+      },
+      en_page: 1,
+      url: 'https://libguides.lib.fake.edu/prf.php?account_id=8191',
+      account_id: 8191,
+    },
+    nickname: '',
+    signature: '',
+    first_name: 'Benjamin',
+    title: 'Humanities Librarian',
+    created_by: '0',
+    created: '2009-03-27 22:59:37',
+    updated: '2020-02-10 21:48:01',
+    last_name: 'Sisko',
+  },
+];
+
+module.exports = librarians;
