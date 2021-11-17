@@ -4,10 +4,7 @@
         "port": "9909",
         "onServer": "false",
         "useAuth": "true",
-        "authType": "CAS",
-        "allowed_group_ids": [
-            "0"
-        ]
+        "authType": "CAS"
     },
     "server": {
         "hostname": "fully-qualified.domain.org",
@@ -16,7 +13,10 @@
     },
     "LibGuides": {
         "api_key": "supersekritkeystring",
-        "site_id": "000"
+        "site_id": "000",
+        "allowed_group_ids": [
+            "0"
+        ]
     },
     "CAS": {
         "sessionName": "NSESSIONID",
