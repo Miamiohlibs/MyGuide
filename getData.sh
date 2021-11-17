@@ -77,4 +77,9 @@ echo "module.exports = databases;" >> $FILE
 # ./compileSubjectCache.sh
 
 # node ./utilities/compareLGSubjects.js
+# # runs: util/runCleanCache
+# # runs: util/updateSubjectCache
+
+
 # node ./utilities/checkSubjectCodes.js
+# # this is an audit of the subjectCodes for syntax error detection, duplication, etc
