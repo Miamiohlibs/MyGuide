@@ -14,6 +14,10 @@
         "key": "/path/to/cert.key",
         "cert": "/path/to/cert.crt"
     },
+    "LibGuides": {
+        "api_key": "supersekritkeystring",
+        "site_id": "000"
+    },
     "CAS": {
         "sessionName": "NSESSIONID",
         "secret": "This is my very long secret key",

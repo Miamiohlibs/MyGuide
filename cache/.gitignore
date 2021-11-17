@@ -1,0 +1,5 @@
+# Ignore everything in this directory
+*js*
+# Except this file
+!.gitignore
+!./subjects
