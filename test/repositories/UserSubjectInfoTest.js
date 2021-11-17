@@ -110,9 +110,9 @@ describe('UserSubjectInfo: addSubjectsFromCourses', () => {
   // this should get some stub tests
 });
 
-/* testing regCode methods */
+/* testing majorCode methods */
 
-describe('UserSubjectInfo: getSubjByRegCode', () => {
+describe('UserSubjectInfo: getSubjByMajorCode', () => {
   let res = obj.getSubjByMajorCode('BU01');
   let res2 = obj.getSubjByMajorCode('EA18');
 
@@ -137,5 +137,23 @@ describe('UserSubjectInfo: getSubjByRegCode', () => {
     expect(res2).to.have.property('libguides');
     expect(res2.libguides.length).to.equal(1);
     expect(res2.libguides).to.be.equalTo(['Education']);
+  });
+});
+
+/* testing deptCode methods */
+
+describe('UserSubjectInfo: getSubjByDeptCode', () => {
+  let res = obj.getSubjByDeptCode('ece');
+  let res2 = obj.getSubjByDeptCode('ulb');
+
+  it('should return a single object with name "Electrical and Computer Engineering" for "ece"', () => {
+    expect(res).to.be.an('object');
+    expect(res).to.have.property('name');
+    expect(res.name).to.equal('Electrical and Computer Engineering');
+  });
+  it('should return a single object with name "Library" for "ulb"', () => {
+    expect(res2).to.be.an('object');
+    expect(res2).to.have.property('name');
+    expect(res2.name).to.equal('Library');
   });
 });

@@ -1,0 +1,74 @@
+{
+    "user": "rtr3825",
+    "attributes": {
+        "isFromNewLogin": [
+            "true"
+        ],
+        "authenticationDate": [
+            "2020-12-04T16:50:27.100986-05:00[America/New_York]"
+        ],
+        "eduPersonAffiliation": [
+            "faculty"
+        ],
+        "displayName": [
+            "RTR3825 Test"
+        ],
+        "givenName": [
+            "RTR3825"
+        ],
+        "muohioeduDepartment": [
+            "Educational Psychology"
+        ],
+        "successfulAuthenticationHandlers": [
+            "LdapAuthenticationHandler"
+        ],
+        "muohioeduAffiliationCode": [
+            "fac"
+        ],
+        "muohioeduEmployeeSchool": [
+            "Col of Educ, Health & Society"
+        ],
+        "muohioeduEmployeeSchoolCode": [
+            "ea"
+        ],
+        "credentialType": [
+            "UsernamePasswordCredential"
+        ],
+        "samlAuthenticationStatementAuthMethod": [
+            "urn:oasis:names:tc:SAML:1.0:am:password"
+        ],
+        "uid": [
+            "rtr3825"
+        ],
+        "eduPersonPrimaryAffiliation": [
+            "faculty"
+        ],
+        "muohioeduPrimaryLocationCode": [
+            "oxf"
+        ],
+        "muohioeduPrimaryLocation": [
+            "Oxford"
+        ],
+        "authenticationMethod": [
+            "LdapAuthenticationHandler"
+        ],
+        "muohioeduDepartmentCode": [
+            "edp"
+        ],
+        "eduPersonPrincipalName": [
+            "rtr3825@miamioh.edu"
+        ],
+        "longTermAuthenticationRequestTokenUsed": [
+            "false"
+        ],
+        "muohioeduCurrentTeachingSubjectNumber": [
+            "ENG111",
+            "CJS245",
+            "LUX101"
+        ],
+        "muohioeduPrimaryAffiliationCode": [
+            "frs"
+        ]
+    },
+    "pt": "ST-196742-FMgBxYuCRpbPPoWUsbu3Vb3l1F8-mualcasp23"
+}

@@ -4,7 +4,7 @@
         "fieldType": "string"
     },
     "userType": {
-        "field": "attributes.muohioeduPrimaryAffiliation",
+        "field": "attributes.eduPersonPrimaryAffiliation",
         "fieldType": "arrayOfOne"
     },
     "fullName": {

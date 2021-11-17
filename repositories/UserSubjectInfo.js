@@ -63,6 +63,28 @@ module.exports = class UserSubjectInfo {
     });
   }
 
+  /* DeptCode methods */
+
+  getSubjByDeptCode(deptCode) {
+    let res = _.filter(this.map, { deptCodes: [{ deptCode: deptCode }] });
+    if (res.length == 1) {
+      return res[0];
+    }
+    return false;
+  }
+
+  addSubjectsFromDepts() {
+    let deptCodes = this.user.attr.deptCodes;
+    deptCodes.forEach((majorCode) => {
+      let subject = this.getSubjByDeptCode(deptCode);
+      if (subject && !this.subjects.includes(subject)) {
+        this.subjects.push(subject);
+      }
+    });
+  }
+
+  /* Utility functions */
+
   // Reduce Subjects to Names
   reduceSubjectsToNames() {
     this.user.attr.subjects = this.subjects.map((subj) => subj.name);
@@ -73,5 +95,6 @@ module.exports = class UserSubjectInfo {
     delete this.map;
     delete this.courses;
     delete this.subjects;
+    delete this.depts;
   }
 };
