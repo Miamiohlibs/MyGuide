@@ -30,6 +30,7 @@ module.exports = function (req) {
   // let userLibGuides = new UserLibGuidesData()
   return {
     userInfo: userSubjectInfo.user.attr,
+    uniqueSubjects: subjectList,
     subjectData: userLibGuides,
     userLoginInfo: userLoginInfo.rawUserData,
   };

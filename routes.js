@@ -6,4 +6,9 @@ module.exports = function (app) {
     let userInfo = getUserLoginInfo(req);
     res.send(userInfo);
   });
+
+  app.get('/json', async (req, res) => {
+    let userInfo = getUserLoginInfo(req);
+    res.send(userInfo);
+  });
 };
