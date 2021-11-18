@@ -1,6 +1,7 @@
 const config = require('config');
 const UserLoginInfo = require('../repositories/UserLoginInfo');
 const UserSubjectInfo = require('../repositories/UserSubjectInfo');
+const UserLibGuidesData = require('../repositories/UserLibGuidesData');
 const userDataMap = require('../config/cas_field_map.json');
 const subjectMap = require('../config/miami_subjects.json');
 let rawData, userLoginInfo;
@@ -23,5 +24,13 @@ module.exports = function (req) {
   userSubjectInfo.addSubjectsFromCourses();
   userSubjectInfo.reduceSubjectsToNames();
   userSubjectInfo.removeTempData();
-  return userSubjectInfo;
+  let subjectList = userSubjectInfo.returnSubjectList();
+
+  let userLibGuides = new UserLibGuidesData(subjectList);
+  // let userLibGuides = new UserLibGuidesData()
+  return {
+    userInfo: userSubjectInfo.user.attr,
+    subjectData: userLibGuides,
+    userLoginInfo: userLoginInfo.rawUserData,
+  };
 };

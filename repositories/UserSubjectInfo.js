@@ -83,6 +83,10 @@ module.exports = class UserSubjectInfo {
     });
   }
 
+  returnSubjectList() {
+    return this.user.attr.subjects;
+  }
+
   /* Utility functions */
 
   // Reduce Subjects to Names
