@@ -1,0 +1,12 @@
+<ul class="topDatabases list-unstyled">
+  <% databases.forEach(d => { %>
+  <li class="my-3 d-flex">
+    <% let url = d.friendly_url %>
+    <% if (url === null) { url = d.url } %>
+    <a href="<%= url %>" class="col-10"><%- d.name %></a>
+    <span class="red-arrows">
+      <i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i>
+  </span>
+</li>
+  <% }) %>
+</ul>

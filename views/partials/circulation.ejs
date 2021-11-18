@@ -1,0 +1,28 @@
+<!-- begin circulation/Sierra info-->
+<div id="circulation-data">
+    <ul class="list-unstyled">
+      <li id="checkout-out">Items Checked Out: <%= data.numCheckouts %>
+      </li>
+      <li id="circ-holds">Items Requested: <%= data.numHolds %>
+      </li>
+      <li id="money-owed" class="hideable">
+        <% if (data.moneyOwed == '0') { %>
+          Money Owed: <%- data.moneyOwed %>
+        <% } else { %>
+          <% moneyClass = 'danger'; moneyButtonText = 'Money Owed' %>
+          <span class="hidden"> 
+            <a class="btn btn-<%- moneyClass %> btn-sm" style="color: #fff!important;" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <%- moneyButtonText %>
+            </a>
+          </span>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              Money owed: <%- data.moneyOwed %>
+            </div>
+          </div>
+        <% } %>
+      </li>
+    </ul>
+    <div id="sierra-account-link"><a class="btn btn-primary" href="<%- data.accountLink %>">Full Account Info </a></div>  
+</div>
+<!-- end circulation/Sierra info-->

@@ -1,0 +1,174 @@
+<%- include ('header') %>
+
+  <script>
+    $(document).ready(function () {
+      $('.collapse').collapse('hide');
+      $('button[role="tab"]').on('click', function() { window.scrollTo(0,0)})
+      $('button.librarian-info-toggle').click(function () {
+        $(this).text(function (i, old) {
+          return old == 'More' ? 'Less' : 'More';
+        });
+      });
+    });
+  </script>
+  <!-- Show user's subject menu (mobile version) -->
+
+  <nav class="d-block d-lg-none mb-4 bg-white ">
+    <div class="row">
+    <h1 class="h3 text-wrap text-center col-10 mt-2">Hello, <%= user.person.givenName %>
+    </h1>
+    <button class="btn btn-dark float-end shadow-sm col-1 flex-grow-1" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="max-width: 50px; min-width: 40px">
+      <span class="navbar-toggler-icon">
+        <i class="bi bi-list"></i>
+      </span>
+    </button>
+  </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="card flex-column border-0">
+        <div class="card-header p-2 shadow-sm">
+          <div class="offcanvas-header col-12">
+            <div class="m-2">
+              <a class="navbar-brand" href="https://www.lib.miamioh.edu"><img class="img-fluid w-75"
+                  src="/img/logo-lightbg.png" alt="MU Libraries"></a>
+            </div>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+              aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="card-body bg-gray-800">
+        <div class="offcanvas-body">
+          <div class="flex-column mt-4 text-center" id="navbarTogglerDemo02">
+            <h3 class="text-white" id="subject-title">My subjects</h3>
+            <ul class="navbar-nav nav nav-tabs pb-3" id="myTab" role="tablist">
+              <% if (user.uniqueSubjects) { %>
+                <% user.uniqueSubjects.forEach((s)=> { %>
+                  <li class="nav-item m-2" role="presentation">
+                    <% let tabId=s.replace( /[^a-zA-Z0-9]+/g, '_' ); %>
+                      <button class="text-start nav-link text-light ps-3 border-0" id="<%= tabId %>-tab"
+                        data-bs-toggle="tab" data-bs-target="#<%= tabId %>" role="tab" aria-controls="<%= s %>">
+                        <i class="bi bi-caret-right-fill mr-1"></i>
+                        <%= s %>
+                      </button>
+                  </li>
+                  <% }); %>
+                    <% } %>
+                      <li class="ps-4 pt-3 text-light"><small>(based on courses & departmental
+                          affiliation)</small></li>
+            </ul>
+
+            <!-- Show log-out button -->
+            <div>
+              <a href="/logout">
+                <button id="logout" type="button" class="mt-3 btn btn-light btn-sm p-2 shadow">
+                  <span class="glyphicon glyphicon-log-out"></span>
+                  <i class="bi bi-power me-2 shadow"></i>Log out</button>
+              </a>
+            </div>
+          </div>
+
+        </div>
+        </div>
+      </div>
+      </div>
+  </nav>
+
+  <!-- Show user's subject menu (desktop version) -->
+  <nav class="navbar col-xl-2 col-lg-3 d-lg-block d-none p-0">
+    <div class="card flex-column mt-4 text-center shadow-sm">
+      <div class="card-header p-2">
+        <h1 class="h3 text-wrap mt-2">Hello,</br>
+          <%= user.person.givenName %>
+        </h1>
+      </div>
+      <div class="card-body bg-gray-800">
+        <h3 class="h4 text-white card-title" id="subject-title">My subjects</h3>
+
+        <ul class="navbar-nav nav nav-tabs pb-3" id="myTab" role="tablist">
+          <% if (user.uniqueSubjects) { %>
+            <% user.uniqueSubjects.forEach((s)=> { %>
+              <li class="nav-item m-2" role="presentation">
+                <% let tabId=s.replace( /[^a-zA-Z0-9]+/g, '_' ); %>
+                  <button class="text-start nav-link text-light ps-3 border-0" id="<%= tabId %>-tab"
+                    data-bs-toggle="tab" data-bs-target="#<%= tabId %>" role="tab" aria-controls="<%= s %>">
+                    <i class="bi bi-caret-right-fill mr-1"></i>
+                    <%= s %>
+                  </button>
+              </li>
+              <% }); %>
+                <% } %>
+                  <li class="ps-4 pt-3 text-light"><small>(based on courses & departmental
+                      affiliation)</small></li>
+        </ul>
+
+        <!-- Show log-out button -->
+        <div>
+          <a href="/logout">
+            <button id="logout" type="button" class="mt-3 btn btn-light btn-sm p-2 shadow">
+              <span class="glyphicon glyphicon-log-out"></span>
+              <i class="bi bi-power me-2 shadow"></i>Log out</button>
+          </a>
+        </div>
+        <div class="mt-5 mb-3">
+          <a class="navbar-brand p-0" href="https://www.lib.miamioh.edu"><img class="img-fluid"
+              src="/img/logo-darkbg.png" alt="MU Libraries"></a>
+        </div>
+
+      </div>
+
+    </div>
+  </nav>
+  <!-- End of showing user's subject menu -->
+
+  <div class="col-xl-8 col-lg-9 col-12">
+    <div class="tab-content" id="myTabContent">
+      <% tabsCreated=[]; %>
+        <% user.subjectData.forEach(m=> { %>
+          <%- include('partials/subject-info', {subj: m}) %>
+            <% tabsCreated.push(m.name) %>
+              <% }); %>
+    </div>
+  </div>
+
+  <!-- Show user's library account and featured content -->
+  <div class="col-xl-2 col-lg-9 offset-lg-3 offset-xl-0">
+    <div class="d-none d-xl-flex justify-content-center">
+      <img src="/img/mg-logo.svg" alt="MyGuide" class="w-100" style="max-width: 200px;">
+    </div>
+    <div class="mt-xl-1 d-md-inline-flex flex-xl-column">
+      <div class="card mx-md-3 mx-xl-2 my-2">
+        <div class="card-header px-4 py-3 d-flex">
+          <a class="libraryAcc collapsed flex-grow-1" data-bs-toggle="collapse" href="#collapseCirc"
+            aria-expanded="false" aria-controls="collapseCirc">
+            <h4 class="mb-0">My Library Account</h4>
+          </a>
+          <span class="folding-arrows">
+            <i class="bi bi-caret-down"></i>
+          </span>
+        </div>
+        <div class="card-body d-print-none collapse" id="collapseCirc">
+          <% fakeCirc=false %>
+                  <% if (user.sierraInfo !=undefined) { %>
+                    <%- include('partials/circulation', {data: user.sierraInfo}) %>
+                      <% } else { %>
+                        <p>No data avalable</p>
+                        <% } %>
+        </div>
+      </div>
+      <div class="card mx-md-3 mx-xl-2 my-2">
+        <div class="card-header px-4 pt-3 pb-2">
+          <h4>Featured Content</h4>
+        </div>
+        <div class="card-body">
+          <a href="https://libguides.lib.miamioh.edu/librarylife">
+            <img src="/img/life-logo2.svg" id="life-guide" class="card-img"
+              alt="Your Life and the Library: Resouces for Leisure and Learning, Interests and Information, Fun and Facts, and Education and Entertainment">
+            <p class="mt-3">The L.I.F.E. guide suggests library resources for non-academic purposes.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include ('footer', {settings: settings}) %>

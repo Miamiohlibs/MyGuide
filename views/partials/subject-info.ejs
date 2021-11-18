@@ -1,0 +1,90 @@
+<% subj.id=subj.name.replace( /[^a-zA-Z0-9]+/g, '_' ); %>
+  <div class="tab-pane show" id="<%= subj.id %>" role="tabpanel"
+    aria-labelledby="<%= subj.id %>-tab">
+    <div class="d-flex justify-content-xl-center justify-content-between align-items-center">
+      <h3 class="text-danger text-lg-center">
+        <%= subj.name %>
+      </h3>
+        <img src="/img/mg-logo.svg" alt="MyGuide" class="w-100 d-block d-xl-none" style="max-width: 200px;">
+    </div>  
+    <hr class="border-danger">
+    <div class="row">
+
+      <% if (! subj.resources.hasOwnProperty('metadata')) { %>
+        <div class="col-md-4 col-12">
+          <div class="card mb-3 shadow-sm">
+            <div class="card-header px-4 py-3 shadow-sm">
+              <h4 class="mb-0"><i class="bi bi-x-circle me-2 shadow"></i>&nbsp;No Resources Found</h4>
+            </div>
+            <div class="card-body">No resources found for <%= subj.name %>
+            </div>
+          </div>
+        </div>
+        <% } else { %>
+
+          <div class="col-md-4 col-12">
+            <div class="card mb-3 shadow-sm">
+              <div class="card-header px-4 py-3 shadow-sm">
+                <% let numLibns = subj.resources.metadata.sizeof.librarians %>
+                <% if (numLibns > 1 ) { %>
+                  <% multipleLibns = true; %>
+                  <% libnText = "My Librarians"; %>
+                <% } else { %>
+                  <% multipleLibns=false %>
+                  <% libnText = "My Librarian" %>
+                <% } %>
+                <h4 class="mb-0"><i class="bi bi-person me-2 shadow"></i>&nbsp;<%- libnText %></h4>
+              </div>
+              <div class="card-body list-unstyled">
+                
+
+                <% if ( numLibns > 0) { %>
+
+                  <% subj.resources.librarians.forEach((libn, index) => { %>
+                  <%- include('librarian', {libn: libn ,multipleLibns: multipleLibns, index: index, subj: subj.name}) %>
+                  <% }) %>
+                  %>
+                    <% } %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 col-12">
+            <div class="card mb-3 shadow-sm">
+              <div class="card-header px-4 py-3 shadow-sm">
+                <h4 class="mb-0"><i class="bi bi-lightbulb me-2 shadow"></i>&nbsp;Subject Guides</h4>
+              </div>
+              <div class="card-body list-unstyled">
+                <% if ( parseInt (subj.resources.metadata.sizeof.guides)> 0) {
+                  %>
+                  <%- include('guides', {guides: subj.resources.guides}) %>
+                    <% } %>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-12">
+            <div class="card mb-3 shadow-sm">
+              <div class="card-header px-4 py-3 shadow-sm">
+                <h4 class="mb-0"><i class="bi bi-sort-alpha-down me-2 shadow"></i>&nbsp;Databases</h4>
+              </div>
+              <div class="card-body">
+                <% if ( parseInt (subj.resources.metadata.sizeof.databases)> 0)
+                  { %>
+                  <%- include('databases-top', {databases:
+                    subj.resources.databases}) %>
+                    <% } %>
+                      <% if (subj.resources.subjects &&
+                        subj.resources.subjects.length> 0) { %>
+                        <%- include('databases-all', {subjects:
+                          subj.resources.subjects}); %>
+                          <% }%>
+              </div>
+            </div>
+          </div>
+
+          <% } %>
+
+
+    </div>
+  </div>

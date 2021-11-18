@@ -1,0 +1,71 @@
+<div>
+  <div class="media-body">
+    <% idCount=0; subjSlug = subj.replace(/[^a-zA-Z0-9]/g,'') %>
+    <% var collapsibleDivs = '' %>
+    <% if (libn !== undefined) { %>
+      <% if (index > 0) { %>
+        <hr>
+      <% } %>
+      <% nameTitle = [libn.first_name + ' ' + libn.last_name] %>
+      <% nameTitle.forEach( (item) => { %>
+        <% if (item !== null && item !== undefined) { %>
+          <% if (item.length > 1) { %>
+            <h5 class="mt-0 mb-1"><%- item %></h5>
+          <% } %>
+        <% } %>
+      <% }) %>
+    <% } %>
+    <p><%- libn.title %></p>
+    <% if (libn.profile.image.url != '') { %>
+      <img class="d-block mb-3" src="<%= libn.profile.image.url %>" alt="<%= libn.first_name%>
+        <%= libn.last_name %>"
+        style="max-width:120px; height: auto;">
+    <% } %>
+    <% /* not collapse: libn.profile.connect.address, libn.profile.connect.email, libn.profile.connect.phone */ %>
+    <% collapsibleFields = [libn.profile.widget_la, libn.profile.widget_lc, libn.profile.widget_other]; %>
+    <% fields = [libn.profile.connect.address,
+    libn.profile.connect.email, libn.profile.connect.phone, libn.profile.widget_la, libn.profile.widget_lc, libn.profile.widget_other] %>
+    <% fields.forEach( (item) => { %>
+      <% usingCollapsible = false; %>
+      <% if (collapsibleFields.includes(item) && multipleLibns) { %>
+        <% collapsibleClass = "collapse collapseIndex" + index; %>
+        <% collapsible = true; %>
+        <% usingCollapsible = true; %>
+      <% } else { %>
+          <% collapsibleClass = "notCollapsible"; %>
+          <% collapsible = true %>
+      <% } %>
+      <% collapsibleDivId = subjSlug + '-' + 'Libn' + index + '-' + idCount %>
+      <% if (collapsible == true) { %>
+        <% collapsibleDivs += collapsibleDivId + ' ' %>
+      <% } %>
+      <% if (item !== null && item !== undefined) { %>
+
+        <% if (item.length > 1) { %>
+          <% /* make sure each mysched button has a uniq id, so two of same can be on same user page */ %> 
+          <% item = item.replace(/id=\"mySched/gi, 'id="' + subjSlug+'-mysched') %>
+          <% item = item.replace(/jQuery\(\"#mysched/gi, 'jQuery("#' + subjSlug+'-mysched') %>
+  
+          <% /* encode email addresses */ %>
+          <% if (item.match(/^[^ ]*\@miamioh.edu$/i)) { %>
+            <% if (typeof encoder !== 'undefined') { %>
+              <% encoded = encoder.encodeEmail(item) %>
+            <% } else { %>
+              <% encoded = item %>
+            <% } %>
+            <div class="<%- collapsibleClass %>" id="<%- collapsibleDivId %>"><a href="mailto:<%= encoded %>"><%= item %></a></div>
+          <% } else { %>
+            <div class="<%- collapsibleClass %>" id="<%- collapsibleDivId %>">
+              <div class="d-block mb-0"><%- item %></div>
+            </div>
+          <% } %>
+          <% idCount++; %>
+        <% } %>
+      <% } %>
+    <% }) %>
+
+    <% if (usingCollapsible) { %>
+      <button class="btn btn-primary btn-sm librarian-info-toggle" type="button" data-bs-toggle="collapse" data-bs-target=".collapseIndex<%=index%>" aria-expanded="false" aria-controls="<%- collapsibleDivs %>">More</button>
+    <% } %>
+  </div>
+</div>
