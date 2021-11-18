@@ -3,3 +3,4 @@ node_modules
 *.log
 config/*
 !config/*_sample*
+custom-header-info.ejs
