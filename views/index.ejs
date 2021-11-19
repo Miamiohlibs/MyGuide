@@ -12,7 +12,6 @@
     });
   </script>
   <!-- Show user's subject menu (mobile version) -->
-
   <nav class="d-block d-lg-none mb-4 bg-white ">
     <div class="row">
     <h1 class="h3 text-wrap text-center col-10 mt-2">Hello, <%= user.person.givenName %>
@@ -123,7 +122,15 @@
   <!-- End of showing user's subject menu -->
 
   <div class="col-xl-8 col-lg-9 col-12">
+
     <div class="tab-content" id="myTabContent">
+      <% if (fs.existsSync('views/partials/custom-alert.ejs')) { %>
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <%- include('./partials/custom-alert.ejs') %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% } %>
+
       <% tabsCreated=[]; %>
         <% user.subjectData.forEach(m=> { %>
           <%- include('partials/subject-info', {subj: m}) %>

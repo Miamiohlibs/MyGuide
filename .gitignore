@@ -4,3 +4,4 @@ node_modules
 config/*
 !config/*_sample*
 custom-header-info.ejs
+custom-alert.ejs
