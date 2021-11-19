@@ -19,10 +19,12 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "https": "^1.0.0",
+    "jsdom": "^18.1.0",
     "lodash": "^4.17.21",
     "mocha": "^9.1.3",
     "node-cas-client": "^1.0.0",
     "session-memory-store": "^1.0.0",
+    "util": "^0.12.4",
     "winston": "^3.3.3"
   }
 }
