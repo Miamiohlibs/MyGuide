@@ -111,8 +111,16 @@
           </a>
         </div>
         <div class="mt-5 mb-3">
-          <a class="navbar-brand p-0" href="https://www.lib.miamioh.edu"><img class="img-fluid"
-              src="/img/logo-darkbg.png" alt="MU Libraries"></a>
+          <% let orgLogo = '' %>
+          <% if (fs.existsSync('public/img/org-logo.svg')) { %>
+            <%  orgLogo = '/img/org-logo.svg'; %>
+          <% } else if (fs.existsSync('public/img/org-logo.png')) { %>
+            <%  orgLogo = '/img/org-logo.png'; %>
+          <% } %>
+          <% if (orgLogo != '') { %>
+          <a class="navbar-brand p-0" href="<%= config.organization.url %>"><img class="img-fluid"
+              src="/img/org-logo.png" alt="<%= config.organization.name %>"></a>
+          <% } %>
         </div>
 
       </div>
@@ -140,9 +148,17 @@
   </div>
 
   <!-- Show user's library account and featured content -->
+  <% let mainLogo = '' %>
+  <% if (fs.existsSync('public/img/myguide-logo.svg')) { %>
+    <%  mainLogo = '/img/myguide-logo.svg'; %>
+  <% } else if (fs.existsSync('public/img/myguide-logo.png')) { %>
+    <%  mainLogo = '/img/myguide-logo.png'; %>
+  <% } %>
   <div class="col-xl-2 col-lg-9 offset-lg-3 offset-xl-0">
     <div class="d-none d-xl-flex justify-content-center">
-      <img src="/img/mg-logo.svg" alt="MyGuide" class="w-100" style="max-width: 200px;">
+      <% if (mainLogo != '') { %>
+        <img src="/img/myguide-logo.svg" alt="MyGuide" class="w-100" style="max-width: 200px;">
+      <% } %>
     </div>
     <div class="mt-xl-1 d-md-inline-flex flex-xl-column">
       <div class="card mx-md-3 mx-xl-2 my-2">

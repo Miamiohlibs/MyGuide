@@ -6,7 +6,11 @@ module.exports = function (app) {
     let user = getUserLoginInfo(req);
     // res.send(userInfo);
     // res.render('dashboard', { user: userInfo, settings: settings });
-    res.render('index', { user: user, fs: fs });
+    res.render('index', {
+      user: user,
+      fs: fs,
+      config: config.get('viewConfigs'),
+    });
   });
 
   app.get('/json', async (req, res) => {

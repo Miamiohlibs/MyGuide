@@ -5,3 +5,7 @@ config/*
 !config/*_sample*
 custom-header-info.ejs
 custom-alert.ejs
+
+#images
+myguide-logo.*
+org-logo.*
