@@ -25,6 +25,13 @@
         "servicePrefix": "https://myguideserver.yourorg.edu:9909",
         "serverPath": "https://casserver.yourorg.edu"
     },
+    "viewConfigs": {
+        "myGuideServiceName": "myGuide",
+        "organization": {
+            "name": "Your University Libraries",
+            "url": "https://your-url.edu"
+        }
+    },
     "logLevels": {
         "error": "daily",
         "warn": "false",
