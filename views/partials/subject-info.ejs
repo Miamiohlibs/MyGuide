@@ -1,3 +1,10 @@
+<% let myGuideLogo = '' %>
+<% if (fs.existsSync('public/img/myguide-logo.svg')) { %>
+  <%  myGuideLogo = '/img/myguide-logo.svg'; %>
+<% } else if (fs.existsSync('public/img/myguide-logo.png')) { %>
+  <%  myGuideLogo = '/img/myguide-logo.png'; %>
+<% } %>
+
 <% subj.id=subj.name.replace( /[^a-zA-Z0-9]+/g, '_' ); %>
   <div class="tab-pane show" id="<%= subj.id %>" role="tabpanel"
     aria-labelledby="<%= subj.id %>-tab">
@@ -5,8 +12,10 @@
       <h3 class="text-danger text-lg-center">
         <%= subj.name %>
       </h3>
-        <img src="/img/mg-logo.svg" alt="MyGuide" class="w-100 d-block d-xl-none" style="max-width: 200px;">
-    </div>  
+      <% if (myGuideLogo != '') { %>
+        <img src="<%= myGuideLogo %>" alt="<%= config.myGuideServiceName %>" class="w-100 d-block d-xl-none" style="max-width: 200px;">
+      <% } %>
+      </div>  
     <hr class="border-danger">
     <div class="row">
 

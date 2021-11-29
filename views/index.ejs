@@ -151,7 +151,7 @@
 
       <% tabsCreated=[]; %>
         <% user.subjectData.forEach(m=> { %>
-          <%- include('partials/subject-info', {subj: m}) %>
+          <%- include('partials/subject-info', {subj: m, config: config}) %>
             <% tabsCreated.push(m.name) %>
               <% }); %>
     </div>
