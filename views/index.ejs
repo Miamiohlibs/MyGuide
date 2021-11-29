@@ -190,7 +190,7 @@
                         <% } %>
         </div>
       </div>
-      <% if (config.featuredContent && config.featuredContent.display) { %>
+      <% if (config.featuredContent && config.featuredContent.display && config.featuredContent.display == 'true') { %>
       <div class="card mx-md-3 mx-xl-2 my-2">
         <div class="card-header px-4 pt-3 pb-2">
           <h4><%= config.featuredContent.cardLabel %></h4>

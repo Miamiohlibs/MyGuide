@@ -41,7 +41,8 @@
         },
         "featuredContent": {
             "display": "true",
-            "hint": "displays content defined in views/custom-featured-content.ejs"
+            "hint": "displays content defined in views/custom-featured-content.ejs",
+            "cardLabel": "Featured Content"
         }
     },
     "logLevels": {
