@@ -190,18 +190,16 @@
                         <% } %>
         </div>
       </div>
+      <% if (config.featuredContent && config.featuredContent.display) { %>
       <div class="card mx-md-3 mx-xl-2 my-2">
         <div class="card-header px-4 pt-3 pb-2">
-          <h4>Featured Content</h4>
+          <h4><%= config.featuredContent.cardLabel %></h4>
         </div>
         <div class="card-body">
-          <a href="https://libguides.lib.miamioh.edu/librarylife">
-            <img src="/img/life-logo2.svg" id="life-guide" class="card-img"
-              alt="Your Life and the Library: Resouces for Leisure and Learning, Interests and Information, Fun and Facts, and Education and Entertainment">
-            <p class="mt-3">The L.I.F.E. guide suggests library resources for non-academic purposes.</p>
-          </a>
+          <%- include('custom-featured-content') %>
         </div>
       </div>
+      <% } %>
     </div>
   </div>
   <%- include ('footer', {config: config}) %>

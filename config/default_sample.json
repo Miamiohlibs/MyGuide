@@ -38,6 +38,10 @@
         "refHelpLink": {
             "url": "https://your-url.edu/your/reference/email/form/",
             "text": "Need help? Contact us."
+        },
+        "featuredContent": {
+            "display": "true",
+            "hint": "displays content defined in views/custom-featured-content.ejs"
         }
     },
     "logLevels": {
