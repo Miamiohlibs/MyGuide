@@ -30,6 +30,14 @@
         "organization": {
             "name": "Your University Libraries",
             "url": "https://your-url.edu"
+        },
+        "techHelpLink": {
+            "url": "https://your-org.libwizard.com/f/path-to-feedback-form",
+            "text": "Having trouble with this page? Please let us know!"
+        },
+        "refHelpLink": {
+            "url": "https://your-url.edu/your/reference/email/form/",
+            "text": "Need help? Contact us."
         }
     },
     "logLevels": {

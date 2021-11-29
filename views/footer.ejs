@@ -1,18 +1,18 @@
 </div> <!-- End of class="row" -->
 </div> <!-- End of main container-fluid -->
 
-<% if (settings.helpLink && settings.helpLink.url && settings.helpLink.linkText) { %>
+<% if (config.refHelpLink && config.refHelpLink.url && config.refHelpLink.text) { %>
   <div id="helpLink-wrapper" class="feedback-wrapper text-center">
-    <a href="<%- settings.helpLink.url %>" class="feedback-link">
-      <%- settings.helpLink.linkText %>
+    <a href="<%- config.refHelpLink.url %>" class="feedback-link">
+      <%- config.refHelpLink.text %>
     </a>
   </div>
 <% } %> 
 
-<% if (settings.feedbackForm && settings.feedbackForm.url && settings.feedbackForm.linkText) { %>
-  <div id="feedback-wrapper" class="feedback-wrapper text-center">
-    <a href="<%- settings.feedbackForm.url %>" class="feedback-link">
-      <%- settings.feedbackForm.linkText %>
+<% if (config.techHelpLink && config.techHelpLink.url && config.techHelpLink.text) { %>
+  <div id="helpLink-wrapper" class="feedback-wrapper text-center">
+    <a href="<%- config.techHelpLink.url %>" class="feedback-link">
+      <%- config.techHelpLink.text %>
     </a>
   </div>
 <% } %> 
