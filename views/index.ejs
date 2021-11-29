@@ -12,6 +12,7 @@
     });
   </script>
   <!-- Show user's subject menu (mobile version) -->
+
   <nav class="d-block d-lg-none mb-4 bg-white ">
     <div class="row">
     <h1 class="h3 text-wrap text-center col-10 mt-2">Hello, <%= user.person.givenName %>
@@ -24,13 +25,22 @@
     </button>
   </div>
 
+  <% let orgMobileLogo; %>
+  <% if (fs.existsSync('public/img/org-mobile-logo.svg')) { %>
+    <%  orgMobileLogo = '/img/org-logo.svg'; %>
+  <% } else if (fs.existsSync('public/img/org-mobile-logo.png')) { %>
+    <%  orgMobileLogo = '/img/org-mobile-logo.png'; %>
+  <% } %>
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
       <div class="card flex-column border-0">
         <div class="card-header p-2 shadow-sm">
           <div class="offcanvas-header col-12">
             <div class="m-2">
-              <a class="navbar-brand" href="https://www.lib.miamioh.edu"><img class="img-fluid w-75"
-                  src="/img/logo-lightbg.png" alt="MU Libraries"></a>
+              <% if (orgMobileLogo != '') { %>
+          
+                <a class="navbar-brand" href="<%= config.organization.url %>"><img class="img-fluid w-75"
+                  src="<%= orgMobileLogo %>" alt="<%= config.organization.name %>"></a>
+                <% } %>
             </div>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
               aria-label="Close"></button>
@@ -119,7 +129,7 @@
           <% } %>
           <% if (orgLogo != '') { %>
           <a class="navbar-brand p-0" href="<%= config.organization.url %>"><img class="img-fluid"
-              src="/img/org-logo.png" alt="<%= config.organization.name %>"></a>
+              src="<%= orgLogo %>" alt="<%= config.organization.name %>"></a>
           <% } %>
         </div>
 
