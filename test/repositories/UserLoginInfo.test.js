@@ -1,7 +1,3 @@
-const chai = require('chai');
-const assert = require('chai').assert;
-const chaiArrays = require('chai-arrays');
-chai.use(chaiArrays);
 const UserLoginInfo = require('../../repositories/UserLoginInfo');
 
 const rawCasData1 = require('./sample-data/rawCasData1.json');

@@ -1,8 +1,3 @@
-const chai = require('chai');
-const assert = require('chai').assert;
-const chaiArrays = require('chai-arrays');
-chai.use(chaiArrays);
-
 const librarians = require('./sample-data/libapps/libn-sample.js');
 const CleanCache = require('../../repositories/CleanCache.js');
 const clean = new CleanCache(librarians);
@@ -29,7 +24,7 @@ const blank = '';
 
 describe('CleanCache', () => {
   it('should return an object of class CleanCache', () => {
-    assert.isTrue(clean instanceof CleanCache);
+    expect(clean instanceof CleanCache).toBe(true);
   });
   it('addScheduleClass should add class to widget1', () => {
     let res = clean.addScheduleClass(widget1);
