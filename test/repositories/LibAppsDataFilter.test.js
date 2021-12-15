@@ -19,7 +19,7 @@ describe('LibAppsDataFilter', () => {
 
 describe('LibAppsDataFilter: databases', () => {
   it('should have an array in the databases property', () => {
-    expect(databases).to.be.an.array();
+    expect(Array.isArray(databases)).toBe(true);
   });
   it('should have the first database with name: "19th Century Index"', () => {
     expect(databases[0]).toHaveProperty('name');
@@ -49,7 +49,7 @@ describe('LibAppsDataFilter: filterBySubject: Databases', () => {
 
 describe('LibAppsDataFilter: librarians', () => {
   it('should have an array in the librarians property', () => {
-    expect(librarians).to.be.an.array();
+    expect(Array.isArray(librarians)).toBe(true);
   });
   it('should have the first librarian with last name: "Picard"', () => {
     expect(librarians[0]).toHaveProperty('last_name');
@@ -76,7 +76,7 @@ describe('LibAppsDataFilter: filterBySubject: librarians', () => {
 
 describe('LibAppsDataFilter: guides', () => {
   it('should have an array in the guides property', () => {
-    expect(guides).to.be.an.array();
+    expect(Array.isArray(guides)).toBe(true);
   });
   it('should have the first guide with name: "Political Science"', () => {
     expect(guides[0]).toHaveProperty('name');
@@ -207,14 +207,14 @@ describe('LibAppsDataFilter: mapTags', () => {
 
   it('the value for ACC495 should be an array with two objects', () => {
     let acc = tagMap.get('ACC495');
-    expect(acc).to.be.an.array();
+    expect(Array.isArray(acc)).toBe(true);
     expect(acc.length).toBe(2);
     expect(acc[0].id).toBe('22054');
   });
 
   it('the value for ENG 101 should be an array with one object', () => {
     let eng = tagMap.get('ENG101');
-    expect(eng).to.be.an.array();
+    expect(Array.isArray(eng)).toBe(true);
     expect(eng.length).toBe(1);
     expect(eng[0].id).toBe('22054');
   });
