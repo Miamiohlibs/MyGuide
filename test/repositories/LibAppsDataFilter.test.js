@@ -1,8 +1,4 @@
-const chai = require('chai');
-const assert = require('chai').assert;
 const LibAppsDataFilter = require('../../repositories/LibAppsDataFilter.js');
-const chaiArrays = require('chai-arrays');
-chai.use(chaiArrays);
 
 obj = new LibAppsDataFilter();
 
@@ -13,7 +9,7 @@ subjects = require('./sample-data/libapps/subj-sample');
 
 describe('LibAppsDataFilter', () => {
   it('should return an object of class LibAppsDataFilter', () => {
-    assert.isTrue(obj instanceof LibAppsDataFilter);
+    expect(obj instanceof LibAppsDataFilter).toBe(true);
   });
 });
 
@@ -198,7 +194,7 @@ describe('LibAppsDataFilter: mapTags', () => {
   let tagMap = obj.mapTags(guides);
 
   it('should return a Map object', () => {
-    assert.isTrue(tagMap instanceof Map);
+    expect(tagMap instanceof Map).toBe(true);
   });
 
   it('should have a size of two tags', () => {
