@@ -20,6 +20,7 @@ module.exports = class SierraDataGetter {
       await this.getPatronBaseInfo(); // gets numeric id, moneyOwed, account link
       await this.getNumCheckouts();
       await this.getNumHolds();
+      this.getAccountLink();
       return this.user.display;
     } catch (err) {
       console.error('Error getting patron info from Sierra');
@@ -62,6 +63,10 @@ module.exports = class SierraDataGetter {
     } catch (err) {
       console.log(err);
     }
+  }
+  getAccountLink() {
+    this.user.display.accountLink =
+      'https://' + this.conf.server + '/patroninfo.html';
   }
 };
 

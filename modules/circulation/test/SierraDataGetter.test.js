@@ -80,7 +80,14 @@ describe('SierraDataGetter: getNumHolds', () => {
     expect(getter.user.display.numHolds).toBe(3);
   });
 });
-
+describe('SierraDataGetter: getAccountLink', () => {
+  it('should get add the patron account link to user display data', () => {
+    getter.getAccountLink();
+    expect(getter.user.display.accountLink).toBe(
+      'https://fakeserver.univ.edu/patroninfo.html'
+    );
+  });
+});
 describe('SierraDataGetter: getUserData', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
@@ -108,6 +115,7 @@ describe('SierraDataGetter: getUserData', () => {
         },
       });
     });
+    accountLinkSpy = jest.spyOn(getter, 'getAccountLink');
     response = await getter.getUserData('username');
   });
   it('should get a SierraApi token', async () => {
@@ -125,6 +133,9 @@ describe('SierraDataGetter: getUserData', () => {
   });
   it('should call getNumHolds', () => {
     expect(numHoldsSpy).toHaveBeenCalledTimes(1);
+  });
+  it('should call getPatronLink', () => {
+    expect(accountLinkSpy).toHaveBeenCalledTimes(1);
   });
 });
 
