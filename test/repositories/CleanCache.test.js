@@ -1,7 +1,5 @@
 const chai = require('chai');
 const assert = require('chai').assert;
-const expect = require('chai').expect;
-const should = require('chai').should;
 const chaiArrays = require('chai-arrays');
 chai.use(chaiArrays);
 
@@ -35,50 +33,50 @@ describe('CleanCache', () => {
   });
   it('addScheduleClass should add class to widget1', () => {
     let res = clean.addScheduleClass(widget1);
-    expect(res).to.equal(added1);
+    expect(res).toBe(added1);
   });
   it('removeScheduleStyles should add class to widget1', () => {
     let res = clean.removeScheduleStyles(widget1);
-    expect(res).to.equal(removed1);
+    expect(res).toBe(removed1);
   });
   it('should add class and remove styles for schedule when called together', () => {
     let res = clean.removeScheduleStyles(clean.addScheduleClass(widget1));
-    expect(res).to.equal(finished1);
+    expect(res).toBe(finished1);
   });
   it('addScheduleClass should return blank widget code unmodified', () => {
     let res = clean.addScheduleClass(blank);
-    expect(res).to.equal(blank);
+    expect(res).toBe(blank);
   });
   it('removeScheduleStyles should return blank widget code unmodified', () => {
     let res = clean.removeScheduleStyles(blank);
-    expect(res).to.equal(blank);
+    expect(res).toBe(blank);
   });
   it('addScheduleClass should return unrelated widget code unmodified', () => {
     let res = clean.addScheduleClass(unrelatedWidget);
-    expect(res).to.equal(unrelatedWidget);
+    expect(res).toBe(unrelatedWidget);
   });
   it('removeScheduleStyles should return unrelated widget code unmodified', () => {
     let res = clean.removeScheduleStyles(unrelatedWidget);
-    expect(res).to.equal(unrelatedWidget);
+    expect(res).toBe(unrelatedWidget);
   });
   it('addScheduleClass should be case insensitive: widget2', () => {
     let res = clean.addScheduleClass(widget2);
-    expect(res).to.equal(added2);
+    expect(res).toBe(added2);
   });
   it('removeScheduleStyles should be case insensitive: widget2', () => {
     let res = clean.removeScheduleStyles(widget2);
-    expect(res).to.equal(removed2);
+    expect(res).toBe(removed2);
   });
   it('should add class and remove styles for schedule when called together (widget2)', () => {
     let res = clean.removeScheduleStyles(clean.addScheduleClass(widget2));
-    expect(res).to.equal(finished2);
+    expect(res).toBe(finished2);
   });
   it('should perform add+remove with updateWidgetCode on widget1', () => {
     let res = clean.updateWidgetCode(widget1);
-    expect(res).to.equal(finished1);
+    expect(res).toBe(finished1);
   });
   it('should perform add+remove with updateWidgetCode on widget2', () => {
     let res = clean.updateWidgetCode(widget2);
-    expect(res).to.equal(finished2);
+    expect(res).toBe(finished2);
   });
 });

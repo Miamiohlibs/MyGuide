@@ -1,7 +1,5 @@
 const chai = require('chai');
 const assert = require('chai').assert;
-const expect = require('chai').expect;
-const should = require('chai').should;
 const LibAppsDataFilter = require('../../repositories/LibAppsDataFilter.js');
 const chaiArrays = require('chai-arrays');
 chai.use(chaiArrays);
@@ -24,11 +22,11 @@ describe('LibAppsDataFilter: databases', () => {
     expect(databases).to.be.an.array();
   });
   it('should have the first database with name: "19th Century Index"', () => {
-    expect(databases[0]).to.have.property('name');
-    expect(databases[0].name).to.equal('19th Century Index');
+    expect(databases[0]).toHaveProperty('name');
+    expect(databases[0].name).toBe('19th Century Index');
   });
   it('should find five databases', () => {
-    expect(databases.length).to.equal(5);
+    expect(databases.length).toBe(5);
   });
 });
 
@@ -38,14 +36,14 @@ describe('LibAppsDataFilter: filterBySubject: Databases', () => {
   bws = obj.filterBySubject(databases, 'Black World Studies'); // 2
 
   it('should find five English databases', () => {
-    expect(english.length).to.equal(5);
+    expect(english.length).toBe(5);
   });
   it('should find two BWS databases', () => {
-    expect(bws.length).to.equal(2);
+    expect(bws.length).toBe(2);
   });
   it('should fine one top English database', () => {
-    expect(topEnglish.length).to.equal(1);
-    expect(topEnglish[0].name).to.equal('19th Century Index');
+    expect(topEnglish.length).toBe(1);
+    expect(topEnglish[0].name).toBe('19th Century Index');
   });
 });
 
@@ -54,11 +52,11 @@ describe('LibAppsDataFilter: librarians', () => {
     expect(librarians).to.be.an.array();
   });
   it('should have the first librarian with last name: "Picard"', () => {
-    expect(librarians[0]).to.have.property('last_name');
-    expect(librarians[0].last_name).to.equal('Picard');
+    expect(librarians[0]).toHaveProperty('last_name');
+    expect(librarians[0].last_name).toBe('Picard');
   });
   it('should find three librarians', () => {
-    expect(librarians.length).to.equal(3);
+    expect(librarians.length).toBe(3);
   });
 });
 
@@ -67,12 +65,12 @@ describe('LibAppsDataFilter: filterBySubject: librarians', () => {
   langLib = obj.filterBySubject(librarians, 'Languages'); // katie
 
   it('should find one language librarian = Sisko', () => {
-    expect(langLib.length).to.equal(1);
-    expect(langLib[0].last_name).to.equal('Sisko');
+    expect(langLib.length).toBe(1);
+    expect(langLib[0].last_name).toBe('Sisko');
   });
   it('should find one business librarian = Janeway', () => {
-    expect(bizLib.length).to.equal(1);
-    expect(bizLib[0].last_name).to.equal('Janeway');
+    expect(bizLib.length).toBe(1);
+    expect(bizLib[0].last_name).toBe('Janeway');
   });
 });
 
@@ -81,18 +79,18 @@ describe('LibAppsDataFilter: guides', () => {
     expect(guides).to.be.an.array();
   });
   it('should have the first guide with name: "Political Science"', () => {
-    expect(guides[0]).to.have.property('name');
-    expect(guides[0].name).to.equal('Political Science');
+    expect(guides[0]).toHaveProperty('name');
+    expect(guides[0].name).toBe('Political Science');
   });
   it('should find nine guides', () => {
-    expect(guides.length).to.equal(9);
+    expect(guides.length).toBe(9);
   });
 });
 
 describe('LibAppsDataFilter: removeUnpublishedGuides', () => {
   publishedOnly = obj.removeUnpublishedGuides(guides); //5
   it('should find seven published guides', () => {
-    expect(publishedOnly.length).to.equal(7);
+    expect(publishedOnly.length).toBe(7);
   });
 });
 
@@ -102,15 +100,15 @@ describe('LibAppsDataFilter: removeWrongGroups', () => {
   let allowedGroupsModerate = ['0', '12345'];
   it('should find eight members of group zero', () => {
     let result = obj.removeWrongGroups(guides, allowedGroupsRestricted);
-    expect(result.length).to.equal(8);
+    expect(result.length).toBe(8);
   });
   it('should find nine members of groups 0+16880', () => {
     let result = obj.removeWrongGroups(guides, allowedGroupsPermissive);
-    expect(result.length).to.equal(9);
+    expect(result.length).toBe(9);
   });
   it('should find eight members of groups 0+12345', () => {
     let result = obj.removeWrongGroups(guides, allowedGroupsModerate);
-    expect(result.length).to.equal(8);
+    expect(result.length).toBe(8);
   });
 });
 
@@ -119,11 +117,11 @@ describe('LibAppsDataFilter: filterBySubject: guides', () => {
   chemGuides = obj.filterBySubject(guides, 'Chemistry & Biochemistry'); // 1
   // psychGuides = obj.filterBySubject(guides, 'Psychology'); // 1
   it('should find one Chemistry guide', () => {
-    expect(chemGuides.length).to.equal(1);
+    expect(chemGuides.length).toBe(1);
   });
 
   it('should find two PoliSci guide', () => {
-    expect(polGuides.length).to.equal(2);
+    expect(polGuides.length).toBe(2);
   });
 
   // it('should find one Psychology guide (none unpublished)', () => {
@@ -134,14 +132,14 @@ describe('LibAppsDataFilter: filterBySubject: guides', () => {
 describe('LibAppsDataFilter: find (LibGuides) Subject by Name', () => {
   englishSubj = obj.findSubjectByName(subjects, ['English']);
   it('should find one libguide subject: English = 8447', () => {
-    expect(englishSubj.length).to.equal(1);
-    expect(englishSubj[0].id).to.equal('8447');
+    expect(englishSubj.length).toBe(1);
+    expect(englishSubj[0].id).toBe('8447');
   });
   musicEdSubj = obj.findSubjectByName(subjects, ['Music', 'Education']);
   it('should find two subjects for Music Education', () => {
-    expect(musicEdSubj.length).to.equal(2);
-    expect(musicEdSubj[0].id).to.equal('8429');
-    expect(musicEdSubj[1].id).to.equal('4596');
+    expect(musicEdSubj.length).toBe(2);
+    expect(musicEdSubj[0].id).toBe('8429');
+    expect(musicEdSubj[1].id).toBe('4596');
   });
 });
 
@@ -156,35 +154,35 @@ describe('LibAppsDataFilter: findByTag', () => {
   taggedEitherByIDinv = obj.findByTag(guides, ['682640', '15716'], true);
 
   it('should find two libguides with tag ACC495', () => {
-    expect(taggedACC.length).to.equal(2);
-    expect(taggedACC[0].id).to.equal('22054');
+    expect(taggedACC.length).toBe(2);
+    expect(taggedACC[0].id).toBe('22054');
   });
   it('should find seven libguides WITHOUT tag ACC495', () => {
-    expect(taggedACCinv.length).to.equal(7);
+    expect(taggedACCinv.length).toBe(7);
   });
 
   it('should find two libguides with tag 695364', () => {
-    expect(taggedACCbyID.length).to.equal(2);
-    expect(taggedACCbyID[0].id).to.equal('22054');
+    expect(taggedACCbyID.length).toBe(2);
+    expect(taggedACCbyID[0].id).toBe('22054');
   });
   it('should find seven libguides WITHOUT tag 695364', () => {
-    expect(taggedACCbyIDinv.length).to.equal(7);
+    expect(taggedACCbyIDinv.length).toBe(7);
   });
 
   it('should find one libguide with tag in [695364,ENG121]', () => {
-    expect(taggedArr.length).to.equal(2);
-    expect(taggedArr[0].id).to.equal('22054');
+    expect(taggedArr.length).toBe(2);
+    expect(taggedArr[0].id).toBe('22054');
   });
   it('should find eight libguides WITHOUT tag in [695364,ENG121]', () => {
-    expect(taggedArrInv.length).to.equal(7);
+    expect(taggedArrInv.length).toBe(7);
   });
 
   it('should find three libguide with tag in [ACC495,15716]', () => {
-    expect(taggedEitherByID.length).to.equal(3);
-    expect(taggedEitherByID[0].id).to.equal('22054');
+    expect(taggedEitherByID.length).toBe(3);
+    expect(taggedEitherByID[0].id).toBe('22054');
   });
   it('should find eight libguides WITHOUT tag in [695364,15716]', () => {
-    expect(taggedEitherByIDinv.length).to.equal(6);
+    expect(taggedEitherByIDinv.length).toBe(6);
   });
 
   /*
@@ -204,21 +202,21 @@ describe('LibAppsDataFilter: mapTags', () => {
   });
 
   it('should have a size of two tags', () => {
-    expect(tagMap.size).to.equal(2);
+    expect(tagMap.size).toBe(2);
   });
 
   it('the value for ACC495 should be an array with two objects', () => {
     let acc = tagMap.get('ACC495');
     expect(acc).to.be.an.array();
-    expect(acc.length).to.equal(2);
-    expect(acc[0].id).to.equal('22054');
+    expect(acc.length).toBe(2);
+    expect(acc[0].id).toBe('22054');
   });
 
   it('the value for ENG 101 should be an array with one object', () => {
     let eng = tagMap.get('ENG101');
     expect(eng).to.be.an.array();
-    expect(eng.length).to.equal(1);
-    expect(eng[0].id).to.equal('22054');
+    expect(eng.length).toBe(1);
+    expect(eng[0].id).toBe('22054');
   });
 });
 // WE SHOULD HAVE A UNIT TESTS FOR getBestBySubject -- needs some stubs or fakes and I don't want to learn how!!!!!

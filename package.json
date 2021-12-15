@@ -4,7 +4,7 @@
   "description": "Personalized library user dashboard",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --recursive || true"
+    "test": "jest"
   },
   "author": "Ken Irwin",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "https": "^1.0.0",
+    "jest": "^27.4.5",
     "jsdom": "^18.1.0",
     "lodash": "^4.17.21",
     "mocha": "^9.1.3",

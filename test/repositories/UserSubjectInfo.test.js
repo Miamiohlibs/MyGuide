@@ -1,7 +1,5 @@
 const chai = require('chai');
 const assert = require('chai').assert;
-const expect = require('chai').expect;
-const should = require('chai').should;
 const chaiArrays = require('chai-arrays');
 chai.use(chaiArrays);
 const UserSubjectInfo = require('../../repositories/UserSubjectInfo');
@@ -15,26 +13,26 @@ let badObj = new UserSubjectInfo(userData1, badSubjMap1);
 
 describe('UserSubjectInfo: constructor', () => {
   it('should create an object with prop "map" based on input', () => {
-    expect(obj).to.have.property('map');
+    expect(obj).toHaveProperty('map');
     expect(obj.map).to.be.an.array();
-    expect(obj.map.length).to.equal(709);
+    expect(obj.map.length).toBe(709);
   });
   it('should create an object with prop "user" based on input', () => {
-    expect(obj).to.have.property('user');
-    expect(obj.user).to.have.property('attr');
-    expect(obj.user.attr).to.have.property('userId');
-    expect(obj.user.attr.userId).to.equal('pollystu');
+    expect(obj).toHaveProperty('user');
+    expect(obj.user).toHaveProperty('attr');
+    expect(obj.user.attr).toHaveProperty('userId');
+    expect(obj.user.attr.userId).toBe('pollystu');
   });
   it('should create an object with a blank property "subjects"', () => {
-    expect(obj).to.have.property('subjects');
+    expect(obj).toHaveProperty('subjects');
     expect(obj.subjects).to.be.an.array();
-    expect(obj.subjects.length).to.equal(0);
+    expect(obj.subjects.length).toBe(0);
   });
   it('should have a property "courses" based on user.attr.coursesTaken', () => {
-    expect(obj).to.have.property('courses');
+    expect(obj).toHaveProperty('courses');
     expect(obj.courses).to.be.an.array();
-    expect(obj.courses.length).to.equal(7);
-    expect(obj.courses[0]).to.equal('SPN101');
+    expect(obj.courses.length).toBe(7);
+    expect(obj.courses[0]).toBe('SPN101');
   });
 });
 
@@ -45,29 +43,29 @@ describe('UserSubjectInfo: getSubjByRegCode', () => {
   let badRes = badObj.getSubjByRegCode('ACC');
 
   it('should return a single object with name "Accountancy" for "ACC"', () => {
-    expect(res).to.be.an('object');
-    expect(res).to.have.property('name');
-    expect(res.name).to.equal('Accountancy');
+    expect(res).toBeInstanceOf(Object);
+    expect(res).toHaveProperty('name');
+    expect(res.name).toBe('Accountancy');
   });
   it('should return a single object with libguides ["Accountancy"] for "ACC"', () => {
-    expect(res).to.be.an('object');
-    expect(res).to.have.property('libguides');
-    expect(res.libguides.length).to.equal(1);
+    expect(res).toBeInstanceOf(Object);
+    expect(res).toHaveProperty('libguides');
+    expect(res.libguides.length).toBe(1);
     expect(res.libguides).to.be.equalTo(['Accountancy']);
   });
   it('should return a single object with name "Academic Affairs" for "AA"', () => {
-    expect(res2).to.be.an('object');
-    expect(res2).to.have.property('name');
-    expect(res2.name).to.equal('Academic Affairs');
+    expect(res2).toBeInstanceOf(Object);
+    expect(res2).toHaveProperty('name');
+    expect(res2.name).toBe('Academic Affairs');
   });
   it('should return a single object with libguides ["Educational Leadership"] for "AA"', () => {
-    expect(res2).to.be.an('object');
-    expect(res2).to.have.property('libguides');
-    expect(res2.libguides.length).to.equal(1);
+    expect(res2).toBeInstanceOf(Object);
+    expect(res2).toHaveProperty('libguides');
+    expect(res2.libguides.length).toBe(1);
     expect(res2.libguides).to.be.equalTo(['Educational Leadership']);
   });
   it('should return false if two subjects share a regCode', () => {
-    expect(badRes).to.be.false;
+    expect(badRes).toBe(false);
   });
 });
 
@@ -77,32 +75,32 @@ describe('UserSubjectInfo: getRegCodeFromCourseNumber', () => {
   let reLowerCaseAlphaCode = /([a-z]+)/;
   it('should get "ACC" from "ACC123",/^([A-Z])+/', () => {
     let res = obj.getRegCodeFromCourseNumber('ACC123', reAlphaCodeFirst);
-    expect(res).to.equal('ACC');
+    expect(res).toBe('ACC');
   });
   it('should get false from "143sdalKA",/^([A-Z])+/', () => {
     let res = obj.getRegCodeFromCourseNumber('143sdalKA', reAlphaCodeFirst);
-    expect(res).to.be.false;
+    expect(res).toBe(false);
   });
   it('should get "ACC" from "123ACC",/([A-Z])+/', () => {
     let res = obj.getRegCodeFromCourseNumber('ACC123', reUnorderedAlpha);
-    expect(res).to.equal('ACC');
+    expect(res).toBe('ACC');
   });
   it('should get "KA" from "143sdalKA",/([A-Z])+/', () => {
     let res = obj.getRegCodeFromCourseNumber('143sdalKA', reUnorderedAlpha);
-    expect(res).to.equal('KA');
+    expect(res).toBe('KA');
   });
   it('should get "acc" from "acc123",/([a-z])+/', () => {
     let res = obj.getRegCodeFromCourseNumber('acc123', reLowerCaseAlphaCode);
-    expect(res).to.equal('acc');
+    expect(res).toBe('acc');
   });
   // the ([A-Z]+)\d+ pattern should be assumed if no pattern specified
   it('should get "ACC" from "ACC123" with no pattern specified', () => {
     let res = obj.getRegCodeFromCourseNumber('ACC123');
-    expect(res).to.equal('ACC');
+    expect(res).toBe('ACC');
   });
   it('should get false from "143sdalKA" with no pattern specified', () => {
     let res = obj.getRegCodeFromCourseNumber('143sdalKA');
-    expect(res).to.be.false;
+    expect(res).toBe(false);
   });
 });
 
@@ -117,25 +115,25 @@ describe('UserSubjectInfo: getSubjByMajorCode', () => {
   let res2 = obj.getSubjByMajorCode('EA18');
 
   it('should return a single object with name "Accountancy" for "BU01"', () => {
-    expect(res).to.be.an('object');
-    expect(res).to.have.property('name');
-    expect(res.name).to.equal('Accountancy');
+    expect(res).toBeInstanceOf(Object);
+    expect(res).toHaveProperty('name');
+    expect(res.name).toBe('Accountancy');
   });
   it('should return a single object with libguides ["Accountancy"] for "BU01"', () => {
-    expect(res).to.be.an('object');
-    expect(res).to.have.property('libguides');
-    expect(res.libguides.length).to.equal(1);
+    expect(res).toBeInstanceOf(Object);
+    expect(res).toHaveProperty('libguides');
+    expect(res.libguides.length).toBe(1);
     expect(res.libguides).to.be.equalTo(['Accountancy']);
   });
   it('should return a single object with name "Adolescent Education" for "EA18"', () => {
-    expect(res2).to.be.an('object');
-    expect(res2).to.have.property('name');
-    expect(res2.name).to.equal('Adolescent Education');
+    expect(res2).toBeInstanceOf(Object);
+    expect(res2).toHaveProperty('name');
+    expect(res2.name).toBe('Adolescent Education');
   });
   it('should return a single object with libguides ["Education"] for "EA18"', () => {
-    expect(res2).to.be.an('object');
-    expect(res2).to.have.property('libguides');
-    expect(res2.libguides.length).to.equal(1);
+    expect(res2).toBeInstanceOf(Object);
+    expect(res2).toHaveProperty('libguides');
+    expect(res2.libguides.length).toBe(1);
     expect(res2.libguides).to.be.equalTo(['Education']);
   });
 });
@@ -147,13 +145,13 @@ describe('UserSubjectInfo: getSubjByDeptCode', () => {
   let res2 = obj.getSubjByDeptCode('ulb');
 
   it('should return a single object with name "Electrical and Computer Engineering" for "ece"', () => {
-    expect(res).to.be.an('object');
-    expect(res).to.have.property('name');
-    expect(res.name).to.equal('Electrical and Computer Engineering');
+    expect(res).toBeInstanceOf(Object);
+    expect(res).toHaveProperty('name');
+    expect(res.name).toBe('Electrical and Computer Engineering');
   });
   it('should return a single object with name "Library" for "ulb"', () => {
-    expect(res2).to.be.an('object');
-    expect(res2).to.have.property('name');
-    expect(res2.name).to.equal('Library');
+    expect(res2).toBeInstanceOf(Object);
+    expect(res2).toHaveProperty('name');
+    expect(res2.name).toBe('Library');
   });
 });
