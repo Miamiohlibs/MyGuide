@@ -14,7 +14,7 @@ let badObj = new UserSubjectInfo(userData1, badSubjMap1);
 describe('UserSubjectInfo: constructor', () => {
   it('should create an object with prop "map" based on input', () => {
     expect(obj).toHaveProperty('map');
-    expect(obj.map).to.be.an.array();
+    expect(Array.isArray(obj.map)).toBe(true);
     expect(obj.map.length).toBe(709);
   });
   it('should create an object with prop "user" based on input', () => {
@@ -25,12 +25,12 @@ describe('UserSubjectInfo: constructor', () => {
   });
   it('should create an object with a blank property "subjects"', () => {
     expect(obj).toHaveProperty('subjects');
-    expect(obj.subjects).to.be.an.array();
+    expect(Array.isArray(obj.subjects)).toBe(true);
     expect(obj.subjects.length).toBe(0);
   });
   it('should have a property "courses" based on user.attr.coursesTaken', () => {
     expect(obj).toHaveProperty('courses');
-    expect(obj.courses).to.be.an.array();
+    expect(Array.isArray(obj.courses)).toBe(true);
     expect(obj.courses.length).toBe(7);
     expect(obj.courses[0]).toBe('SPN101');
   });
@@ -51,7 +51,7 @@ describe('UserSubjectInfo: getSubjByRegCode', () => {
     expect(res).toBeInstanceOf(Object);
     expect(res).toHaveProperty('libguides');
     expect(res.libguides.length).toBe(1);
-    expect(res.libguides).to.be.equalTo(['Accountancy']);
+    expect(res.libguides).toEqual(['Accountancy']);
   });
   it('should return a single object with name "Academic Affairs" for "AA"', () => {
     expect(res2).toBeInstanceOf(Object);
@@ -62,7 +62,7 @@ describe('UserSubjectInfo: getSubjByRegCode', () => {
     expect(res2).toBeInstanceOf(Object);
     expect(res2).toHaveProperty('libguides');
     expect(res2.libguides.length).toBe(1);
-    expect(res2.libguides).to.be.equalTo(['Educational Leadership']);
+    expect(res2.libguides).toEqual(['Educational Leadership']);
   });
   it('should return false if two subjects share a regCode', () => {
     expect(badRes).toBe(false);
@@ -123,7 +123,7 @@ describe('UserSubjectInfo: getSubjByMajorCode', () => {
     expect(res).toBeInstanceOf(Object);
     expect(res).toHaveProperty('libguides');
     expect(res.libguides.length).toBe(1);
-    expect(res.libguides).to.be.equalTo(['Accountancy']);
+    expect(res.libguides).toEqual(['Accountancy']);
   });
   it('should return a single object with name "Adolescent Education" for "EA18"', () => {
     expect(res2).toBeInstanceOf(Object);
@@ -134,7 +134,7 @@ describe('UserSubjectInfo: getSubjByMajorCode', () => {
     expect(res2).toBeInstanceOf(Object);
     expect(res2).toHaveProperty('libguides');
     expect(res2.libguides.length).toBe(1);
-    expect(res2.libguides).to.be.equalTo(['Education']);
+    expect(res2.libguides).toEqual(['Education']);
   });
 });
 
