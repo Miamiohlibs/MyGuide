@@ -40,9 +40,8 @@ module.exports = class UserLibGuidesData {
       fileContents = JSON.parse(String(fs.readFileSync(filename, (err) => {})));
     } catch (err) {
       if (err.code == 'ENOENT') {
-        let msg = 'File not found: ' + filename + ' ' + JSON.stringify(user);
+        let msg = 'File not found: ' + filename;
         console.log(msg);
-        logger.error(msg);
       } else {
         console.log('Error:', err);
       }

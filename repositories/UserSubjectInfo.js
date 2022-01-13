@@ -54,13 +54,15 @@ module.exports = class UserSubjectInfo {
   }
 
   addSubjectsFromMajors() {
-    let majorCodes = this.user.attr.majorCodes;
-    majorCodes.forEach((majorCode) => {
-      let subject = this.getSubjByMajorCode(majorCode);
-      if (subject && !this.subjects.includes(subject)) {
-        this.subjects.push(subject);
-      }
-    });
+    if (this.user.attr.hasOwnProperty('majorCodes')) {
+      let majorCodes = this.user.attr.majorCodes;
+      majorCodes.forEach((majorCode) => {
+        let subject = this.getSubjByMajorCode(majorCode);
+        if (subject && !this.subjects.includes(subject)) {
+          this.subjects.push(subject);
+        }
+      });
+    }
   }
 
   /* DeptCode methods */
