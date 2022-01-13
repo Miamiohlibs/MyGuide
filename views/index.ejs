@@ -196,7 +196,7 @@
           <h4><%= config.featuredContent.cardLabel %></h4>
         </div>
         <div class="card-body">
-          if (fs.existsSync('views/partials/custom-featured-content.ejs')) { %>
+          <% if (fs.existsSync('views/partials/custom-featured-content.ejs')) { %>
           <%- include('custom-featured-content') %>
           <% } %>
         </div>
