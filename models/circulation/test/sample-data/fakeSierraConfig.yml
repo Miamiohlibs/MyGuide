@@ -1,0 +1,9 @@
+---
+sierra:
+  credentials:
+    apiKey: fakeApiKey
+    clientSecret: fakeClientSecret
+  server: fakeserver.univ.edu
+  apiPath: /iii/sierra-api
+  endpoints:
+    token: /v5/token

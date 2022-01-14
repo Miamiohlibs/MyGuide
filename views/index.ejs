@@ -183,8 +183,8 @@
         </div>
         <div class="card-body d-print-none collapse" id="collapseCirc">
           <% fakeCirc=false %>
-                  <% if (user.sierraInfo !=undefined) { %>
-                    <%- include('partials/circulation', {data: user.sierraInfo}) %>
+                  <% if (circ !=undefined && circ.hasOwnProperty('circSystem')) { %>
+                    <%- include('partials/circulation/'+circ.circSystem+'.ejs', {data: circ}) %>
                       <% } else { %>
                         <p>No data avalable</p>
                         <% } %>
@@ -196,7 +196,9 @@
           <h4><%= config.featuredContent.cardLabel %></h4>
         </div>
         <div class="card-body">
+          <% if (fs.existsSync('views/partials/custom-featured-content.ejs')) { %>
           <%- include('custom-featured-content') %>
+          <% } %>
         </div>
       </div>
       <% } %>
