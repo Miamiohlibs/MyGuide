@@ -183,8 +183,8 @@
         </div>
         <div class="card-body d-print-none collapse" id="collapseCirc">
           <% fakeCirc=false %>
-                  <% if (user.sierraInfo !=undefined) { %>
-                    <%- include('partials/circulation', {data: user.sierraInfo}) %>
+                  <% if (circ !=undefined && circ.hasOwnProperty('circSystem')) { %>
+                    <%- include('partials/circulation/'+circ.circSystem+'.ejs', {data: circ}) %>
                       <% } else { %>
                         <p>No data avalable</p>
                         <% } %>

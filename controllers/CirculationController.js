@@ -19,7 +19,7 @@ module.exports = class CirculationController {
     try {
       let connection = new CircConnectionHandler(this.circDataGetter);
       let res = await connection.getUserData(userId);
-      // console.log(res);
+      res.circSystem = circSystem; //adds in system name for viewer
       return res;
     } catch (err) {
       console.log(err);
