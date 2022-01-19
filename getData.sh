@@ -74,9 +74,9 @@ fi
 echo "const databases = $CONTENT;" > $FILE
 echo "module.exports = databases;" >> $FILE
 
-./compileSubjectCache.sh
-# runs: services/runCleanCache
-# # does not yet run: util/updateSubjectCache
+./compileSubjectCache.sh # runs: services/runCleanCache
+
+node utilities/updateSubjectCache.js # creates each subject's file in ./cache/subjects/
 
 # node ./utilities/compareLGSubjects.js
 
