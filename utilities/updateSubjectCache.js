@@ -28,10 +28,48 @@ const LibAppsDataFilter = require(rootdir + '/repositories/LibAppsDataFilter');
 const f = new LibAppsDataFilter();
 
 subjectConfig.forEach((subject) => {
-  let subjects = subject.libguides;
+  let libguides = subject.libguides;
+  let libguidesData = getLibGuidesData(libguides);
   let subjectNames = getAllSubjectNames(subject);
-  console.log('subjectNames: ', subjectNames);
+  subjectNames.forEach((subjectName) => {
+    // write out the libguidesdata to a file based on the subjectName
+    let filename = filenamify(subjectName);
+    let filepath = path.join(rootdir, 'cache', 'subjects', filename + '.json');
+    // console.log(filename);
+    // console.log(libguidesData);
+    if (libguidesData !== undefined) {
+      fs.writeFileSync(filepath, JSON.stringify(libguidesData, null, 2));
+    }
+  });
 });
+
+function getLibGuidesData(libguides) {
+  if (libguides !== undefined && libguides !== null) {
+    subj = f.findSubjectByName(subjects, libguides);
+    libns = f.getBestBySubject(librarians, libguides);
+    pubGuides = f.removeUnpublishedGuides(guides);
+
+    // limit to certain libguide group ids, e.g. exclude admin guides, other campuses, etc.
+    rightGroups = f.removeWrongGroups(pubGuides, allowedGroups);
+
+    gds = f.getBestBySubject(rightGroups, libguides);
+    dbs = f.getBestBySubject(databases, libguides, true);
+    let results = {
+      metadata: {
+        sizeof: {
+          librarians: libns.length,
+          guides: gds.length,
+          databases: dbs.length,
+        },
+      },
+      subjects: subj,
+      librarians: libns,
+      guides: gds,
+      databases: dbs,
+    };
+    return results;
+  }
+}
 
 function getAllSubjectNames(entry) {
   let allSubjectNames = [entry.name];
