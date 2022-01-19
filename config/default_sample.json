@@ -16,7 +16,8 @@
         "api_key": "supersekritkeystring",
         "site_id": "000",
         "allowedGroupIds": [
-            "0"
+            0,
+            1
         ]
     },
     "CAS": {
