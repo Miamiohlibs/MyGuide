@@ -52,7 +52,7 @@ if (global.onServer === true) {
     )
     .listen(PORT, function () {
       console.log(
-        `Server app listening on port ${PORT}! Go to https://${server.host}:${PORT}/`
+        `Server app listening on port ${PORT}! Go to https://${server.hostname}:${PORT}/`
       );
     });
 } else {
