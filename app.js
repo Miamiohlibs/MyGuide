@@ -24,16 +24,16 @@ if (global.onServer === true) {
         store: new MemoryStore(), // or other session store
       })
     );
-  }
-  const casClient = require('./middleware/cas-client');
-  app.use(casClient.core());
+    const casClient = require('./middleware/cas-client');
+    app.use(casClient.core());
 
-  // add logout route is CAS-specific
-  if (global.onServer === true) {
-    app.get('/logout', function (req, res, next) {
-      // Do whatever you like here, then call the logout middleware
-      casClient.logout()(req, res, next);
-    });
+    // add logout route is CAS-specific
+    if (global.onServer === true) {
+      app.get('/logout', function (req, res, next) {
+        // Do whatever you like here, then call the logout middleware
+        casClient.logout()(req, res, next);
+      });
+    }
   }
 }
 
