@@ -1,4 +1,5 @@
 const config = require('config');
+const useCirc = config.get('app.useCirc');
 const sierraConf = config.get('sierra');
 const circSystem = config.get('circSystem');
 const SierraDataGetter = require('../models/circulation/sierra/SierraDataGetter');
@@ -16,6 +17,9 @@ module.exports = class CirculationController {
   }
 
   async getUserData(userId) {
+    if (useCirc !== true) {
+      return {};
+    }
     try {
       let connection = new CircConnectionHandler(this.circDataGetter);
       let res = await connection.getUserData(userId);
