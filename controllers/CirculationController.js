@@ -17,7 +17,7 @@ module.exports = class CirculationController {
   }
 
   async getUserData(userId) {
-    if (useCirc === false) {
+    if (!useCirc) {
       return {};
     }
     try {
