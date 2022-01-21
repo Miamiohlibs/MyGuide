@@ -22,6 +22,7 @@ module.exports = function (req) {
   let userSubjectInfo = new UserSubjectInfo(userLoginInfo, subjectMap);
   userSubjectInfo.addSubjectsFromMajors();
   userSubjectInfo.addSubjectsFromCourses();
+  userSubjectInfo.addSubjectsFromDepts();
   userSubjectInfo.reduceSubjectsToNames();
   userSubjectInfo.removeTempData();
   let subjectList = userSubjectInfo.returnSubjectList();
