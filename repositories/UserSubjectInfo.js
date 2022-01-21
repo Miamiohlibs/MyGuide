@@ -76,7 +76,7 @@ module.exports = class UserSubjectInfo {
   }
 
   addSubjectsFromDepts() {
-    let deptCodes = this.user.attr.departmentCodes;
+    let deptCodes = this.user.attr.departmentCode;
     if (deptCodes !== undefined && deptCodes.length > 0) {
       deptCodes.forEach((deptCode) => {
         let subject = this.getSubjByDeptCode(deptCode);
