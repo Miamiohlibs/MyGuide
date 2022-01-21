@@ -5,7 +5,7 @@
         "onServer": "false",
         "useAuth": "true",
         "authType": "CAS",
-        "useCirc": "false",
+        "useCirc": false,
         "subjectConfigFilename": "name_of_file_in_config_dir.json"
     },
     "server": {
