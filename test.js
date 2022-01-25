@@ -1,13 +1,9 @@
-const getMethods = (obj) =>
-  Object.getOwnPropertyNames(obj).filter(
-    (item) => typeof obj[item] === 'function'
-  );
-getProps = (obj) => Object.getOwnPropertyNames(obj);
 const Udc = require('./controllers/UserDataController');
 const udc = new Udc();
-
-res = udc.getUserData('123456789');
+const sampleData = require('./models/userLoginData/test/sample-data/rawCasData1.json');
+res = udc.getUserData(sampleData);
 console.log(res);
+
 // const CasDataGetter = require('./models/userLoginData/cas/CasDataGetter');
 // const cdg = new CasDataGetter({ conf: 'fake' });
 
