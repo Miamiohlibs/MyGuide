@@ -1,4 +1,4 @@
-const UserLoginInfo = require('../../repositories/UserLoginInfo');
+const UserLoginInfo = require('../UserLoginInfo');
 
 const rawCasData1 = require('./sample-data/rawCasData1.json');
 const rawCasData2 = require('./sample-data/rawCasData2.json');
