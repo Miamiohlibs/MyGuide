@@ -12,13 +12,13 @@ module.exports = class CasDataGetter {
   }
 
   getAttributesFromCasData() {
-    console.log(this.rawUserData);
+    // console.log(this.rawUserData);
     for (let prop in this.userDataMap) {
-      console.log(
-        prop,
-        this.userDataMap[prop].field,
-        this.rawUserData[this.userDataMap[prop].field]
-      );
+      // console.log(
+      //   prop,
+      //   this.userDataMap[prop].field,
+      //   this.rawUserData[this.userDataMap[prop].field]
+      // );
       let fieldPath = this.userDataMap[prop].field;
       let fieldType = this.userDataMap[prop].fieldType;
       if (fieldType == 'arrayOfOne') {

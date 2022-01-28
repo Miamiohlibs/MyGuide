@@ -4,7 +4,7 @@ const sampleData = require('./models/userLoginData/test/sample-data/rawCasData1.
 
 finishedUserData = udc.getUserData(sampleData);
 
-console.log(finishedUserData);
+// console.log(finishedUserData.subjectData[0].resources);
 
 // const subjectMap = require('./config/miami_subjects.json');
 // const UserSubjectInfo = require('./repositories/UserSubjectInfo');
