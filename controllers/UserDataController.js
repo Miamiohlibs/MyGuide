@@ -21,7 +21,7 @@ module.exports = class UserDataController {
   getUserData(casData) {
     console.log('starting UDC.getUserData');
     let dataHandler = new UserDataHandler(this.userDataGetter);
-    let res = dataHandler.getUserData(casData);
-    return res;
+    let userLoginInfo = dataHandler.getUserData(casData);
+    return userLoginInfo;
   }
 };
