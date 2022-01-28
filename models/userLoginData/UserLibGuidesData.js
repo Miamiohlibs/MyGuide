@@ -1,4 +1,4 @@
-const LibAppsDataFilter = require('./LibAppsDataFilter');
+const LibAppsDataFilter = require('../../repositories/LibAppsDataFilter');
 const f = new LibAppsDataFilter();
 const path = require('path');
 const fs = require('fs');
