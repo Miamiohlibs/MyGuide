@@ -29,6 +29,7 @@ module.exports = class UserLibGuidesData {
     return path.join(
       __dirname,
       '..',
+      '..',
       this.subjectCachePath,
       f.safeFilename(subject) + '.json'
     );
