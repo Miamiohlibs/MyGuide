@@ -1,7 +1,11 @@
 const config = require('config');
 const UserDataHandler = require('../models/userLoginData/UserDataHandler');
 const CasDataGetter = require('../models/userLoginData/cas/CasDataGetter');
+const UserLoginInfo = require('../models/userLoginData/UserLoginInfo');
+const UserSubjectInfo = require('../models/userLoginData/UserSubjectInfo');
+const UserLibGuidesData = require('../models/userLoginData/UserLibGuidesData');
 const authType = config.get('app.authType');
+const subjectMap = require('../config/miami_subjects.json'); // change this to read from config for path
 
 module.exports = class UserDataController {
   constructor() {
@@ -18,10 +22,29 @@ module.exports = class UserDataController {
     }
   }
 
-  getUserData(casData) {
+  getUserData(userLoginRawData) {
     console.log('starting UDC.getUserData');
     let dataHandler = new UserDataHandler(this.userDataGetter);
-    let userLoginInfo = dataHandler.getUserData(casData);
-    return userLoginInfo;
+    let userLoginInfo = dataHandler.getUserData(userLoginRawData);
+
+    let user = { attr: userLoginInfo, rawUserData: userLoginRawData };
+
+    let userSubjectInfo = new UserSubjectInfo(user, subjectMap);
+    userSubjectInfo.addSubjectsFromMajors();
+    userSubjectInfo.addSubjectsFromCourses();
+    userSubjectInfo.addSubjectsFromDepts();
+    userSubjectInfo.reduceSubjectsToNames();
+    userSubjectInfo.removeTempData();
+    let subjectList = userSubjectInfo.returnSubjectList();
+
+    let userLibGuides = new UserLibGuidesData(subjectList);
+
+    let finishedUserData = {
+      person: userLoginInfo,
+      uniqueSubjects: subjectList,
+      subjectData: userLibGuides,
+      userLoginInfo: user.rawUserData,
+    };
+    return finishedUserData;
   }
 };
