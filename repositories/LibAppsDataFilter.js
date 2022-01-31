@@ -147,8 +147,9 @@ module.exports = class LibAppsDataFilter {
       }
       return false;
     });
-    if (libn.length > 0) {
-      return libn[0].subjects.map((item) => item.name);
+    if (libn.length > 0 && libn[0].hasOwnProperty('subjects')) {
+      return libn[0].subjects.map((item) => item.name)
+	    .filter(item => item !==undefined );
     }
     return [];
   }
