@@ -242,6 +242,11 @@ describe('LibAppsDataFilter: getSubjectsByExpertEmail', () => {
     expect(subjects[1]).toBe(expected[1]);
     expect(subjects[5]).toBe(expected[5]);
   });
+  it('should get a blank array for a non-existent email', () => {
+    let subjects = obj.getSubjectsByExpertEmail(librarians, 'q@continuum.net');
+    expect(Array.isArray(subjects)).toBe(true);
+    expect(subjects.length).toBe(0);
+  });
 });
 
 // WE SHOULD HAVE A UNIT TESTS FOR getBestBySubject -- needs some stubs or fakes and I don't want to learn how!!!!!
