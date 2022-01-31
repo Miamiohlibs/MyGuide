@@ -6,6 +6,7 @@ version 2 of an personalized, open-source library user dashboard
 
 - setup
   - updateLibGuidesCache (subjects, guides, librarians, databases)
+  - note on custom subject files: it's possible to have a custom file and a standard non-custom subject file (`cache/subjects/Library.json` and `cache/custom/Library.json`). When both files exist, the custom file will be used.
 - app
 
   - Basic function
