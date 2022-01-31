@@ -56,6 +56,7 @@ module.exports = class UserDataController {
       librarians,
       userLoginInfo.email
     );
+
     if (liaisonList.length > 0) {
       userLoginInfo.liaisons = liaisonList;
     }
@@ -63,7 +64,8 @@ module.exports = class UserDataController {
     let subjectListWithLiaisons = liaisonList.concat(subjectList);
     let uniqueSubjectList = _.uniq(subjectListWithLiaisons);
 
-    let userLibGuides = new UserLibGuidesData(subjectList);
+//    let userLibGuides = new UserLibGuidesData(subjectList);
+    let userLibGuides = new UserLibGuidesData(uniqueSubjectList);
 
     let finishedUserData = {
       person: userLoginInfo,
