@@ -64,7 +64,6 @@ module.exports = class UserDataController {
     let subjectListWithLiaisons = liaisonList.concat(subjectList);
     let uniqueSubjectList = _.uniq(subjectListWithLiaisons);
 
-//    let userLibGuides = new UserLibGuidesData(subjectList);
     let userLibGuides = new UserLibGuidesData(uniqueSubjectList);
 
     let finishedUserData = {
@@ -72,7 +71,6 @@ module.exports = class UserDataController {
       uniqueSubjects: uniqueSubjectList,
       subjectData: userLibGuides,
       userLoginInfo: user.rawUserData,
-      liaisons: liaisonList,
     };
     return finishedUserData;
   }
