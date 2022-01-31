@@ -6,6 +6,10 @@ const UserSubjectInfo = require('../models/userLoginData/UserSubjectInfo');
 const UserLibGuidesData = require('../models/userLoginData/UserLibGuidesData');
 const authType = config.get('app.authType');
 const subjectMap = require('../config/miami_subjects.json'); // change this to read from config for path
+const librarians = require('../cache/Librarians');
+const LibAppsDataFilter = require('../repositories/LibAppsDataFilter');
+const libAppsDataFilter = new LibAppsDataFilter();
+const _ = require('lodash');
 
 module.exports = class UserDataController {
   constructor(req) {
@@ -48,12 +52,23 @@ module.exports = class UserDataController {
     userSubjectInfo.reduceSubjectsToNames();
     userSubjectInfo.removeTempData();
     let subjectList = userSubjectInfo.returnSubjectList();
+    let liaisonList = libAppsDataFilter.getSubjectsByExpertEmail(
+      librarians,
+      userLoginInfo.email
+    );
 
-    let userLibGuides = new UserLibGuidesData(subjectList);
+    if (liaisonList.length > 0) {
+      userLoginInfo.liaisons = liaisonList;
+    }
+    // merge liaisonList with subjectList and return unique list
+    let subjectListWithLiaisons = liaisonList.concat(subjectList);
+    let uniqueSubjectList = _.uniq(subjectListWithLiaisons);
+
+    let userLibGuides = new UserLibGuidesData(uniqueSubjectList);
 
     let finishedUserData = {
       person: userLoginInfo,
-      uniqueSubjects: subjectList,
+      uniqueSubjects: uniqueSubjectList,
       subjectData: userLibGuides,
       userLoginInfo: user.rawUserData,
     };

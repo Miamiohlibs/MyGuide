@@ -215,6 +215,40 @@ describe('LibAppsDataFilter: mapTags', () => {
     expect(eng[0].id).toBe('22054');
   });
 });
+
+describe('LibAppsDataFilter: getSubjectsByExpertEmail', () => {
+  it('should find two subjects for picardjl@fake.edu', () => {
+    let subjects = obj.getSubjectsByExpertEmail(
+      librarians,
+      'picardjl@fake.edu'
+    );
+    let expected = ['Family Science and Social Work', 'Social Work'];
+    expect(subjects.length).toBe(2);
+    expect(subjects[0]).toBe(expected[0]);
+    expect(subjects[1]).toBe(expected[1]);
+  });
+  it('should find six subjects for janewak@fake.edu', () => {
+    let subjects = obj.getSubjectsByExpertEmail(librarians, 'janewak@fake.edu');
+    let expected = [
+      'Accountancy',
+      'Business',
+      'Entrepreneurship',
+      'Finance',
+      'Management',
+      'Marketing',
+    ];
+    expect(subjects.length).toBe(6);
+    expect(subjects[0]).toBe(expected[0]);
+    expect(subjects[1]).toBe(expected[1]);
+    expect(subjects[5]).toBe(expected[5]);
+  });
+  it('should get a blank array for a non-existent email', () => {
+    let subjects = obj.getSubjectsByExpertEmail(librarians, 'q@continuum.net');
+    expect(Array.isArray(subjects)).toBe(true);
+    expect(subjects.length).toBe(0);
+  });
+});
+
 // WE SHOULD HAVE A UNIT TESTS FOR getBestBySubject -- needs some stubs or fakes and I don't want to learn how!!!!!
 
 // describe('getBestBySubject', () => {

@@ -136,4 +136,21 @@ module.exports = class LibAppsDataFilter {
       return done;
     }
   }
+
+  getSubjectsByExpertEmail(libns, email) {
+    // when given a list of librarians and an email address
+    // find the librarian with that email
+    // and return a list of subjects in which they are the 'expert'
+    let libn = libns.filter((item) => {
+      if (item.email === email) {
+        return true;
+      }
+      return false;
+    });
+    if (libn.length > 0 && libn[0].hasOwnProperty('subjects')) {
+      return libn[0].subjects.map((item) => item.name)
+	    .filter(item => item !==undefined );
+    }
+    return [];
+  }
 };
