@@ -24,10 +24,10 @@ module.exports = class UserLibGuidesData {
 
   getSubjectFiles() {
     this.subjects.forEach((subject) => {
-      let filename = this.getFilePath(subject);
-      // if file not exists
+      let filename = this.getFilePath(subject, true);
+      // if no custom file exists, try for a regular file
       if (!fs.existsSync(filename)) {
-        filename = this.getFilePath(subject, true);
+        filename = this.getFilePath(subject, false);
       }
       let fileContents = this.getFileContents(filename);
       this.subjectData.push({ name: subject, resources: fileContents });
