@@ -1,4 +1,4 @@
-const LibAppsDataFilter = require('./LibAppsDataFilter');
+const LibAppsDataFilter = require('../../repositories/LibAppsDataFilter');
 const f = new LibAppsDataFilter();
 const path = require('path');
 const fs = require('fs');
@@ -28,6 +28,7 @@ module.exports = class UserLibGuidesData {
   getFilePath(subject) {
     return path.join(
       __dirname,
+      '..',
       '..',
       this.subjectCachePath,
       f.safeFilename(subject) + '.json'

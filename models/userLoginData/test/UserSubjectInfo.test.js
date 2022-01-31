@@ -1,4 +1,4 @@
-const UserSubjectInfo = require('../../repositories/UserSubjectInfo');
+const UserSubjectInfo = require('../UserSubjectInfo');
 
 const userData1 = require('./sample-data/loggedInData1.json');
 const subjectMap1 = require('./sample-data/subjectMapMiami.json');

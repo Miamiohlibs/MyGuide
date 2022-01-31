@@ -1,11 +1,15 @@
 const config = require('config');
-const getUserLoginInfo = require('./services/getUserInfo');
+// const getUserLoginInfo = require('./services/getUserInfo');
+const UserDataController = require('./controllers/UserDataController');
+
 const CircController = require('./controllers/CirculationController');
 const circController = new CircController();
 const fs = require('fs');
+
 module.exports = function (app) {
   app.get('/', async (req, res) => {
-    let user = getUserLoginInfo(req);
+    const userDataController = new UserDataController(req);
+    let user = userDataController.getUserData();
     let circData = await circController.getUserData(user.person.userId);
     // res.send(userInfo);
     // res.render('dashboard', { user: userInfo, settings: settings });
@@ -18,8 +22,9 @@ module.exports = function (app) {
   });
 
   app.get('/json', async (req, res) => {
-    let userInfo = getUserLoginInfo(req);
-    let circData = await circController.getUserData(userInfo.person.userId);
-    res.send({ circ: circData, user: userInfo });
+    const userDataController = new UserDataController(req);
+    let user = userDataController.getUserData();
+    let circData = await circController.getUserData(user.person.userId);
+    res.send({ circ: circData, user: user });
   });
 };

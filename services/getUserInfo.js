@@ -1,7 +1,7 @@
 const config = require('config');
-const UserLoginInfo = require('../repositories/UserLoginInfo');
-const UserSubjectInfo = require('../repositories/UserSubjectInfo');
-const UserLibGuidesData = require('../repositories/UserLibGuidesData');
+const UserLoginInfo = require('../models/userLoginData/UserLoginInfo');
+const UserSubjectInfo = require('../models/userLoginData/UserSubjectInfo');
+const UserLibGuidesData = require('../models/userLoginData/UserLibGuidesData');
 const userDataMap = require('../config/cas_field_map.json');
 const subjectMap = require('../config/miami_subjects.json');
 let rawData, userLoginInfo;
