@@ -4,7 +4,11 @@ const path = require('path');
 const fs = require('fs');
 
 module.exports = class UserLibGuidesData {
-  constructor(subjects, subjectCachePath = 'cache/subjects/') {
+  constructor(
+    subjects,
+    subjectCachePath = 'cache/subjects/',
+    customPath = 'cache/custom/'
+  ) {
     /* subjects expects to be an array of subject names
      * subjectCachePath expects an approot-relative path
      * with no leading slash, but with a trailing slash eg:
@@ -12,6 +16,7 @@ module.exports = class UserLibGuidesData {
      */
     this.subjects = subjects;
     this.subjectCachePath = subjectCachePath;
+    this.customPath = customPath;
     this.subjectData = [];
     this.getSubjectFiles();
     return this.subjectData;
@@ -20,17 +25,27 @@ module.exports = class UserLibGuidesData {
   getSubjectFiles() {
     this.subjects.forEach((subject) => {
       let filename = this.getFilePath(subject);
+      // if file not exists
+      if (!fs.existsSync(filename)) {
+        filename = this.getFilePath(subject, true);
+      }
       let fileContents = this.getFileContents(filename);
       this.subjectData.push({ name: subject, resources: fileContents });
     });
   }
 
-  getFilePath(subject) {
+  getFilePath(subject, custom = false) {
+    let subjectPath;
+    if (custom) {
+      subjectPath = this.customPath;
+    } else {
+      subjectPath = this.subjectCachePath;
+    }
     return path.join(
       __dirname,
       '..',
       '..',
-      this.subjectCachePath,
+      subjectPath,
       f.safeFilename(subject) + '.json'
     );
   }
