@@ -1,4 +1,4 @@
-const LibAppsDataFilter = require('../../repositories/LibAppsDataFilter.js');
+const LibAppsDataFilter = require('../LibAppsDataFilter.js');
 
 obj = new LibAppsDataFilter();
 

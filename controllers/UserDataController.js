@@ -7,7 +7,7 @@ const UserLibGuidesData = require('../models/userLoginData/UserLibGuidesData');
 const authType = config.get('app.authType');
 const subjectMap = require('../config/miami_subjects.json'); // change this to read from config for path
 const librarians = require('../cache/Librarians');
-const LibAppsDataFilter = require('../repositories/LibAppsDataFilter');
+const LibAppsDataFilter = require('../models/libGuides/LibAppsDataFilter');
 const libAppsDataFilter = new LibAppsDataFilter();
 const _ = require('lodash');
 
