@@ -43,9 +43,15 @@
             "text": "Need help? Contact us."
         },
         "featuredContent": {
-            "display": true,
-            "hint": "displays content defined in views/custom-featured-content.ejs",
-            "cardLabel": "Featured Content"
+            "display": false,
+            "hints": [
+                "displays YOUR custom content",
+                "put your content in a file in views/partials/",
+                "filename should start with 'custom-...'",
+                "e.g. custom-featured-content.ejs"
+            ],
+            "cardLabel": "Featured Content",
+            "filename": "custom-featured-content.ejs"
         }
     },
     "logLevels": {
