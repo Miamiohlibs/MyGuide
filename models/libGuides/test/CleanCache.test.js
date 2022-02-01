@@ -1,5 +1,5 @@
 const librarians = require('./sample-data/libapps/libn-sample.js');
-const CleanCache = require('../../repositories/CleanCache.js');
+const CleanCache = require('../CleanCache.js');
 const clean = new CleanCache(librarians);
 
 const widget1 =
