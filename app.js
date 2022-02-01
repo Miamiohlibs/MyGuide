@@ -12,7 +12,7 @@ const MemoryStore = require('session-memory-store')(session);
 const app = express();
 
 global.onServer =
-  config.has('app.onServer') && config.get('app.onServer') === 'true';
+  config.has('app.onServer') && config.get('app.onServer') === true;
 logger.debug('On Server: ' + global.onServer);
 
 if (global.onServer === true) {
