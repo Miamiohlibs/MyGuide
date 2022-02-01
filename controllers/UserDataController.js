@@ -19,7 +19,7 @@ module.exports = class UserDataController {
         console.log('authType: cas');
 
         // get real or fake user data
-        if (config.get('app.useFakeUser') === 'true') {
+        if (config.get('app.useFakeUser') === true) {
           this.rawUserData = require(__dirname +
             '/../fakeUsers/' +
             config.get('app.fakeUserFile'));

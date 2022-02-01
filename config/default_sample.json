@@ -2,10 +2,11 @@
     "mode": "dev",
     "app": {
         "port": "9909",
-        "onServer": "false",
-        "useAuth": "true",
+        "onServer": false,
+        "useAuth": true,
         "authType": "CAS",
         "useCirc": false,
+        "useFakeUser": false,
         "subjectConfigFilename": "name_of_file_in_config_dir.json"
     },
     "server": {
@@ -42,7 +43,7 @@
             "text": "Need help? Contact us."
         },
         "featuredContent": {
-            "display": "true",
+            "display": true,
             "hint": "displays content defined in views/custom-featured-content.ejs",
             "cardLabel": "Featured Content"
         }
