@@ -5,6 +5,7 @@ const UserDataController = require('./controllers/UserDataController');
 const CircController = require('./controllers/CirculationController');
 const circController = new CircController();
 const fs = require('fs');
+const logUsage = require('./models/usageLog/logUser');
 
 module.exports = function (app) {
   app.get('/', async (req, res) => {
@@ -19,6 +20,7 @@ module.exports = function (app) {
       fs: fs,
       config: config.get('viewConfigs'),
     });
+    logUsage(user);
   });
 
   app.get('/json', async (req, res) => {
