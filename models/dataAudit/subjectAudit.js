@@ -26,4 +26,36 @@ module.exports = class SubjectAudit {
     });
     return allCodesOfType;
   }
+
+  checkForDuplicateCodes() {
+    let regCodes = this.getAllCodesOfType('regCode');
+    let deptCodes = this.getAllCodesOfType('deptCode');
+    let majorCodes = this.getAllCodesOfType('majorCode');
+    let duplicateRegCodes = regCodes.filter((code) => {
+      return regCodes.indexOf(code) !== regCodes.lastIndexOf(code);
+    });
+    let duplicateDeptCodes = deptCodes.filter((code) => {
+      return deptCodes.indexOf(code) !== deptCodes.lastIndexOf(code);
+    });
+    let duplicateMajorCodes = majorCodes.filter((code) => {
+      return majorCodes.indexOf(code) !== majorCodes.lastIndexOf(code);
+    });
+    let duplicateCodes = {
+      regCodes: duplicateRegCodes,
+      deptCodes: duplicateDeptCodes,
+      majorCodes: duplicateMajorCodes,
+    };
+    if (
+      duplicateMajorCodes.length > 0 ||
+      duplicateDeptCodes.length > 0 ||
+      duplicateRegCodes.length > 0
+    ) {
+      return {
+        valid: false,
+        errorMessage: 'Duplicate codes found',
+        duplicateCodes,
+      };
+    }
+    return { valid: true };
+  }
 };

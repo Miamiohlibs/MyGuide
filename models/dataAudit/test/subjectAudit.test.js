@@ -83,3 +83,24 @@ describe('subjectAudit: getAllCodesOfType', () => {
     ]);
   });
 });
+
+describe('subjectAudit: checkForDuplicateCodes', () => {
+  it('should return true if there are no duplicate codes', () => {
+    const subjectAuditInstance = new subjectAudit(goodDataPath);
+    subjectAuditInstance.loadData();
+    let response = subjectAuditInstance.checkForDuplicateCodes();
+    expect(response.valid).toBe(true);
+  });
+  it('should return false if there are duplicate codes', () => {
+    const subjectAuditInstance = new subjectAudit(badDupDataPath);
+    subjectAuditInstance.loadData();
+    let response = subjectAuditInstance.checkForDuplicateCodes();
+    expect(response.valid).toBe(false);
+    expect(response.errorMessage).toBe('Duplicate codes found');
+    expect(response.duplicateCodes).toEqual({
+      regCodes: ['ACC', 'ACC'],
+      deptCodes: ['acc', 'acc'],
+      majorCodes: ['BU01', 'BU01'],
+    });
+  });
+});
