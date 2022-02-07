@@ -87,7 +87,7 @@ if (loadResponse.valid === false) {
 // check for duplicate codes
 let dupResponse = audit.checkForDuplicateCodes();
 if (dupResponse.valid === false) {
-  console.log(colors.red('subject List has duplicate codes'));
+  console.log(colors.red('subject List has duplicate codes (p)'));
   console.log(colors.yellow(dupResponse.message));
   if (verboseDuplicates || verbose) {
     console.log(colors.yellow(dupResponse.duplicateCodes));
@@ -117,7 +117,8 @@ let missingNameResponse = audit.subjectsWithNoName();
 if (missingNameResponse.length > 0) {
   console.log(
     colors.red(
-      'subject List has subjects without names: ' + missingNameResponse.length
+      'subject List has subjects without names (n): ' +
+        missingNameResponse.length
     )
   );
   if (verbose || verboseSubjectNoName)
