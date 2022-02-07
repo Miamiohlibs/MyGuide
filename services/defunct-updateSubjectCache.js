@@ -1,4 +1,6 @@
 /*
+This script has been replaced with the new utilities/updateSubjectCache.js
+
 The script reads the cached Librarians, Databases, and Guides (LD&G); then for each 
 subject, it outputs a the combined data from LD&G for that subject into a file:  
 /cache/subjects/[SubjectName].js 
