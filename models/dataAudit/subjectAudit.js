@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 module.exports = class SubjectAudit {
   constructor(filepath) {
     this.filepath = filepath;
@@ -57,5 +59,21 @@ module.exports = class SubjectAudit {
       };
     }
     return { valid: true };
+  }
+
+  listUniqueLibguides() {
+    let libguides = this.subjectList.map((subject) => {
+      return subject.libguides;
+    });
+
+    // merge array of arrays into one array
+    libguides = _.flatten(libguides);
+
+    // remove undefineds, dedupe, and sort
+    libguides = _.compact(libguides);
+    libguides = _.uniq(libguides);
+    libguides = _.sortBy(libguides);
+
+    return libguides;
   }
 };

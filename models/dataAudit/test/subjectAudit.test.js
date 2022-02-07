@@ -104,3 +104,16 @@ describe('subjectAudit: checkForDuplicateCodes', () => {
     });
   });
 });
+
+describe('subjectAudit: listUniqueLibguides', () => {
+  it('should find 3 distinct libguides in goodData', () => {
+    const subjectAuditInstance = new subjectAudit(goodDataPath);
+    subjectAuditInstance.loadData();
+    let response = subjectAuditInstance.listUniqueLibguides();
+    expect(response).toEqual([
+      'Accountancy',
+      'Education',
+      'Educational Leadership',
+    ]);
+  });
+});
