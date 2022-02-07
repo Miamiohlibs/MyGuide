@@ -35,11 +35,20 @@ describe('subjectAudit: loadData', () => {
 });
 
 describe('subjectAudit: getAllCodesOfType', () => {
-  it('should return an array of all the regCodes of a given type', () => {
+  it('should return an array of all the regCodes', () => {
     const subjectAuditInstance = new subjectAudit(goodDataPath);
     subjectAuditInstance.loadData();
     let allCodesOfType = subjectAuditInstance.getAllCodesOfType('regCode');
     expect(allCodesOfType).toEqual(['AA', 'ACC']);
+  });
+  it('should return an array of all the regCode names given an extra param', () => {
+    const subjectAuditInstance = new subjectAudit(goodDataPath);
+    subjectAuditInstance.loadData();
+    let allCodesOfType = subjectAuditInstance.getAllCodesOfType(
+      'regCode',
+      true
+    );
+    expect(allCodesOfType).toEqual(['Academic Affairs', 'Accountancy']);
   });
   it('should return an array of all the deptCodes of a given type', () => {
     const subjectAuditInstance = new subjectAudit(goodDataPath);
@@ -126,12 +135,11 @@ describe('subjectAudit: filterRemoveWhereCondition', () => {
   it('should filter out the data where regional:true from full data', () => {
     const subjectAuditInstance = new subjectAudit(goodDataPath);
     subjectAuditInstance.loadData();
-    let response = subjectAuditInstance.filterRemoveWhereCondition(
-      subjectAuditInstance.subjectList,
+    subjectAuditInstance.filterRemoveFromSubjectListWhereCondition(
       'regional',
       true
     );
-    expect(response.length).toBe(6);
+    expect(subjectAuditInstance.subjectList.length).toBe(6);
   });
 });
 
@@ -151,14 +159,12 @@ describe('subjectAudit: subjectsWithoutLibguides', () => {
   it('should find no subjects without libguides where regional!==true', () => {
     const subjectAuditInstance = new subjectAudit(onlyMissingLGAtRegionalsPath);
     subjectAuditInstance.loadData();
+    subjectAuditInstance.filterRemoveFromSubjectListWhereCondition(
+      'regional',
+      true
+    );
     let response = subjectAuditInstance.subjectsWithoutLibguides();
-    let responseIgnoreRegionals =
-      subjectAuditInstance.filterRemoveWhereCondition(
-        response,
-        'regional',
-        true
-      );
-    expect(responseIgnoreRegionals.length).toEqual(0);
+    expect(response.length).toEqual(0);
   });
 });
 

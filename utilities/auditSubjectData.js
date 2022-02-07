@@ -10,7 +10,9 @@ checks to identify subjects with no major, reg, or dept codes
 */
 const config = require('config');
 const colors = require('colors');
+const fs = require('fs');
 const path = require('path');
+const filenamify = require('./filenamify');
 subjectDataFilename = config.get('app.subjectConfigFilename');
 subjectDataFile = path.join(__dirname, '..', 'config', subjectDataFilename);
 const auditSubjectData = require('../models/dataAudit/subjectAudit');
@@ -20,9 +22,9 @@ const flags = process.argv.slice(2)[0];
 
 // default settings flags
 let verbose = false;
-// let verboseMajors = false;
-// let verboseReg = false;
-// let verboseDept = false;
+let verboseMissingMajors = false;
+let verboseMissingReg = false;
+let verboseMissingDept = false;
 let verboseSubjectNoName = false;
 let includeRegionals = false;
 let verboseDuplicates = false;
@@ -35,15 +37,15 @@ if (flags) {
   if (flags.includes('v')) {
     verbose = true;
   }
-  //   if (flags.includes('m')) {
-  //     verboseMajors = true;
-  //   }
-  //   if (flags.includes('r')) {
-  //     verboseReg = true;
-  //   }
-  //   if (flags.includes('d')) {
-  //     verboseDept = true;
-  //   }
+  if (flags.includes('m')) {
+    verboseMissingMajors = true;
+  }
+  if (flags.includes('r')) {
+    verboseMissingReg = true;
+  }
+  if (flags.includes('d')) {
+    verboseMissingDept = true;
+  }
   if (flags.includes('i')) {
     includeRegionals = true;
   }
@@ -66,6 +68,9 @@ if (flags) {
 
 // check for valid data
 let loadResponse = audit.loadData();
+if (!includeRegionals) {
+  audit.filterRemoveFromSubjectListWhereCondition('regional', true);
+}
 if (loadResponse.valid === false) {
   console.log(colors.red('subject List is not an object'));
   console.log(colors.yellow(loadResponse.message));
@@ -89,13 +94,6 @@ if (dupResponse.valid === false) {
 
 // check for subjects without libguides
 let missingLGResponse = audit.subjectsWithoutLibguides();
-if (includeRegionals === false) {
-  missingLGResponse = audit.filterRemoveWhereCondition(
-    missingLGResponse,
-    'regional',
-    true
-  );
-}
 if (missingLGResponse.length > 0) {
   console.log(
     colors.red(
@@ -110,13 +108,6 @@ if (missingLGResponse.length > 0) {
 
 // check for subjects with no name
 let missingNameResponse = audit.subjectsWithNoName();
-if (includeRegionals === false) {
-  missingNameResponse = audit.filterRemoveWhereCondition(
-    missingNameResponse,
-    'regional',
-    true
-  );
-}
 if (missingNameResponse.length > 0) {
   console.log(
     colors.red(
@@ -127,4 +118,59 @@ if (missingNameResponse.length > 0) {
     console.log(colors.yellow(missingNameResponse));
 } else {
   console.log(colors.green('subject List has no subjects without names'));
+}
+
+// get all regNames
+let regNames = audit.getAllCodesOfType('regCode', true);
+let deptNames = audit.getAllCodesOfType('deptCode', true);
+let majorNames = audit.getAllCodesOfType('majorCode', true);
+
+let missingReg = findMissingFiles(regNames);
+let missingDept = findMissingFiles(deptNames);
+let missingMajor = findMissingFiles(majorNames);
+
+if (missingReg.length > 0) {
+  console.log(
+    colors.red(
+      'subject List has missing registrar-code files: ' + missingReg.length
+    )
+  );
+  if (verbose || verboseMissingReg) console.log(colors.yellow(missingReg));
+}
+
+if (missingDept.length > 0) {
+  console.log(
+    colors.red(
+      'subject List has missing department-code files: ' + missingDept.length
+    )
+  );
+  if (verbose || verboseMissingDept) console.log(colors.yellow(missingDept));
+}
+
+if (missingMajor.length > 0) {
+  console.log(
+    colors.red(
+      'subject List has missing major-code files: ' + missingMajor.length
+    )
+  );
+  if (verbose || verboseMissingMajors) console.log(colors.yellow(missingMajor));
+}
+
+function findMissingFiles(list) {
+  return list.filter((subjectName) => {
+    if (subjectName !== undefined) {
+      let filename = filenamify(subjectName);
+      filepath = path.join(
+        __dirname,
+        '..',
+        'cache',
+        'subjects',
+        filename + '.json'
+      );
+      if (!fs.existsSync(filepath)) {
+        return true;
+      }
+      return false;
+    }
+  });
 }

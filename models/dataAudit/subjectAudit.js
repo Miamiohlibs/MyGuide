@@ -14,14 +14,18 @@ module.exports = class SubjectAudit {
     }
   }
 
-  getAllCodesOfType(codeType) {
+  getAllCodesOfType(codeType, returnName = false) {
+    let returnField = codeType;
+    if (returnName) {
+      returnField = codeType.replace('Code', 'Name');
+    }
     let codeTypePlural = codeType + 's';
     let allCodesOfType = [];
     this.subjectList.forEach((subject) => {
       if (subject[codeTypePlural] !== undefined) {
         subject[codeTypePlural].forEach((code) => {
           if (code[codeType] !== undefined) {
-            allCodesOfType.push(code[codeType]);
+            allCodesOfType.push(code[returnField]);
           }
         });
       }
@@ -77,8 +81,8 @@ module.exports = class SubjectAudit {
     return libguides;
   }
 
-  filterRemoveWhereCondition(array, property, value) {
-    return array.filter((item) => {
+  filterRemoveFromSubjectListWhereCondition(property, value) {
+    this.subjectList = this.subjectList.filter((item) => {
       return item[property] !== value;
     });
   }
