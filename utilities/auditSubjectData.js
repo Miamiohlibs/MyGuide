@@ -1,9 +1,12 @@
 /*
 checks to see that there is no duplication in subjCodes
-checks to identify missing regCodes, deptCodes, majorCodes
-doesn't care about majorCodes from regional campuses (RC.*)
-identify any missing cached libguides (present in subject list, missing from cache)
+ignores regional campuses by default (regional:true)
 identify subjects with no libguides listed
+identify subjects with no name listed
+
+To add:
+identify any missing cached libguides or subjects (present in subject list, missing from cache)
+checks to identify subjects with no major, reg, or dept codes
 */
 const config = require('config');
 const colors = require('colors');
@@ -11,6 +14,7 @@ const path = require('path');
 subjectDataFilename = config.get('app.subjectConfigFilename');
 subjectDataFile = path.join(__dirname, '..', 'config', subjectDataFilename);
 const auditSubjectData = require('../models/dataAudit/subjectAudit');
+const { checkPrimeSync } = require('crypto');
 const audit = new auditSubjectData(subjectDataFile);
 const flags = process.argv.slice(2)[0];
 
@@ -19,6 +23,7 @@ let verbose = false;
 // let verboseMajors = false;
 // let verboseReg = false;
 // let verboseDept = false;
+let verboseSubjectNoName = false;
 let includeRegionals = false;
 let verboseDuplicates = false;
 let verboseNoLibguides = false;
@@ -45,8 +50,11 @@ if (flags) {
   if (flags.includes('p')) {
     verboseDuplicates = true;
   }
-  if (flags.includes('n')) {
+  if (flags.includes('L') || flags.includes('l')) {
     verboseNoLibguides = true;
+  }
+  if (flags.includes('n')) {
+    verboseSubjectNoName = true;
   }
   //   if (flags.includes('l')) {
   //     verboseLibGuideNameErrors = true;
@@ -96,7 +104,27 @@ if (missingLGResponse.length > 0) {
   );
   if (verbose || verboseNoLibguides)
     console.log(colors.yellow(missingLGResponse.map((i) => i.name)));
-  process.exit(1);
 } else {
   console.log(colors.green('subject List has no subjects without libguides'));
+}
+
+// check for subjects with no name
+let missingNameResponse = audit.subjectsWithNoName();
+if (includeRegionals === false) {
+  missingNameResponse = audit.filterRemoveWhereCondition(
+    missingNameResponse,
+    'regional',
+    true
+  );
+}
+if (missingNameResponse.length > 0) {
+  console.log(
+    colors.red(
+      'subject List has subjects without names: ' + missingNameResponse.length
+    )
+  );
+  if (verbose || verboseSubjectNoName)
+    console.log(colors.yellow(missingNameResponse));
+} else {
+  console.log(colors.green('subject List has no subjects without names'));
 }

@@ -8,6 +8,8 @@ const badDupDataPath =
   rootpath + '/models/dataAudit/test/sample-data/badDupCodes.json';
 const onlyMissingLGAtRegionalsPath =
   rootpath + '/models/dataAudit/test/sample-data/onlyMissingLGAtRegionals.json';
+const badMissingNameDataPath =
+  rootpath + '/models/dataAudit/test/sample-data/badMissingNameData.json';
 
 describe('subjectAudit: constructor', () => {
   it('should get data from the file passed on initialization', () => {
@@ -157,5 +159,20 @@ describe('subjectAudit: subjectsWithoutLibguides', () => {
         true
       );
     expect(responseIgnoreRegionals.length).toEqual(0);
+  });
+});
+
+describe('subjectAudit: subjectsWithNoName', () => {
+  it('should find no subjects without names in goodData', () => {
+    const subjectAuditInstance = new subjectAudit(goodDataPath);
+    subjectAuditInstance.loadData();
+    let response = subjectAuditInstance.subjectsWithNoName();
+    expect(response).toEqual([]);
+  });
+  it('should find 2 subjects without names in badMissingNameData', () => {
+    const subjectAuditInstance = new subjectAudit(badMissingNameDataPath);
+    subjectAuditInstance.loadData();
+    let response = subjectAuditInstance.subjectsWithNoName();
+    expect(response.length).toEqual(2);
   });
 });

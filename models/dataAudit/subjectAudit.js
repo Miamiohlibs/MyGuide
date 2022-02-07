@@ -96,4 +96,14 @@ module.exports = class SubjectAudit {
     });
     return subjectsWithoutLibguides;
   }
+
+  subjectsWithNoName() {
+    let subjectsWithNoName = [];
+    this.subjectList.forEach((subject) => {
+      if (subject.name === undefined || subject.name === '') {
+        subjectsWithNoName.push(subject);
+      }
+    });
+    return subjectsWithNoName;
+  }
 };
