@@ -6,6 +6,8 @@ const badJsonPath =
   rootpath + '/models/dataAudit/test/sample-data/badJson.json';
 const badDupDataPath =
   rootpath + '/models/dataAudit/test/sample-data/badDupCodes.json';
+const onlyMissingLGAtRegionalsPath =
+  rootpath + '/models/dataAudit/test/sample-data/onlyMissingLGAtRegionals.json';
 
 describe('subjectAudit: constructor', () => {
   it('should get data from the file passed on initialization', () => {
@@ -115,5 +117,45 @@ describe('subjectAudit: listUniqueLibguides', () => {
       'Education',
       'Educational Leadership',
     ]);
+  });
+});
+
+describe('subjectAudit: filterRemoveWhereCondition', () => {
+  it('should filter out the data where regional:true from full data', () => {
+    const subjectAuditInstance = new subjectAudit(goodDataPath);
+    subjectAuditInstance.loadData();
+    let response = subjectAuditInstance.filterRemoveWhereCondition(
+      subjectAuditInstance.subjectList,
+      'regional',
+      true
+    );
+    expect(response.length).toBe(6);
+  });
+});
+
+describe('subjectAudit: subjectsWithoutLibguides', () => {
+  it('should find no subjects without libguides in goodData', () => {
+    const subjectAuditInstance = new subjectAudit(goodDataPath);
+    subjectAuditInstance.loadData();
+    let response = subjectAuditInstance.subjectsWithoutLibguides();
+    expect(response).toEqual([]);
+  });
+  it('should find 3 subjects without libguides in onlyMissingLGAtRegionalsPath', () => {
+    const subjectAuditInstance = new subjectAudit(onlyMissingLGAtRegionalsPath);
+    subjectAuditInstance.loadData();
+    let response = subjectAuditInstance.subjectsWithoutLibguides();
+    expect(response.length).toEqual(3);
+  });
+  it('should find no subjects without libguides where regional!==true', () => {
+    const subjectAuditInstance = new subjectAudit(onlyMissingLGAtRegionalsPath);
+    subjectAuditInstance.loadData();
+    let response = subjectAuditInstance.subjectsWithoutLibguides();
+    let responseIgnoreRegionals =
+      subjectAuditInstance.filterRemoveWhereCondition(
+        response,
+        'regional',
+        true
+      );
+    expect(responseIgnoreRegionals.length).toEqual(0);
   });
 });

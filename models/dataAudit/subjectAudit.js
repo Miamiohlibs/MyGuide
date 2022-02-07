@@ -76,4 +76,24 @@ module.exports = class SubjectAudit {
 
     return libguides;
   }
+
+  filterRemoveWhereCondition(array, property, value) {
+    return array.filter((item) => {
+      return item[property] !== value;
+    });
+  }
+
+  subjectsWithoutLibguides() {
+    let subjectsWithoutLibguides = [];
+    this.subjectList.forEach((subject) => {
+      if (subject.libguides === undefined) {
+        subjectsWithoutLibguides.push(subject);
+      } else if (!Array.isArray(subject.libguides)) {
+        subjectsWithoutLibguides.push(subject);
+      } else if (subject.libguides.length === 0) {
+        subjectsWithoutLibguides.push(subject);
+      }
+    });
+    return subjectsWithoutLibguides;
+  }
 };
