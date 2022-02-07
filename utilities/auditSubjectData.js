@@ -25,10 +25,12 @@ let verbose = false;
 let verboseMissingMajors = false;
 let verboseMissingReg = false;
 let verboseMissingDept = false;
+let verboseMissingLibguides = false;
 let verboseSubjectNoName = false;
 let includeRegionals = false;
 let verboseDuplicates = false;
 let verboseNoLibguides = false;
+
 // let verboseLibGuideNameErrors = false;
 // let outputReportFiles = false;
 
@@ -54,6 +56,9 @@ if (flags) {
   }
   if (flags.includes('L') || flags.includes('l')) {
     verboseNoLibguides = true;
+  }
+  if (flags.includes('k')) {
+    verboseMissingLibguides = true;
   }
   if (flags.includes('n')) {
     verboseSubjectNoName = true;
@@ -97,7 +102,8 @@ let missingLGResponse = audit.subjectsWithoutLibguides();
 if (missingLGResponse.length > 0) {
   console.log(
     colors.red(
-      'subject List has subjects without libguides: ' + missingLGResponse.length
+      'subject List has subjects without libguides (L): ' +
+        missingLGResponse.length
     )
   );
   if (verbose || verboseNoLibguides)
@@ -124,36 +130,68 @@ if (missingNameResponse.length > 0) {
 let regNames = audit.getAllCodesOfType('regCode', true);
 let deptNames = audit.getAllCodesOfType('deptCode', true);
 let majorNames = audit.getAllCodesOfType('majorCode', true);
+let libguideNames = audit.listUniqueLibguides();
 
 let missingReg = findMissingFiles(regNames);
 let missingDept = findMissingFiles(deptNames);
 let missingMajor = findMissingFiles(majorNames);
+let missingLibguideNames = findMissingFiles(libguideNames);
 
 if (missingReg.length > 0) {
   console.log(
     colors.red(
-      'subject List has missing registrar-code files: ' + missingReg.length
+      'subject List has registrar-codes without a cached file (r): ' +
+        missingReg.length
     )
   );
   if (verbose || verboseMissingReg) console.log(colors.yellow(missingReg));
+} else {
+  console.log(
+    colors.green('subject List has no registrar without a cached file')
+  );
 }
 
 if (missingDept.length > 0) {
   console.log(
     colors.red(
-      'subject List has missing department-code files: ' + missingDept.length
+      'subject List has department-code without a cached file (d): ' +
+        missingDept.length
     )
   );
   if (verbose || verboseMissingDept) console.log(colors.yellow(missingDept));
+} else {
+  console.log(
+    colors.green('subject List has no department without a cached file')
+  );
 }
 
 if (missingMajor.length > 0) {
   console.log(
     colors.red(
-      'subject List has missing major-code files: ' + missingMajor.length
+      'subject List has a major-code without a cached file (m): ' +
+        missingMajor.length
     )
   );
   if (verbose || verboseMissingMajors) console.log(colors.yellow(missingMajor));
+} else {
+  console.log(
+    colors.green('subject List has no major files without a cached file')
+  );
+}
+
+if (missingLibguideNames.length > 0) {
+  console.log(
+    colors.red(
+      'subject List has libguides without a cached file (k): ' +
+        missingLibguideNames.length
+    )
+  );
+  if (verbose || verboseMissingLibguides)
+    console.log(colors.yellow(missingLibguideNames));
+} else {
+  console.log(
+    colors.green('subject List has no libguides without a cached file')
+  );
 }
 
 function findMissingFiles(list) {
