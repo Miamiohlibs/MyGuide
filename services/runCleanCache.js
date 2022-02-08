@@ -19,7 +19,7 @@ const path = require('path');
 const util = require('util');
 const rootdir = path.dirname(__dirname);
 const librarians = require(rootdir + '/cache/LibrariansTemp');
-const CleanCache = require(rootdir + '/repositories/CleanCache');
+const CleanCache = require(rootdir + '/models/libGuides/CleanCache');
 const clean = new CleanCache();
 const widget_fields = ['widget_la', 'widget_lc', 'widget_other'];
 
