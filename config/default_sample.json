@@ -7,6 +7,7 @@
         "authType": "CAS",
         "useCirc": false,
         "useFakeUser": false,
+        "useFavorites": false,
         "subjectConfigFilename": "name_of_file_in_config_dir.json"
     },
     "server": {
