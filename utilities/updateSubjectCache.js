@@ -4,6 +4,12 @@
     from each subject get the libns, guides, and databases + metadata
 
     foreach name, majorName, deptName, regName: write out a file with all that info
+
+    The script reads the cached Librarians, Databases, and Guides (LD&G); then for each 
+    subject, it outputs a the combined data from LD&G for that subject into a file:  
+    /cache/subjects/[SubjectName].js 
+
+    These cached subject files are the main data used by the Dashboard.
 */
 
 const fs = require('fs');
@@ -24,7 +30,8 @@ console.log('subjectConfigPath: ', subjectConfigPath);
 const subjectConfig = JSON.parse(fs.readFileSync(subjectConfigPath, 'utf8'));
 
 const allowedGroups = config.get('LibGuides.allowedGroupIds');
-const LibAppsDataFilter = require(rootdir + '/repositories/LibAppsDataFilter');
+const LibAppsDataFilter = require(rootdir +
+  '/models/libGuides/LibAppsDataFilter');
 const f = new LibAppsDataFilter();
 
 subjectConfig.forEach((subject) => {

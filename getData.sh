@@ -82,5 +82,5 @@ node utilities/updateSubjectCache.js # creates each subject's file in ./cache/su
 
 
 
-# node ./utilities/checkSubjectCodes.js
+ node ./utilities/auditSubjectData.js
 # # this is an audit of the subjectCodes for syntax error detection, duplication, etc

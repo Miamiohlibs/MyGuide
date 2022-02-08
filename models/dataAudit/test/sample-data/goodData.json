@@ -1,0 +1,134 @@
+[
+    {
+        "name": "Academic Affairs",
+        "libguides": [
+            "Educational Leadership"
+        ],
+        "regCodes": [
+            {
+                "regCode": "AA",
+                "regName": "Academic Affairs"
+            }
+        ]
+    },
+    {
+        "name": "Accountancy",
+        "libguides": [
+            "Accountancy"
+        ],
+        "regCodes": [
+            {
+                "regCode": "ACC",
+                "regName": "Accountancy"
+            }
+        ],
+        "majorCodes": [
+            {
+                "majorCode": "BU01",
+                "majorName": "Accountancy"
+            }
+        ],
+        "deptCodes": [
+            {
+                "deptCode": "acc",
+                "deptName": "Accountancy"
+            }
+        ]
+    },
+    {
+        "name": "Accountancy - HC",
+        "regional": true,
+        "libguides": [
+            "Accountancy"
+        ],
+        "deptCodes": [
+            {
+                "deptCode": "hac",
+                "deptName": "Accountancy - HC"
+            }
+        ]
+    },
+    {
+        "name": "Accountancy - MC",
+        "regional": true,
+        "libguides": [
+            "Accountancy"
+        ],
+        "deptCodes": [
+            {
+                "deptCode": "mac",
+                "deptName": "Accountancy - MC"
+            }
+        ]
+    },
+    {
+        "name": "Accounting Technology",
+        "libguides": [
+            "Accountancy"
+        ],
+        "majorCodes": [
+            {
+                "majorCode": "BUKA",
+                "majorName": "Accounting Technology"
+            },
+            {
+                "majorCode": "RCKA",
+                "majorName": "Accounting Technology"
+            },
+            {
+                "majorCode": "BU8C",
+                "majorName": "Accounting Technology Program"
+            }
+        ]
+    },
+    {
+        "name": "Accounts Payable",
+        "libguides": [
+            "Educational Leadership",
+            "Accountancy"
+        ],
+        "deptCodes": [
+            {
+                "deptCode": "acp",
+                "deptName": "Accounts Payable"
+            }
+        ]
+    },
+    {
+        "name": "Admission & Financial Aid",
+        "libguides": [
+            "Educational Leadership"
+        ],
+        "deptCodes": [
+            {
+                "deptCode": "had",
+                "deptName": "Admission & Financial Aid"
+            }
+        ]
+    },
+    {
+        "name": "Admission & Financial Aid - MC",
+        "regional": true,
+        "libguides": [
+            "Educational Leadership"
+        ],
+        "deptCodes": [
+            {
+                "deptCode": "maf",
+                "deptName": "Admission & Financial Aid - MC"
+            }
+        ]
+    },
+    {
+        "name": "Adolescent Education",
+        "libguides": [
+            "Education"
+        ],
+        "majorCodes": [
+            {
+                "majorCode": "EA18",
+                "majorName": "Adolescent Education"
+            }
+        ]
+    }
+]
