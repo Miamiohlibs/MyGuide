@@ -2,7 +2,10 @@
   <li class="my-3 d-flex">
     <% let url = g.friendly_url %>
     <% if (url === null) { url = g.url } %>
-    <a href="<%= url %>" class="col-10"><%- g.name %></a>
+    <% if (g.favorite ) { %>
+      <span class="favorite">&#9733;&nbsp;</span>
+    <% } %>
+    <a href="<%= url %>" class="col-10" data-libGuideId="<%= g.id %>"><%- g.name %></a>
     <span class="red-arrows">
       <i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i>
   </span>
