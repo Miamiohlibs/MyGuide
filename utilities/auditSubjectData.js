@@ -3,8 +3,6 @@ checks to see that there is no duplication in subjCodes
 ignores regional campuses by default (regional:true)
 identify subjects with no libguides listed
 identify subjects with no name listed
-
-To add:
 identify any missing cached libguides or subjects (present in subject list, missing from cache)
 checks to identify subjects with no major, reg, or dept codes
 */
@@ -30,7 +28,7 @@ let verboseSubjectNoName = false;
 let includeRegionals = false;
 let verboseDuplicates = false;
 let verboseNoLibguides = false;
-
+let verboseNoCodes = false;
 // let verboseLibGuideNameErrors = false;
 // let outputReportFiles = false;
 
@@ -62,6 +60,9 @@ if (flags) {
   }
   if (flags.includes('n')) {
     verboseSubjectNoName = true;
+  }
+  if (flags.includes('c')) {
+    verboseNoCodes = true;
   }
   //   if (flags.includes('l')) {
   //     verboseLibGuideNameErrors = true;
@@ -193,6 +194,20 @@ if (missingLibguideNames.length > 0) {
   console.log(
     colors.green('subject List has no libguides without a cached file')
   );
+}
+
+let subjectsWithNoCodes = audit.subjectsWithNoCodes();
+if (subjectsWithNoCodes.length > 0) {
+  console.log(
+    colors.red(
+      'subject List has subjects without codes (c): ' +
+        subjectsWithNoCodes.length
+    )
+  );
+  if (verbose || verboseNoCodes)
+    console.log(colors.yellow(subjectsWithNoCodes));
+} else {
+  console.log(colors.green('subject List has no subjects without codes'));
 }
 
 function findMissingFiles(list) {

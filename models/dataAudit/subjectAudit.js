@@ -110,4 +110,18 @@ module.exports = class SubjectAudit {
     });
     return subjectsWithNoName;
   }
+
+  subjectsWithNoCodes() {
+    let subjectsWithNoCodes = [];
+    this.subjectList.forEach((subject) => {
+      if (
+        (subject.regCodes === undefined || subject.regCodes.length === 0) &&
+        (subject.deptCodes === undefined || subject.deptCodes.length === 0) &&
+        (subject.majorCodes === undefined || subject.majorCodes.length === 0)
+      ) {
+        subjectsWithNoCodes.push(subject);
+      }
+    });
+    return subjectsWithNoCodes;
+  }
 };

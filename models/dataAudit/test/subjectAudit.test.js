@@ -10,6 +10,8 @@ const onlyMissingLGAtRegionalsPath =
   rootpath + '/models/dataAudit/test/sample-data/onlyMissingLGAtRegionals.json';
 const badMissingNameDataPath =
   rootpath + '/models/dataAudit/test/sample-data/badMissingNameData.json';
+const badMissingCodesDataPath =
+  rootpath + '/models/dataAudit/test/sample-data/badMissingCodesData.json';
 
 describe('subjectAudit: constructor', () => {
   it('should get data from the file passed on initialization', () => {
@@ -180,5 +182,21 @@ describe('subjectAudit: subjectsWithNoName', () => {
     subjectAuditInstance.loadData();
     let response = subjectAuditInstance.subjectsWithNoName();
     expect(response.length).toEqual(2);
+  });
+});
+
+describe('subjectAudit: subjectsWithNoCodes', () => {
+  it('should find no subjects with no codes in goodData', () => {
+    const subjectAuditInstance = new subjectAudit(goodDataPath);
+    subjectAuditInstance.loadData();
+    let subjectsWithNoCodes = subjectAuditInstance.subjectsWithNoCodes();
+    expect(subjectsWithNoCodes).toEqual([]);
+  });
+
+  it('should find 2 subjects missing codes in badMissingCodesData.json', () => {
+    const subjectAuditInstance = new subjectAudit(badMissingCodesDataPath);
+    subjectAuditInstance.loadData();
+    let subjectsWithNoCodes = subjectAuditInstance.subjectsWithNoCodes();
+    expect(subjectsWithNoCodes.length).toEqual(2);
   });
 });
