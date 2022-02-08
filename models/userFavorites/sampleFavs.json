@@ -1,0 +1,23 @@
+[
+    {
+        "userId": "irwinkr",
+        "favoriteSubjects": [
+            "Theatre",
+            "English"
+        ]
+    },
+    {
+        "userId": "yarnete",
+        "favoriteSubjects": [
+            "Journalism",
+            "Interactive Media Studies"
+        ]
+    },
+    {
+        "userId": "pollystu",
+        "favoriteSubjects": [
+            "Biology",
+            "Psychology"
+        ]
+    }
+]

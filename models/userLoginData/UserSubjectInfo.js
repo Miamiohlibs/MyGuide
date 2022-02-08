@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const { isArray } = require('util');
 
 module.exports = class UserSubjectInfo {
   constructor(userLoginInfo, subjectMap) {
@@ -84,6 +85,17 @@ module.exports = class UserSubjectInfo {
           this.subjects.push(subject);
         }
       });
+    }
+  }
+
+  addSubjectsFromFavorites() {
+    //invoke AFTER reduceSubjectsToNames -- it's only adding strings, not objects
+    let favoriteSubjects = _.get(this.user, 'favorites.favoriteSubjects');
+    console.log('this.user.favorites', this.user.favorites);
+    console.log('Favorite subjects:', favoriteSubjects);
+    if (favoriteSubjects !== undefined && Array.isArray(favoriteSubjects)) {
+      let subjectList = this.user.attr.subjects.concat(favoriteSubjects);
+      this.user.attr.subjects = _.uniq(subjectList);
     }
   }
 

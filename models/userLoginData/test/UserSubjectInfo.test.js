@@ -104,6 +104,42 @@ describe('UserSubjectInfo: addSubjectsFromCourses', () => {
   // this should get some stub tests
 });
 
+describe('UserSubjectInfo: addSubjectsFromFavorites', () => {
+  it('should add user favorites to subjects', () => {
+    let thisObj = new UserSubjectInfo(userData1, subjectMap1);
+    thisObj.reduceSubjectsToNames();
+    thisObj.user.favorites = { favoriteSubjects: ['Biology', 'Chemistry'] };
+    expect(thisObj.user.attr.subjects.length).toBe(0);
+    expect(Array.isArray(thisObj.user.attr.subjects)).toBe(true);
+    thisObj.addSubjectsFromFavorites();
+    expect(thisObj.user.attr.subjects.length).toBe(2);
+    expect(thisObj.user.attr.subjects).toEqual(['Biology', 'Chemistry']);
+  });
+  it('should deduplicate entries in subject list after adding favorites', () => {
+    let thisObj = new UserSubjectInfo(userData1, subjectMap1);
+    thisObj.user.attr.subjects = ['Theatre', 'Biology'];
+    thisObj.user.favorites = { favoriteSubjects: ['Biology', 'Chemistry'] };
+    expect(thisObj.user.attr.subjects.length).toBe(2);
+    expect(Array.isArray(thisObj.user.attr.subjects)).toBe(true);
+    thisObj.addSubjectsFromFavorites();
+    expect(thisObj.user.attr.subjects.length).toBe(3);
+    expect(thisObj.user.attr.subjects).toEqual([
+      'Theatre',
+      'Biology',
+      'Chemistry',
+    ]);
+  });
+  it('should not break if favorites is not an array', () => {
+    let thisObj = new UserSubjectInfo(userData1, subjectMap1);
+    thisObj.user.favorites = { favoriteSubjects: 'Biology' };
+    thisObj.reduceSubjectsToNames();
+    expect(thisObj.user.attr.subjects.length).toBe(0);
+    expect(Array.isArray(thisObj.user.attr.subjects)).toBe(true);
+    thisObj.addSubjectsFromFavorites();
+    expect(thisObj.user.attr.subjects.length).toBe(0);
+  });
+});
+
 /* testing majorCode methods */
 
 describe('UserSubjectInfo: getSubjByMajorCode', () => {
