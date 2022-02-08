@@ -30,7 +30,8 @@ console.log('subjectConfigPath: ', subjectConfigPath);
 const subjectConfig = JSON.parse(fs.readFileSync(subjectConfigPath, 'utf8'));
 
 const allowedGroups = config.get('LibGuides.allowedGroupIds');
-const LibAppsDataFilter = require(rootdir + '/repositories/LibAppsDataFilter');
+const LibAppsDataFilter = require(rootdir +
+  '/models/libGuides/LibAppsDataFilter');
 const f = new LibAppsDataFilter();
 
 subjectConfig.forEach((subject) => {
