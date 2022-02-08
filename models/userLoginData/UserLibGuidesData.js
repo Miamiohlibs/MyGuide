@@ -6,6 +6,7 @@ const fs = require('fs');
 module.exports = class UserLibGuidesData {
   constructor(
     subjects,
+    favorites,
     subjectCachePath = 'cache/subjects/',
     customPath = 'cache/custom/'
   ) {
@@ -15,6 +16,7 @@ module.exports = class UserLibGuidesData {
      * test/repositories/sample-data/cache/
      */
     this.subjects = subjects;
+    this.favorites = favorites;
     this.subjectCachePath = subjectCachePath;
     this.customPath = customPath;
     this.subjectData = [];
@@ -30,6 +32,7 @@ module.exports = class UserLibGuidesData {
         filename = this.getFilePath(subject, false);
       }
       let fileContents = this.getFileContents(filename);
+      fileContents = this.markFavoriteGuidesAndDatabases(fileContents);
       this.subjectData.push({ name: subject, resources: fileContents });
     });
   }
@@ -64,5 +67,22 @@ module.exports = class UserLibGuidesData {
       fileContents = {};
     }
     return fileContents;
+  }
+
+  markFavoriteGuidesAndDatabases(contents) {
+    if (this.favorites.hasOwnProperty('favoriteGuides')) {
+      contents.guides.forEach((guide) => {
+        guide.favorite = this.favorites.favoriteGuides.includes(guide.id);
+      });
+    }
+    if (this.favorites.hasOwnProperty('favoriteDatabases')) {
+      contents.databases.forEach((database) => {
+        database.favorite = this.favorites.favoriteDatabases.includes(
+          database.id
+        );
+      });
+    }
+
+    return contents;
   }
 };
