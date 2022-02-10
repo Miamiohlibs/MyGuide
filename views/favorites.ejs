@@ -1,0 +1,8 @@
+<form action="/favorites/subjects/add" method="POST">
+    <select name="subjectToAdd">
+        <% subjects.forEach((s) => { %>
+            <option value="<%= s %>"><%= s %></option>
+        <% }); %>
+    </select>
+    <input type="submit" value="Add Subject">
+</form>

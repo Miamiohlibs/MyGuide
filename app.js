@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const MemoryStore = require('session-memory-store')(session);
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 
 global.onServer =
   config.has('app.onServer') && config.get('app.onServer') === true;
