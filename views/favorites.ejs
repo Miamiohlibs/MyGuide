@@ -32,8 +32,11 @@
             <% favorites.favoriteSubjects
             .sort()
             .forEach((f) => { %>
-                <li><%= f %> <form action="/favorites/subjects/remove" method="post">
-                    <input type="hidden" name="subjectToRemove" value="<%= f %>"><input type="submit" value="remove"></form></li>
+                <li> <form action="/favorites/subjects/remove" method="post" class="form-inline">
+                    <div class="form-group>">
+                        <%= f %>
+                    <input type="hidden" name="subjectToRemove" value="<%= f %>"><input type="submit" value="x" class="btn btn-sm btn-outline-danger">
+                </div></form></li>
             <% }); %>
         </ul>
     </div>
