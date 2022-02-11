@@ -77,16 +77,37 @@ module.exports = function (app) {
     const userDataController = new UserDataController(req);
     let user = await userDataController.getUserData();
     userId = user.person.userId;
-    console.log('adding favorite database ' + req.body.databaseToAdd);
+    console.log('adding favorite database ' + req.body.dbId);
     let addResponse = await userFavoritesController.updateFavoriteAdd(
       userId,
       'database',
-      req.body.databaseToAdd
+      req.body.dbId
     );
     if (addResponse.success) {
       res.writeHead(201);
       res.end();
+    } else {
+      res.writeHead(500);
+      res.end();
     }
-    // res.redirect('/favorites');
+  });
+  app.post('/favorites/databases/remove', async (req, res) => {
+    console.log('request to route: favorites/databases/remove');
+    const userDataController = new UserDataController(req);
+    let user = await userDataController.getUserData();
+    userId = user.person.userId;
+    console.log('adding favorite database ' + req.body.dbId);
+    let removeResponse = await userFavoritesController.updateFavoriteRemove(
+      userId,
+      'database',
+      req.body.dbId
+    );
+    if (removeResponse.success) {
+      res.writeHead(202);
+      res.end();
+    } else {
+      res.writeHead(500);
+      res.end();
+    }
   });
 };

@@ -18,14 +18,16 @@
         console.log('about to do ajax call to ' + url);
         $.ajax({
           url: url,
-          data: { databaseToAdd: dbId },
+          data: { dbId: dbId },
           method: 'POST',
           success: function (data) {
-            console.log('ajax call succeeded');
             favorite.toggleClass('not-favorite');
               favorite.toggleClass('favorite')
-              favorite.html('&#9733;');
-              console.log('trying to favorite database', favorite);
+              if (url == '/favorites/databases/add') {
+                favorite.html('&#9733;');
+              } else {
+                favorite.html('&#9734;');
+              }
           }
         });
       });
