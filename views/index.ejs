@@ -23,12 +23,13 @@
           data: { resourceId: resourceId },
           method: 'POST',
           success: function (data) {
-            favorite.toggleClass('not-favorite');
-              favorite.toggleClass('favorite');
+            let allMatchingFavorite = $('.favorite-indicator[data-resourceId="'+resourceId+'"][data-resourceType="'+resourceType+'"]');
+            allMatchingFavorite.toggleClass('not-favorite');
+            allMatchingFavorite.toggleClass('favorite');
               if (addOrRemove == 'add') {
-                favorite.html('&#9733;');
+                allMatchingFavorite.html('&#9733;');
               } else {
-                favorite.html('&#9734;');
+                allMatchingFavorite.html('&#9734;');
               }
           }
         });
