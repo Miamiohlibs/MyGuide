@@ -12,18 +12,20 @@
 
       $('.favorite-indicator').click(function () {
         let favorite = $(this);
-        let dbId = favorite.attr('data-database-id');
+        let resourceId = favorite.attr('data-resourceId');
+        let resourceType = favorite.attr('data-resourceType');
         let favorite_status = favorite.not().hasClass('not-favorite');
-        let url = '/favorites/databases/' + (favorite_status ? 'add' : 'remove');
+        let addOrRemove = favorite_status ? 'add' : 'remove';
+        let url = '/favorites/'+resourceType+'s/' + addOrRemove;
         console.log('about to do ajax call to ' + url);
         $.ajax({
           url: url,
-          data: { dbId: dbId },
+          data: { resourceId: resourceId },
           method: 'POST',
           success: function (data) {
             favorite.toggleClass('not-favorite');
               favorite.toggleClass('favorite')
-              if (url == '/favorites/databases/add') {
+              if (addOrRemove == 'add') {
                 favorite.html('&#9733;');
               } else {
                 favorite.html('&#9734;');

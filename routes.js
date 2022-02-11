@@ -77,11 +77,11 @@ module.exports = function (app) {
     const userDataController = new UserDataController(req);
     let user = await userDataController.getUserData();
     userId = user.person.userId;
-    console.log('adding favorite database ' + req.body.dbId);
+    console.log('adding favorite database ' + req.body.resourceId);
     let addResponse = await userFavoritesController.updateFavoriteAdd(
       userId,
       'database',
-      req.body.dbId
+      req.body.resourceId
     );
     if (addResponse.success) {
       res.writeHead(201);
@@ -96,14 +96,33 @@ module.exports = function (app) {
     const userDataController = new UserDataController(req);
     let user = await userDataController.getUserData();
     userId = user.person.userId;
-    console.log('adding favorite database ' + req.body.dbId);
+    console.log('adding favorite database ' + req.body.resourceId);
     let removeResponse = await userFavoritesController.updateFavoriteRemove(
       userId,
       'database',
-      req.body.dbId
+      req.body.resourceId
     );
     if (removeResponse.success) {
       res.writeHead(202);
+      res.end();
+    } else {
+      res.writeHead(500);
+      res.end();
+    }
+  });
+  app.post('/favorites/guides/add', async (req, res) => {
+    console.log('request to route: favorites/guides/add');
+    const userDataController = new UserDataController(req);
+    let user = await userDataController.getUserData();
+    userId = user.person.userId;
+    console.log('adding favorite guide ' + req.body.guideId);
+    let addResponse = await userFavoritesController.updateFavoriteAdd(
+      userId,
+      'guide',
+      req.body.guideId
+    );
+    if (addResponse.success) {
+      res.writeHead(201);
       res.end();
     } else {
       res.writeHead(500);
