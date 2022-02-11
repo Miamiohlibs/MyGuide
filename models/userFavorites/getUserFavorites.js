@@ -13,7 +13,7 @@ duplicateStringAndIntegerValuesInArray = (array) => {
       newArray.push(item.toString());
     }
   });
-  return newArray;
+  return [...new Set(newArray)]; // prevents true duplicates
 };
 
 getUserFavorites = (userId) => {
