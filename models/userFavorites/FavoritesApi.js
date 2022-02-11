@@ -35,6 +35,24 @@ module.exports = class FavoritesApi {
     }
   }
 
+  async UpdateFavoritesRemove(userId, favType, favId) {
+    try {
+      await db.connect();
+      let attr = this.BuildUpdateAttr(favType, favId);
+      console.log('updating in API:', userId, attr);
+      await Crud.findOneAndUpdate(
+        { userId: userId },
+        { $pull: attr, updated: Date.now() },
+        { upsert: true }
+      );
+      await db.disconnect();
+      return { success: true };
+    } catch (err) {
+      Logger.error(err);
+      return { success: false, message: err.message, error: err };
+    }
+  }
+
   BuildUpdateAttr(favType, favId) {
     let attr = {};
     switch (favType) {

@@ -8,6 +8,7 @@ const SubjectController = require('./controllers/SubjectController');
 const circController = new CircController();
 const fs = require('fs');
 const logUsage = require('./models/usageLog/logUser');
+const { response } = require('express');
 // const bodyParser = require('body-parser');
 
 module.exports = function (app) {
@@ -47,7 +48,7 @@ module.exports = function (app) {
     let subjController = new SubjectController();
     let subjects = subjController.getSubjects();
     let favs = await userFavoritesController.getFavorites(userId, req.query.id);
-    res.render('favorites', { favs: favs, subjects: subjects });
+    res.render('favorites', { favorites: favs, subjects: subjects });
   });
   app.post('/favorites/subjects/add', async (req, res) => {
     const userDataController = new UserDataController(req);
@@ -58,6 +59,20 @@ module.exports = function (app) {
       'subject',
       req.body.subjectToAdd
     );
-    res.send({ userId, type: 'subject', subjid: req.body.subjectToAdd });
+    res.redirect('/favorites/subjects');
+  });
+  app.post('/favorites/subjects/remove', async (req, res) => {
+    const userDataController = new UserDataController(req);
+    let user = userDataController.getUserData();
+    userId = user.person.userId;
+    let favs = await userFavoritesController.updateFavoriteRemove(
+      userId,
+      'subject',
+      req.body.subjectToRemove
+    );
+    res.redirect('/favorites/subjects');
+  });
+  app.get('/redir', (req, res) => {
+    res.redirect('/');
   });
 };

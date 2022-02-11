@@ -24,4 +24,14 @@ module.exports = class userFavoritesController {
       return { success: false, message: err.message, error: err };
     }
   }
+  async updateFavoriteRemove(userId, favType, favId) {
+    try {
+      console.log('updateRemove in Controller:', userId, favType, favId);
+      await api.UpdateFavoritesRemove(userId, favType, favId);
+      return { success: true };
+    } catch (err) {
+      Logger.error({ message: err.message });
+      return { success: false, message: err.message, error: err };
+    }
+  }
 };
