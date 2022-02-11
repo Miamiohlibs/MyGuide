@@ -14,7 +14,7 @@ const { response } = require('express');
 module.exports = function (app) {
   app.get('/', async (req, res) => {
     const userDataController = new UserDataController(req);
-    let user = userDataController.getUserData();
+    let user = await userDataController.getUserData();
     let circData = await circController.getUserData(user.person.userId);
     // res.send(userInfo);
     // res.render('dashboard', { user: userInfo, settings: settings });
@@ -29,21 +29,21 @@ module.exports = function (app) {
 
   app.get('/json', async (req, res) => {
     const userDataController = new UserDataController(req);
-    let user = userDataController.getUserData();
+    let user = await userDataController.getUserData();
     let circData = await circController.getUserData(user.person.userId);
     res.send({ circ: circData, user: user });
   });
 
   app.get('/favorites', async (req, res) => {
     const userDataController = new UserDataController(req);
-    let user = userDataController.getUserData();
+    let user = await userDataController.getUserData();
     userId = user.person.userId;
     let favs = await userFavoritesController.getFavorites(userId);
     res.send(favs);
   });
   app.get('/favorites/subjects', async (req, res) => {
     const userDataController = new UserDataController(req);
-    let user = userDataController.getUserData();
+    let user = await userDataController.getUserData();
     userId = user.person.userId;
     let subjController = new SubjectController();
     let subjects = subjController.getSubjects();
@@ -52,7 +52,7 @@ module.exports = function (app) {
   });
   app.post('/favorites/subjects/add', async (req, res) => {
     const userDataController = new UserDataController(req);
-    let user = userDataController.getUserData();
+    let user = await userDataController.getUserData();
     userId = user.person.userId;
     let favs = await userFavoritesController.updateFavoriteAdd(
       userId,
@@ -63,7 +63,7 @@ module.exports = function (app) {
   });
   app.post('/favorites/subjects/remove', async (req, res) => {
     const userDataController = new UserDataController(req);
-    let user = userDataController.getUserData();
+    let user = await userDataController.getUserData();
     userId = user.person.userId;
     let favs = await userFavoritesController.updateFavoriteRemove(
       userId,
