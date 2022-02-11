@@ -72,7 +72,21 @@ module.exports = function (app) {
     );
     res.redirect('/favorites/subjects');
   });
-  app.get('/redir', (req, res) => {
-    res.redirect('/');
+  app.post('/favorites/databases/add', async (req, res) => {
+    console.log('request to route: favorites/databases/add');
+    const userDataController = new UserDataController(req);
+    let user = await userDataController.getUserData();
+    userId = user.person.userId;
+    console.log('adding favorite database ' + req.body.databaseToAdd);
+    let addResponse = await userFavoritesController.updateFavoriteAdd(
+      userId,
+      'database',
+      req.body.databaseToAdd
+    );
+    if (addResponse.success) {
+      res.writeHead(201);
+      res.end();
+    }
+    // res.redirect('/favorites');
   });
 };

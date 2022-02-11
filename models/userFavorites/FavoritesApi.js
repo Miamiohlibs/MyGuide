@@ -9,7 +9,7 @@ module.exports = class FavoritesApi {
   async GetUserFavorites(userId) {
     try {
       await db.connect();
-      const userFavs = await Crud.findOne({ userId: userId });
+      let userFavs = await Crud.findOne({ userId: userId });
       await db.disconnect();
       return userFavs;
     } catch (err) {
@@ -69,24 +69,24 @@ module.exports = class FavoritesApi {
     return attr;
   }
 
-  //   duplicateStringAndIntegerValuesInArray = (array) => {
-  //     // the code seems inconsistent as to whether it expects
-  //     // an array of strings or integers
-  //     // so I'm going to try both
-  //     // this is a bit of a hack
+  duplicateStringAndIntegerValuesInArray = (array) => {
+    // the code seems inconsistent as to whether it expects
+    // an array of strings or integers
+    // so I'm going to try both
+    // this is a bit of a hack
 
-  //     let newArray = [];
-  //     array.forEach((item) => {
-  //       if (typeof item === 'string') {
-  //         newArray.push(item);
-  //         if (!isNaN(parseInt(item))) {
-  //           newArray.push(parseInt(item));
-  //         }
-  //       } else if (typeof item === 'number') {
-  //         newArray.push(item);
-  //         newArray.push(item.toString());
-  //       }
-  //     });
-  //     return [...new Set(newArray)]; // prevents true duplicates
-  //   };
+    let newArray = [];
+    array.forEach((item) => {
+      if (typeof item === 'string') {
+        newArray.push(item);
+        if (!isNaN(parseInt(item))) {
+          newArray.push(parseInt(item));
+        }
+      } else if (typeof item === 'number') {
+        newArray.push(item);
+        newArray.push(item.toString());
+      }
+    });
+    return [...new Set(newArray)]; // prevents true duplicates
+  };
 };

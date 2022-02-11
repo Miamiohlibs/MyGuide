@@ -9,6 +9,26 @@
           return old == 'More' ? 'Less' : 'More';
         });
       });
+
+      $('.favorite-indicator').click(function () {
+        let favorite = $(this);
+        let dbId = favorite.attr('data-database-id');
+        let favorite_status = favorite.not().hasClass('not-favorite');
+        let url = '/favorites/databases/' + (favorite_status ? 'add' : 'remove');
+        console.log('about to do ajax call to ' + url);
+        $.ajax({
+          url: url,
+          data: { databaseToAdd: dbId },
+          method: 'POST',
+          success: function (data) {
+            console.log('ajax call succeeded');
+            favorite.toggleClass('not-favorite');
+              favorite.toggleClass('favorite')
+              favorite.html('&#9733;');
+              console.log('trying to favorite database', favorite);
+          }
+        });
+      });
     });
   </script>
   <!-- Show user's subject menu (mobile version) -->

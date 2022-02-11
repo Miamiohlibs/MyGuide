@@ -33,7 +33,11 @@ module.exports = class UserLibGuidesData {
       }
       let fileContents = this.getFileContents(filename);
       fileContents = this.markFavoriteGuidesAndDatabases(fileContents);
-      this.subjectData.push({ name: subject, resources: fileContents });
+      this.subjectData.push({
+        name: subject,
+        resources: fileContents,
+        kenTest: true,
+      });
     });
   }
 
@@ -70,16 +74,17 @@ module.exports = class UserLibGuidesData {
   }
 
   markFavoriteGuidesAndDatabases(contents) {
-    if (this.favorites.hasOwnProperty('favoriteGuides')) {
+    if (this.favorites.favoriteGuides !== undefined) {
       contents.guides.forEach((guide) => {
         guide.favorite = this.favorites.favoriteGuides.includes(guide.id);
       });
     }
-    if (this.favorites.hasOwnProperty('favoriteDatabases')) {
+    if (this.favorites.favoriteDatabases !== undefined) {
       contents.databases.forEach((database) => {
-        database.favorite = this.favorites.favoriteDatabases.includes(
-          database.id
-        );
+        database.testString = 'bogusKen';
+        database.favorite =
+          this.favorites.favoriteDatabases.includes(database.id) ||
+          this.favorites.favoriteDatabases.includes(database.id.toString());
       });
     }
 

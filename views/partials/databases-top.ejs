@@ -3,13 +3,17 @@
   <li class="my-3 d-flex">
     <% let url = d.friendly_url %>
     <% if (url === null) { url = d.url } %>
-    <% if (d.favorite ) { %>
-      <span class="favorite">&#9733;&nbsp;</span>
+    <% if (d.favorite) { %>
+      <span class="favorite-indicator favorite" data-database-id="<%- d.id %>">&#9733;</span>
+    <% } else { %>
+      <span class="favorite-indicator not-favorite" data-database-id="<%- d.id %>">&#9734;</span>
     <% } %>
+    &nbsp;
     <a href="<%= url %>" class="col-10"><%- d.name %></a>
     <span class="red-arrows">
       <i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i>
   </span>
+
 </li>
   <% }) %>
 </ul>

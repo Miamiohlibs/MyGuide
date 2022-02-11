@@ -29,6 +29,17 @@
         "servicePrefix": "https://myguideserver.yourorg.edu:9909",
         "serverPath": "https://casserver.yourorg.edu"
     },
+    "database": {
+        "use": "dev",
+        "dev": {
+            "host": "localhost",
+            "connection": "mongodb://localhost:27017/MyGuide?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false",
+            "config": {
+                "useNewUrlParser": true,
+                "useUnifiedTopology": true
+            }
+        }
+    },
     "viewConfigs": {
         "myGuideServiceName": "myGuide",
         "organization": {
