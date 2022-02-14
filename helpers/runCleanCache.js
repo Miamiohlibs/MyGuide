@@ -7,7 +7,7 @@ Outcomes:
 * removes inline <style> tag from widgets
 * adds class 'mysched' to the existing tag with the id='mysched_#####' 
 
-This should be run before the "services/updateSubjectCache" script; running the
+This should be run before the "helpers/updateSubjectCache" script; running the
 compileSubjectCache.sh or getData.sh scripts will queue these two scripts 
 in the expected order. 
 
