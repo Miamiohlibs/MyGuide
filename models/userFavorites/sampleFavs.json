@@ -1,0 +1,37 @@
+[
+    {
+        "userId": "irwinkr",
+        "favoriteSubjects": [
+            "Theatre",
+            "English"
+        ],
+        "favoriteGuides": [
+            850755
+        ],
+        "favoriteDatabases": [
+            744278,
+            744108
+        ]
+    },
+    {
+        "userId": "yarnete",
+        "favoriteSubjects": [
+            "Journalism",
+            "Interactive Media Studies"
+        ]
+    },
+    {
+        "userId": "pollystu",
+        "favoriteSubjects": [
+            "Biology",
+            "Psychology"
+        ],
+        "favoriteGuides": [
+            850755
+        ],
+        "favoriteDatabases": [
+            744278,
+            744108
+        ]
+    }
+]

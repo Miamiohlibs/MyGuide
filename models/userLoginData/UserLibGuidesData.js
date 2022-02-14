@@ -6,6 +6,7 @@ const fs = require('fs');
 module.exports = class UserLibGuidesData {
   constructor(
     subjects,
+    favorites = {},
     subjectCachePath = 'cache/subjects/',
     customPath = 'cache/custom/'
   ) {
@@ -15,6 +16,7 @@ module.exports = class UserLibGuidesData {
      * test/repositories/sample-data/cache/
      */
     this.subjects = subjects;
+    this.favorites = favorites;
     this.subjectCachePath = subjectCachePath;
     this.customPath = customPath;
     this.subjectData = [];
@@ -30,7 +32,12 @@ module.exports = class UserLibGuidesData {
         filename = this.getFilePath(subject, false);
       }
       let fileContents = this.getFileContents(filename);
-      this.subjectData.push({ name: subject, resources: fileContents });
+      fileContents = this.markFavoriteGuidesAndDatabases(fileContents);
+      this.subjectData.push({
+        name: subject,
+        resources: fileContents,
+        kenTest: true,
+      });
     });
   }
 
@@ -64,5 +71,23 @@ module.exports = class UserLibGuidesData {
       fileContents = {};
     }
     return fileContents;
+  }
+
+  markFavoriteGuidesAndDatabases(contents) {
+    if (this.favorites.favoriteGuides !== undefined) {
+      contents.guides.forEach((guide) => {
+        guide.favorite = this.favorites.favoriteGuides.includes(guide.id);
+      });
+    }
+    if (this.favorites.favoriteDatabases !== undefined) {
+      contents.databases.forEach((database) => {
+        database.testString = 'bogusKen';
+        database.favorite =
+          this.favorites.favoriteDatabases.includes(database.id) ||
+          this.favorites.favoriteDatabases.includes(database.id.toString());
+      });
+    }
+
+    return contents;
   }
 };

@@ -10,6 +10,11 @@ const librarians = require('../cache/Librarians');
 const LibAppsDataFilter = require('../models/libGuides/LibAppsDataFilter');
 const libAppsDataFilter = new LibAppsDataFilter();
 const _ = require('lodash');
+// const getFavsByUserId = require('../models/userFavorites/getUserFavorites');
+const UserFavoritesController = require('./UserFavoritesController');
+const userFavoritesController = new UserFavoritesController();
+let appConf = config.get('app');
+const useFavorites = appConf.useFavorites || false;
 
 module.exports = class UserDataController {
   constructor(req) {
@@ -37,19 +42,37 @@ module.exports = class UserDataController {
     }
   }
 
-  getUserData() {
+  async getUserData() {
     console.log('starting UDC.getUserData');
-
     let dataHandler = new UserDataHandler(this.userDataGetter);
     let userLoginInfo = dataHandler.getUserData(this.rawUserData);
+    let favorites = {};
+    if (useFavorites) {
+      console.log('useFavorites: ' + useFavorites);
+      console.log('favorites for:', userLoginInfo.userId);
+      favorites = (await userFavoritesController.getFavorites(
+        userLoginInfo.userId
+      )) || {
+        userId: userLoginInfo.userId,
+        favoriteSubjects: [],
+        favoriteGuides: [],
+        favoriteDatabases: [],
+      };
 
-    let user = { attr: userLoginInfo, rawUserData: this.rawUserData };
+      console.log('favorites: ' + JSON.stringify(favorites));
+    }
+    let user = {
+      attr: userLoginInfo,
+      favorites,
+      rawUserData: this.rawUserData,
+    };
 
     let userSubjectInfo = new UserSubjectInfo(user, subjectMap);
     userSubjectInfo.addSubjectsFromMajors();
     userSubjectInfo.addSubjectsFromCourses();
     userSubjectInfo.addSubjectsFromDepts();
     userSubjectInfo.reduceSubjectsToNames();
+    userSubjectInfo.addSubjectsFromFavorites(); // AFTER reduceSubjectsToNames
     userSubjectInfo.removeTempData();
     let subjectList = userSubjectInfo.returnSubjectList();
     let liaisonList = libAppsDataFilter.getSubjectsByExpertEmail(
@@ -64,13 +87,17 @@ module.exports = class UserDataController {
     let subjectListWithLiaisons = liaisonList.concat(subjectList);
     let uniqueSubjectList = _.uniq(subjectListWithLiaisons);
 
-    let userLibGuides = new UserLibGuidesData(uniqueSubjectList);
+    let userLibGuides = new UserLibGuidesData(
+      uniqueSubjectList,
+      user.favorites
+    );
 
     let finishedUserData = {
       person: userLoginInfo,
       uniqueSubjects: uniqueSubjectList,
       subjectData: userLibGuides,
       userLoginInfo: user.rawUserData,
+      favorites: user.favorites,
     };
     return finishedUserData;
   }

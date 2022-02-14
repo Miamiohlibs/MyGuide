@@ -6,13 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MyGuide - Miami University Libraries</title>
 
-  <!-- install Boostrap 5.0.0-b3 Bootstrap Icon jQuery 3.6-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha512-k2WPPrSgRFI6cTaHHhJdc8kAXaRM4JBFEDo1pPGGlYiOyv4vnA0Pp0G5XMYYxgAPmtmv/IIaQA6n5fLAyJaFMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
-  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/css/main.css" type="text/css">
-  <link rel="icon" href="/img/myguide-favicon-mid.ico" type="image/x-icon">
+  <%- include('partials/header-includes.ejs'); %>
   <% if (fs.existsSync('views/partials/custom-header-info.ejs')) { %>
     <%- include('partials/custom-header-info.ejs'); %>
   <% } %>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyGuide Favorites</title>
+    <%- include('partials/header-includes.ejs'); %>
+    <style>
+        form {display: inline}
+        li {list-style: none; margin-bottom: .5rem}
+    </style>
+</head>
+<h1 class="mt-2 mb-4">MyGuide Favorites</h1>
+<body class="container">
+    <div class="border border-secondary p-3">
+        <form action="/favorites/subjects/add" method="POST">
+            <label for="subjectToAdd">Add a Favorite Subject:</label>
+            <select name="subjectToAdd">
+                <% subjects.forEach((s) => { %>
+                    <option value="<%= s %>"><%= s %></option>
+                <% }); %>
+            </select>
+            <input type="submit" value="Add Subject">
+        </form>
+    </div>
+
+
+    <div>
+        <h2 class="mt-5 mb-4 p-3">Your Current Favorites</h2>
+            <% if (favorites.favoriteSubjects !== undefined) { %>
+                <ul>
+                <% favorites.favoriteSubjects
+                .sort()
+                .forEach((f) => { %>
+                    <li> <form action="/favorites/subjects/remove" method="post" class="form-inline">
+                        <div class="form-group>">
+                            <%= f %>
+                        <input type="hidden" name="subjectToRemove" value="<%= f %>"><input type="submit" value="x" class="btn btn-sm btn-outline-danger">
+                    </div></form></li>
+                <% }); %>
+            </ul>
+                <% } else { %>
+                    <p>You have not selected any favorite subjects</p>
+               <% } %>
+            
+
+    </div>
+    <div class="mt-5">
+        <a href="/">Return to MyGuide</a>
+    </div>
+</body>
+</html>
+
