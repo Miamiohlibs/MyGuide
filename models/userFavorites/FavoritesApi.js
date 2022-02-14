@@ -3,7 +3,7 @@ const approot = require('app-root-path');
 const db = require(approot + '/services/database');
 require(approot + '/models/userFavorites/UserFavorites');
 const Crud = mongoose.model('userFavorites');
-const Logger = require(approot + '/services/logger');
+const Logger = require(approot + '/services/Logger');
 
 module.exports = class FavoritesApi {
   async GetUserFavorites(userId) {

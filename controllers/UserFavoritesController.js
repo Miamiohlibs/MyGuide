@@ -2,7 +2,7 @@ const config = require('config');
 const approot = require('app-root-path');
 const FavoritesApi = require(approot + '/models/userFavorites/FavoritesApi');
 const api = new FavoritesApi();
-const Logger = require(approot + '/services/logger');
+const Logger = require(approot + '/services/Logger');
 
 module.exports = class userFavoritesController {
   async getFavorites(userId) {
