@@ -3,12 +3,18 @@ const approot = require('app-root-path');
 const FavoritesApi = require(approot + '/models/userFavorites/FavoritesApi');
 const api = new FavoritesApi();
 const Logger = require(approot + '/helpers/Logger');
+const HashId = require(approot + '/helpers/hashId');
 
 module.exports = class userFavoritesController {
-  async getFavorites(userId) {
+  constructor(userId) {
+    this.userId = userId;
+    this.hashId = HashId(userId);
+  }
+
+  async getFavorites() {
     try {
-      const userFavs = (await api.GetUserFavorites(userId)) || {
-        userId: userId,
+      const userFavs = (await api.GetUserFavorites(this.hashId)) || {
+        userId: this.hashId,
         favoriteGuides: [],
         favoriteUsers: [],
         favoriteTags: [],
@@ -19,20 +25,20 @@ module.exports = class userFavoritesController {
       return { success: false, message: err.message, error: err };
     }
   }
-  async updateFavoriteAdd(userId, favType, favId) {
+  async updateFavoriteAdd(favType, favId) {
     try {
-      console.log('updateAdd in Controller:', userId, favType, favId);
-      await api.UpdateFavoritesAdd(userId, favType, favId);
+      console.log('updateAdd in Controller:', this.hashId, favType, favId);
+      await api.UpdateFavoritesAdd(this.hashId, favType, favId);
       return { success: true };
     } catch (err) {
       Logger.error({ message: err.message });
       return { success: false, message: err.message, error: err };
     }
   }
-  async updateFavoriteRemove(userId, favType, favId) {
+  async updateFavoriteRemove(favType, favId) {
     try {
-      console.log('updateRemove in Controller:', userId, favType, favId);
-      await api.UpdateFavoritesRemove(userId, favType, favId);
+      console.log('updateRemove in Controller:', this.hashId, favType, favId);
+      await api.UpdateFavoritesRemove(this.hashId, favType, favId);
       return { success: true };
     } catch (err) {
       Logger.error({ message: err.message });

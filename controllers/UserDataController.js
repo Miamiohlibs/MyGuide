@@ -12,7 +12,6 @@ const libAppsDataFilter = new LibAppsDataFilter();
 const _ = require('lodash');
 // const getFavsByUserId = require('../models/userFavorites/getUserFavorites');
 const UserFavoritesController = require('./UserFavoritesController');
-const userFavoritesController = new UserFavoritesController();
 let appConf = config.get('app');
 const useFavorites = appConf.useFavorites || false;
 
@@ -50,10 +49,11 @@ module.exports = class UserDataController {
     if (useFavorites) {
       console.log('useFavorites: ' + useFavorites);
       console.log('favorites for:', userLoginInfo.userId);
-      favorites = (await userFavoritesController.getFavorites(
+      const userFavoritesController = new UserFavoritesController(
         userLoginInfo.userId
-      )) || {
-        userId: userLoginInfo.userId,
+      );
+      favorites = (await userFavoritesController.getFavorites()) || {
+        userId: userFavoritesController.hashId,
         favoriteSubjects: [],
         favoriteGuides: [],
         favoriteDatabases: [],

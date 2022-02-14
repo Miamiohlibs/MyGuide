@@ -1,7 +1,6 @@
 const config = require('config');
 const UserDataController = require('./controllers/UserDataController');
 const UserFavoritesController = require('./controllers/UserFavoritesController');
-const userFavoritesController = new UserFavoritesController();
 const CircController = require('./controllers/CirculationController');
 const SubjectController = require('./controllers/SubjectController');
 const circController = new CircController();
@@ -12,7 +11,7 @@ const { response } = require('express');
 module.exports = function (app) {
   app.get('/', async (req, res) => {
     const userDataController = new UserDataController(req);
-    let user = await userDataController.getUserData();
+    const user = await userDataController.getUserData();
     let circData = await circController.getUserData(user.person.userId);
     // res.send(userInfo);
     // res.render('dashboard', { user: userInfo, settings: settings });
@@ -36,7 +35,8 @@ module.exports = function (app) {
     const userDataController = new UserDataController(req);
     let user = await userDataController.getUserData();
     userId = user.person.userId;
-    let favs = await userFavoritesController.getFavorites(userId);
+    const userFavoritesController = new UserFavoritesController(userId);
+    let favs = await userFavoritesController.getFavorites();
     res.send(favs);
   });
   app.get('/favorites/subjects', async (req, res) => {
@@ -45,15 +45,16 @@ module.exports = function (app) {
     userId = user.person.userId;
     let subjController = new SubjectController();
     let subjects = subjController.getSubjects();
-    let favs = await userFavoritesController.getFavorites(userId, req.query.id);
+    const userFavoritesController = new UserFavoritesController(userId);
+    let favs = await userFavoritesController.getFavorites();
     res.render('favorites', { favorites: favs, subjects: subjects });
   });
   app.post('/favorites/subjects/add', async (req, res) => {
     const userDataController = new UserDataController(req);
     let user = await userDataController.getUserData();
     userId = user.person.userId;
+    const userFavoritesController = new UserFavoritesController(userId);
     let favs = await userFavoritesController.updateFavoriteAdd(
-      userId,
       'subject',
       req.body.subjectToAdd
     );
@@ -63,8 +64,8 @@ module.exports = function (app) {
     const userDataController = new UserDataController(req);
     let user = await userDataController.getUserData();
     userId = user.person.userId;
+    const userFavoritesController = new UserFavoritesController(userId);
     let favs = await userFavoritesController.updateFavoriteRemove(
-      userId,
       'subject',
       req.body.subjectToRemove
     );
@@ -76,8 +77,8 @@ module.exports = function (app) {
     let user = await userDataController.getUserData();
     userId = user.person.userId;
     console.log('adding favorite database ' + req.body.resourceId);
+    const userFavoritesController = new UserFavoritesController(userId);
     let addResponse = await userFavoritesController.updateFavoriteAdd(
-      userId,
       'database',
       req.body.resourceId
     );
@@ -95,8 +96,8 @@ module.exports = function (app) {
     let user = await userDataController.getUserData();
     userId = user.person.userId;
     console.log('adding favorite database ' + req.body.resourceId);
+    const userFavoritesController = new UserFavoritesController(userId);
     let removeResponse = await userFavoritesController.updateFavoriteRemove(
-      userId,
       'database',
       req.body.resourceId
     );
@@ -114,8 +115,8 @@ module.exports = function (app) {
     let user = await userDataController.getUserData();
     userId = user.person.userId;
     console.log('adding favorite guide ' + req.body.resourceId);
+    const userFavoritesController = new UserFavoritesController(userId);
     let addResponse = await userFavoritesController.updateFavoriteAdd(
-      userId,
       'guide',
       req.body.resourceId
     );
@@ -133,8 +134,8 @@ module.exports = function (app) {
     let user = await userDataController.getUserData();
     userId = user.person.userId;
     console.log('adding favorite guide ' + req.body.resourceId);
+    const userFavoritesController = new UserFavoritesController(userId);
     let removeResponse = await userFavoritesController.updateFavoriteRemove(
-      userId,
       'guide',
       req.body.resourceId
     );
