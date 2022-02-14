@@ -1,0 +1,242 @@
+// Tabs with Round Out Borders is from https://css-tricks.com/tabs-with-round-out-borders/
+// Chris Coyier on Sep 4, 2011
+// Editted by Meng Qu on May 4th, 2021
+// When developing, run `npm run scss && npm run dev` in terminal to have real-time watch
+
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+/* --- Accessibiity focus ---- */
+:focus {
+  outline: auto 2px Highlight !important;
+  outline: auto 5px -webkit-focus-ring-color !important;
+}
+/*---Firefox-only adjustments -----*/
+@supports (-moz-appearance: none) {
+}
+
+/*----Copy from Jekyll Bootstrap----*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1 .h2 .h3 .h4 .h5 .h6 {
+  font-family: 'Cabin Condensed', sans-serif;
+}
+
+/*------CUSTOM site-wide CSS STARTS HERE----------*/
+h4 {
+  font-size: 1.25rem;
+}
+
+div.bg-gray-800 {
+  border-radius: 0 0 1rem 1rem;
+  background-color: $gray-800;
+}
+div.offcanvas {
+  border-radius: 1 rem;
+  background-color: $gray-800;
+}
+
+nav.navbar.col-xl-2 {
+  top: -4.6rem;
+  max-width: 350px;
+}
+
+a,
+link {
+  color: $gray-800 !important;
+}
+a[data-bs-toggle='collapse'] {
+  display: block;
+}
+
+a[data-bs-toggle='collapse'].collapsed + .folding-arrows i {
+  transform: rotate(-180deg);
+  display: inline-block;
+}
+
+a[data-bs-toggle='collapse'] + .folding-arrows i {
+  transition: 0.2s transform ease-in-out;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.card.shadow-sm:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.lci_chat_load {
+  display: none;
+}
+
+h4 i,
+#logout i {
+  padding: 5px 7px;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  font-size: larger;
+  background-color: white;
+  color: $gray-800;
+}
+
+button#logout {
+  border-radius: 1rem;
+}
+
+.mysched {
+  background: white;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  color: #333333;
+  font: 14px Arial, Helvetica, Verdana;
+  padding: 8px 20px;
+  cursor: pointer;
+  margin: 4px 0;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.nav-link.active {
+  border-radius: 1rem;
+  color: $gray-800 !important;
+}
+
+.nav-link,
+ul#myTab li {
+  width: 100%;
+}
+
+li.nav-item:hover,
+li.nav-item > button.active {
+  i.bi.bi-caret-right-fill {
+    color: #c3142d;
+  }
+}
+
+li.nav-item:hover {
+  button.nav-link:not(.active) {
+    color: #fac014 !important;
+    text-decoration-line: underline;
+  }
+  i.bi.bi-caret-right-fill {
+    color: #fac014;
+  }
+}
+
+button[data-bs-toggle='tab'].active,
+li.nav-item.li-gray {
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+}
+
+.red-arrows {
+  min-width: 35px;
+}
+
+.bi-caret-right:before {
+  font-size: small;
+  letter-spacing: -3px;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+a:hover,
+link:hover {
+  color: #c3142d !important;
+  text-decoration-line: none;
+}
+
+a:hover ~ span.red-arrows {
+  i.bi.bi-caret-right:before {
+    color: #c3142d;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  div.bg-gray-800 {
+    border-radius: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card {
+    max-width: 450px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav {
+    flex-direction: column;
+  }
+
+  .nav-link.active {
+    border-radius: 1rem 0 0 1rem;
+  }
+
+  button[data-bs-toggle='tab'].active:before {
+    position: absolute;
+    right: -8px;
+    top: -25px;
+    content: '';
+    display: inline-block;
+    width: 15px;
+    background: $gray-800;
+    height: 25px;
+    border-bottom-right-radius: 20px;
+    z-index: 2;
+  }
+
+  li.nav-item.li-gray:before {
+    position: absolute;
+    right: -8px;
+    bottom: -26px;
+    content: '';
+    display: inline-block;
+    width: 15px;
+    background: $gray-800;
+    height: 25px;
+    border-top-right-radius: 20px;
+    z-index: 2;
+  }
+
+  button[data-bs-toggle='tab'].active:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    top: -25px;
+    right: -15px;
+    width: 20px;
+    height: 65px;
+    background: white;
+    z-index: 1;
+  }
+
+  li.nav-item.li-gray:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    right: -15px;
+    bottom: -25px;
+    width: 20px;
+    height: 100%;
+    background: white;
+    z-index: 1;
+  }
+}
+
+#sierra-account-link {
+  a.btn-primary {
+    color: #fff !important;
+  }
+}
+
+.favorite {
+  color: gold;
+}
