@@ -1,5 +1,4 @@
 const config = require('config');
-// const getUserLoginInfo = require('./services/getUserInfo');
 const UserDataController = require('./controllers/UserDataController');
 const UserFavoritesController = require('./controllers/UserFavoritesController');
 const userFavoritesController = new UserFavoritesController();
@@ -9,7 +8,6 @@ const circController = new CircController();
 const fs = require('fs');
 const logUsage = require('./models/usageLog/logUser');
 const { response } = require('express');
-// const bodyParser = require('body-parser');
 
 module.exports = function (app) {
   app.get('/', async (req, res) => {

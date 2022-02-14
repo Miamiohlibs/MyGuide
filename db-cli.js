@@ -10,7 +10,7 @@ Usage:
 */
 
 const mongoose = require('mongoose');
-const db = require('./services/database');
+const db = require('./helpers/database');
 require('./models/userFavorites/UserFavorites');
 const Crud = mongoose.model('userFavorites');
 // const Crud = require('./models/userFavorites/crudUserFavorites');

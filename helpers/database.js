@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const config = require('config');
 const activeDb = config.get('database.use');
 // console.log(dbConf);
-const logger = require('../services/Logger');
+const logger = require('../helpers/Logger');
 const fs = require('fs');
 const path = require('path');
 

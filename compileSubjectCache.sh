@@ -1,3 +1,3 @@
 #!/bin/bash
 
-node ./services/runCleanCache > ./cache/Librarians.js
+node ./helpers/runCleanCache > ./cache/Librarians.js
