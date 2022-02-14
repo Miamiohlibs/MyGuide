@@ -7,7 +7,12 @@ const Logger = require(approot + '/services/logger');
 module.exports = class userFavoritesController {
   async getFavorites(userId) {
     try {
-      const userFavs = await api.GetUserFavorites(userId);
+      const userFavs = (await api.GetUserFavorites(userId)) || {
+        userId: userId,
+        favoriteGuides: [],
+        favoriteUsers: [],
+        favoriteTags: [],
+      };
       return userFavs;
     } catch (err) {
       Logger.error({ message: err.message });

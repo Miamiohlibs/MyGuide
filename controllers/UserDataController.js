@@ -50,9 +50,14 @@ module.exports = class UserDataController {
     if (useFavorites) {
       console.log('useFavorites: ' + useFavorites);
       console.log('favorites for:', userLoginInfo.userId);
-      favorites = await userFavoritesController.getFavorites(
+      favorites = (await userFavoritesController.getFavorites(
         userLoginInfo.userId
-      );
+      )) || {
+        userId: userLoginInfo.userId,
+        favoriteSubjects: [],
+        favoriteGuides: [],
+        favoriteDatabases: [],
+      };
 
       console.log('favorites: ' + JSON.stringify(favorites));
     }

@@ -28,17 +28,23 @@
 
     <div>
         <h2 class="mt-5 mb-4 p-3">Your Current Favorites</h2>
-        <ul>
-            <% favorites.favoriteSubjects
-            .sort()
-            .forEach((f) => { %>
-                <li> <form action="/favorites/subjects/remove" method="post" class="form-inline">
-                    <div class="form-group>">
-                        <%= f %>
-                    <input type="hidden" name="subjectToRemove" value="<%= f %>"><input type="submit" value="x" class="btn btn-sm btn-outline-danger">
-                </div></form></li>
-            <% }); %>
-        </ul>
+            <% if (favorites.favoriteSubjects !== undefined) { %>
+                <ul>
+                <% favorites.favoriteSubjects
+                .sort()
+                .forEach((f) => { %>
+                    <li> <form action="/favorites/subjects/remove" method="post" class="form-inline">
+                        <div class="form-group>">
+                            <%= f %>
+                        <input type="hidden" name="subjectToRemove" value="<%= f %>"><input type="submit" value="x" class="btn btn-sm btn-outline-danger">
+                    </div></form></li>
+                <% }); %>
+            </ul>
+                <% } else { %>
+                    <p>You have not selected any favorite subjects</p>
+               <% } %>
+            
+
     </div>
     <div class="mt-5">
         <a href="/">Return to MyGuide</a>

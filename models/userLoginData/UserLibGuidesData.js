@@ -6,7 +6,7 @@ const fs = require('fs');
 module.exports = class UserLibGuidesData {
   constructor(
     subjects,
-    favorites,
+    favorites = {},
     subjectCachePath = 'cache/subjects/',
     customPath = 'cache/custom/'
   ) {
