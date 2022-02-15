@@ -210,6 +210,11 @@ if (subjectsWithNoCodes.length > 0) {
   console.log(colors.green('subject List has no subjects without codes'));
 }
 
+console.log(
+  'To see details of any errors, run `node ./utilities/auditSubjectData.js` followed by the letter indicated in the error'
+    .cyan
+);
+
 function findMissingFiles(list) {
   return list.filter((subjectName) => {
     if (subjectName !== undefined) {
