@@ -15,9 +15,8 @@ fi
 
 
 # get configuration variables
-type jq >/dev/null 2>&1 || { echo >&2 "Command-line program jq required, but it's not installed.  Aborting."; exit 1; }
-KEY=`jq '.LibGuides.api_key' ./config/default.json | sed 's/"//g'`
-SITE_ID=`jq '.LibGuides.site_id' ./config/default.json | sed 's/"//g'`
+KEY=`node utilities/getLibGuidesConf.js --api_key`
+SITE_ID=`node utilities/getLibGuidesConf.js --site_id`
 if [ -z "$KEY" ] || [ $KEY = "" ] # if key is missing or empty
     then die "Fatal error: LibGuides.api_key not defined in config/default.json"
 fi
