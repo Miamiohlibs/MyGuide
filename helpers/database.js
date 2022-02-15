@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const config = require('config');
 const activeDb = config.get('database.use');
 // console.log(dbConf);
-const logger = require('../helpers/Logger');
+const Logger = require('../helpers/Logger');
 const fs = require('fs');
 const path = require('path');
 
@@ -16,7 +16,7 @@ if (dbConfig.sslCA && typeof dbConfig.sslCA == 'string') {
       fs.readFileSync(path.join(__dirname, '..', 'certs', dbConfig.sslCA)),
     ];
   } catch (err) {
-    logger.error(
+    Logger.error(
       'Could not find file ' + dbConfig.sslCA + ' in the certs/ directory'
     );
   }
@@ -29,7 +29,11 @@ const conf = (module.exports = {
       await mongoose.connect(connectionString, dbConfig);
       console.log('database connected');
     } catch (err) {
-      console.log(err);
+      Logger.error({
+        message: 'Error connecting to database',
+        errorMessage: err.message,
+        error: err,
+      });
     }
   },
 

@@ -2,6 +2,7 @@ const LibAppsDataFilter = require('../libGuides/LibAppsDataFilter');
 const f = new LibAppsDataFilter();
 const path = require('path');
 const fs = require('fs');
+const Logger = require('../../helpers/Logger');
 
 module.exports = class UserLibGuidesData {
   constructor(
@@ -64,9 +65,12 @@ module.exports = class UserLibGuidesData {
     } catch (err) {
       if (err.code == 'ENOENT') {
         let msg = 'File not found: ' + filename;
-        console.log(msg);
+        Logger.error({ message: msg, error: err });
       } else {
-        console.log('Error:', err);
+        Logger.error({
+          message: 'Error loading file in UserLibGuidesData.getFileContents',
+          error: err,
+        });
       }
       fileContents = {};
     }

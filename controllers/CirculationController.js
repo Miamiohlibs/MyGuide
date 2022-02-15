@@ -4,6 +4,8 @@ const sierraConf = config.get('sierra');
 const circSystem = config.get('circSystem');
 const SierraDataGetter = require('../models/circulation/sierra/SierraDataGetter');
 const CircConnectionHandler = require('../models/circulation/CircConnectionHandler');
+const approot = require('app-root-path');
+const Logger = require(approot + '/helpers/Logger');
 
 module.exports = class CirculationController {
   constructor() {
@@ -26,7 +28,11 @@ module.exports = class CirculationController {
       res.circSystem = circSystem; //adds in system name for viewer
       return res;
     } catch (err) {
-      console.log(err);
+      Logger({
+        message: 'Error getting user data in Circulation Controller',
+        errorMessage: err.message,
+        error: err,
+      });
       return {};
     }
   }

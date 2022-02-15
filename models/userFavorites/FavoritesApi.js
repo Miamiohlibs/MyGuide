@@ -21,7 +21,7 @@ module.exports = class FavoritesApi {
     try {
       await db.connect();
       let attr = this.BuildUpdateAttr(favType, favId);
-      console.log('updating in API:', userId, attr);
+      // console.log('updating in API:', userId, attr);
       await Crud.findOneAndUpdate(
         { userId: userId },
         { $addToSet: attr, updated: Date.now() },
@@ -39,7 +39,7 @@ module.exports = class FavoritesApi {
     try {
       await db.connect();
       let attr = this.BuildUpdateAttr(favType, favId);
-      console.log('updating in API:', userId, attr);
+      // console.log('updating in API:', userId, attr);
       await Crud.findOneAndUpdate(
         { userId: userId },
         { $pull: attr, updated: Date.now() },

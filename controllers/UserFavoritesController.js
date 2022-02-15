@@ -21,17 +21,16 @@ module.exports = class userFavoritesController {
       };
       return userFavs;
     } catch (err) {
-      Logger.error({ message: err.message });
+      Logger.error({ message: err.message, error: err });
       return { success: false, message: err.message, error: err };
     }
   }
   async updateFavoriteAdd(favType, favId) {
     try {
-      console.log('updateAdd in Controller:', this.hashId, favType, favId);
       await api.UpdateFavoritesAdd(this.hashId, favType, favId);
       return { success: true };
     } catch (err) {
-      Logger.error({ message: err.message });
+      Logger.error({ message: err.message, error: err });
       return { success: false, message: err.message, error: err };
     }
   }
@@ -41,7 +40,7 @@ module.exports = class userFavoritesController {
       await api.UpdateFavoritesRemove(this.hashId, favType, favId);
       return { success: true };
     } catch (err) {
-      Logger.error({ message: err.message });
+      Logger.error({ message: err.message, error: err });
       return { success: false, message: err.message, error: err };
     }
   }
