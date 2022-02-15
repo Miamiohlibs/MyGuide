@@ -5,10 +5,12 @@
         "onServer": false,
         "useAuth": true,
         "authType": "CAS",
+        "subjectConfigFilename": "name_of_file_in_config_dir.json",
         "useCirc": false,
         "useFakeUser": false,
+        "fakeUserFile": "polly-CAS.json",
         "useFavorites": false,
-        "subjectConfigFilename": "name_of_file_in_config_dir.json"
+        "salt": "just a random string to use when needed"
     },
     "server": {
         "hostname": "fully-qualified.domain.org",
