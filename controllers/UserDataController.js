@@ -20,8 +20,6 @@ module.exports = class UserDataController {
     this.rawUserData = {};
     switch (authType) {
       case 'CAS':
-        console.log('authType: cas');
-
         // get real or fake user data
         if (config.get('app.useFakeUser') === true) {
           this.rawUserData = require(__dirname +
@@ -42,13 +40,10 @@ module.exports = class UserDataController {
   }
 
   async getUserData() {
-    console.log('starting UDC.getUserData');
     let dataHandler = new UserDataHandler(this.userDataGetter);
     let userLoginInfo = dataHandler.getUserData(this.rawUserData);
     let favorites = {};
     if (useFavorites) {
-      console.log('useFavorites: ' + useFavorites);
-      console.log('favorites for:', userLoginInfo.userId);
       const userFavoritesController = new UserFavoritesController(
         userLoginInfo.userId
       );
@@ -59,7 +54,7 @@ module.exports = class UserDataController {
         favoriteDatabases: [],
       };
 
-      console.log('favorites: ' + JSON.stringify(favorites));
+      // console.log('favorites: ' + JSON.stringify(favorites));
     }
     let user = {
       attr: userLoginInfo,

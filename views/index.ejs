@@ -17,7 +17,6 @@
         let favorite_status = favorite.not().hasClass('not-favorite');
         let addOrRemove = favorite_status ? 'add' : 'remove';
         let url = '/favorites/'+resourceType+'s/' + addOrRemove;
-        console.log('about to do ajax call to ' + url);
         $.ajax({
           url: url,
           data: { resourceId: resourceId },

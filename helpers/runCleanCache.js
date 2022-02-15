@@ -31,6 +31,7 @@ librarians.forEach((libn) => {
   });
 });
 
+// Console logging for outputting the file as a JS script
 console.log(
   'const librarians =',
   util.inspect(librarians, { showHidden: false, depth: null }),
