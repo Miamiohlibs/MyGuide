@@ -13,7 +13,6 @@ if [ ! -d "$SUBJ" ]; then
     mkdir $SUBJ;
 fi
 
-
 # get configuration variables
 KEY=`node utilities/getLibGuidesConf.js --api_key`
 SITE_ID=`node utilities/getLibGuidesConf.js --site_id`
@@ -33,6 +32,7 @@ then
     cp ${FILE} ${BAK}
 fi
 
+# fetch subjects from LibGuides
 URL="https://lgapi-us.libapps.com/1.1/subjects?$AUTH"
 echo $URL
 if hash json_pp 2>/dev/null; then
@@ -43,6 +43,7 @@ fi
 echo "const subjects = $CONTENT;" > $FILE
 echo "module.exports = subjects;" >> $FILE
 
+# fetch Librarians from LibGuides
 FILE="./cache/LibrariansTemp.js"
 URL="https://lgapi-us.libapps.com/1.1/accounts?expand[]=subjects&expand[]=profile$AUTH"
 if hash json_pp 2>/dev/null; then
@@ -53,6 +54,7 @@ fi
 echo "const librarians = $CONTENT;" > $FILE
 echo "module.exports = librarians;" >> $FILE
 
+# fetch Guides from LibGuides
 FILE="./cache/Guides.js"
 URL="https://lgapi-us.libapps.com/1.1/guides?expand=subjects,tags$AUTH"
 if hash json_pp 2>/dev/null; then
@@ -63,6 +65,7 @@ fi
 echo "const guides = $CONTENT;" > $FILE
 echo "module.exports = guides;" >> $FILE
 
+# fetch Databases from LibGuides
 FILE="./cache/Databases.js"
 URL="https://lgapi-us.libapps.com/1.1/assets?expand=subjects,friendly_url$AUTH"
 if hash json_pp 2>/dev/null; then
@@ -73,13 +76,16 @@ fi
 echo "const databases = $CONTENT;" > $FILE
 echo "module.exports = databases;" >> $FILE
 
-./compileSubjectCache.sh # runs: helpers/runCleanCache
+# clean up extra html content etc from Librarians.js
+node ./helpers/runCleanCache > ./cache/Librarians.js
 
-node utilities/updateSubjectCache.js # creates each subject's file in ./cache/subjects/
+# create each subject's file in ./cache/subjects/
+node utilities/updateSubjectCache.js 
 
 # node ./utilities/compareLGSubjects.js
+# no equivalent script built yet
+# do we need it?
 
+# audit subjectCodes for syntax error detection, duplication, missing content, etc
+node ./utilities/auditSubjectData.js
 
-
- node ./utilities/auditSubjectData.js
-# # this is an audit of the subjectCodes for syntax error detection, duplication, etc
