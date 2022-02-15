@@ -50,10 +50,9 @@
   </div>
 
   <% let orgMobileLogo; %>
-  <% if (fs.existsSync('public/img/org-mobile-logo.svg')) { %>
-    <%  orgMobileLogo = '/img/org-logo.svg'; %>
-  <% } else if (fs.existsSync('public/img/org-mobile-logo.png')) { %>
-    <%  orgMobileLogo = '/img/org-mobile-logo.png'; %>
+  <% let orgMobileLogoStr = config.images.organizationMobileLogo %>
+  <% if (orgMobileLogoStr && fs.existsSync('public/img/'+ orgMobileLogoStr)) { %>
+    <% orgMobileLogo = '/img/' + orgMobileLogoStr; %>
   <% } %>
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
       <div class="card flex-column border-0">
@@ -147,13 +146,13 @@
           </a>
         </div>
         <div class="mt-5 mb-3">
-          <% let orgLogo = '' %>
-          <% if (fs.existsSync('public/img/org-logo.svg')) { %>
-            <%  orgLogo = '/img/org-logo.svg'; %>
-          <% } else if (fs.existsSync('public/img/org-logo.png')) { %>
-            <%  orgLogo = '/img/org-logo.png'; %>
+
+          <% let orgLogo; %>
+          <% let orgLogoStr = config.images.organizationLogo %>
+          <% if (orgLogoStr && fs.existsSync('public/img/'+ orgLogoStr)) { %>
+            <% orgLogo = '/img/' + orgLogoStr; %>
           <% } %>
-          <% if (orgLogo != '') { %>
+          <% if (orgLogo) { %>
           <a class="navbar-brand p-0" href="<%= config.organization.url %>"><img class="img-fluid"
               src="<%= orgLogo %>" alt="<%= config.organization.name %>"></a>
           <% } %>
@@ -184,12 +183,12 @@
   </div>
 
   <!-- Show user's library account and featured content -->
-  <% let mainLogo = '' %>
-  <% if (fs.existsSync('public/img/myguide-logo.svg')) { %>
-    <%  mainLogo = '/img/myguide-logo.svg'; %>
-  <% } else if (fs.existsSync('public/img/myguide-logo.png')) { %>
-    <%  mainLogo = '/img/myguide-logo.png'; %>
+  <% let mainLogo = '/img/myguide-logo.svg'; %>
+  <% let mainLogoStr = config.images.myguideCustomLogo %>
+  <% if (mainLogoStr && fs.existsSync('public/img/'+ mainLogoStr)) { %>
+    <% mainLogo = '/img/' + mainLogoStr; %>
   <% } %>
+
   <div class="col-xl-2 col-lg-9 offset-lg-3 offset-xl-0">
     <div class="d-none d-xl-flex justify-content-center">
       <% if (mainLogo != '') { %>

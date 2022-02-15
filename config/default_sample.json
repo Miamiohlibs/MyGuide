@@ -56,6 +56,16 @@
             "url": "https://your-url.edu/your/reference/email/form/",
             "text": "Need help? Contact us."
         },
+        "images": {
+            "hints": [
+                "all images are in the public/img folder",
+                "filenames should begin 'custom-'",
+                "custom files are gitignored"
+            ],
+            "myguideCustomLogo": "",
+            "organizationLogo": "imaginary-white-text.png",
+            "organizationMobileLogo": "imaginary-dark-on-white.png"
+        },
         "featuredContent": {
             "display": false,
             "hints": [

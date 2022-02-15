@@ -30,15 +30,6 @@ module.exports = function (app) {
     let circData = await circController.getUserData(user.person.userId);
     res.send({ circ: circData, user: user });
   });
-
-  app.get('/favorites', async (req, res) => {
-    const userDataController = new UserDataController(req);
-    let user = await userDataController.getUserData();
-    userId = user.person.userId;
-    const userFavoritesController = new UserFavoritesController(userId);
-    let favs = await userFavoritesController.getFavorites();
-    res.send(favs);
-  });
   app.get('/favorites/subjects', async (req, res) => {
     const userDataController = new UserDataController(req);
     let user = await userDataController.getUserData();
@@ -47,7 +38,11 @@ module.exports = function (app) {
     let subjects = subjController.getSubjects();
     const userFavoritesController = new UserFavoritesController(userId);
     let favs = await userFavoritesController.getFavorites();
-    res.render('favorites', { favorites: favs, subjects: subjects });
+    res.render('favorites', {
+      favorites: favs,
+      subjects: subjects,
+      config: config.get('viewConfigs'),
+    });
   });
   app.post('/favorites/subjects/add', async (req, res) => {
     const userDataController = new UserDataController(req);

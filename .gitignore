@@ -8,7 +8,4 @@ custom-alert.ejs
 custom-featured-content.ejs
 
 #images
-myguide-logo.*
-org-logo.*
-org-mobile-logo.*
 public/img/custom*
