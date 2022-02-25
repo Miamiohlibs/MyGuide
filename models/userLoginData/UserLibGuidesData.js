@@ -78,12 +78,20 @@ module.exports = class UserLibGuidesData {
   }
 
   markFavoriteGuidesAndDatabases(contents) {
-    if (this.favorites.favoriteGuides !== undefined) {
+    if (
+      this.favorites.favoriteGuides !== undefined &&
+      contents.guides !== undefined
+    ) {
+      console.log(contents);
+      console.log('ended contents');
       contents.guides.forEach((guide) => {
         guide.favorite = this.favorites.favoriteGuides.includes(guide.id);
       });
     }
-    if (this.favorites.favoriteDatabases !== undefined) {
+    if (
+      this.favorites.favoriteDatabases !== undefined &&
+      contents.databases !== undefined
+    ) {
       contents.databases.forEach((database) => {
         database.testString = 'bogusKen';
         database.favorite =

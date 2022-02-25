@@ -38,7 +38,7 @@
                 <label for="subjectToAdd" class="card-header text-white">Add a Favorite Subject:</label>
                 <div class="input-group card-body">
                     <select name="subjectToAdd" class="form-select select2">
-                        <option value="">Select a Subject to Add it as a Favorite</option>
+                        <option value="" disabled>Select a Subject to Add it as a Favorite</option>
                         <% subjects.forEach((s)=> { %>
                             <option value="<%= s %>">
                                 <%= s %>
