@@ -7856,6 +7856,9 @@ a[data-bs-toggle='collapse'] + .folding-arrows i {
 .card.shadow-sm:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; }
 
+.top-border-red-shadow.shadow-sm:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; }
+
 .lci_chat_load {
   display: none; }
 
