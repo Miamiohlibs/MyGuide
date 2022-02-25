@@ -10,8 +10,15 @@
         form {display: inline}
         li {list-style: none; margin-bottom: .5rem}
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" />
+    <!-- Or for RTL support -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+        
     <script>
         $(document).ready(function() {
+            $('.select2').select2({theme: 'bootstrap-5'});
             $('.fav-removal-button').click(function() {
                 $(this).text('').addClass('spinner-grow');
             });
@@ -30,8 +37,8 @@
             <form action="/favorites/subjects/add" method="POST">
                 <label for="subjectToAdd" class="card-header text-white">Add a Favorite Subject:</label>
                 <div class="input-group card-body">
-                    <select name="subjectToAdd" class="form-select">
-                        <option value="">---Select a Subject to Add it as a Favorite---</option>
+                    <select name="subjectToAdd" class="form-select select2">
+                        <option value="">Select a Subject to Add it as a Favorite</option>
                         <% subjects.forEach((s)=> { %>
                             <option value="<%= s %>">
                                 <%= s %>
