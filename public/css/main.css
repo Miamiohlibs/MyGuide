@@ -7856,6 +7856,9 @@ a[data-bs-toggle='collapse'] + .folding-arrows i {
 .card.shadow-sm:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; }
 
+.top-border-red-shadow.shadow-sm:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; }
+
 .lci_chat_load {
   display: none; }
 
@@ -7988,6 +7991,11 @@ a:hover ~ span.red-arrows i.bi.bi-caret-right:before {
   color: gold; }
 
 .top-border-red-shadow {
-  border-top: 3px solid #c3142d;
+  border: 5px solid #c3142d;
   border-radius: 0 0 1rem 1rem;
-  background-color: #343a40; }
+  background-color: #343a40;
+  border-image: linear-gradient(to bottom, #c3142d, rgba(0, 0, 0, 0)) 1 100%; }
+
+input[value='x']:hover {
+  background-color: #c3142efd;
+  color: white !important; }
