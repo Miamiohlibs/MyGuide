@@ -7990,6 +7990,9 @@ a:hover ~ span.red-arrows i.bi.bi-caret-right:before {
 .favorite {
   color: gold; }
 
+.not-favorite {
+  color: #767676; }
+
 .top-border-red-shadow {
   border: 5px solid #c3142d;
   border-radius: 0 0 1rem 1rem;

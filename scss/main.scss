@@ -245,16 +245,15 @@ a:hover ~ span.red-arrows {
   color: gold;
 }
 
-.top-border-red-shadow{
+.not-favorite {
+  color: #767676;
+}
+
+.top-border-red-shadow {
   border: 5px solid #c3142d;
   border-radius: 0 0 1rem 1rem;
-  background-color: $gray-800;
-  border-image: 
-    linear-gradient(
-      to bottom, 
-      #c3142d, 
-      rgba(0, 0, 0, 0)
-    ) 1 100%;
+  background-color: #343a40;
+  border-image: linear-gradient(to bottom, #c3142d, rgba(0, 0, 0, 0)) 1 100%;
 }
 
 input[value='x']:hover {
