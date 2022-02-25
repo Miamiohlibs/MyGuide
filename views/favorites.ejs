@@ -10,6 +10,17 @@
         form {display: inline}
         li {list-style: none; margin-bottom: .5rem}
     </style>
+    <script>
+        $(document).ready(function() {
+            $('.fav-removal-button').click(function() {
+                $(this).text('').addClass('spinner-grow');
+            });
+            $('#add-subject-button').click(function() {
+                let selectedSubject = $('select[name="subjectToAdd"]').val();
+                $('#favorite-subjects-list').append('<li class="text-success fw-bold"><button class="spinner-grow btn btn-sm border-0 me-2 text-success">...</button>Adding... ' + selectedSubject + '</li>');
+            });
+        });
+    </script>
 </head>
 <h1 class="mt-4 h3 text-danger text-lg-center text-center">MyGuide Favorites</h1>
 
@@ -20,13 +31,14 @@
                 <label for="subjectToAdd" class="card-header text-white">Add a Favorite Subject:</label>
                 <div class="input-group card-body">
                     <select name="subjectToAdd" class="form-select">
+                        <option value="">---Select a Subject to Add it as a Favorite---</option>
                         <% subjects.forEach((s)=> { %>
                             <option value="<%= s %>">
                                 <%= s %>
                             </option>
                             <% }); %>
                     </select>
-                    <input type="submit" value="Add Subject" class="input-group-text">
+                    <input type="submit" value="Add Subject" class="input-group-text" id="add-subject-button">
                 </div>
             </form>
         </div>
@@ -41,12 +53,12 @@
 
                 <div class="card-body list-unstyled">
                     <% if (favorites.favoriteSubjects !==undefined) { %>
-                        <ul class="ps-3">
+                        <ul class="ps-3" id="favorite-subjects-list">
                             <% favorites.favoriteSubjects .sort() .forEach((f)=> { %>
                                 <li>
                                     <form action="/favorites/subjects/remove" method="post" class="form-inline">
                                         <div class="form-group>">
-                                            <input type="submit" value="x" class="btn btn-sm border-0 me-2 text-danger">
+                                            <input type="submit" value="x" class="btn btn-sm border-0 me-2 text-danger fav-removal-button">
                                             <%= f %>
                                                 <input type="hidden" name="subjectToRemove" value="<%= f %>">
                                         </div>
