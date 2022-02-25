@@ -12,6 +12,7 @@
 
       $('.favorite-indicator').click(function () {
         let favorite = $(this);
+        favorite.text('').addClass('spinner-grow spinner-grow-sm text-warning');
         let resourceId = favorite.attr('data-resourceId');
         let resourceType = favorite.attr('data-resourceType');
         let favorite_status = favorite.not().hasClass('not-favorite');
@@ -30,6 +31,7 @@
               } else {
                 allMatchingFavorite.html('&#9734;');
               }
+            favorite.removeClass('spinner-grow spinner-grow-sm text-warning');
           }
         });
       });

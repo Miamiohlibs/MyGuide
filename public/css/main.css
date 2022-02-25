@@ -7986,3 +7986,6 @@ a:hover ~ span.red-arrows i.bi.bi-caret-right:before {
 
 .favorite {
   color: gold; }
+
+.not-favorite {
+  color: #767676; }

@@ -36,7 +36,6 @@ module.exports = class userFavoritesController {
   }
   async updateFavoriteRemove(favType, favId) {
     try {
-      console.log('updateRemove in Controller:', this.hashId, favType, favId);
       await api.UpdateFavoritesRemove(this.hashId, favType, favId);
       return { success: true };
     } catch (err) {
