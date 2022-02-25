@@ -7986,3 +7986,8 @@ a:hover ~ span.red-arrows i.bi.bi-caret-right:before {
 
 .favorite {
   color: gold; }
+
+.top-border-red-shadow {
+  border-top: 3px solid #c3142d;
+  border-radius: 0 0 1rem 1rem;
+  background-color: #343a40; }

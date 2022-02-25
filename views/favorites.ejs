@@ -11,43 +11,64 @@
         li {list-style: none; margin-bottom: .5rem}
     </style>
 </head>
-<h1 class="mt-2 mb-4">MyGuide Favorites</h1>
-<body class="container">
-    <div class="border border-secondary p-3">
-        <form action="/favorites/subjects/add" method="POST">
-            <label for="subjectToAdd">Add a Favorite Subject:</label>
-            <select name="subjectToAdd">
-                <% subjects.forEach((s) => { %>
-                    <option value="<%= s %>"><%= s %></option>
-                <% }); %>
-            </select>
-            <input type="submit" value="Add Subject">
-        </form>
-    </div>
+<h1 class="mt-4 h3 text-danger text-lg-center text-center">MyGuide Favorites</h1>
 
+<body class="container">
+    <div class="row">
+        <div class="top-border-red-shadow">
+            <form action="/favorites/subjects/add" method="POST">
+                <label for="subjectToAdd" class="card-header text-white">Add a Favorite Subject:</label>
+                <div class="input-group card-body">
+                    <select name="subjectToAdd" class="form-select">
+                        <% subjects.forEach((s)=> { %>
+                            <option value="<%= s %>">
+                                <%= s %>
+                            </option>
+                            <% }); %>
+                    </select>
+                    <input type="submit" value="Add Subject" class="input-group-text">
+                </div>
+            </form>
+        </div>
+
+
+
+        <div class="mt-5 col-md-8 col-12">
+            <div class="card mb-3 shadow-sm">
+                <div class="card-header px-4 py-3 shadow-sm">
+                    <h2 class="mb-0 h4"><i class="bi bi-star me-2 shadow"></i>&nbsp;Your Current Favorites</h2>
+                </div>
+
+                <div class="card-body list-unstyled">
+                    <% if (favorites.favoriteSubjects !==undefined) { %>
+                        <ul class="ps-3">
+                            <% favorites.favoriteSubjects .sort() .forEach((f)=> { %>
+                                <li>
+                                    <form action="/favorites/subjects/remove" method="post" class="form-inline">
+                                        <div class="form-group>">
+                                            <input type="submit" value="x" class="btn btn-sm border-0 me-2 text-danger">
+                                            <%= f %>
+                                                <input type="hidden" name="subjectToRemove" value="<%= f %>">
+                                        </div>
+                                    </form>
+                                </li>
+                                <% }); %>
+                        </ul>
+                        <% } else { %>
+                            <p>You have not selected any favorite subjects</p>
+                            <% } %>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div>
-        <h2 class="mt-5 mb-4 p-3">Your Current Favorites</h2>
-            <% if (favorites.favoriteSubjects !== undefined) { %>
-                <ul>
-                <% favorites.favoriteSubjects
-                .sort()
-                .forEach((f) => { %>
-                    <li> <form action="/favorites/subjects/remove" method="post" class="form-inline">
-                        <div class="form-group>">
-                            <%= f %>
-                        <input type="hidden" name="subjectToRemove" value="<%= f %>"><input type="submit" value="x" class="btn btn-sm btn-outline-danger">
-                    </div></form></li>
-                <% }); %>
-            </ul>
-                <% } else { %>
-                    <p>You have not selected any favorite subjects</p>
-               <% } %>
-            
-
-    </div>
-    <div class="mt-5">
-        <a href="/">Return to MyGuide</a>
+        <a href="/">
+            <button id="logout" type="button" class="mt-3 btn btn-secondary p-2 shadow">
+                <span class="glyphicon glyphicon-log-out"></span>
+                <i class="bi bi-house me-2 shadow"></i>Return to MyGuide</button>
+        </a>
     </div>
 </body>
 </html>

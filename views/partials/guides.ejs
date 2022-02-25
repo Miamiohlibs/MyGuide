@@ -3,9 +3,9 @@
     <% let url = g.friendly_url %>
     <% if (url === null) { url = g.url } %>
     <% if (g.favorite ) { %>
-      <span class="favorite-indicator favorite" data-resourceType="guide" data-resourceId="<%- g.id %>">&#9733;</span>
+      <span class="favorite-indicator favorite me-2" data-resourceType="guide" data-resourceId="<%- g.id %>">&#9733;</span>
     <% } else { %>
-      <span class="favorite-indicator not-favorite" data-resourceType="guide" data-resourceId="<%- g.id %>">&#9734;</span>
+      <span class="favorite-indicator not-favorite me-2" data-resourceType="guide" data-resourceId="<%- g.id %>">&#9734;</span>
     <% } %>
     <a href="<%= url %>" class="col-10" data-libGuideId="<%= g.id %>"><%- g.name %></a>
     <span class="red-arrows">
