@@ -5,6 +5,9 @@
 
 @import '../node_modules/bootstrap/scss/bootstrap';
 
+$my-guide-gold: #fac014;
+$my-guide-red: #c3142d;
+
 /* --- Accessibiity focus ---- */
 :focus {
   outline: auto 2px Highlight !important;
@@ -120,17 +123,17 @@ ul#myTab li {
 li.nav-item:hover,
 li.nav-item > button.active {
   i.bi.bi-caret-right-fill {
-    color: #c3142d;
+    color: $my-guide-red;
   }
 }
 
 li.nav-item:hover {
   button.nav-link:not(.active) {
-    color: #fac014 !important;
+    color: $my-guide-gold !important;
     text-decoration-line: underline;
   }
   i.bi.bi-caret-right-fill {
-    color: #fac014;
+    color: $my-guide-gold;
   }
 }
 
@@ -153,13 +156,14 @@ li.nav-item.li-gray {
 
 a:hover,
 link:hover {
-  color: #c3142d !important;
+  // color: $my-guide-red !important;
+  color: $my-guide-gold !important;
   text-decoration-line: none;
 }
 
 a:hover ~ span.red-arrows {
   i.bi.bi-caret-right:before {
-    color: #c3142d;
+    color: $my-guide-red;
   }
 }
 
@@ -242,7 +246,7 @@ a:hover ~ span.red-arrows {
 }
 
 .favorite {
-  color: gold;
+  color: $my-guide-gold;
 }
 
 .not-favorite {
@@ -250,13 +254,14 @@ a:hover ~ span.red-arrows {
 }
 
 .top-border-red-shadow {
-  border: 5px solid #c3142d;
+  border: 5px solid $my-guide-red;
   border-radius: 0 0 1rem 1rem;
   background-color: #343a40;
-  border-image: linear-gradient(to bottom, #c3142d, rgba(0, 0, 0, 0)) 1 100%;
+  border-image: linear-gradient(to bottom, $my-guide-red, rgba(0, 0, 0, 0)) 1
+    100%;
 }
 
 input[value='x']:hover {
-  background-color: #c3142efd;
+  background-color: $my-guide-red;
   color: white !important;
 }

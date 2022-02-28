@@ -7922,7 +7922,7 @@ li.nav-item.li-gray {
 
 a:hover,
 link:hover {
-  color: #c3142d !important;
+  color: #fac014 !important;
   text-decoration-line: none; }
 
 a:hover ~ span.red-arrows i.bi.bi-caret-right:before {
@@ -7988,7 +7988,7 @@ a:hover ~ span.red-arrows i.bi.bi-caret-right:before {
   color: #fff !important; }
 
 .favorite {
-  color: gold; }
+  color: #fac014; }
 
 .not-favorite {
   color: #767676; }
@@ -8000,5 +8000,5 @@ a:hover ~ span.red-arrows i.bi.bi-caret-right:before {
   border-image: linear-gradient(to bottom, #c3142d, rgba(0, 0, 0, 0)) 1 100%; }
 
 input[value='x']:hover {
-  background-color: #c3142efd;
+  background-color: #c3142d;
   color: white !important; }
