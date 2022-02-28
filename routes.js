@@ -38,7 +38,7 @@ module.exports = function (app) {
     let subjects = subjController.getSubjects();
     const userFavoritesController = new UserFavoritesController(userId);
     let favs = await userFavoritesController.getFavorites();
-    res.render('favorites', {
+    res.render('favorite-subjects', {
       favorites: favs,
       subjects: subjects,
       config: config.get('viewConfigs'),
