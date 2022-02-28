@@ -137,6 +137,10 @@ li.nav-item:hover {
   }
 }
 
+#manage-subjects-links a:hover {
+  color: $my-guide-gold !important;
+}
+
 button[data-bs-toggle='tab'].active,
 li.nav-item.li-gray {
   position: relative;
@@ -156,8 +160,8 @@ li.nav-item.li-gray {
 
 a:hover,
 link:hover {
-  // color: $my-guide-red !important;
-  color: $my-guide-gold !important;
+  color: $my-guide-red !important;
+  // color: $my-guide-gold !important;
   text-decoration-line: none;
 }
 

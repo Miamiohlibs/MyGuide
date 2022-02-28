@@ -7906,6 +7906,9 @@ li.nav-item:hover button.nav-link:not(.active) {
 li.nav-item:hover i.bi.bi-caret-right-fill {
   color: #fac014; }
 
+#manage-subjects-links a:hover {
+  color: #fac014 !important; }
+
 button[data-bs-toggle='tab'].active,
 li.nav-item.li-gray {
   position: relative;
@@ -7922,7 +7925,7 @@ li.nav-item.li-gray {
 
 a:hover,
 link:hover {
-  color: #fac014 !important;
+  color: #c3142d !important;
   text-decoration-line: none; }
 
 a:hover ~ span.red-arrows i.bi.bi-caret-right:before {
