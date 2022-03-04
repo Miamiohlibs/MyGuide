@@ -249,12 +249,18 @@ a:hover ~ span.red-arrows {
   }
 }
 
+.favorite-indicator:hover {
+  background-color: #eee;
+}
 .favorite {
   color: $my-guide-gold;
 }
 
 .not-favorite {
   color: #767676;
+  &:hover {
+    color: #343a40;
+  }
 }
 
 .top-border-red-shadow {

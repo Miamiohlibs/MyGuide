@@ -7990,11 +7990,16 @@ a:hover ~ span.red-arrows i.bi.bi-caret-right:before {
 #sierra-account-link a.btn-primary {
   color: #fff !important; }
 
+.favorite-indicator:hover {
+  background-color: #eee; }
+
 .favorite {
   color: #fac014; }
 
 .not-favorite {
   color: #767676; }
+  .not-favorite:hover {
+    color: #343a40; }
 
 .top-border-red-shadow {
   border: 5px solid #c3142d;
