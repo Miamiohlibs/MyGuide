@@ -67,7 +67,7 @@ echo "module.exports = guides;" >> $FILE
 
 # fetch Databases from LibGuides
 FILE="./cache/Databases.js"
-URL="https://lgapi-us.libapps.com/1.1/assets?expand=subjects,friendly_url$AUTH"
+URL="https://lgapi-us.libapps.com/1.1/assets?asset_types[]=10&expand=subjects,friendly_url$AUTH"
 if hash json_pp 2>/dev/null; then
     CONTENT=$(curl -gL $URL | json_pp)
 else 
