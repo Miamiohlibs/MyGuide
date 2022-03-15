@@ -28,11 +28,16 @@ const subjectConfigPath = path.join(rootdir, 'config', subjectConfigFilename);
 console.log('subjectConfigPath: ', subjectConfigPath);
 // read the subject config file
 const subjectConfig = JSON.parse(fs.readFileSync(subjectConfigPath, 'utf8'));
-
 const allowedGroups = config.get('LibGuides.allowedGroupIds');
 const LibAppsDataFilter = require(rootdir +
   '/models/libGuides/LibAppsDataFilter');
 const f = new LibAppsDataFilter();
+
+// use top databases only unless specified otherwise in config/default
+let topDbOnly = true;
+if (config.has('LibGuides.topDbOnly')) {
+  topDbOnly = config.get('LibGuides.topDbOnly');
+}
 
 subjectConfig.forEach((subject) => {
   let libguides = subject.libguides;
@@ -60,7 +65,7 @@ function getLibGuidesData(libguides) {
     rightGroups = f.removeWrongGroups(pubGuides, allowedGroups);
 
     gds = f.getBestBySubject(rightGroups, libguides);
-    dbs = f.getBestBySubject(databases, libguides, true);
+    dbs = f.getBestBySubject(databases, libguides, topDbOnly);
     let results = {
       metadata: {
         sizeof: {
