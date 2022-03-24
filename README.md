@@ -1,33 +1,29 @@
 # MyGuide
 
-version 2 of an personalized, open-source library user dashboard
+A personalized, open-source library user dashboard. Integrates with campus authentication, LibGuides, and local settings to show users librarians, subject guides, and databases pertinent to their interests.
 
-## Outline
+Note: this project integrates closely with campus resources and will require some development to work your environment. Please contact Ken Irwin at [irwinkr@miamioh.edu](mailto:irwinkr@miamioh.edu) to help get this set up.
 
-- setup
-  - updateLibGuidesCache (subjects, guides, librarians, databases)
-  - note on custom subject files: it's possible to have a custom file and a standard non-custom subject file (`cache/subjects/Library.json` and `cache/custom/Library.json`). When both files exist, the custom file will be used.
-- app
+## Requirements
 
-  - Basic function
-    - login/getUserInfo (name, userid, subjects)
-      - login + return user data (config different drivers: e.g. CAS, Shibboleth, OpenAthens)
-      - map data to libguides subjects
-      - generate user object with name, userid, subjects
-    - fetchUserCustomizations (extra subjects, favorite databases/guides, etc)
-      - return updated version of user object
-    - fetchSubjectInfo (from cache by subject)
-    - fetchCirculationRecord
-    - log the hit (hashed name, usertype, subject areas)
-  - Accept user customizations
-    - favorite/unfavorite a subject or guide
-    - add/remove an additional subject
-    - review/recover hidden subjects
-  - Stats routes
+- server running Node.js
+- access to SpringShare's LibGuides + LibGuides API
+- an authentication system (currently only supports CAS, but modules could be written for other systems)
 
-    - data routes
-    - visualizations
+## Configuration
 
-  - View features / customizations
-    - views/partials/custom-alert.ejs: displays a bootstrap alert at top of page if file exists
-    - views/partials/custom-header-info.ejs: adds a block to the page header such as for a Google Analytics tracker
+- copy `config/default_sample.json` to `config/default.json`
+- customize configs for your environment
+
+  - if running on a server, note the path to an OpenSSL key/cert pair on your server
+  - enter the LibGuides API credentials and set the "groups" equal to whichever LibGuides group IDs contain your libraries' content. (If you share a LibGuides installation with other campuses or units, there may be several group ids. By default, group 0 may be the only one you need.)
+  - configuring to work with campus authentication is beyond the scope of this document so far. Please [contact Ken](mailto:irwinkr@miamioh.edu)
+
+## Initial Setup
+
+- run `npm install` to install Node package dependencies
+- Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (Youc can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
+
+## Credits
+
+Developed by Ken Irwin at Miami University, 2020-present. Visual design of the main dashboard layout by Meng Qu.
