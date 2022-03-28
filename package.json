@@ -8,7 +8,8 @@
     "dev": "nodemon app.js",
     "scss": "node-sass scss/main.scss public/css/main.css",
     "scss-dev": "node-sass scss/main.scss public/css/main.css --watch",
-    "start": "node app"
+    "start": "node app",
+    "server": "node app --name=MyGuide"
   },
   "author": "Ken Irwin",
   "license": "ISC",
