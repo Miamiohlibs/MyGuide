@@ -20,7 +20,7 @@ NC='\033[0m' # No Color
 ALLOWED_USERS=`node utilities/getConfig.js allowedUsersCommaSeparated`
 if [ -z "${ALLOWED_USERS}" ] 
 then 
-    printf "${YELLOW}No 'ALLOWED_USERS' value set in '.env'.\nValue must be set to proceed\n\nExample:\n${GREEN}ALLOWED_USERS='root,someotheruser'\n\n${NC}" && exit 1
+    printf "${YELLOW}No 'allowedUsersCommaSeparated' value set in config/default.json.\nValue must be set to proceed\n\nExample:\n${GREEN}allowedUsersCommaSeparated='root,someotheruser'\n\n${NC}" && exit 1
 fi
 IFS=', ' read -r -a array <<< "$ALLOWED_USERS"
 USER=`whoami`
@@ -37,7 +37,7 @@ done
 if [ "$ALLOWED" == "false" ] 
 then
     printf "${RED}User ${YELLOW}$USER${RED} not allowed to start/restart app; try sudo?${NC}\n" 
-    printf "${YELLOW}Allowed users listed in .env, but actual permissions are be set elsewhere\naccording to your setup.${NC}\n" && exit 1
+    printf "${YELLOW}Allowed users listed in config/default.json, but actual permissions are be set elsewhere\naccording to your setup.${NC}\n" && exit 1
 fi
 
 
