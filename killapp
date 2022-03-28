@@ -55,5 +55,5 @@ if [ $DO_RESTART = true ]; then
     printf "${YELLOW}\nRESTARTING SERVER...${NC}\n";
     npm run server > /dev/null 2>&1 &
 else 
-    printf "restart server with: ${CYAN}npm run server${NC}\n\n"
+    printf "restart server with: ${CYAN}./killapp${NC}\n\n"
 fi
