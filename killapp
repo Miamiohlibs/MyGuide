@@ -37,7 +37,7 @@ done
 if [ "$ALLOWED" == "false" ] 
 then
     printf "${RED}User ${YELLOW}$USER${RED} not allowed to start/restart app; try sudo?${NC}\n" 
-    printf "${YELLOW}Allowed users listed in config/default.json, but actual permissions are be set elsewhere\naccording to your setup.${NC}\n" && exit 1
+    printf "${YELLOW}Allowed users listed in config/default.json, but actual permissions are \nset elsewhered according to your setup.${NC}\n" && exit 1
 fi
 
 
