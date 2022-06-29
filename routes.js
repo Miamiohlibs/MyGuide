@@ -144,7 +144,7 @@ module.exports = function (app) {
   /* Graphing and stats Routes */
 
   app.get('/graph', (req, res) => {
-    res.render('stats-graph');
+    res.render('stats-graph', { page: 'graph' });
   });
 
   app.get('/usageData', (req, res) => {
