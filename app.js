@@ -58,6 +58,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 require('./routes')(app);
+require('./routes-stats')(app);
 
 const PORT = config.get('app.port') || '4000';
 if (global.onServer === true) {
