@@ -1,14 +1,14 @@
 const config = require('config');
-const UserDataController = require('./controllers/UserDataController');
-const UserFavoritesController = require('./controllers/UserFavoritesController');
-const CircController = require('./controllers/CirculationController');
-const SubjectController = require('./controllers/SubjectController');
+const UserDataController = require('../controllers/UserDataController');
+const UserFavoritesController = require('../controllers/UserFavoritesController');
+const CircController = require('../controllers/CirculationController');
+const SubjectController = require('../controllers/SubjectController');
 const circController = new CircController();
 const fs = require('fs');
-const logUsage = require('./models/usageLog/logUser');
+const logUsage = require('../models/usageLog/logUser');
 const { response } = require('express');
-const getUsageData = require('./helpers/getUsageData');
-const getRepeatUsers = require('./helpers/getRepeatUsers');
+const getUsageData = require('../helpers/getUsageData');
+const getRepeatUsers = require('../helpers/getRepeatUsers');
 
 module.exports = function (app) {
   /* Graphing and stats Routes */
