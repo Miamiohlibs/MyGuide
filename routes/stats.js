@@ -4,6 +4,9 @@ const router = require('express').Router();
 
 /* Graphing and stats Routes */
 
+router.get('/', (req, res) => {
+  res.redirect('/stats/graph');
+});
 router.get('/graph', (req, res) => {
   res.render('stats-graph', { page: 'graph' });
 });
