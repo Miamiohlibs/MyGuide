@@ -12,6 +12,7 @@ const MemoryStore = require('memorystore')(session);
 const salt = config.get('app.salt') || 'you should set salt in config file';
 
 let indexRouter = require('./routes/index');
+let favoritesRouter = require('./routes/favorites');
 let statsRouter = require('./routes/stats');
 
 const app = express();
@@ -62,6 +63,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
+app.use('/favorites', favoritesRouter);
 app.use('/stats', statsRouter);
 
 const PORT = config.get('app.port') || '4000';
