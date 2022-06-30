@@ -10,6 +10,11 @@ const cookieParser = require('cookie-parser');
 // const MemoryStore = require('session-memory-store')(session);
 const MemoryStore = require('memorystore')(session);
 const salt = config.get('app.salt') || 'you should set salt in config file';
+
+let indexRouter = require('./routes/index');
+let favoritesRouter = require('./routes/favorites');
+let statsRouter = require('./routes/stats');
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -57,7 +62,9 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-require('./routes')(app);
+app.use('/', indexRouter);
+app.use('/favorites', favoritesRouter);
+app.use('/stats', statsRouter);
 
 const PORT = config.get('app.port') || '4000';
 if (global.onServer === true) {
