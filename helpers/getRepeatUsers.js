@@ -53,7 +53,7 @@ getRepeatUsers = function (data, options) {
     labelKey: 'timesUsed',
     breakpoint: 10,
   });
-  summary = rawSummary;
+  // summary = rawSummary; // uncomment to skip condensing
   return { options, repeatUserData: summary };
 };
 
