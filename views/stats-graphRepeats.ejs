@@ -31,6 +31,7 @@
                 $('svg').empty();
                 console.log($.param(o) )
                 jQuery.getJSON('./repeatData?'+$.param(o), function(data) {
+                    data = data['all'].repeatUserData;
                 // console.log(data);
                 // let levelLabels = {
                 //     'periodUses': 'Uses',
@@ -43,19 +44,30 @@
                     // yValueProp: o.dataLevel,
                     // yAxisLabel: levelLabels[o.dataLevel],
                     valueKey: 'users', // this is the data[valueLabel] property with data in it
-                    labelKey: 'uses', // this is the data[labelLabel] property with labelUses in it
+                    labelKey: 'label', // this is the data[labelLabel] property with labelUses in it
                     chartTitle: 'MyGuide Users by Number of Repeat Uses'
                 }
-                // createPieChart(data.all.repeatUserData, options);
-                let fakeData = [
-                { uses: '1', users: 20 },
-                { uses: '2', users: 30 },
-                { uses: '3', users: 15 },
-                { uses: '4', users: 133 },
-                { uses: '5', users: 199 },
-                ];
-             
-                createPieChart(fakeData, options);
+                // let fakeData = [
+                // { uses: '1', users: 20 },
+                // { uses: '2', users: 30 },
+                // { uses: '3', users: 15 },
+                // { uses: '4', users: 133 },
+                // { uses: '5', users: 199 },
+                // ];
+                // data = fakeData;
+
+                // get sum of users from data
+                const sum = data.reduce((accumulator, obj) => {
+                    return accumulator + obj.users;
+                }, 0);
+
+                // add label with more info
+                data.forEach(obj => {
+                    obj.percent = obj.users / sum * 100;
+                    obj.label = `${obj.timesUsed} uses: ${obj.users}`;
+                });
+
+                createPieChart(data, options);
                 $('#rawData').html('<pre>' + JSON.stringify(data,null,2) + '</pre>')
                 });
             }
