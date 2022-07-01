@@ -12,12 +12,15 @@ getRepeatUsers = function (data, options) {
   // * population: student, faculty, staff; defaults to all
   // * startDate: defaults to start of logs
   // * endDate: defaults to today
+  // * breakpoint: all items with labels greater than this value will be grouped together; default false
 
-  let firstDate = usage.getFirstDate(data); // do this before applying filters
+  let firstDate = options.startDate || usage.getFirstDate(data); // do this before applying filters
   let endDate = options.endDate || dayjs().format('YYYY-MM-DD');
+  let breakpoint = options.breakpoint || false;
+  let population = options.population || 'all';
   let limitByUserType, startDate;
 
-  if (options.hasOwnProperty('population') && options.population != 'all') {
+  if (population != 'all') {
     limitByUserType = options.population;
   }
 
@@ -37,7 +40,7 @@ getRepeatUsers = function (data, options) {
   /* end duplicate section */
 
   let opts = {
-    truncateKeyTo: 10,
+    truncateKeyTo: 10, // truncate user hash to this many characters
     fieldsToRetain: ['primaryAffiliation'],
     countLabel: 'timesUsed',
   };
@@ -47,8 +50,53 @@ getRepeatUsers = function (data, options) {
 
   // how many users had the same number of uses
   opts = { countLabel: 'users' };
-  let summary = usage.countEntriesByProperty(counts, 'timesUsed', opts);
-  return { options, repeatUserData: summary };
+
+  let rawSummary = usage.countEntriesByProperty(counts, 'timesUsed', opts);
+  let summary;
+
+  if (breakpoint == false || breakpoint == 'false') {
+    summary = rawSummary;
+  } else {
+    summary = CondenseUserData(rawSummary, {
+      valueKey: 'users',
+      labelKey: 'timesUsed',
+      breakpoint: breakpoint,
+    });
+  } // end if breakpoint
+  return {
+    options: { population, startDate, endDate, breakpoint },
+    repeatUserData: summary,
+  };
 };
+
+function CondenseUserData(data, opts) {
+  /* opts:
+   * valueKey: the key in the data object to use for the numeric value
+   * labelKey: the key in the data object to use for the label (which should be an integer too)
+   * breakpoint: all items with labels greater than this value will be grouped together
+   */
+  let valueKey = opts.valueKey || 'value';
+  let labelKey = opts.labelKey || 'label';
+  let breakpoint = opts.breakpoint || 10;
+  let condensedData = [];
+  let summary = 0;
+
+  // keep lower values, condense higher values in to one entry
+  data.forEach((d) => {
+    if (parseInt(d[labelKey]) < breakpoint) {
+      condensedData.push(d);
+    } else {
+      summary += d[valueKey];
+    }
+  });
+  // add the summary entry
+  summaryLabel = breakpoint.toString() + '+';
+  plusObj = {};
+  plusObj[labelKey] = summaryLabel;
+  plusObj[valueKey] = summary;
+  condensedData.push(plusObj);
+
+  return condensedData;
+}
 
 module.exports = getRepeatUsers;
