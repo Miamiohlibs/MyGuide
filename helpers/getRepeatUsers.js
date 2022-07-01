@@ -54,15 +54,15 @@ getRepeatUsers = function (data, options) {
   let rawSummary = usage.countEntriesByProperty(counts, 'timesUsed', opts);
   let summary;
 
-  if (options.hasOwnProperty('breakpoint') && options.breakpoint != false) {
+  if (breakpoint == false || breakpoint == 'false') {
+    summary = rawSummary;
+  } else {
     summary = CondenseUserData(rawSummary, {
       valueKey: 'users',
       labelKey: 'timesUsed',
       breakpoint: breakpoint,
     });
-  } else {
-    summary = rawSummary; // don't condense
-  }
+  } // end if breakpoint
   return {
     options: { population, startDate, endDate, breakpoint },
     repeatUserData: summary,
@@ -84,7 +84,6 @@ function CondenseUserData(data, opts) {
   // keep lower values, condense higher values in to one entry
   data.forEach((d) => {
     if (parseInt(d[labelKey]) < breakpoint) {
-      console.log(d);
       condensedData.push(d);
     } else {
       summary += d[valueKey];

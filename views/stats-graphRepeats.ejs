@@ -88,6 +88,9 @@
                 $('.dateField').change(function() {
                     updateChart();
                 })
+                $('#condense-switch').change(function() {
+                    updateChart();
+                })
             });
             function updateChart() {
                 let activePopBtn = $('#population-selector li.active');
@@ -98,7 +101,11 @@
 
                 let startDate=$('#startDate').val() || '2019-08-15';
                 let endDate=$('#endDate').val() || today;
-                let dataOptions = {population, startDate, endDate, breakpoint: 10};
+                let breakpoint = false;
+                if ($('#condense-switch').is(':checked')) {
+                    breakpoint = 10;
+                }
+                let dataOptions = {population, startDate, endDate, breakpoint};
                 console.log('doChart with', dataOptions)
                 doChart(dataOptions);
             }
