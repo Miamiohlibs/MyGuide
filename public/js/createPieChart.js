@@ -8,11 +8,13 @@ function createPieChart(data, options = {}) {
   //   console.log(data);
   canvasSelector = options.canvasSelector || 'svg';
   var svg = d3.select(canvasSelector),
+    margin = options.margin || 0,
+    halfMargin = margin / 2,
     width = svg.attr('width'),
     height = svg.attr('height'),
-    margin = options.margin || 0,
-    radius = Math.min(width, height) / 2;
-
+    marginedWidth = width - margin,
+    marginedHeight = height - margin,
+    radius = Math.min(marginedWidth, marginedHeight) / 2;
   var g = svg
     .append('g')
     .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
@@ -30,23 +32,32 @@ function createPieChart(data, options = {}) {
 
   var arc = g.selectAll('arc').data(pie(data)).enter();
 
-  // Step 6
+  // Step 6: add color fill to each slice
   var path = d3.arc().outerRadius(radius).innerRadius(0);
 
   arc
     .append('path')
     .attr('d', path)
     .attr('fill', function (d) {
-      return ordScale(d.data[options.labelKey || 'label']);
+      return ordScale(d.data[options.labelKey || 'label']); //color
     });
 
-  // Step 7
+  // Step 7: add text labels to each slice
   var label = d3.arc().outerRadius(radius).innerRadius(0);
 
   arc
     .append('text')
     .attr('transform', function (d) {
-      return 'translate(' + label.centroid(d) + ')';
+      // https://stackoverflow.com/questions/8053424/label-outside-arc-pie-chart-d3-js
+      // put the label outside the arc
+      var c = label.centroid(d),
+        x = c[0],
+        y = c[1],
+        labelr = radius;
+      // pythagorean theorem for hypotenuse
+      h = Math.sqrt(x * x + y * y);
+      return 'translate(' + (x / h) * labelr + ',' + (y / h) * labelr + ')';
+      //   return 'translate(' + label.centroid(d) + ')';
     })
     .text(function (d) {
       return d.data[options.labelKey || 'label'];

@@ -38,7 +38,7 @@
                 //     'periodDistinctUsers': 'Distinct Users'
                 // }
                 let options = {
-                    margin: 200,    
+                    margin: 50,    
                     // xValueProp: 'period', // this is the data[xValueLabel] property with data in it
                     // xAxisLabel: 'Date',
                     // yValueProp: o.dataLevel,
@@ -47,14 +47,93 @@
                     labelKey: 'label', // this is the data[labelLabel] property with labelUses in it
                     chartTitle: 'MyGuide Users by Number of Repeat Uses'
                 }
-                // let fakeData = [
-                // { uses: '1', users: 20 },
-                // { uses: '2', users: 30 },
-                // { uses: '3', users: 15 },
-                // { uses: '4', users: 133 },
-                // { uses: '5', users: 199 },
-                // ];
-                // data = fakeData;
+                let fakeData = [
+                {
+        "timesUsed": "1",
+        "users": 534
+      },
+      {
+        "timesUsed": "2",
+        "users": 133
+      },
+      {
+        "timesUsed": "3",
+        "users": 49
+      },
+      {
+        "timesUsed": "4",
+        "users": 30
+      },
+      {
+        "timesUsed": "5",
+        "users": 18
+      },
+      {
+        "timesUsed": "6",
+        "users": 16
+      },
+      {
+        "timesUsed": "7",
+        "users": 12
+      },
+      {
+        "timesUsed": "8",
+        "users": 7
+      },
+      {
+        "timesUsed": "9",
+        "users": 5
+      },
+      {
+        "timesUsed": "10",
+        "users": 3
+      },
+      {
+        "timesUsed": "11",
+        "users": 6
+      },
+      {
+        "timesUsed": "12",
+        "users": 1
+      },
+      {
+        "timesUsed": "13",
+        "users": 4
+      },
+      {
+        "timesUsed": "14",
+        "users": 3
+      },
+      {
+        "timesUsed": "15",
+        "users": 2
+      },
+      {
+        "timesUsed": "17",
+        "users": 2
+      },
+      {
+        "timesUsed": "19",
+        "users": 1
+      },
+      {
+        "timesUsed": "21",
+        "users": 1
+      },
+      {
+        "timesUsed": "22",
+        "users": 2
+      },
+      {
+        "timesUsed": "30",
+        "users": 1
+      },
+      {
+        "timesUsed": "39",
+        "users": 1
+      }
+]
+                data = fakeData;
 
                 // get sum of users from data
                 const sum = data.reduce((accumulator, obj) => {
