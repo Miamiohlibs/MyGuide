@@ -25,7 +25,7 @@ function createPieChart(data, options = {}) {
 
   // Step 5
   var pie = d3.pie().value(function (d) {
-    return d.share;
+    return d[options.valueKey || 'value'];
   });
 
   var arc = g.selectAll('arc').data(pie(data)).enter();
@@ -37,7 +37,7 @@ function createPieChart(data, options = {}) {
     .append('path')
     .attr('d', path)
     .attr('fill', function (d) {
-      return ordScale(d.data.name);
+      return ordScale(d.data[options.labelKey || 'label']);
     });
 
   // Step 7
@@ -49,7 +49,7 @@ function createPieChart(data, options = {}) {
       return 'translate(' + label.centroid(d) + ')';
     })
     .text(function (d) {
-      return d.data.name;
+      return d.data[options.labelKey || 'label'];
     })
     .style('font-family', 'arial')
     .style('font-size', 15);

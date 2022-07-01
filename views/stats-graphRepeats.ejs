@@ -42,17 +42,19 @@
                     // xAxisLabel: 'Date',
                     // yValueProp: o.dataLevel,
                     // yAxisLabel: levelLabels[o.dataLevel],
-                    valueLabel: 'users', // this is the data[valueLabel] property with data in it
+                    valueKey: 'users', // this is the data[valueLabel] property with data in it
+                    labelKey: 'uses', // this is the data[labelLabel] property with labelUses in it
                     chartTitle: 'MyGuide Users by Number of Repeat Uses'
                 }
                 // createPieChart(data.all.repeatUserData, options);
                 let fakeData = [
-                { name: 'Alex', share: 20.7 },
-    { name: 'Shelly', share: 30.92 },
-    { name: 'Clark', share: 15.42 },
-    { name: 'Matt', share: 13.65 },
-    { name: 'Jolene2', share: 19.31 },
+                { uses: '1', users: 20 },
+                { uses: '2', users: 30 },
+                { uses: '3', users: 15 },
+                { uses: '4', users: 133 },
+                { uses: '5', users: 199 },
                 ];
+             
                 createPieChart(fakeData, options);
                 $('#rawData').html('<pre>' + JSON.stringify(data,null,2) + '</pre>')
                 });
