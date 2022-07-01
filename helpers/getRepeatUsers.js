@@ -12,12 +12,15 @@ getRepeatUsers = function (data, options) {
   // * population: student, faculty, staff; defaults to all
   // * startDate: defaults to start of logs
   // * endDate: defaults to today
+  // * breakpoint: all items with labels greater than this value will be grouped together; default false
 
-  let firstDate = usage.getFirstDate(data); // do this before applying filters
+  let firstDate = options.startDate || usage.getFirstDate(data); // do this before applying filters
   let endDate = options.endDate || dayjs().format('YYYY-MM-DD');
+  let breakpoint = options.breakpoint || false;
+  let population = options.population || 'all';
   let limitByUserType, startDate;
 
-  if (options.hasOwnProperty('population') && options.population != 'all') {
+  if (population != 'all') {
     limitByUserType = options.population;
   }
 
@@ -47,14 +50,23 @@ getRepeatUsers = function (data, options) {
 
   // how many users had the same number of uses
   opts = { countLabel: 'users' };
+
   let rawSummary = usage.countEntriesByProperty(counts, 'timesUsed', opts);
-  let summary = CondenseUserData(rawSummary, {
-    valueKey: 'users',
-    labelKey: 'timesUsed',
-    breakpoint: 10,
-  });
-  // summary = rawSummary; // uncomment to skip condensing
-  return { options, repeatUserData: summary };
+  let summary;
+
+  if (options.hasOwnProperty('breakpoint') && options.breakpoint != false) {
+    summary = CondenseUserData(rawSummary, {
+      valueKey: 'users',
+      labelKey: 'timesUsed',
+      breakpoint: breakpoint,
+    });
+  } else {
+    summary = rawSummary; // don't condense
+  }
+  return {
+    options: { population, startDate, endDate, breakpoint },
+    repeatUserData: summary,
+  };
 };
 
 function CondenseUserData(data, opts) {

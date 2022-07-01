@@ -5,7 +5,7 @@
 */
 
 function createPieChart(data, options = {}) {
-  //   console.log(data);
+  //   Step 3: set dimensions and margins
   canvasSelector = options.canvasSelector || 'svg';
   var svg = d3.select(canvasSelector),
     chartTitle = options.chartTitle || '',
@@ -28,13 +28,13 @@ function createPieChart(data, options = {}) {
     .append('g')
     .attr('transform', 'translate(' + offsetX / 2 + ',' + offsetY / 2 + ')');
 
-  // Step 4
+  // Step 4: set scale (colors)
   var ordScale = d3
     .scaleOrdinal()
     .domain(data)
     .range(['#ffd384', '#94ebcd', '#fbaccc', '#d3e0ea', '#fa7f72']);
 
-  // Step 5
+  // Step 5: Pie generator
   var pie = d3.pie().value(function (d) {
     return d[options.valueKey || 'value'];
   });

@@ -33,26 +33,32 @@ router.get('/usageData', (req, res) => {
 router.get('/repeatData', async (req, res) => {
   data = getUsageData();
   let repeatUsers = require('../helpers/getRepeatUsers');
-  let allSummary = repeatUsers(data, { startDate: '2021-09-02' });
-  let facSummary = repeatUsers(data, {
-    population: 'faculty',
-    startDate: '2021-09-02',
-  });
-  let staffSummary = repeatUsers(data, {
-    population: 'staff',
-    startDate: '2021-09-02',
-  });
-  let stuSummary = repeatUsers(data, {
-    population: 'student',
-    startDate: '2021-09-02',
-  });
+  let repeatData = repeatUsers(data, req.query);
+
+  // let allSummary = repeatUsers(data, {
+  //   startDate: '2021-09-02',
+  //   breakpoint: 10,
+  // });
+  // let facSummary = repeatUsers(data, {
+  //   population: 'faculty',
+  //   startDate: '2021-09-02',
+  // });
+  // let staffSummary = repeatUsers(data, {
+  //   population: 'staff',
+  //   startDate: '2021-09-02',
+  // });
+  // let stuSummary = repeatUsers(data, {
+  //   population: 'student',
+  //   startDate: '2021-09-02',
+  // });
   res.setHeader('Content-Type', 'application/json');
   res.end(
     JSON.stringify({
-      student: stuSummary,
-      faculty: facSummary,
-      staff: staffSummary,
-      all: allSummary,
+      repeatData,
+      // student: stuSummary,
+      // faculty: facSummary,
+      // staff: staffSummary,
+      // all: allSummary,
     })
   );
 });

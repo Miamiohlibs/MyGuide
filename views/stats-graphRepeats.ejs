@@ -20,16 +20,96 @@
 <%- include('./partials/stats-nav.ejs', { page: page } ) %>
 
 <body class="container">
+    <div id="options">
+        <div class="row">
+
+        <ul id="population-selector" class="btn-group col-lg-6">
+            <li CLASS="btn disabled">Population:</li>
+            <li class="btn btn-primary active" data-population="all">All Users</li>
+            <li class="btn btn-primary " data-population="student">Student</li>
+            <li class="btn btn-primary" data-population="faculty">Faculty</li>
+            <li class="btn btn-primary" data-population="staff">Staff</li>
+        </ul>
+
+        <div class="col-lg-6">
+            <div class="input-group">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="condense-switch" checked>
+                    <label class="form-check-label" for="condense-switch">
+                        Condense data above 10 uses
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label for="startDate" class="input-group-text">Start date:</label>
+                </div>
+               
+                <input type="date" class="form-control dateField" id="startDate" name="startDate" value="2021-08-31"
+               min="2021-08-31">
+            </div>
+        </div>
+
+
+        <div class="col-lg-4">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label for="endDate" class="input-group-text">End date:</label>
+            </div>
+            <input type="date" class="form-control dateField" id="endDate" name="endDate" value=""
+      min="2021-08-31">
+      </div>
+      </div>
+    </div>
+    
     <svg height="500" width="1000"></svg>
     <div id="rawData"></div>
     <script>
-        doChart();
+        var d = new Date();
+        console.log('month'+d.getMonth())
+        if (d.getMonth() < 9) { monthPadding = '0'; } else { monthPadding = ''}
+        var today = d.getFullYear() + "-" + monthPadding +  (d.getMonth()+1) + "-" + d.getDate();
+            $(document).ready(function() {
+                $('.dateField').each(function() {
+                    $(this).attr('max',today);
+                });
+                $('#endDate').attr('value',today);
+                updateChart();
+                $('.btn').click(function() {
+                    clkBtn = $(this);
+                    clkBtn.parent().children('.btn').each(function(i) {
+                        $(this).removeClass('active');
+                    });
+                    clkBtn.addClass('active'); // primary will be added by updateChart
+                    updateChart();
+                });
+                $('.dateField').change(function() {
+                    updateChart();
+                })
+            });
+            function updateChart() {
+                let activePopBtn = $('#population-selector li.active');
+                let population = activePopBtn.data('population')
+
+                // let activeLevelBtn = $('#dataLevel-selector li.active');
+                // let dataLevel = activeLevelBtn.data('level');
+
+                let startDate=$('#startDate').val() || '2019-08-15';
+                let endDate=$('#endDate').val() || today;
+                let dataOptions = {population, startDate, endDate, breakpoint: 10};
+                console.log('doChart with', dataOptions)
+                doChart(dataOptions);
+            }
+        // doChart();
         function doChart(o) {
                 $('svg').empty();
                 console.log($.param(o) )
                 jQuery.getJSON('./repeatData?'+$.param(o), function(data) {
-                    data = data['all'].repeatUserData;
-                // console.log(data);
+                    fullData = data;
+                    data = data.repeatData.repeatUserData;
+                console.log(fullData);
                 // let levelLabels = {
                 //     'periodUses': 'Uses',
                 //     'periodDistinctUsers': 'Distinct Users'
@@ -44,93 +124,6 @@
                     labelKey: 'timesUsed', // this is the data[labelLabel] property with labelUses in it
                     chartTitle: 'MyGuide Users by Number of Repeat Uses'
                 }
-                let fakeData = [
-                {
-        "timesUsed": "1",
-        "users": 534
-      },
-      {
-        "timesUsed": "2",
-        "users": 133
-      },
-      {
-        "timesUsed": "3",
-        "users": 49
-      },
-      {
-        "timesUsed": "4",
-        "users": 30
-      },
-      {
-        "timesUsed": "5",
-        "users": 18
-      },
-      {
-        "timesUsed": "6",
-        "users": 16
-      },
-      {
-        "timesUsed": "7",
-        "users": 12
-      },
-      {
-        "timesUsed": "8",
-        "users": 7
-      },
-      {
-        "timesUsed": "9",
-        "users": 5
-      },
-      {
-        "timesUsed": "10",
-        "users": 3
-      },
-      {
-        "timesUsed": "11",
-        "users": 6
-      },
-      {
-        "timesUsed": "12",
-        "users": 1
-      },
-      {
-        "timesUsed": "13",
-        "users": 4
-      },
-      {
-        "timesUsed": "14",
-        "users": 3
-      },
-      {
-        "timesUsed": "15",
-        "users": 2
-      },
-      {
-        "timesUsed": "17",
-        "users": 2
-      },
-      {
-        "timesUsed": "19",
-        "users": 1
-      },
-      {
-        "timesUsed": "21",
-        "users": 1
-      },
-      {
-        "timesUsed": "22",
-        "users": 2
-      },
-      {
-        "timesUsed": "30",
-        "users": 1
-      },
-      {
-        "timesUsed": "39",
-        "users": 1
-      }
-]
-                // data = fakeData;
 
                 // // get sum of users from data
                 // const sum = data.reduce((accumulator, obj) => {
@@ -144,7 +137,7 @@
                 // });
 
                 createPieChart(data, options);
-                $('#rawData').html('<pre>' + JSON.stringify(data,null,2) + '</pre>')
+                $('#rawData').html('<pre>' + JSON.stringify(fullData,null,2) + '</pre>')
                 });
             }
     </script>
