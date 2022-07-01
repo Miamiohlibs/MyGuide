@@ -72,7 +72,8 @@ function createPieChart(data, options = {}) {
       return d.data[options.labelKey || 'label'];
     })
     .style('font-family', 'arial')
-    .style('font-size', 15);
+    .style('font-size', 15)
+    .style('z-index', '100');
 
   // Chart Title
   svg

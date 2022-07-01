@@ -11,12 +11,9 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="/js/createPieChart.js"></script>
     <style>
-        .bar { fill: steelblue}
-        .btn.disabled {     
-            background-color: #e9ecef;
-            border: 1px solid #ced4da;
-            color: #000 !important;  
-        } 
+        g.text {
+            z-index: 100;
+        }
     </style>
 </head>
 
@@ -133,18 +130,18 @@
         "users": 1
       }
 ]
-                data = fakeData;
+                // data = fakeData;
 
-                // get sum of users from data
-                const sum = data.reduce((accumulator, obj) => {
-                    return accumulator + obj.users;
-                }, 0);
+                // // get sum of users from data
+                // const sum = data.reduce((accumulator, obj) => {
+                //     return accumulator + obj.users;
+                // }, 0);
 
-                // add label with more info
-                data.forEach(obj => {
-                    obj.percent = obj.users / sum * 100;
-                    obj.label = `${obj.timesUsed} uses: ${obj.users}`;
-                });
+                // // add label with more info
+                // data.forEach(obj => {
+                //     obj.percent = obj.users / sum * 100;
+                //     obj.label = `${obj.timesUsed} uses: ${obj.users}`;
+                // });
 
                 createPieChart(data, options);
                 $('#rawData').html('<pre>' + JSON.stringify(data,null,2) + '</pre>')
