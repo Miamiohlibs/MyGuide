@@ -8,16 +8,25 @@ function createPieChart(data, options = {}) {
   //   console.log(data);
   canvasSelector = options.canvasSelector || 'svg';
   var svg = d3.select(canvasSelector),
-    margin = options.margin || 0,
-    halfMargin = margin / 2,
-    width = svg.attr('width'),
-    height = svg.attr('height'),
-    marginedWidth = width - margin,
-    marginedHeight = height - margin,
-    radius = Math.min(marginedWidth, marginedHeight) / 2;
+    chartTitle = options.chartTitle || '',
+    marginTop = parseInt(options.margin.top) || 0,
+    marginBottom = parseInt(options.margin.bottom) || 0,
+    marginLeft = parseInt(options.margin.left) || 0,
+    marginRight = parseInt(options.margin.right) || 0,
+    marginX = marginLeft + marginRight,
+    marginY = marginTop + marginBottom,
+    halfMarginX = marginX / 2,
+    halfMarginY = marginY / 2,
+    width = parseInt(svg.attr('width')),
+    height = parseInt(svg.attr('height')),
+    marginedWidth = width - marginX,
+    marginedHeight = height - marginY,
+    radius = Math.min(marginedWidth, marginedHeight) / 2,
+    offsetX = width + marginX,
+    offsetY = height + marginY;
   var g = svg
     .append('g')
-    .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+    .attr('transform', 'translate(' + offsetX / 2 + ',' + offsetY / 2 + ')');
 
   // Step 4
   var ordScale = d3
@@ -53,7 +62,7 @@ function createPieChart(data, options = {}) {
       var c = label.centroid(d),
         x = c[0],
         y = c[1],
-        labelr = radius;
+        labelr = radius * 1.05;
       // pythagorean theorem for hypotenuse
       h = Math.sqrt(x * x + y * y);
       return 'translate(' + (x / h) * labelr + ',' + (y / h) * labelr + ')';
@@ -64,4 +73,13 @@ function createPieChart(data, options = {}) {
     })
     .style('font-family', 'arial')
     .style('font-size', 15);
+
+  // Chart Title
+  svg
+    .append('text')
+    .attr('transform', 'translate(' + halfMarginY + ',0)') // margin/2
+    .attr('x', 50)
+    .attr('y', 50)
+    .attr('font-size', '24px')
+    .text(chartTitle);
 }
