@@ -10,6 +10,10 @@ router.get('/', (req, res) => {
 router.get('/graph', (req, res) => {
   res.render('stats-graph', { page: 'graph' });
 });
+router.get('/repeatUsers', (req, res) => {
+  // res.send('Test');
+  res.render('stats-graphRepeats', { page: 'repeatUser' });
+});
 
 router.get('/usageData', (req, res) => {
   // set default params
@@ -26,7 +30,7 @@ router.get('/usageData', (req, res) => {
   res.end(JSON.stringify(stats));
 });
 
-router.get('/repeatUsers', async (req, res) => {
+router.get('/repeatData', async (req, res) => {
   data = getUsageData();
   let repeatUsers = require('../helpers/getRepeatUsers');
   let allSummary = repeatUsers(data, { startDate: '2021-09-02' });

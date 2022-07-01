@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyGuide Usage</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="/js/createPieChart.js"></script>
+    <style>
+        .bar { fill: steelblue}
+        .btn.disabled {     
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            color: #000 !important;  
+        } 
+    </style>
+</head>
+
+<%- include('./partials/stats-nav.ejs', { page: page } ) %>
+
+<body class="container">
+    <svg height="500" width="1000"></svg>
+    <div id="rawData"></div>
+    <script>
+        doChart();
+        function doChart(o) {
+                $('svg').empty();
+                console.log($.param(o) )
+                jQuery.getJSON('./repeatData?'+$.param(o), function(data) {
+                // console.log(data);
+                // let levelLabels = {
+                //     'periodUses': 'Uses',
+                //     'periodDistinctUsers': 'Distinct Users'
+                // }
+                let options = {
+                    margin: 200,    
+                    // xValueProp: 'period', // this is the data[xValueLabel] property with data in it
+                    // xAxisLabel: 'Date',
+                    // yValueProp: o.dataLevel,
+                    // yAxisLabel: levelLabels[o.dataLevel],
+                    valueLabel: 'users', // this is the data[valueLabel] property with data in it
+                    chartTitle: 'MyGuide Users by Number of Repeat Uses'
+                }
+                // createPieChart(data.all.repeatUserData, options);
+                let fakeData = [
+                { name: 'Alex', share: 20.7 },
+    { name: 'Shelly', share: 30.92 },
+    { name: 'Clark', share: 15.42 },
+    { name: 'Matt', share: 13.65 },
+    { name: 'Jolene2', share: 19.31 },
+                ];
+                createPieChart(fakeData, options);
+                $('#rawData').html('<pre>' + JSON.stringify(data,null,2) + '</pre>')
+                });
+            }
+    </script>
+</body>
+</html>
