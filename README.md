@@ -21,6 +21,8 @@ Note: this project integrates closely with campus resources and will require som
 
   - the `allowedUsersCommaSeparated` defines which users can start/stop the service on the command line using the './killapp' and './restart' scripts. This setting is a comma separated list, not a true JSON array, e.g.: `"root,fred,wilma"`
 
+  - CAS.exposeStatsOutsideCas -- default `false`. If set to `true`, the `/stats/` routes (for data and visualizations) will be available to non-logged in users.
+
 ## Initial Setup
 
 - run `npm install` to install Node package dependencies
@@ -31,6 +33,22 @@ Note: this project integrates closely with campus resources and will require som
 `./restart` will kill an existing MyGuide instance (if any) and start a fresh process.
 
 `./killapp` will kill the process with restarting it. Note: this will only work if you started the process by using the `./restart` script.
+
+## Statistics
+
+There are a few "hidden" urls with statistical information with MyGuide usages statistics -- they are not linked from the main public interface, but they are accessible by all users.
+
+### Visualizations
+
+- `/stats/graph` - daily/monthly/yearly usage stats with limits by population (student/faculty/staff), date range. Visualizes `/stats/usageData`.
+
+- `/stats/repeatUsers` - shows: of all the MyGuide users over a set time period, how many used the service once, or twice, or more times. A toggle switch allows the user to condense 10, 11, 12... uses into how many users used the service 10+ times.
+
+### Raw JSON data
+
+- `/stats/usageData` - Raw JSON data for daily/monthly/yearly usage stats with limits by population (student/faculty/staff), date range.
+
+- `/stats/repeatData` - Raw JSON counting: of all the MyGuide users over a set time period, how many used the service once, or twice, or more times.
 
 ## Credits
 
