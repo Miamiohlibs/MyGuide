@@ -25,6 +25,7 @@ function createBarChart(data, options = {}) {
     .text(chartTitle);
 
   // Create Tooltip
+  // code modified from: http://bl.ocks.org/davegotz/bd54b56723c154d25eedde6504d30ad7
   var tip = d3.tip();
   tip
     .attr('class', 'd3-tip')
