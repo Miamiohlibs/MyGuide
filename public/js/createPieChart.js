@@ -37,7 +37,12 @@ function createPieChart(data, options = {}) {
     .attr('class', 'd3-tip')
     .offset([-8, 0])
     .html(function (d) {
-      return JSON.stringify(d.data);
+      // return JSON.stringify(d.data);
+      let str = '';
+      for (const [key, value] of Object.entries(d.data)) {
+        str += key + ': ' + value + '<br>';
+      }
+      return str;
     });
   svg.call(tip);
 
