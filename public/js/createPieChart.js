@@ -106,5 +106,5 @@ function createPieChart(data, options = {}) {
     .attr('x', 50)
     .attr('y', 50)
     .attr('font-size', '24px')
-    .text(chartTitle + typeof options.sortSlicesBySize);
+    .text(chartTitle);
 }
