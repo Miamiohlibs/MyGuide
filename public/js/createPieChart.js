@@ -24,6 +24,13 @@ function createPieChart(data, options = {}) {
     radius = Math.min(marginedWidth, marginedHeight) / 2,
     offsetX = width + marginX,
     offsetY = height + marginY;
+
+  if (options.hasOwnProperty('sortSlicesBySize')) {
+    sortSlicesBySize = options.sortSlicesBySize;
+  } else {
+    sortSlicesBySize = true;
+  }
+
   var g = svg
     .append('g')
     .attr('transform', 'translate(' + offsetX / 2 + ',' + offsetY / 2 + ')');
@@ -38,6 +45,10 @@ function createPieChart(data, options = {}) {
   var pie = d3.pie().value(function (d) {
     return d[options.valueKey || 'value'];
   });
+
+  if (sortSlicesBySize == false) {
+    pie.sort(null);
+  }
 
   var arc = g.selectAll('arc').data(pie(data)).enter();
 
@@ -82,5 +93,5 @@ function createPieChart(data, options = {}) {
     .attr('x', 50)
     .attr('y', 50)
     .attr('font-size', '24px')
-    .text(chartTitle);
+    .text(chartTitle + typeof options.sortSlicesBySize);
 }
