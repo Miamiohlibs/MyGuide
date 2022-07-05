@@ -24,6 +24,26 @@ function createBarChart(data, options = {}) {
     .attr('font-size', '24px')
     .text(chartTitle);
 
+  // Create Tooltip
+  // code modified from: http://bl.ocks.org/davegotz/bd54b56723c154d25eedde6504d30ad7
+  var tip = d3.tip();
+  tip
+    .attr('class', 'd3-tip')
+    .offset([-8, 0])
+    .html(function (d) {
+      return (
+        xValueProp +
+        ': <b>' +
+        d[xValueProp] +
+        '</b><br /> ' +
+        yValueProp +
+        ': <b>' +
+        d[yValueProp] +
+        '</b>'
+      );
+    });
+  svg.call(tip);
+
   // determine x and y scales
   // scaleBand for X because we have discrete values (dates)
   // scaleLinear for Y because we have continuous values (integers)
@@ -125,5 +145,7 @@ function createBarChart(data, options = {}) {
     .attr('width', xScale.bandwidth())
     .attr('height', function (d) {
       return height - yScale(d[yValueProp]);
-    });
+    })
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
 }
