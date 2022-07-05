@@ -8,11 +8,11 @@ router.get('/', (req, res) => {
   res.redirect('/stats/usage');
 });
 router.get('/usage', (req, res) => {
-  res.render('stats-graphUsage', { page: 'graph' });
+  res.render('stats-graphUsage', { page: 'usage' });
 });
 router.get('/repeatUsers', (req, res) => {
   // res.send('Test');
-  res.render('stats-graphRepeats', { page: 'repeatUser' });
+  res.render('stats-graphRepeats', { page: 'repeatUsers' });
 });
 
 router.get('/usageData', (req, res) => {
