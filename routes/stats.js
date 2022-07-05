@@ -5,10 +5,10 @@ const router = require('express').Router();
 /* Graphing and stats Routes */
 
 router.get('/', (req, res) => {
-  res.redirect('/stats/graph');
+  res.redirect('/stats/usage');
 });
-router.get('/graph', (req, res) => {
-  res.render('stats-graph', { page: 'graph' });
+router.get('/usage', (req, res) => {
+  res.render('stats-graphUsage', { page: 'graph' });
 });
 router.get('/repeatUsers', (req, res) => {
   // res.send('Test');

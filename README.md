@@ -40,7 +40,7 @@ There are a few "hidden" urls with statistical information with MyGuide usages s
 
 ### Visualizations
 
-- `/stats/graph` - daily/monthly/yearly usage stats with limits by population (student/faculty/staff), date range. Visualizes `/stats/usageData`.
+- `/stats/usage` - daily/monthly/yearly usage stats with limits by population (student/faculty/staff), date range. Visualizes `/stats/usageData`.
 
 - `/stats/repeatUsers` - shows: of all the MyGuide users over a set time period, how many used the service once, or twice, or more times. A toggle switch allows the user to condense 10, 11, 12... uses into how many users used the service 10+ times.
 
@@ -50,16 +50,16 @@ There are a few "hidden" urls with statistical information with MyGuide usages s
 
   - increment - allowed: `day`,`month`,`year`; default: `year`
   - population - allowed: `all`,`student`,`faculty`,`staff`; default: `all`
-  - startDate - format as yyyy-mm-dd
-  - endDate - format as yyyy-mm-dd
+  - startDate - format as yyyy-mm-dd; default: first known usage
+  - endDate - format as yyyy-mm-dd: default: today
 
 - `/stats/repeatData` - Raw JSON counting: of all the MyGuide users over a set time period, how many used the service once, or twice, or more times. Parameters:
   - population - allowed: `all`,`student`,`faculty`,`staff`; default: `all`
-  - startDate - format as yyyy-mm-dd
-  - endDate - format as yyyy-mm-dd
+  - startDate - format as yyyy-mm-dd; default: first known usage
+  - endDate - format as yyyy-mm-dd: default: today
   - breakpoint - set the point above which N-or-more uses will be grouped together, e.g. "10+ uses"; default: `10`
 
-When the usage and repeatUser graph pages load, they include a "Raw Data" link configured to retreive the same JSON data that created the graphs. You can use that as a short-cut to configuring stats queries.
+When the `/usage` and /`repeatUsers` stats views load, they include a "Raw Data" link configured to retreive the same JSON data that created the graphs. You can use that as a short-cut to configuring stats queries.
 
 ## Credits
 
