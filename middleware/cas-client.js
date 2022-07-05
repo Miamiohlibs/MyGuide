@@ -1,8 +1,16 @@
 const config = require('config');
 const ConnectCas = require('node-cas-client');
 
+let ignorePaths = [];
+if (
+  config.has('CAS.exposeStatsOutsideCas') &&
+  config.get('CAS.exposeStatsOutsideCas')
+) {
+  ignorePaths = [/\/stats/, /\/js/];
+}
+
 const casClient = new ConnectCas({
-  ignore: [/\/stats/, /\/js/],
+  ignore: ignorePaths,
   match: [],
   servicePrefix: config.get('CAS.servicePrefix'),
   serverPath: config.get('CAS.serverPath'),
