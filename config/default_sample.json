@@ -30,7 +30,8 @@
         "sessionName": "NSESSIONID",
         "secret": "This is my very long secret key",
         "servicePrefix": "https://myguideserver.yourorg.edu:9909",
-        "serverPath": "https://casserver.yourorg.edu"
+        "serverPath": "https://casserver.yourorg.edu",
+        "exposeStatsOutsideCas": false
     },
     "database": {
         "use": "dev",
