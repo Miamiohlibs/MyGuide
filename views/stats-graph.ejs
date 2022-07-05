@@ -27,6 +27,7 @@
             color: #fff;
             border-radius: 2px;
         }
+        #data-link { margin-bottom: 1em;}
     </style>
 </head>
 
@@ -80,6 +81,7 @@
     </div>
     </div>
     <svg height="500" width="1000"></svg>
+    <div id="data-link"></div>
     <div id="rawData"></div>
     <script>
         var d = new Date();
@@ -124,6 +126,7 @@
             function doChart(o) {
                 $('svg').empty();
                 console.log($.param(o) )
+                $('#data-link').html('<a href="/stats/usageData?'+$.param(o)+'">Link to Raw Data</a>');
                 jQuery.getJSON('./usageData?'+$.param(o), function(data) {
                 console.log(data);
                 let levelLabels = {

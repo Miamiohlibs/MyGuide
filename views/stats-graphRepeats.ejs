@@ -23,6 +23,7 @@
             color: #fff;
             border-radius: 2px;
         }
+        #data-link { margin-bottom: 1em;}
     </style>
 </head>
 
@@ -74,6 +75,7 @@
     </div>
     
     <svg height="500" width="1000"></svg>
+    <div id="data-link"></div>
     <div id="rawData"></div>
     <script>
         var d = new Date();
@@ -121,6 +123,7 @@
         // doChart();
         function doChart(o) {
                 $('svg').empty();
+                $('#data-link').html('<a href="/stats/usageData?'+$.param(o)+'">Link to Raw Data</a>');
                 console.log($.param(o) )
                 jQuery.getJSON('./repeatData?'+$.param(o), function(data) {
                     fullData = data;
