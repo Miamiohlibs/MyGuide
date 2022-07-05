@@ -54,8 +54,13 @@ function createBarChart(data, options = {}) {
   // manage frequency of x axis labels so they don't overlap
   // based on: https://stackoverflow.com/questions/40199108/d3-v4-scaleband-ticks
   let numPoints = xScale.domain().length;
+  let nthTick;
   if (numPoints > 10) {
-    nthTick = Math.floor(numPoints / 10);
+    if (numPoints < 20) {
+      nthTick = 2;
+    } else {
+      nthTick = Math.floor(numPoints / 10);
+    }
     xAxisGenerator.tickValues(
       xScale.domain().filter(function (d, i) {
         return !(i % nthTick);
