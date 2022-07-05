@@ -123,7 +123,7 @@
         // doChart();
         function doChart(o) {
                 $('svg').empty();
-                $('#data-link').html('<a href="/stats/usageData?'+$.param(o)+'">Link to Raw Data</a>');
+                $('#data-link').html('<a href="/stats/repeatData?'+$.param(o)+'">Link to Raw Data</a>');
                 console.log($.param(o) )
                 jQuery.getJSON('./repeatData?'+$.param(o), function(data) {
                     fullData = data;
