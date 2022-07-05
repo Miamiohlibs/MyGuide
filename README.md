@@ -46,9 +46,20 @@ There are a few "hidden" urls with statistical information with MyGuide usages s
 
 ### Raw JSON data
 
-- `/stats/usageData` - Raw JSON data for daily/monthly/yearly usage stats with limits by population (student/faculty/staff), date range.
+- `/stats/usageData` - Raw JSON data for daily/monthly/yearly usage stats with limits by population (student/faculty/staff), date range. Parameters:
 
-- `/stats/repeatData` - Raw JSON counting: of all the MyGuide users over a set time period, how many used the service once, or twice, or more times.
+  - increment - allowed: `day`,`month`,`year`; default: `year`
+  - population - allowed: `all`,`student`,`faculty`,`staff`; default: `all`
+  - startDate - format as yyyy-mm-dd
+  - endDate - format as yyyy-mm-dd
+
+- `/stats/repeatData` - Raw JSON counting: of all the MyGuide users over a set time period, how many used the service once, or twice, or more times. Parameters:
+  - population - allowed: `all`,`student`,`faculty`,`staff`; default: `all`
+  - startDate - format as yyyy-mm-dd
+  - endDate - format as yyyy-mm-dd
+  - breakpoint - set the point above which N-or-more uses will be grouped together, e.g. "10+ uses"; default: `10`
+
+When the usage and repeatUser graph pages load, they include a "Raw Data" link configured to retreive the same JSON data that created the graphs. You can use that as a short-cut to configuring stats queries.
 
 ## Credits
 
