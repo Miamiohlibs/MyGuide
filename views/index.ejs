@@ -9,7 +9,19 @@
           return old == 'More' ? 'Less' : 'More';
         });
       });
-
+      // if right arrow in nav, jump from nav to main panel 
+      $('.nav-item').keydown(function (e) {
+        if (e.keyCode == 39) {
+          $('.tab-pane.active').find('a:first').focus();
+        }
+      });
+      // if left arrow in main, jump from main panel to nav
+      $('.tab-pane').keydown(function (e) {
+        if (e.keyCode == 37) {
+          console.log('attempting to go left')
+          $('.nav-item button[aria-selected="true"]').focus();
+        }
+      });
       $('.favorite-indicator').click(function () {
         let favorite = $(this);
         favorite.addClass('spinner-grow spinner-grow-sm text-warning')
