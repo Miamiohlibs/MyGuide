@@ -35,6 +35,11 @@
           }
         });
       });
+      $('.favorite-indicator').keydown(function (event) {
+        if (event.keyCode == 13) {
+          $(this).click();
+      }
+      });
     });
   </script>
   <!-- Show user's subject menu (mobile version) -->
