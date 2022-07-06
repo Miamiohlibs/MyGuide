@@ -30,6 +30,7 @@
         let favorite_status = favorite.not().hasClass('not-favorite');
         let addOrRemove = favorite_status ? 'add' : 'remove';
         let url = '/favorites/'+resourceType+'s/' + addOrRemove;
+        let resourceTitle = favorite.next('a').text();
         $.ajax({
           url: url,
           data: { resourceId: resourceId },
@@ -40,8 +41,12 @@
             allMatchingFavorite.toggleClass('favorite');
               if (addOrRemove == 'add') {
                 allMatchingFavorite.html('&#9733;');
+                allMatchingFavorite.attr('aria-pressed', 'true');
+                allMatchingFavorite.attr('title', 'Remove '+ resourceTitle +' from my favorite '+resourceType+'s');
               } else {
                 allMatchingFavorite.html('&#9734;');
+                allMatchingFavorite.attr('aria-pressed', 'false');
+                allMatchingFavorite.attr('title', 'Add '+ resourceTitle +' to my favorite '+resourceType+'s');
               }
             favorite.removeClass('spinner-grow spinner-grow-sm text-warning');
           }
