@@ -32,7 +32,7 @@ function createPieChart(data, options = {}) {
   }
 
   // Create Tooltip
-  var tip = d3.tip();
+  const tip = d3.tip();
   tip
     .attr('class', 'd3-tip')
     .offset([-8, 0])
@@ -76,9 +76,15 @@ function createPieChart(data, options = {}) {
     .attr('fill', function (d) {
       return ordScale(d.data[options.labelKey || 'label']); //color
     })
-    .on('mouseover', tip.show)
-
-    .on('mouseout', tip.hide);
+    .on('mouseover.tooltip', tip.show)
+    .on('mouseover.stroke', function () {
+      tip.show;
+      d3.select(this).attr('stroke', 'black').attr('stroke-width', '3');
+    })
+    .on('mouseout.tooltip', tip.hide)
+    .on('mouseout.stroke', function () {
+      d3.select(this).attr('stroke-width', '0');
+    });
 
   // Step 7: add text labels to each slice
   var label = d3.arc().outerRadius(radius).innerRadius(0);
