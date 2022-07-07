@@ -54,7 +54,7 @@ function createPieChart(data, options = {}) {
   var ordScale = d3
     .scaleOrdinal()
     .domain(data)
-    .range(['#ffd384', '#94ebcd', '#fbaccc', '#d3e0ea', '#fa7f72']);
+    .range(['#FFEC21', '#378AFF', '#FFA32F', '#F54F52', '#93F03B', '#9552EA']);
 
   // Step 5: Pie generator
   var pie = d3.pie().value(function (d) {
