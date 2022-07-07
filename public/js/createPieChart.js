@@ -97,7 +97,7 @@ function createPieChart(data, options = {}) {
       var c = label.centroid(d),
         x = c[0],
         y = c[1],
-        labelr = radius * 1.05;
+        labelr = radius * 1.07;
       // pythagorean theorem for hypotenuse
       h = Math.sqrt(x * x + y * y);
       return 'translate(' + (x / h) * labelr + ',' + (y / h) * labelr + ')';
