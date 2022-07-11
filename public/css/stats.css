@@ -1,0 +1,23 @@
+/* all stats */
+
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 5px;
+}
+#data-link { margin-bottom: 1em;}
+
+/* bar chart */
+.bar { fill: steelblue}
+.btn.disabled {     
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    color: #000 !important;  
+} 
+/* pie chart */
+g.text {
+    z-index: 100;
+}

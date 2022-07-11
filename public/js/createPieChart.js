@@ -32,7 +32,7 @@ function createPieChart(data, options = {}) {
   }
 
   // Create Tooltip
-  var tip = d3.tip();
+  const tip = d3.tip();
   tip
     .attr('class', 'd3-tip')
     .offset([-8, 0])
@@ -54,7 +54,7 @@ function createPieChart(data, options = {}) {
   var ordScale = d3
     .scaleOrdinal()
     .domain(data)
-    .range(['#ffd384', '#94ebcd', '#fbaccc', '#d3e0ea', '#fa7f72']);
+    .range(['#FFEC21', '#378AFF', '#FFA32F', '#F54F52', '#93F03B', '#9552EA']);
 
   // Step 5: Pie generator
   var pie = d3.pie().value(function (d) {
@@ -76,9 +76,15 @@ function createPieChart(data, options = {}) {
     .attr('fill', function (d) {
       return ordScale(d.data[options.labelKey || 'label']); //color
     })
-    .on('mouseover', tip.show)
-
-    .on('mouseout', tip.hide);
+    .on('mouseover.tooltip', tip.show)
+    .on('mouseover.stroke', function () {
+      tip.show;
+      d3.select(this).attr('stroke', 'black').attr('stroke-width', '3');
+    })
+    .on('mouseout.tooltip', tip.hide)
+    .on('mouseout.stroke', function () {
+      d3.select(this).attr('stroke-width', '0');
+    });
 
   // Step 7: add text labels to each slice
   var label = d3.arc().outerRadius(radius).innerRadius(0);
@@ -91,7 +97,7 @@ function createPieChart(data, options = {}) {
       var c = label.centroid(d),
         x = c[0],
         y = c[1],
-        labelr = radius * 1.05;
+        labelr = radius * 1.07;
       // pythagorean theorem for hypotenuse
       h = Math.sqrt(x * x + y * y);
       return 'translate(' + (x / h) * labelr + ',' + (y / h) * labelr + ')';

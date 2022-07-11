@@ -6,7 +6,7 @@ if (
   config.has('CAS.exposeStatsOutsideCas') &&
   config.get('CAS.exposeStatsOutsideCas')
 ) {
-  ignorePaths = [/\/stats/, /\/js/];
+  ignorePaths = [/\/stats/, /\/js/, /\/css/];
 }
 
 const casClient = new ConnectCas({
