@@ -15,17 +15,30 @@ function createPieChart(data, options = {}) {
     marginRight = parseInt(options.margin.right) || 0,
     marginX = marginLeft + marginRight,
     marginY = marginTop + marginBottom,
-    halfMarginX = marginX / 2,
+    // halfMarginX = marginX / 2,
     halfMarginY = marginY / 2,
     width = parseInt(svg.attr('width')),
     height = parseInt(svg.attr('height')),
     marginedWidth = width - marginX,
     marginedHeight = height - marginY,
     radius = Math.min(marginedWidth, marginedHeight) / 2,
-    offsetX = width + marginX,
-    offsetY = height + marginY,
+    // offsetX = width + marginX,
+    // offsetY = height + marginY,
     valueKey = options.valueKey || 'value';
 
+  if (Math.min(marginedWidth, marginedHeight) == marginedWidth) {
+    centerPositionX = marginLeft + radius;
+    centerPositionY = marginTop + marginedHeight / 2;
+  } else {
+    centerPositionX = marginLeft + marginedWidth / 2;
+    centerPositionY = marginTop + radius;
+  }
+
+  console.log('marginedHeight: ' + marginedHeight);
+  console.log('marginedWidth: ' + marginedWidth);
+  console.log('radius: ' + radius);
+  console.log('centerPositionX: ' + centerPositionX);
+  console.log('centerPositionY: ' + centerPositionY);
   // get sum of all values
   var sum = data
     .map(function (d) {
@@ -60,7 +73,11 @@ function createPieChart(data, options = {}) {
 
   var g = svg
     .append('g')
-    .attr('transform', 'translate(' + offsetX / 2 + ',' + offsetY / 2 + ')');
+    .attr(
+      'transform',
+      'translate(' + centerPositionX + ',' + centerPositionY + ')'
+    );
+  // .attr('transform', 'translate(' + offsetX / 2 + ',' + offsetY / 2 + ')');
 
   // Step 4: set scale (colors)
   var ordScale = d3
@@ -79,9 +96,10 @@ function createPieChart(data, options = {}) {
 
   var arc = g.selectAll('arc').data(pie(data)).enter();
 
-  // Step 6: add color fill to each slice
+  // set size of pie
   var path = d3.arc().outerRadius(radius).innerRadius(0);
 
+  // Step 6: add color fill to each slice
   arc
     .append('path')
     .attr('d', path)
@@ -125,7 +143,7 @@ function createPieChart(data, options = {}) {
   // Chart Title
   svg
     .append('text')
-    .attr('transform', 'translate(' + halfMarginY + ',0)') // margin/2
+    .attr('transform', 'translate(' + halfMarginY + ',0)')
     .attr('x', 50)
     .attr('y', 50)
     .attr('font-size', '24px')
