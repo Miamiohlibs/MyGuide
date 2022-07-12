@@ -1,6 +1,6 @@
 const Usage = require('../models/usageLog/Usage');
 const usage = new Usage();
-const dayjs = require('dayjs');
+const { getOpts, applyDataLimiters } = require('./dataAnalysisHelpers');
 
 reportUsage = function (data, increment, options = {}) {
   // options include:
@@ -8,40 +8,22 @@ reportUsage = function (data, increment, options = {}) {
   // * startDate: defaults to start of logs
   // * endDate: defaults to today
 
-  let firstDate = usage.getFirstDate(data); // do this before applying filters
-  let endDate = options.endDate || dayjs().format('YYYY-MM-DD');
-  let limitByUserType, startDate;
-
-  if (options.hasOwnProperty('population') && options.population != 'all') {
-    limitByUserType = options.population;
-  }
-
-  if (options.hasOwnProperty('startDate')) {
-    startDate = dayjs(options.startDate).format('YYYY-MM-DD');
-  }
-
-  // allow user defined startDate if it's greater than first available date
-  if ((startDate != undefined) & (dayjs(startDate) > dayjs(firstDate))) {
-    firstDate = startDate;
-  }
-
-  if (limitByUserType != undefined) {
-    data = usage.filterDataByUsertype(data, limitByUserType);
-  }
-  data = usage.filterByDataByDateRange(data, firstDate, endDate);
+  opts = getOpts(data, options);
+  data = applyDataLimiters(data, opts);
+  console.log(opts);
 
   let statsResults = usage.getStatsByTimePeriod(
     increment,
     data,
-    firstDate,
-    endDate
+    opts.firstDate,
+    opts.endDate
   );
 
   let json = {
-    startDate: firstDate,
-    endDate: endDate,
+    startDate: opts.firstDate,
+    endDate: opts.endDate,
     increment: increment,
-    population: limitByUserType,
+    population: opts.limitByUserType,
     totalUses: data.length,
     distinctUsers: usage.distinctUsers(data),
     details: statsResults,
