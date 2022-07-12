@@ -1,70 +1,54 @@
 const Usage = require('../models/usageLog/Usage');
 const usage = new Usage();
-const dayjs = require('dayjs');
+const { getOpts, applyDataLimiters } = require('./dataAnalysisHelpers');
 
 // const getData = require('./scripts/getUsageData');
 // data = getData();
 // data = usage.filterDataByUsertype(data, 'student');
 
-getRepeatUsers = function (data, options) {
-  /* this section duplicates reportUsage */
-  // options include:
+getRepeatUsers = function (data, userOptions) {
+  // userOptions include:
   // * population: student, faculty, staff; defaults to all
   // * startDate: defaults to start of logs
   // * endDate: defaults to today
   // * breakpoint: all items with labels greater than this value will be grouped together; default false
 
-  let firstDate = options.startDate || usage.getFirstDate(data); // do this before applying filters
-  let endDate = options.endDate || dayjs().format('YYYY-MM-DD');
-  let breakpoint = options.breakpoint || false;
-  let population = options.population || 'all';
-  let limitByUserType, startDate;
+  userOpts = getOpts(data, userOptions);
+  data = applyDataLimiters(data, userOpts);
 
-  if (population != 'all') {
-    limitByUserType = options.population;
-  }
-
-  if (options.hasOwnProperty('startDate')) {
-    startDate = dayjs(options.startDate).format('YYYY-MM-DD');
-  }
-
-  // allow user defined startDate if it's greater than first available date
-  if ((startDate != undefined) & (dayjs(startDate) > dayjs(firstDate))) {
-    firstDate = startDate;
-  }
-
-  if (limitByUserType != undefined) {
-    data = usage.filterDataByUsertype(data, limitByUserType);
-  }
-  data = usage.filterByDataByDateRange(data, firstDate, endDate);
-  /* end duplicate section */
-
-  let opts = {
+  // how many times did each user log in
+  let countUserOpts = {
     truncateKeyTo: 10, // truncate user hash to this many characters
     fieldsToRetain: ['primaryAffiliation'],
     countLabel: 'timesUsed',
   };
-
-  // how many times did each user log in
-  let counts = usage.countEntriesByProperty(data, 'user', opts);
+  let counts = usage.countEntriesByProperty(data, 'user', countUserOpts);
 
   // how many users had the same number of uses
-  opts = { countLabel: 'users' };
-
-  let rawSummary = usage.countEntriesByProperty(counts, 'timesUsed', opts);
+  let countTimesUsedOpts = { countLabel: 'users' };
+  let rawSummary = usage.countEntriesByProperty(
+    counts,
+    'timesUsed',
+    countTimesUsedOpts
+  );
   let summary;
 
-  if (breakpoint == false || breakpoint == 'false') {
+  if (userOpts.breakpoint == false || userOpts.breakpoint == 'false') {
     summary = rawSummary;
   } else {
     summary = CondenseUserData(rawSummary, {
       valueKey: 'users',
       labelKey: 'timesUsed',
-      breakpoint: breakpoint,
+      breakpoint: userOpts.breakpoint,
     });
   } // end if breakpoint
   return {
-    options: { population, startDate, endDate, breakpoint },
+    options: {
+      population: userOpts.population,
+      startDate: userOpts.startDate,
+      endDate: userOpts.endDate,
+      breakpoint: userOpts.breakpoint,
+    },
     repeatUserData: summary,
   };
 };
