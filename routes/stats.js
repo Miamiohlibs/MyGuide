@@ -30,6 +30,14 @@ router.get('/usageData', (req, res) => {
   res.end(JSON.stringify(stats));
 });
 
+router.get('/subjectData', (req, res) => {
+  data = getUsageData();
+  let getSubjectStats = require('../helpers/getSubjectStats');
+  let stats = getSubjectStats(data, req.query);
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify({ stats }));
+});
+
 router.get('/repeatData', async (req, res) => {
   data = getUsageData();
   let repeatUsers = require('../helpers/getRepeatUsers');
