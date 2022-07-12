@@ -107,7 +107,7 @@
                 console.log('doChart with', dataOptions)
                 doChart(dataOptions);
             }
-        // doChart();
+
         function doChart(o) {
                 $('svg').empty();
                 $('#data-link').html('<a href="/stats/repeatData?'+$.param(o)+'">Link to Raw Data</a>');
@@ -125,6 +125,10 @@
                     valueKey: 'users', // this is the data[valueLabel] property with data in it
                     labelKey: 'timesUsed', // this is the data[labelLabel] property with labelUses in it
                     chartTitle: 'MyGuide Users by Number of Repeat Uses',
+                    titleFontSize: '24px',
+                    labelFontSize: '15px',
+                    titlePositionX: 100,
+                    titlePositionY: 50,
                     sortSlicesBySize: false
                 }
 

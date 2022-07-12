@@ -9,6 +9,10 @@ function createPieChart(data, options = {}) {
   canvasSelector = options.canvasSelector || 'svg';
   var svg = d3.select(canvasSelector),
     chartTitle = options.chartTitle || '',
+    titleFontSize = options.titleFontSize || '24px',
+    labelFontSize = options.labelFontSize || '15px',
+    titlePositionX = options.titlePositionX || '50',
+    titlePositionY = options.titlePositionY || '50',
     marginTop = parseInt(options.margin.top) || 0,
     marginBottom = parseInt(options.margin.bottom) || 0,
     marginLeft = parseInt(options.margin.left) || 0,
@@ -34,12 +38,7 @@ function createPieChart(data, options = {}) {
     centerPositionY = marginTop + radius;
   }
 
-  console.log('marginedHeight: ' + marginedHeight);
-  console.log('marginedWidth: ' + marginedWidth);
-  console.log('radius: ' + radius);
-  console.log('centerPositionX: ' + centerPositionX);
-  console.log('centerPositionY: ' + centerPositionY);
-  // get sum of all values
+  // get sum of all values for percentages
   var sum = data
     .map(function (d) {
       return d[valueKey];
@@ -137,15 +136,15 @@ function createPieChart(data, options = {}) {
       return d.data[options.labelKey || 'label'];
     })
     .style('font-family', 'arial')
-    .style('font-size', 15)
+    .style('font-size', labelFontSize)
     .style('z-index', '100');
 
   // Chart Title
   svg
     .append('text')
-    .attr('transform', 'translate(' + halfMarginY + ',0)')
-    .attr('x', 50)
-    .attr('y', 50)
-    .attr('font-size', '24px')
+    //.attr('transform', 'translate(' + halfMarginY + ',0)')
+    .attr('x', titlePositionX)
+    .attr('y', titlePositionY)
+    .attr('font-size', titleFontSize)
     .text(chartTitle);
 }
