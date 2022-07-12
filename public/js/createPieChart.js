@@ -9,24 +9,36 @@ function createPieChart(data, options = {}) {
   canvasSelector = options.canvasSelector || 'svg';
   var svg = d3.select(canvasSelector),
     chartTitle = options.chartTitle || '',
+    titleFontSize = options.titleFontSize || '24px',
+    labelFontSize = options.labelFontSize || '15px',
+    titlePositionX = options.titlePositionX || '50',
+    titlePositionY = options.titlePositionY || '50',
     marginTop = parseInt(options.margin.top) || 0,
     marginBottom = parseInt(options.margin.bottom) || 0,
     marginLeft = parseInt(options.margin.left) || 0,
     marginRight = parseInt(options.margin.right) || 0,
     marginX = marginLeft + marginRight,
     marginY = marginTop + marginBottom,
-    halfMarginX = marginX / 2,
+    // halfMarginX = marginX / 2,
     halfMarginY = marginY / 2,
     width = parseInt(svg.attr('width')),
     height = parseInt(svg.attr('height')),
     marginedWidth = width - marginX,
     marginedHeight = height - marginY,
     radius = Math.min(marginedWidth, marginedHeight) / 2,
-    offsetX = width + marginX,
-    offsetY = height + marginY,
+    // offsetX = width + marginX,
+    // offsetY = height + marginY,
     valueKey = options.valueKey || 'value';
 
-  // get sum of all values
+  if (Math.min(marginedWidth, marginedHeight) == marginedWidth) {
+    centerPositionX = marginLeft + radius;
+    centerPositionY = marginTop + marginedHeight / 2;
+  } else {
+    centerPositionX = marginLeft + marginedWidth / 2;
+    centerPositionY = marginTop + radius;
+  }
+
+  // get sum of all values for percentages
   var sum = data
     .map(function (d) {
       return d[valueKey];
@@ -60,7 +72,11 @@ function createPieChart(data, options = {}) {
 
   var g = svg
     .append('g')
-    .attr('transform', 'translate(' + offsetX / 2 + ',' + offsetY / 2 + ')');
+    .attr(
+      'transform',
+      'translate(' + centerPositionX + ',' + centerPositionY + ')'
+    );
+  // .attr('transform', 'translate(' + offsetX / 2 + ',' + offsetY / 2 + ')');
 
   // Step 4: set scale (colors)
   var ordScale = d3
@@ -79,9 +95,10 @@ function createPieChart(data, options = {}) {
 
   var arc = g.selectAll('arc').data(pie(data)).enter();
 
-  // Step 6: add color fill to each slice
+  // set size of pie
   var path = d3.arc().outerRadius(radius).innerRadius(0);
 
+  // Step 6: add color fill to each slice
   arc
     .append('path')
     .attr('d', path)
@@ -119,15 +136,15 @@ function createPieChart(data, options = {}) {
       return d.data[options.labelKey || 'label'];
     })
     .style('font-family', 'arial')
-    .style('font-size', 15)
+    .style('font-size', labelFontSize)
     .style('z-index', '100');
 
   // Chart Title
   svg
     .append('text')
-    .attr('transform', 'translate(' + halfMarginY + ',0)') // margin/2
-    .attr('x', 50)
-    .attr('y', 50)
-    .attr('font-size', '24px')
+    //.attr('transform', 'translate(' + halfMarginY + ',0)')
+    .attr('x', titlePositionX)
+    .attr('y', titlePositionY)
+    .attr('font-size', titleFontSize)
     .text(chartTitle);
 }
