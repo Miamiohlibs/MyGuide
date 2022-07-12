@@ -23,7 +23,18 @@ function createPieChart(data, options = {}) {
     marginedHeight = height - marginY,
     radius = Math.min(marginedWidth, marginedHeight) / 2,
     offsetX = width + marginX,
-    offsetY = height + marginY;
+    offsetY = height + marginY,
+    valueKey = options.valueKey || 'value';
+
+  // get sum of all values
+  var sum = data
+    .map(function (d) {
+      return d[valueKey];
+    })
+    .reduce(function (a, b) {
+      return a + b;
+    }, 0);
+  console.log(sum);
 
   if (options.hasOwnProperty('sortSlicesBySize')) {
     sortSlicesBySize = options.sortSlicesBySize;
@@ -42,6 +53,7 @@ function createPieChart(data, options = {}) {
       for (const [key, value] of Object.entries(d.data)) {
         str += key + ': ' + value + '<br>';
       }
+      str += 'Percentage: ' + ((d.data[valueKey] / sum) * 100).toFixed(1) + '%';
       return str;
     });
   svg.call(tip);
