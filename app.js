@@ -26,6 +26,7 @@ app.use(
     }),
     resave: false,
     secret: salt,
+    saveUninitialized: true,
   })
 );
 
@@ -37,9 +38,13 @@ if (global.onServer === true) {
   if (config.get('app.authType') == 'CAS') {
     app.use(
       session({
+        cookie: { maxAge: 86400000 },
         name: config.get('CAS.sessionName'),
         secret: config.get('CAS.secret'),
         store: new MemoryStore({ checkPeriod: 86400000 }), // or other session store
+        resave: false,
+        secret: salt,
+        saveUninitialized: true,
       })
     );
     const casClient = require('./middleware/cas-client');
