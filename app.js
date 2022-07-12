@@ -26,6 +26,7 @@ app.use(
     }),
     resave: false,
     secret: salt,
+    saveUninitialized: true,
   })
 );
 
