@@ -30,7 +30,8 @@ getSubjectStats = function (data, userOptions) {
       subjectCounts[el] = 1;
     }
   });
-  return subjectCounts;
+
+  return { options: userOpts, subjectCounts };
 };
 
 getSubjField = function (subjectType) {
