@@ -74,6 +74,8 @@ function createHorizontalBarChart(data, options) {
     .selectAll('.bar')
     .data(data)
     .enter()
+    .append('g')
+    .attr('class', 'bar-group')
     .append('rect')
     .attr('class', 'bar')
     //.attr("x", function(d) { return x(d[yValueProp]); })
@@ -90,16 +92,16 @@ function createHorizontalBarChart(data, options) {
   // append value to each bar
   // this isn't working
   bars = svg
-    .selectAll('.bar')
+    .selectAll('.bar-group')
     .append('text')
-    .attr('class', 'value')
+    .attr('class', 'label')
     .attr('x', function (d) {
-      return x(d[yValueProp]) + 3;
+      return x(d[yValueProp]) + 10;
     })
     .attr('y', function (d) {
       return y(d[xValueProp]) + y.bandwidth() / 2;
     })
-    // .attr('color', 'black')
+    .style('color', '#000')
     .text(function (d) {
       return d[yValueProp];
     });
