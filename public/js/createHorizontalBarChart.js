@@ -25,9 +25,8 @@ function createHorizontalBarChart(data, options) {
   // append the svg object to the body of the page
   // append a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
-  var svg = d3
-    .select('svg')
-    .attr('height', chartHeight)
+  var svg = d3.select('svg').attr('height', chartHeight);
+  var g = svg
     .append('g')
     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
@@ -71,7 +70,7 @@ function createHorizontalBarChart(data, options) {
   svg.call(tip);
 
   // Chart Title
-  d3.select('svg')
+  svg
     .append('text')
     .attr('transform', 'translate(' + margin.left + ',0)') // margin/2
     .attr('x', 50)
@@ -80,8 +79,7 @@ function createHorizontalBarChart(data, options) {
     .text(chartTitle);
 
   // append the rectangles for the bar chart
-  svg
-    .selectAll('.bar')
+  g.selectAll('.bar')
     .data(data)
     .enter()
     .append('g')
@@ -101,7 +99,7 @@ function createHorizontalBarChart(data, options) {
 
   // append value to each bar
   // this isn't working
-  bars = svg
+  bars = g
     .selectAll('.bar-group')
     .append('text')
     .attr('class', 'label')
@@ -117,12 +115,11 @@ function createHorizontalBarChart(data, options) {
     });
 
   // add the x Axis
-  svg.call(d3.axisTop(x));
-  svg
-    .append('g')
+  g.call(d3.axisTop(x));
+  g.append('g')
     .attr('transform', 'translate(0,' + height + ')')
     .call(d3.axisBottom(x));
 
   // add the y Axis
-  svg.append('g').call(d3.axisLeft(y));
+  g.append('g').call(d3.axisLeft(y));
 }
