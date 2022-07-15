@@ -10,6 +10,12 @@
     <% repeatActive = 'active'; %>
     <% repeatAriaCurrent = 'aria-current="page"'  %>
 <% } %>
+
+<% let subjectActive = ''; subjectAriaCurrent = ''; %>
+<% if (page == 'subjects') {  %>
+    <% subjectActive = 'active'; %>
+    <% subjectAriaCurrent = 'aria-current="page"'  %>
+<% } %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">MyGuide Usage</a>
@@ -20,6 +26,7 @@
         <div class="navbar-nav">
           <a class="nav-link <%- graphActive %>" <%- graphAriaCurrent %> href="/stats/usage">Stats Graph</a>
           <a class="nav-link <%- repeatActive %>" <%- repeatAriaCurrent %> href="/stats/repeatUsers">Repeat Users</a>
+          <a class="nav-link <%- subjectActive %>" <%- subjectAriaCurrent %> href="/stats/subjects">Subject Analysis</a>
         </div>
       </div>
     </div>

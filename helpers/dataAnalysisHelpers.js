@@ -8,6 +8,7 @@ getOpts = function (data, userOptions) {
   opts.endDate = userOptions.endDate || dayjs().format('YYYY-MM-DD');
   opts.breakpoint = userOptions.breakpoint || false;
   opts.population = userOptions.population || 'all';
+  opts.subjectType = userOptions.subjectType || 'all';
 
   if (opts.population != 'all') {
     opts.limitByUserType = userOptions.population;
@@ -15,6 +16,10 @@ getOpts = function (data, userOptions) {
 
   if (userOptions.hasOwnProperty('startDate')) {
     opts.startDate = dayjs(userOptions.startDate).format('YYYY-MM-DD');
+  }
+
+  if (opts.subjectType != 'all') {
+    opts.subjectType = opts.subjectType;
   }
 
   // allow user defined startDate if it's greater than first available date
