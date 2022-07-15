@@ -29,6 +29,13 @@
             <li class="btn btn-primary" data-population="staff">Staff</li>
         </ul>
 
+        <ul id="subjectType-selector" class="btn-group col-lg-6">
+            <li CLASS="btn disabled">Subject Type:</li>
+            <li class="btn btn-primary active" data-subjecttype="all">All Subjects</li>
+            <li class="btn btn-primary " data-subjecttype="major">Major</li>
+            <li class="btn btn-primary" data-subjecttype="course">Course</li>
+            <li class="btn btn-primary" data-subjecttype="department">Department</li>
+        </ul>
         <div class="col-lg-4">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -80,11 +87,15 @@
 
             function updateChart() {
                 let activePopBtn = $('#population-selector li.active');
-                let population = activePopBtn.data('population')
+                let population = activePopBtn.data('population');
+
+                let activeSubjBtn = $('#subjectType-selector li.active');
+                let subjectType = activeSubjBtn.data('subjecttype');
 
                 let startDate=$('#startDate').val() || '2019-08-15';
                 let endDate=$('#endDate').val() || today;
-                doChart({population, startDate, endDate});
+
+                doChart({population, subjectType, startDate, endDate});
             }
 
 
