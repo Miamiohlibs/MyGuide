@@ -1,31 +1,35 @@
 function createHorizontalBarChart(data, options) {
+  // height and width are the size of the svg element
+  // chartWidth and chartHeight are the size of the chart inside the svg element
+
   // reverse sort data by count
   data = data.sort((a, b) => {
     return a.count - b.count;
   });
 
+  console.log(data.length);
   // options:
-  bandWidth = options.bandWidth || 20;
+  margin = options.margin || { top: 0, right: 0, bottom: 0, left: 100 };
+  rowHeight = options.rowHeight || 20;
   xValueProp = options.xValueProp;
   yValueProp = options.yValueProp;
-  chartHeight = data.length * bandWidth;
-  chartWidth = options.width;
+  chartHeight = data.length * rowHeight; // - margin.top - margin.bottom;
+  width = options.width || 1000;
   chartTitle = options.chartTitle || '';
-  margin = options.margin || { top: 0, right: 0, bottom: 0, left: 100 };
 
   // set the dimensions and margins of the graph
-  var width = chartWidth - margin.left - margin.right,
-    height = chartHeight - margin.top - margin.bottom;
+  var chartWidth = width - margin.left - margin.right,
+    height = chartHeight + margin.top + margin.bottom;
 
   // set the ranges
-  var y = d3.scaleBand().range([height, 0]).padding(0.1);
+  var y = d3.scaleBand().range([chartHeight, 0]).padding(0.1);
 
-  var x = d3.scaleLinear().range([0, width]);
+  var x = d3.scaleLinear().range([0, chartWidth]);
 
   // append the svg object to the body of the page
   // append a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
-  var svg = d3.select('svg').attr('height', chartHeight);
+  var svg = d3.select('svg').attr('height', height);
   var g = svg
     .append('g')
     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
