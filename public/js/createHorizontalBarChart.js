@@ -49,6 +49,26 @@ function createHorizontalBarChart(data, options) {
   );
   //y.domain([0, d3.max(data, function(d) { return d[yValueProp]; })]);
 
+  // Create Tooltip
+  // code modified from: http://bl.ocks.org/davegotz/bd54b56723c154d25eedde6504d30ad7
+  var tip = d3.tip();
+  tip
+    .attr('class', 'd3-tip')
+    .offset([-8, 0])
+    .html(function (d) {
+      return (
+        xValueProp +
+        ': <b>' +
+        d[xValueProp] +
+        '</b><br /> ' +
+        yValueProp +
+        ': <b>' +
+        d[yValueProp] +
+        '</b>'
+      );
+    });
+  svg.call(tip);
+
   // append the rectangles for the bar chart
   svg
     .selectAll('.bar')
@@ -63,7 +83,26 @@ function createHorizontalBarChart(data, options) {
     .attr('y', function (d) {
       return y(d[xValueProp]);
     })
-    .attr('height', y.bandwidth());
+    .attr('height', y.bandwidth())
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
+
+  // append value to each bar
+  // this isn't working
+  bars = svg
+    .selectAll('.bar')
+    .append('text')
+    .attr('class', 'value')
+    .attr('x', function (d) {
+      return x(d[yValueProp]) + 3;
+    })
+    .attr('y', function (d) {
+      return y(d[xValueProp]) + y.bandwidth() / 2;
+    })
+    // .attr('color', 'black')
+    .text(function (d) {
+      return d[yValueProp];
+    });
 
   // add the x Axis
   svg.call(d3.axisTop(x));
