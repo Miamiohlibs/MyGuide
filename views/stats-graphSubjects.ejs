@@ -111,14 +111,14 @@
                 //     'periodDistinctUsers': 'Distinct Users'
                 // }
                 let options = {
-                    margin: 200,  
+                    // margin: 200,  
                     width: 1000,   // width of the chart
                     xValueProp: 'subject', 
                     // xAxisLabel: 'Date',
                     yValueProp: 'count', 
                     // yAxisLabel: 'Number of Uses',
-                    margin: {top: 50, right: 50, bottom: 50, left: 250},
-                    // chartTitle: 'MyGuide Page Loads by Subject for '+o.population+' from '+o.startDate+' to '+o.endDate,
+                    margin: {top: 100, right: 50, bottom: 50, left: 250},
+                    chartTitle: 'Uses by Users with Subject for '+o.population+' from '+o.startDate+' to '+o.endDate,
                 }
                 // console.log('create bar chart from', data.stats.subjectCounts, options)
                 createHorizontalBarChart(data.stats.subjectCounts, options);

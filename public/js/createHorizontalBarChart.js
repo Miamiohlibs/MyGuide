@@ -10,6 +10,7 @@ function createHorizontalBarChart(data, options) {
   yValueProp = options.yValueProp;
   chartHeight = data.length * bandWidth;
   chartWidth = options.width;
+  chartTitle = options.chartTitle || '';
   margin = options.margin || { top: 0, right: 0, bottom: 0, left: 100 };
 
   // set the dimensions and margins of the graph
@@ -68,6 +69,15 @@ function createHorizontalBarChart(data, options) {
       );
     });
   svg.call(tip);
+
+  // Chart Title
+  d3.select('svg')
+    .append('text')
+    .attr('transform', 'translate(' + margin.left + ',0)') // margin/2
+    .attr('x', 50)
+    .attr('y', 50)
+    .attr('font-size', '24px')
+    .text(chartTitle);
 
   // append the rectangles for the bar chart
   svg
