@@ -38,7 +38,7 @@ router.get('/subjectData', (req, res) => {
   res.end(JSON.stringify({ stats }));
 });
 
-router.get('/subjectGraph', (req, res) => {
+router.get('/subjects', (req, res) => {
   res.render('stats-graphSubjects', { page: 'subjectGraph' });
 });
 
