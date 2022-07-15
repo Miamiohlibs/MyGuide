@@ -75,26 +75,4 @@ router.get('/repeatData', async (req, res) => {
   );
 });
 
-router.get('/stats', async (req, res) => {
-  data = getUsageData();
-  let usageReport = require('../helpers/reportUsage');
-  let dayStats = usageReport(data, 'day', { startDate: '2021-09-02' });
-  let monthStats = usageReport(data, 'month', { startDate: '2021-09-02' });
-  let monthStuStats = usageReport(data, 'month', {
-    startDate: '2021-09-02',
-    population: 'student',
-  });
-  let dayStuStats = usageReport(data, 'day', {
-    startDate: '2021-09-02',
-    population: 'student',
-  });
-  res.render('stats-data', {
-    monthStats: JSON.stringify(monthStats.details),
-    dayStats: JSON.stringify(dayStats.details, null, 2),
-    monthStuStats: JSON.stringify(monthStuStats.details),
-    dayStuStats: JSON.stringify(dayStuStats.details, null, 2),
-    fs: fs,
-  });
-});
-
 module.exports = router;
