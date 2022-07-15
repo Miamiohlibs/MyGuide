@@ -11,24 +11,9 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="/js/d3-v4-tip.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bumbeishvili/d3-tip-for-v6@4/d3-tip.min.css">
-    <script src="/js/createBarChart.js"></script>
-    <style>
-        .bar { fill: steelblue}
-        .btn.disabled {     
-            background-color: #e9ecef;
-            border: 1px solid #ced4da;
-            color: #000 !important;  
-        } 
-        .d3-tip {
-            line-height: 1;
-            font-weight: bold;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            border-radius: 2px;
-        }
-        #data-link { margin-bottom: 1em;}
-    </style>
+    <script src="/js/createDateBarChart.js"></script>
+    <link rel="stylesheet" href="/css/stats.css">
+    
 </head>
 
 <%- include('./partials/stats-nav.ejs', { page: page } ) %>
@@ -141,7 +126,7 @@
                     yAxisLabel: levelLabels[o.dataLevel],
                     chartTitle: 'MyGuide Usage by ' + data.increment + ': ' + data.startDate + ' - ' + data.endDate
                 }
-                createBarChart(data.details, options);
+                createDateBarChart(data.details, options);
                 $('#rawData').html('<pre>' + JSON.stringify(data,null,2) + '</pre>')
                 });
             }
