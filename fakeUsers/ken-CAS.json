@@ -1,0 +1,91 @@
+{
+    "user": "irwinkr",
+    "attributes": {
+        "eduPersonAffiliation": [
+            "staff"
+        ],
+        "authnContextClass": [
+            "mfa-duo"
+        ],
+        "displayName": [
+            "Mr. Ken Irwin"
+        ],
+        "muohioeduAffiliationCode": [
+            "sta"
+        ],
+        "muohioeduPrimaryAffiliation": [
+            "staff"
+        ],
+        "uid": [
+            "irwinkr"
+        ],
+        "eduPersonPrimaryAffiliation": [
+            "staff"
+        ],
+        "muohioeduEmployeeType": [
+            "Unclassified Staff"
+        ],
+        "muohioeduPrimaryLocationCode": [
+            "oxf"
+        ],
+        "eduPersonPrincipalName": [
+            "irwinkr@miamioh.edu"
+        ],
+        "muohioeduDivisionCode": [
+            "ulb"
+        ],
+        "longTermAuthenticationRequestTokenUsed": [
+            "false"
+        ],
+        "isFromNewLogin": [
+            "false"
+        ],
+        "bypassMultifactorAuthentication": [
+            "false"
+        ],
+        "authenticationDate": [
+            "2022-07-15T12:47:50.056332Z"
+        ],
+        "givenName": [
+            "Ken"
+        ],
+        "muohioeduDepartment": [
+            "Library"
+        ],
+        "muohioeduEmployeeTypeCode": [
+            "unc"
+        ],
+        "successfulAuthenticationHandlers": [
+            "LdapAuthenticationHandler",
+            "mfa-duo"
+        ],
+        "samlAuthenticationStatementAuthMethod": [
+            "urn:oasis:names:tc:SAML:1.0:am:password",
+            "urn:oasis:names:tc:SAML:1.0:am:unspecified"
+        ],
+        "credentialType": [
+            "DuoSecurityCredential",
+            "UsernamePasswordCredential"
+        ],
+        "muohioeduAffiliation": [
+            "Staff"
+        ],
+        "muohioeduDivision": [
+            "University Libraries"
+        ],
+        "muohioeduPrimaryLocation": [
+            "Oxford"
+        ],
+        "authenticationMethod": [
+            "LdapAuthenticationHandler",
+            "mfa-duo"
+        ],
+        "muohioeduDepartmentCode": [
+            "ulb"
+        ],
+        "muohioeduPrimaryAffiliationCode": [
+            "sta"
+        ]
+    },
+    "pt": "ST-219139-TDnwqtBVVxxp9-NClz4oGbIIkoU-mualcasp26"
+}

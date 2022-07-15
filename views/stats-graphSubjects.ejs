@@ -121,9 +121,9 @@
                     chartTitle: 'Uses by Users with Subject for '+o.population+' from '+o.startDate+' to '+o.endDate,
                 }
                 // console.log('create bar chart from', data.stats.subjectCounts, options)
-                // createHorizontalBarChart(data.stats.subjectCounts, options);
+                createHorizontalBarChart(data.stats.subjectCounts, options);
                 
-                createHorizontalBarChart(testdata, options);
+                // createHorizontalBarChart(testdata, options);
                 
                 $('#rawData').html('<pre>' + JSON.stringify(data,null,2) + '</pre>')
                 });
