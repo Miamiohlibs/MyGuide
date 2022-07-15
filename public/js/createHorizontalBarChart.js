@@ -1,13 +1,18 @@
 function createHorizontalBarChart(data, options) {
+  // reverse sort data by count
+  data = data.sort((a, b) => {
+    return a.count - b.count;
+  });
+
   // options:
+  bandWidth = options.bandWidth || 20;
   xValueProp = options.xValueProp;
   yValueProp = options.yValueProp;
-  chartHeight = options.height;
+  chartHeight = data.length * bandWidth;
   chartWidth = options.width;
-  margin = options.margin;
+  margin = options.margin || { top: 0, right: 0, bottom: 0, left: 100 };
 
   // set the dimensions and margins of the graph
-  //   var margin = { top: 20, right: 20, bottom: 30, left: 40 },
   var width = chartWidth - margin.left - margin.right,
     height = chartHeight - margin.top - margin.bottom;
 
@@ -21,6 +26,7 @@ function createHorizontalBarChart(data, options) {
   // moves the 'group' element to the top left margin
   var svg = d3
     .select('svg')
+    .attr('height', chartHeight)
     .append('g')
     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
