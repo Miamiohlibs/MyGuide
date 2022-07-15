@@ -19,8 +19,8 @@ const logUser = function (u) {
   if (u.person.majorNames) {
     data.majors = u.person.majorNames;
   }
-  if (u.person.departmentNames) {
-    data.departments = u.person.departmentNames;
+  if (u.person.departmentName) {
+    data.departments = u.person.departmentName;
   }
   if (u.person.divisionName) {
     data.divisions = u.person.divisionName;
