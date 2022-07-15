@@ -66,6 +66,7 @@ function createHorizontalBarChart(data, options) {
     .attr('height', y.bandwidth());
 
   // add the x Axis
+  svg.call(d3.axisTop(x));
   svg
     .append('g')
     .attr('transform', 'translate(0,' + height + ')')
