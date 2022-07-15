@@ -31,7 +31,19 @@ getSubjectStats = function (data, userOptions) {
     }
   });
 
-  return { options: userOpts, subjectCounts };
+  subjectCountsArray = [];
+  for (let subject in subjectCounts) {
+    subjectCountsArray.push({
+      subject: subject,
+      count: subjectCounts[subject],
+    });
+  }
+  // sort subjectCountsArray by count
+  subjectCountsArray.sort((a, b) => {
+    return b.count - a.count;
+  });
+
+  return { options: userOpts, subjectCounts: subjectCountsArray };
 };
 
 getSubjField = function (subjectType) {
