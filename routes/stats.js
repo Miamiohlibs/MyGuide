@@ -38,6 +38,10 @@ router.get('/subjectData', (req, res) => {
   res.end(JSON.stringify({ stats }));
 });
 
+router.get('/subjectGraph', (req, res) => {
+  res.render('stats-graphSubjects', { page: 'subjectGraph' });
+});
+
 router.get('/repeatData', async (req, res) => {
   data = getUsageData();
   let repeatUsers = require('../helpers/getRepeatUsers');
