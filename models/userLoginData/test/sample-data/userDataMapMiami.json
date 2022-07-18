@@ -27,11 +27,11 @@
         "field": "attributes.muohioeduDivision",
         "fieldType": "array"
     },
-    "departmentNames": {
+    "departmentName": {
         "field": "attributes.muohioeduDepartment",
         "fieldType": "array"
     },
-    "departmentCodes": {
+    "departmentCode": {
         "field": "attributes.muohioeduDepartmentCode",
         "fieldType": "array"
     },

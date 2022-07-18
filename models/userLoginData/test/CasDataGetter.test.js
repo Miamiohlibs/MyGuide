@@ -96,16 +96,16 @@ describe('CasDataGetter: getUserData (setup)', () => {
       expect(obj.attr.coursesTaught.length).toBe(3);
       expect(obj.attr.coursesTaught[0]).toBe('ENG111');
     });
-    it('should get departmentCodes of ["epd"]', () => {
+    it('should get departmentCode of ["epd"]', () => {
       expect(obj).toHaveProperty('attr');
-      expect(obj.attr).toHaveProperty('departmentCodes');
-      expect(Array.isArray(obj.attr.departmentCodes)).toBe(true);
-      expect(obj.attr.departmentCodes.length).toBe(1);
-      expect(obj.attr.departmentCodes[0]).toBe('edp');
-      expect(obj.attr).toHaveProperty('departmentNames');
-      expect(Array.isArray(obj.attr.departmentNames)).toBe(true);
-      expect(obj.attr.departmentNames.length).toBe(1);
-      expect(obj.attr.departmentNames[0]).toBe('Educational Psychology');
+      expect(obj.attr).toHaveProperty('departmentCode');
+      expect(Array.isArray(obj.attr.departmentCode)).toBe(true);
+      expect(obj.attr.departmentCode.length).toBe(1);
+      expect(obj.attr.departmentCode[0]).toBe('edp');
+      expect(obj.attr).toHaveProperty('departmentName');
+      expect(Array.isArray(obj.attr.departmentName)).toBe(true);
+      expect(obj.attr.departmentName.length).toBe(1);
+      expect(obj.attr.departmentName[0]).toBe('Educational Psychology');
     });
   });
 });

@@ -107,7 +107,7 @@
                 console.log('doChart with', dataOptions)
                 doChart(dataOptions);
             }
-        // doChart();
+
         function doChart(o) {
                 $('svg').empty();
                 $('#data-link').html('<a href="/stats/repeatData?'+$.param(o)+'">Link to Raw Data</a>');
@@ -121,27 +121,16 @@
                 //     'periodDistinctUsers': 'Distinct Users'
                 // }
                 let options = {
-                    margin: {top: 100, right: 0, bottom: 0, left: 0},
-                    // xValueProp: 'period', // this is the data[xValueLabel] property with data in it
-                    // xAxisLabel: 'Date',
-                    // yValueProp: o.dataLevel,
-                    // yAxisLabel: levelLabels[o.dataLevel],
+                    margin: {top: 100, right: 0, bottom: 20, left: 0},
                     valueKey: 'users', // this is the data[valueLabel] property with data in it
                     labelKey: 'timesUsed', // this is the data[labelLabel] property with labelUses in it
                     chartTitle: 'MyGuide Users by Number of Repeat Uses',
+                    titleFontSize: '24px',
+                    labelFontSize: '15px',
+                    titlePositionX: 100,
+                    titlePositionY: 50,
                     sortSlicesBySize: false
                 }
-
-                // // get sum of users from data
-                // const sum = data.reduce((accumulator, obj) => {
-                //     return accumulator + obj.users;
-                // }, 0);
-
-                // // add label with more info
-                // data.forEach(obj => {
-                //     obj.percent = obj.users / sum * 100;
-                //     obj.label = `${obj.timesUsed} uses: ${obj.users}`;
-                // });
 
                 createPieChart(data, options);
                 $('#rawData').html('<pre>' + JSON.stringify(fullData,null,2) + '</pre>')

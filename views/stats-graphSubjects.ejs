@@ -11,9 +11,8 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="/js/d3-v4-tip.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bumbeishvili/d3-tip-for-v6@4/d3-tip.min.css">
-    <script src="/js/createDateBarChart.js"></script>
+    <script src="/js/createHorizontalBarChart.js"></script>
     <link rel="stylesheet" href="/css/stats.css">
-    
 </head>
 
 <%- include('./partials/stats-nav.ejs', { page: page } ) %>
@@ -30,17 +29,12 @@
             <li class="btn btn-primary" data-population="staff">Staff</li>
         </ul>
 
-        <ul id="increment-selector" class="btn-group col-lg-6">
-            <li class="btn disabled">Time Frame:</li>
-            <li class="btn btn-primary active" data-increment="day">Daily</li>
-            <li class="btn btn-primary " data-increment="month">Monthly</li>
-            <li class="btn btn-primary" data-increment="year">Yearly</li>
-        </ul>
-
-        <ul id="dataLevel-selector" class="btn-group col-lg-4">
-            <li CLASS="btn disabled">Data Level:</li>
-            <li class="btn btn-primary active" data-level="periodUses">Total Uses</li>
-            <li class="btn btn-primary " data-level="periodDistinctUsers">Distinct Users</li>
+        <ul id="subjectType-selector" class="btn-group col-lg-6">
+            <li CLASS="btn disabled">Subject Type:</li>
+            <li class="btn btn-primary active" data-subjecttype="all">All Subjects</li>
+            <li class="btn btn-primary " data-subjecttype="major">Major</li>
+            <li class="btn btn-primary" data-subjecttype="course">Course</li>
+            <li class="btn btn-primary" data-subjecttype="department">Department</li>
         </ul>
         <div class="col-lg-4">
             <div class="input-group">
@@ -64,7 +58,7 @@
       </div>
     </div>
     </div>
-    <svg height="500" width="1000"></svg>
+    <svg width="1000"></svg>
     <div id="data-link"></div>
     <div id="rawData"></div>
     <script>
@@ -92,40 +86,40 @@
             });
 
             function updateChart() {
-                let activeIncrBtn = $('#increment-selector li.active');
-                let increment = activeIncrBtn.data('increment');
-
                 let activePopBtn = $('#population-selector li.active');
-                let population = activePopBtn.data('population')
+                let population = activePopBtn.data('population');
 
-                let activeLevelBtn = $('#dataLevel-selector li.active');
-                let dataLevel = activeLevelBtn.data('level');
+                let activeSubjBtn = $('#subjectType-selector li.active');
+                let subjectType = activeSubjBtn.data('subjecttype');
 
                 let startDate=$('#startDate').val() || '2019-08-15';
                 let endDate=$('#endDate').val() || today;
-                doChart({increment, population, startDate, endDate, dataLevel});
+
+                doChart({population, subjectType, startDate, endDate});
             }
 
 
             function doChart(o) {
                 $('svg').empty();
                 console.log($.param(o) )
-                $('#data-link').html('<a href="/stats/usageData?'+$.param(o)+'">Link to Raw Data</a>');
-                jQuery.getJSON('./usageData?'+$.param(o), function(data) {
-                console.log(data);
-                let levelLabels = {
-                    'periodUses': 'Uses',
-                    'periodDistinctUsers': 'Distinct Users'
-                }
+                queryUrl = '/stats/subjectData?'+$.param(o);
+                $('#data-link').html('<a href="'+queryUrl+'">Link to Raw Data</a>');
+                jQuery.getJSON(queryUrl, function(data) {
+                console.log('Subject data', data);
+                // let levelLabels = {
+                //     'periodUses': 'Uses',
+                //     'periodDistinctUsers': 'Distinct Users'
+                // }
                 let options = {
-                    margin: 200,    
-                    xValueProp: 'period', // this is the data[xValueLabel] property with data in it
-                    xAxisLabel: 'Date',
-                    yValueProp: o.dataLevel,
-                    yAxisLabel: levelLabels[o.dataLevel],
-                    chartTitle: 'MyGuide Usage by ' + data.increment + ': ' + data.startDate + ' - ' + data.endDate
+                    margin: {top: 100, right: 0, bottom: 0, left: 250},
+                    rowHeight: 20,  
+                    xValueProp: 'subject', 
+                    yValueProp: 'count', 
+                    width: 1000,   // width of the overall svg element
+                    chartTitle: 'Uses by Users with Subject for '+o.population+' from '+o.startDate+' to '+o.endDate,
                 }
-                createDateBarChart(data.details, options);
+                createHorizontalBarChart(data.stats.subjectCounts, options);
+                
                 $('#rawData').html('<pre>' + JSON.stringify(data,null,2) + '</pre>')
                 });
             }

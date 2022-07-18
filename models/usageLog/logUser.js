@@ -25,6 +25,13 @@ const logUser = function (u) {
   if (u.person.divisionName) {
     data.divisions = u.person.divisionName;
   }
+  if (
+    u.favorites &&
+    u.favorites.favoriteSubjects &&
+    u.favorites.favoriteSubjects
+  ) {
+    data.favorites = u.favorites.favoriteSubjects;
+  }
   if (u.uniqueSubjects) {
     data.subjects = u.uniqueSubjects;
   }
