@@ -9,7 +9,19 @@
           return old == 'More' ? 'Less' : 'More';
         });
       });
-
+      // if right arrow in nav, jump from nav to main panel 
+      $('.nav-item').keydown(function (e) {
+        if (e.keyCode == 39) {
+          $('.tab-pane.active').find('a:first').focus();
+        }
+      });
+      // if left arrow in main, jump from main panel to nav
+      $('.tab-pane').keydown(function (e) {
+        if (e.keyCode == 37) {
+          console.log('attempting to go left')
+          $('.nav-item button[aria-selected="true"]').focus();
+        }
+      });
       $('.favorite-indicator').click(function () {
         let favorite = $(this);
         favorite.addClass('spinner-grow spinner-grow-sm text-warning')
@@ -18,6 +30,7 @@
         let favorite_status = favorite.not().hasClass('not-favorite');
         let addOrRemove = favorite_status ? 'add' : 'remove';
         let url = '/favorites/'+resourceType+'s/' + addOrRemove;
+        let resourceTitle = favorite.next('a').text();
         $.ajax({
           url: url,
           data: { resourceId: resourceId },
@@ -28,12 +41,21 @@
             allMatchingFavorite.toggleClass('favorite');
               if (addOrRemove == 'add') {
                 allMatchingFavorite.html('&#9733;');
+                allMatchingFavorite.attr('aria-pressed', 'true');
+                allMatchingFavorite.attr('title', 'Remove '+ resourceTitle +' from my favorite '+resourceType+'s');
               } else {
                 allMatchingFavorite.html('&#9734;');
+                allMatchingFavorite.attr('aria-pressed', 'false');
+                allMatchingFavorite.attr('title', 'Add '+ resourceTitle +' to my favorite '+resourceType+'s');
               }
             favorite.removeClass('spinner-grow spinner-grow-sm text-warning');
           }
         });
+      });
+      $('.favorite-indicator').keydown(function (event) {
+        if (event.keyCode == 13) {
+          $(this).click();
+      }
       });
     });
   </script>
@@ -232,5 +254,5 @@
       <% } %>
     </div>
   </div>
-
+  <div id="fav-desc" class="sr-only">Items marked as favorites will be remembered for future sessions.</div>
   <%- include ('footer', {config: config}) %>
