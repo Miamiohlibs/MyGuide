@@ -82,7 +82,7 @@ a[data-bs-toggle='collapse'] + .folding-arrows i {
 }
 
 h4 i,
-#logout i {
+.logout i {
   padding: 5px 7px;
   border-radius: 50%;
   height: 32px;
@@ -95,7 +95,7 @@ h4 i,
 .logout-section {
   border-top: 1px solid #dee2e6;
 }
-button#logout {
+a.logout {
   border-radius: 1rem;
 }
 
