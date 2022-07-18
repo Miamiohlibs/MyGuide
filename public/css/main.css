@@ -7872,6 +7872,9 @@ h4 i, .h4 i,
   background-color: white;
   color: #343a40; }
 
+.logout-section {
+  border-top: 1px solid #dee2e6; }
+
 button#logout {
   border-radius: 1rem; }
 
@@ -7905,6 +7908,9 @@ li.nav-item:hover button.nav-link:not(.active) {
 
 li.nav-item:hover i.bi.bi-caret-right-fill {
   color: #fac014; }
+
+.nav-tabs {
+  border-bottom: 0; }
 
 #manage-subjects-links a:hover {
   color: #fac014 !important; }

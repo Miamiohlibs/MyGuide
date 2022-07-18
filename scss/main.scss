@@ -92,6 +92,9 @@ h4 i,
   color: $gray-800;
 }
 
+.logout-section {
+  border-top: 1px solid #dee2e6;
+}
 button#logout {
   border-radius: 1rem;
 }
@@ -137,6 +140,9 @@ li.nav-item:hover {
   }
 }
 
+.nav-tabs {
+  border-bottom: 0;
+}
 #manage-subjects-links a:hover {
   color: $my-guide-gold !important;
 }
