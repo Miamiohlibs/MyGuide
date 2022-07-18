@@ -8016,3 +8016,6 @@ a:hover ~ span.red-arrows i.bi.bi-caret-right:before {
 input[value='x']:hover {
   background-color: #c3142d;
   color: white !important; }
+
+#helpLink-wrapper a {
+  display: block; }

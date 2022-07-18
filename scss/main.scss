@@ -281,3 +281,7 @@ input[value='x']:hover {
   background-color: $my-guide-red;
   color: white !important;
 }
+
+#helpLink-wrapper a {
+  display: block;
+}
