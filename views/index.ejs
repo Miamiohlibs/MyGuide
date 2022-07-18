@@ -66,7 +66,7 @@
     <h1 class="h3 text-wrap text-center col-10 mt-2">Hello, <%= user.person.givenName %>
     </h1>
     <button class="btn btn-dark float-end shadow-sm col-1 flex-grow-1" type="button" data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="max-width: 50px; min-width: 40px">
+      data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="max-width: 50px; min-width: 40px" aria-label="Main menu">
       <span class="navbar-toggler-icon">
         <i class="bi bi-list"></i>
       </span>
@@ -97,7 +97,7 @@
         <div class="card-body bg-gray-800">
         <div class="offcanvas-body">
           <div class="flex-column mt-4 text-center" id="navbarTogglerDemo02">
-            <h2 class="h3 text-white" id="subject-title">My subjects</h2>
+            <h2 class="h3 text-white" id="subject-title-mobile">My subjects</h2>
             <ul class="navbar-nav nav nav-tabs pb-3" id="myTab" role="tablist">
               <% if (user.uniqueSubjects) { %>
                 <% user.uniqueSubjects.sort().forEach((s)=> { %>
@@ -142,7 +142,7 @@
         </h1>
       </div>
       <div class="card-body bg-gray-800">
-        <h2 class="h4 text-white card-title" id="subject-title">My subjects</h2>
+        <h2 class="h4 text-white card-title" id="subject-title-desktop">My subjects</h2>
 
         <ul class="navbar-nav nav nav-tabs pb-3" id="myTab" role="tablist">
           <% if (user.uniqueSubjects) { %>
