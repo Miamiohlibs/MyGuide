@@ -66,7 +66,9 @@
                                 <li>
                                     <form action="/favorites/subjects/remove" method="post" class="form-inline">
                                         <div class="form-group>">
-                                            <input type="submit" value="x" class="btn btn-sm border-0 me-2 text-danger fav-removal-button" title="Remove '<%= f %>' as a favorite subject">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger border-0 me-2 fav-removal-button" title="Remove '<%= f %>' as a favorite subject">
+                                                <i class="bi bi-x-circle-fill me-2" aria-hidden="true"></i>
+                                            </button>
                                             <%= f %>
                                                 <input type="hidden" name="subjectToRemove" value="<%= f %>">
                                         </div>
