@@ -78,7 +78,7 @@
   <% if (orgMobileLogoStr && fs.existsSync('public/img/'+ orgMobileLogoStr)) { %>
     <% orgMobileLogo = '/img/' + orgMobileLogoStr; %>
   <% } %>
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
       <div class="card flex-column border-0">
         <div class="card-header p-2 shadow-sm">
           <div class="offcanvas-header col-12">
