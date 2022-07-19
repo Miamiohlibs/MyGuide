@@ -103,7 +103,7 @@
                 <% user.uniqueSubjects.sort().forEach((s)=> { %>
                   <li class="nav-item m-2" role="presentation">
                     <% let tabId=s.replace( /[^a-zA-Z0-9]+/g, '_' ); %>
-                      <button class="text-start nav-link text-light ps-3 border-0" id="<%= tabId %>-tab"
+                      <button class="text-start nav-link text-light ps-3 border-0" id="<%= tabId %>-tab-mobile"
                         data-bs-toggle="tab" data-bs-target="#<%= tabId %>" role="tab" aria-controls="<%= s %>">
                         <i class="bi bi-caret-right-fill mr-1"></i>
                         <%= s %>
