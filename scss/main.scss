@@ -81,6 +81,10 @@ a[data-bs-toggle='collapse'] + .folding-arrows i {
   display: none;
 }
 
+#mobile-menu-button:focus-visible {
+  outline: 4px solid darkorange !important; //greater visibility for keyboard focus
+}
+
 h4 i,
 .logout i {
   padding: 5px 7px;
@@ -285,3 +289,4 @@ input[value='x']:hover {
 #helpLink-wrapper a {
   display: block;
 }
+
