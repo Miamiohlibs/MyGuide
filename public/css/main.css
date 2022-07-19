@@ -7863,7 +7863,7 @@ a[data-bs-toggle='collapse'] + .folding-arrows i {
   display: none; }
 
 h4 i, .h4 i,
-#logout i {
+.logout i {
   padding: 5px 7px;
   border-radius: 50%;
   height: 32px;
@@ -7872,7 +7872,10 @@ h4 i, .h4 i,
   background-color: white;
   color: #343a40; }
 
-button#logout {
+.logout-section {
+  border-top: 1px solid #dee2e6; }
+
+a.logout {
   border-radius: 1rem; }
 
 .mysched {
@@ -7905,6 +7908,9 @@ li.nav-item:hover button.nav-link:not(.active) {
 
 li.nav-item:hover i.bi.bi-caret-right-fill {
   color: #fac014; }
+
+.nav-tabs {
+  border-bottom: 0; }
 
 #manage-subjects-links a:hover {
   color: #fac014 !important; }
@@ -8010,3 +8016,6 @@ a:hover ~ span.red-arrows i.bi.bi-caret-right:before {
 input[value='x']:hover {
   background-color: #c3142d;
   color: white !important; }
+
+#helpLink-wrapper a {
+  display: block; }

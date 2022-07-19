@@ -2,21 +2,19 @@
 </div> <!-- End of class="row" -->
 </div> <!-- End of main container-fluid -->
 
+<div id="helpLink-wrapper" class="feedback-wrapper text-center">
 <% if (config.refHelpLink && config.refHelpLink.url && config.refHelpLink.text) { %>
-  <div id="helpLink-wrapper" class="feedback-wrapper text-center">
-    <a href="<%- config.refHelpLink.url %>" class="feedback-link">
-      <%- config.refHelpLink.text %>
-    </a>
-  </div>
+  <a href="<%- config.refHelpLink.url %>" class="feedback-link">
+    <%- config.refHelpLink.text %>
+  </a>
 <% } %> 
 
 <% if (config.techHelpLink && config.techHelpLink.url && config.techHelpLink.text) { %>
-  <div id="helpLink-wrapper" class="feedback-wrapper text-center">
-    <a href="<%- config.techHelpLink.url %>" class="feedback-link">
-      <%- config.techHelpLink.text %>
-    </a>
-  </div>
+  <a href="<%- config.techHelpLink.url %>" class="feedback-link">
+    <%- config.techHelpLink.text %>
+  </a>
 <% } %> 
+</div>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
   integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
