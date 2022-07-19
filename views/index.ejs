@@ -98,7 +98,7 @@
         <div class="offcanvas-body">
           <div class="flex-column mt-4 text-center" id="navbarTogglerDemo02">
             <h2 class="h3 text-white" id="subject-title-mobile">My subjects</h2>
-            <ul class="navbar-nav nav nav-tabs pb-3" id="myTab" role="tablist">
+            <ul class="navbar-nav nav nav-tabs pb-3 myTab" id="myTab-mobile" role="tablist">
               <% if (user.uniqueSubjects) { %>
                 <% user.uniqueSubjects.sort().forEach((s)=> { %>
                   <li class="nav-item m-2" role="presentation">
@@ -143,7 +143,7 @@
       <div class="card-body bg-gray-800">
         <h2 class="h4 text-white card-title" id="subject-title-desktop">My subjects</h2>
 
-        <ul class="navbar-nav nav nav-tabs pb-3" id="myTab" role="tablist">
+        <ul class="navbar-nav nav nav-tabs pb-3 myTab" id="myTab-desktop" role="tablist">
           <% if (user.uniqueSubjects) { %>
             <% user.uniqueSubjects.forEach((s)=> { %>
               <li class="nav-item m-2" role="presentation">
