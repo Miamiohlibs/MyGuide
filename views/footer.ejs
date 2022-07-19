@@ -25,14 +25,14 @@
 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script type="text/javascript">
 
-  var firstTabEl = document.querySelector('.myTab li:nth-child(1) button');
+  var firstTabEl = document.querySelector('#myTab li:nth-child(1) button');
   var firstTab = new bootstrap.Tab(firstTabEl);
   firstTab.show();
 
-  $('.myTab li:nth-child(1) button[data-bs-toggle="tab"]:first-child').addClass('active');
+  $('#myTab li:nth-child(1) button[data-bs-toggle="tab"]:first-child').addClass('active');
 
-  $('.myTab li:nth-child(1)').addClass('li-gray');
-  $('.myTab li.nav-item').click(function(){
+  $('#myTab li:nth-child(1)').addClass('li-gray');
+  $('#myTab li.nav-item').click(function(){
     $('li.nav-item.li-gray').removeClass('li-gray');
     $(this).addClass('li-gray');
   });
