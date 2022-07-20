@@ -95,6 +95,8 @@
         <div class="offcanvas-body">
           <div class="flex-column mt-4 text-center" id="navbarTogglerDemo02">
             <h2 class="h3 text-white" id="subject-title-mobile">My subjects</h2>
+            <div class="ps-4 pt-3 text-light"><small>(based on courses & departmental
+              affiliation)</small></div>
             <ul class="navbar-nav nav nav-tabs pb-3 myTab" id="myTab-mobile" role="tablist">
               <% if (user.uniqueSubjects) { %>
                 <% user.uniqueSubjects.sort().forEach((s)=> { %>
@@ -111,8 +113,7 @@
 
                           
             </ul>
-            <div class="ps-4 pt-3 text-light"><small>(based on courses & departmental
-              affiliation)</small></div>
+
             <div class="ps-4 pt-3 text-light" id="manage-subjects-links"><a href="/favorites/subjects" class="text-light"><i class="fa fa-gear"></i> Manage Subjects</a></div>
             <!-- Show log-out button -->
             <div class="logout-section">
@@ -139,7 +140,8 @@
       </div>
       <div class="card-body bg-gray-800">
         <h2 class="h4 text-white card-title" id="subject-title-desktop">My subjects</h2>
-
+        <div class="ps-4 pt-3 text-light"><small>(based on courses & departmental
+          affiliation)</small></div>
         <ul class="navbar-nav nav nav-tabs pb-3 myTab" id="myTab" role="tablist">
           <% if (user.uniqueSubjects) { %>
             <% user.uniqueSubjects.forEach((s)=> { %>
@@ -154,8 +156,7 @@
               <% }); %>
                 <% } %>
         </ul>
-        <div class="ps-4 pt-3 text-light"><small>(based on courses & departmental
-          affiliation)</small></div>
+        
 
       <div class="ps-4 pt-3 text-light" id="manage-subjects-links"><a href="/favorites/subjects" class="text-light"><i class="fa fa-gear"></i> Manage Subjects</a></div>
         <!-- Show log-out button -->
