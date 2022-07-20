@@ -24,12 +24,20 @@
     <% } %>
     <% if (libn.profile.connect !== null) { %>
       <% /* not collapse: libn.profile.connect.address, libn.profile.connect.email, libn.profile.connect.phone */ %>
+      <% startedPrintingCollapsibles = false %>
       <% collapsibleFields = [libn.profile.widget_la, libn.profile.widget_lc, libn.profile.widget_other]; %>
       <% fields = [libn.profile.connect.address,
       libn.profile.connect.email, libn.profile.connect.phone, libn.profile.widget_la, libn.profile.widget_lc, libn.profile.widget_other] %>
       <% fields.forEach( (item) => { %>
         <% usingCollapsible = false; %>
+        <% thisLibnIsCollapsible = false %>
         <% if (collapsibleFields.includes(item) && multipleLibns) { %>
+          <% thisLibnIsCollapsible = true %>
+          <script>console.log('thisLibnIsCollapsible: ',  '<%=JSON.stringify(item)%>')</script>
+          <% if (!startedPrintingCollapsibles) { %>
+            <% startedPrintingCollapsibles = true %>
+            <%- '<div class="more-less-container" id="more-less-container-'+collapsibleLibnId+'" data-libnid="'+collapsibleLibnId+'"></div>' %>
+          <% } %>  
           <% collapsibleClass = "collapse collapseIndex" + index; %>
           <% collapsible = true; %>
           <% usingCollapsible = true; %>
@@ -37,6 +45,7 @@
             <% collapsibleClass = "notCollapsible"; %>
             <% collapsible = true %>
         <% } %>
+        <% collapsibleLibnId = subjSlug + '-' + 'Libn' + index; %>
         <% collapsibleDivId = subjSlug + '-' + 'Libn' + index + '-' + idCount %>
         <% if (collapsible == true) { %>
           <% collapsibleDivs += collapsibleDivId + ' ' %>
@@ -66,9 +75,21 @@
         <% } %>
       <% }) %>
 
-      <% if (usingCollapsible) { %>
-        <button class="btn btn-primary btn-sm librarian-info-toggle" type="button" data-bs-toggle="collapse" data-bs-target=".collapseIndex<%=index%>" aria-expanded="false" aria-controls="<%- collapsibleDivs %>">More</button>
-      <% } %>
+      <% if (usingCollapsible && thisLibnIsCollapsible) { %>
+        <script>
+        $(document).ready(function() {
+          $('#more-less-container-<%=collapsibleLibnId%>').append(
+            '<button class="btn btn-primary btn-sm librarian-info-toggle" id="move-to-collapsible-<%= collapsibleLibnId %>" type="button" data-bs-toggle="collapse" data-bs-target=".collapseIndex<%=index%>" aria-expanded="false" aria-controls="<%- collapsibleDivs %>">More</button>'
+          );
+          $('#more-less-container-<%=collapsibleLibnId%> button.librarian-info-toggle').click(function () {
+            $(this).text(function (i, old) {
+              return old == 'More' ? 'Less' : 'More';
+            });
+          });
+        });
+        </script>
+
+              <% } %>
     <% } %>
   </div>
 </div>
