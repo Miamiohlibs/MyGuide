@@ -5,11 +5,7 @@
     $(document).ready(function () {
       $('.collapse').collapse('hide');
       $('button[role="tab"]').on('click', function() { window.scrollTo(0,0)})
-      $('button.librarian-info-toggle').click(function () {
-        $(this).text(function (i, old) {
-          return old == 'More' ? 'Less' : 'More';
-        });
-      });
+
       // if right arrow in nav, jump from nav to main panel 
       $('.nav-item').keydown(function (e) {
         if (e.keyCode == 39) {
