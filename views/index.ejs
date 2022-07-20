@@ -54,7 +54,41 @@
           $(this).click();
       }
       });
-    });
+
+
+      $('.mysched').click(function() {
+        const focusableElements = [
+        'a[href]',
+        'area[href]',
+        'input:not([disabled])',
+        'select:not([disabled])',
+        'textarea:not([disabled])',
+        'button:not([disabled])',
+        'iframe',
+        'object',
+        'embed',
+        '[contenteditable]',
+        '[tabindex]:not([tabindex="-1"])'
+      ].join(',');
+      $('main').find(focusableElements).each(function() {
+        $(this).attr('tabindex', '-1');
+      }).focus('main', function() {
+        $('main').find(focusableElements).each(function() {
+        $(this).attr('tabindex', '0');
+      })
+      });
+      })
+      // allFocusable.attr('tabindex', '-1');
+      })
+      // $('.schedule-link').click(function () {
+      //   $('.schedule-link').not(this).attr('aria-disabled', 'true');
+      //   $('.schedule-link').not(this).attr('tabindex', '-1');
+      // }).keydown(function (event) {
+      //   if (event.keyCode == 13) {
+      //     $(this).click();
+      // }
+      // });
+    // });
   </script>
   <!-- Show user's subject menu (mobile version) -->
 
