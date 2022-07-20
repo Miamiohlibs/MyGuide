@@ -253,19 +253,3 @@
   <div id="fav-desc" class="sr-only">Items marked as favorites will be remembered for future sessions.</div>
 
   <%- include ('footer', {config: config}) %>
-                <!-- library logo -->
-                <div class="row">
-                  <div class="col-4 offset-4 mt-3 mb-3 p-3 bg-dark">
-                    <% let orgLogo; %>
-                    <% let orgLogoStr = config.images.organizationLogo %>
-                    <% if (orgLogoStr && fs.existsSync('public/img/'+ orgLogoStr)) { %>
-                      <% orgLogo = '/img/' + orgLogoStr; %>
-                    <% } %>
-                    <% if (orgLogo) { %>
-                    <a class="navbar-brand p-0" href="<%= config.organization.url %>"><img class="img-fluid"
-                        src="<%= orgLogo %>" alt="<%= config.organization.name %>"></a>
-                    <% } %>
-                  </div>
-                </div>
-                
-                <!-- end library logo -->
