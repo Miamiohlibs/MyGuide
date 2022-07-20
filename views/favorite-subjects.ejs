@@ -5,7 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyGuide Favorites</title>
+    <% if (typeof msg != "undefined") { %>
+        <title>MyGuide Favorites: <%= msg %></title>
+        <% } else { %>
+            <title>MyGuide Favorites</title>
+    <% } %>
+    
     <%- include('partials/header-includes.ejs'); %>
     <style>
         form {display: inline}
