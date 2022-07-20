@@ -55,7 +55,8 @@
       }
       });
 
-
+      // prevent from tabbing outside modal 
+      // select all focusable elements in main, and set tabindex to -1
       $('.mysched').click(function() {
         const focusableElements = [
         'a[href]',
@@ -70,25 +71,24 @@
         '[contenteditable]',
         '[tabindex]:not([tabindex="-1"])'
       ].join(',');
-      $('main').find(focusableElements).each(function() {
+      allFocusable = $('main').find(focusableElements)
+      allFocusable.each(function() {
+        $(this).attr('prior-tabindex', $(this).attr('tabindex'))
         $(this).attr('tabindex', '-1');
-      }).focus('main', function() {
-        $('main').find(focusableElements).each(function() {
-        $(this).attr('tabindex', '0');
       })
+      // add an event listener -- when focus is restored to main panel, reactivate tabindexes
+      .focus('main', 
+        function() {
+          allFocusable.each(function() {
+            if ($(this).attr('prior-tabindex')) {
+              $(this).attr('tabindex', $(this).attr('prior-tabindex'));
+            } else {
+              $(this).removeAttr('tabindex');
+            }
+          })
+        });
       });
-      })
-      // allFocusable.attr('tabindex', '-1');
-      })
-      // $('.schedule-link').click(function () {
-      //   $('.schedule-link').not(this).attr('aria-disabled', 'true');
-      //   $('.schedule-link').not(this).attr('tabindex', '-1');
-      // }).keydown(function (event) {
-      //   if (event.keyCode == 13) {
-      //     $(this).click();
-      // }
-      // });
-    // });
+  });
   </script>
   <!-- Show user's subject menu (mobile version) -->
 
