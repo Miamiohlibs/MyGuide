@@ -33,7 +33,6 @@
         <% thisLibnIsCollapsible = false %>
         <% if (collapsibleFields.includes(item) && multipleLibns) { %>
           <% thisLibnIsCollapsible = true %>
-          <script>console.log('thisLibnIsCollapsible: ',  '<%=JSON.stringify(item)%>')</script>
           <% if (!startedPrintingCollapsibles) { %>
             <% startedPrintingCollapsibles = true %>
             <%- '<div class="more-less-container" id="more-less-container-'+collapsibleLibnId+'" data-libnid="'+collapsibleLibnId+'"></div>' %>
