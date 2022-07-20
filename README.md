@@ -26,7 +26,7 @@ Note: this project integrates closely with campus resources and will require som
 ## Initial Setup
 
 - run `npm install` to install Node package dependencies.This runs a predefined command specified in the "start" property of a package's "scripts" object. If the "scripts" object does not define a "start" property, npm will run node server.js.
-- Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (Youc can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
+- Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (You can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
 
 ## Starting/Stopping the Process
 
