@@ -31,7 +31,9 @@ Note: this project integrates closely with campus resources and will require som
 
 ### cas_field_map
 
-`config/cas_field_map.json` defines the relationships between CAS user attributes and the user attributes used by MyGuide. Each entry gives a MyGuide label for a user attribute and has two properties: `field` and `fieldType`. The field will be the path within the CAS data structure to find the matching CAS field. `fieldType` will be one of three expected data types: `string`, `array`, or `arrayOfOne` -- `arrayOfOne` indicates data that is given as an array but expects an array of length=1. Example:
+`config/cas_field_map.json` defines the relationships between CAS user attributes and the user attributes used by MyGuide. Each entry gives a MyGuide label for a user attribute and has two properties: `field` and `fieldType`. The field will be the path within the CAS data structure to find the matching CAS field. `fieldType` will be one of three expected data types: `string`, `array`, or `arrayOfOne` -- `arrayOfOne` indicates data that is given as an array but expects an array of length=1.
+
+Example:
 
 ```
 "userType": {
