@@ -1,15 +1,24 @@
 <%- include ('header') %>
+
 <!-- begin view file: index.ejs -->
   <script>
     $(document).ready(function () {
       $('.collapse').collapse('hide');
       $('button[role="tab"]').on('click', function() { window.scrollTo(0,0)})
-      $('button.librarian-info-toggle').click(function () {
-        $(this).text(function (i, old) {
-          return old == 'More' ? 'Less' : 'More';
-        });
-      });
 
+      // if right arrow in nav, jump from nav to main panel 
+      $('.nav-item').keydown(function (e) {
+        if (e.keyCode == 39) {
+          $('.tab-pane.active').find('a:first').focus();
+        }
+      });
+      // if left arrow in main, jump from main panel to nav
+      $('.tab-pane').keydown(function (e) {
+        if (e.keyCode == 37) {
+          console.log('attempting to go left')
+          $('.nav-item button[aria-selected="true"]').focus();
+        }
+      });
       $('.favorite-indicator').click(function () {
         let favorite = $(this);
         favorite.addClass('spinner-grow spinner-grow-sm text-warning')
@@ -18,6 +27,7 @@
         let favorite_status = favorite.not().hasClass('not-favorite');
         let addOrRemove = favorite_status ? 'add' : 'remove';
         let url = '/favorites/'+resourceType+'s/' + addOrRemove;
+        let resourceTitle = favorite.next('a').text();
         $.ajax({
           url: url,
           data: { resourceId: resourceId },
@@ -28,14 +38,57 @@
             allMatchingFavorite.toggleClass('favorite');
               if (addOrRemove == 'add') {
                 allMatchingFavorite.html('&#9733;');
+                allMatchingFavorite.attr('aria-pressed', 'true');
+                allMatchingFavorite.attr('title', 'Remove '+ resourceTitle +' from my favorite '+resourceType+'s');
               } else {
                 allMatchingFavorite.html('&#9734;');
+                allMatchingFavorite.attr('aria-pressed', 'false');
+                allMatchingFavorite.attr('title', 'Add '+ resourceTitle +' to my favorite '+resourceType+'s');
               }
             favorite.removeClass('spinner-grow spinner-grow-sm text-warning');
           }
         });
       });
-    });
+      $('.favorite-indicator').keydown(function (event) {
+        if (event.keyCode == 13) {
+          $(this).click();
+      }
+      });
+
+      // prevent from tabbing outside modal 
+      // select all focusable elements in main, and set tabindex to -1
+      $('.mysched').click(function() {
+        const focusableElements = [
+        'a[href]',
+        'area[href]',
+        'input:not([disabled])',
+        'select:not([disabled])',
+        'textarea:not([disabled])',
+        'button:not([disabled])',
+        'iframe',
+        'object',
+        'embed',
+        '[contenteditable]',
+        '[tabindex]:not([tabindex="-1"])'
+      ].join(',');
+      allFocusable = $('main').find(focusableElements)
+      allFocusable.each(function() {
+        $(this).attr('prior-tabindex', $(this).attr('tabindex'))
+        $(this).attr('tabindex', '-1');
+      })
+      // add an event listener -- when focus is restored to main panel, reactivate tabindexes
+      .focus('main', 
+        function() {
+          allFocusable.each(function() {
+            if ($(this).attr('prior-tabindex')) {
+              $(this).attr('tabindex', $(this).attr('prior-tabindex'));
+            } else {
+              $(this).removeAttr('tabindex');
+            }
+          })
+        });
+      });
+  });
   </script>
   <!-- Show user's subject menu (mobile version) -->
 
@@ -43,8 +96,8 @@
     <div class="row">
     <h1 class="h3 text-wrap text-center col-10 mt-2">Hello, <%= user.person.givenName %>
     </h1>
-    <button class="btn btn-dark float-end shadow-sm col-1 flex-grow-1" type="button" data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="max-width: 50px; min-width: 40px">
+    <button id="mobile-menu-button" class="btn btn-dark float-end shadow-sm col-1 flex-grow-1" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="max-width: 50px; min-width: 40px" aria-label="Main menu">
       <span class="navbar-toggler-icon">
         <i class="bi bi-list"></i>
       </span>
@@ -56,13 +109,13 @@
   <% if (orgMobileLogoStr && fs.existsSync('public/img/'+ orgMobileLogoStr)) { %>
     <% orgMobileLogo = '/img/' + orgMobileLogoStr; %>
   <% } %>
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
       <div class="card flex-column border-0">
         <div class="card-header p-2 shadow-sm">
           <div class="offcanvas-header col-12">
             <div class="m-2">
               <% if (orgMobileLogo != '') { %>
-          
+                
                 <a class="navbar-brand" href="<%= config.organization.url %>"><img class="img-fluid w-75"
                   src="<%= orgMobileLogo %>" alt="<%= config.organization.name %>"></a>
                 <% } %>
@@ -74,14 +127,29 @@
 
         <div class="card-body bg-gray-800">
         <div class="offcanvas-body">
+                      <!-- Show log-out button -->
+                      <div class="row">
+                        <div class="col text-center">
+                          <div class="text-center">
+                            <a href="/logout" class="logout mt-3 btn btn-light btn-sm p-2 shadow">
+                              <span class="glyphicon glyphicon-log-out"></span>
+                              <i class="bi bi-power me-2 shadow"></i>Log out
+                          </a>
+                          </div>
+                        </div>
+                      </div>
+
+                  <!-- End log-out button -->
           <div class="flex-column mt-4 text-center" id="navbarTogglerDemo02">
-            <h3 class="text-white" id="subject-title">My subjects</h3>
-            <ul class="navbar-nav nav nav-tabs pb-3" id="myTab" role="tablist">
+            <h2 class="h3 text-white" id="subject-title-mobile">My subjects</h2>
+            <div class="ps-4 pt-3 text-light"><small>(based on courses & departmental
+              affiliation)</small></div>
+            <ul class="navbar-nav nav nav-tabs pb-3 myTab" id="myTab-mobile" role="tablist">
               <% if (user.uniqueSubjects) { %>
                 <% user.uniqueSubjects.sort().forEach((s)=> { %>
                   <li class="nav-item m-2" role="presentation">
                     <% let tabId=s.replace( /[^a-zA-Z0-9]+/g, '_' ); %>
-                      <button class="text-start nav-link text-light ps-3 border-0" id="<%= tabId %>-tab"
+                      <button class="text-start nav-link text-light ps-3 border-0" id="<%= tabId %>-tab-mobile"
                         data-bs-toggle="tab" data-bs-target="#<%= tabId %>" role="tab" aria-controls="<%= s %>">
                         <i class="bi bi-caret-right-fill mr-1"></i>
                         <%= s %>
@@ -89,19 +157,11 @@
                   </li>
                   <% }); %>
                     <% } %>
-                      <li class="ps-4 pt-3 text-light"><small>(based on courses & departmental
-                          affiliation)</small></li>
+
                           
             </ul>
 
-            <!-- Show log-out button -->
-            <div>
-              <a href="/logout">
-                <button id="logout" type="button" class="mt-3 btn btn-light btn-sm p-2 shadow">
-                  <span class="glyphicon glyphicon-log-out"></span>
-                  <i class="bi bi-power me-2 shadow"></i>Log out</button>
-              </a>
-            </div>
+            <div class="ps-4 pt-3 text-light" id="manage-subjects-links"><a href="/favorites/subjects" class="text-light"><i class="fa fa-gear"></i> Manage Subjects</a></div>
           </div>
 
         </div>
@@ -118,10 +178,21 @@
           <%= user.person.givenName %>
         </h1>
       </div>
+      
       <div class="card-body bg-gray-800">
-        <h3 class="h4 text-white card-title" id="subject-title">My subjects</h3>
 
-        <ul class="navbar-nav nav nav-tabs pb-3" id="myTab" role="tablist">
+
+        <!-- Show log-out button -->
+          <a href="/logout" id="logout-button-desktop" class="logout mt-3 mb-3 btn btn-light p-2 shadow">
+              <span class="glyphicon glyphicon-log-out"></span>
+              <i class="bi bi-power me-2 shadow"></i>Log out
+          </a>
+
+        <!-- end logout -->
+        <h2 class="h4 text-white card-title" id="subject-title-desktop">My subjects</h2>
+        <div class="ps-4 pb-1 text-light"><small>(based on courses & departmental
+          affiliation)</small></div>
+        <ul class="navbar-nav nav nav-tabs pb-3 myTab" id="myTab" role="tablist">
           <% if (user.uniqueSubjects) { %>
             <% user.uniqueSubjects.forEach((s)=> { %>
               <li class="nav-item m-2" role="presentation">
@@ -134,32 +205,12 @@
               </li>
               <% }); %>
                 <% } %>
-                  <li class="ps-4 pt-3 text-light"><small>(based on courses & departmental
-                      affiliation)</small></li>
-      
-                  <li class="ps-4 pt-3 text-light" id="manage-subjects-links"><a href="/favorites/subjects" class="text-light"><i class="fa fa-gear"></i> Manage Subjects</a></li>
         </ul>
+        
 
-        <!-- Show log-out button -->
-        <div>
-          <a href="/logout">
-            <button id="logout" type="button" class="mt-3 btn btn-light btn-sm p-2 shadow">
-              <span class="glyphicon glyphicon-log-out"></span>
-              <i class="bi bi-power me-2 shadow"></i>Log out</button>
-          </a>
-        </div>
-        <div class="mt-5 mb-3">
+      <div class="ps-4 pt-3 text-light" id="manage-subjects-links"><a href="/favorites/subjects" class="text-light"><i class="fa fa-gear"></i> Manage Subjects</a></div>
+        
 
-          <% let orgLogo; %>
-          <% let orgLogoStr = config.images.organizationLogo %>
-          <% if (orgLogoStr && fs.existsSync('public/img/'+ orgLogoStr)) { %>
-            <% orgLogo = '/img/' + orgLogoStr; %>
-          <% } %>
-          <% if (orgLogo) { %>
-          <a class="navbar-brand p-0" href="<%= config.organization.url %>"><img class="img-fluid"
-              src="<%= orgLogo %>" alt="<%= config.organization.name %>"></a>
-          <% } %>
-        </div>
 
       </div>
 
@@ -230,7 +281,9 @@
         </div>
       </div>
       <% } %>
+
     </div>
   </div>
+  <div id="fav-desc" class="sr-only">Items marked as favorites will be remembered for future sessions.</div>
 
   <%- include ('footer', {config: config}) %>

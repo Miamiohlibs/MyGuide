@@ -5,7 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyGuide Favorites</title>
+    <% if (typeof msg != "undefined") { %>
+        <title>MyGuide Favorites: <%= msg %></title>
+        <% } else { %>
+            <title>MyGuide Favorites</title>
+    <% } %>
+    
     <%- include('partials/header-includes.ejs'); %>
     <style>
         form {display: inline}
@@ -46,7 +51,7 @@
                             </option>
                             <% }); %>
                     </select>
-                    <input type="submit" value="Add Subject" class="input-group-text btn btn-warning" id="add-subject-button">
+                    <input type="submit" value="Add Subject to My Favorites" class="input-group-text btn btn-warning" id="add-subject-button">
                 </div>
             </form>
         </div>
@@ -66,7 +71,9 @@
                                 <li>
                                     <form action="/favorites/subjects/remove" method="post" class="form-inline">
                                         <div class="form-group>">
-                                            <input type="submit" value="x" class="btn btn-sm border-0 me-2 text-danger fav-removal-button">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger border-0 me-2 fav-removal-button" aria-label="Remove '<%= f %>' as a favorite subject" title="Remove favorite">
+                                                <i class="bi bi-x-circle-fill me-2" aria-hidden="true"></i>
+                                            </button>
                                             <%= f %>
                                                 <input type="hidden" name="subjectToRemove" value="<%= f %>">
                                         </div>
@@ -90,7 +97,7 @@
                 <div class="card-body">
                     <p>MyGuide will always show subjects related to your current courses, major, and department affiliations.</p>
                     <p>In addition, you can use the selector above to add any subject/department you want to your favorites, and MyGuide will show the relevant content in your dashboard.</p>
-                    <p>You can remove favorites by clicking the red <span class="btn btn-sm border-0 me-2 text-danger">x</span> under Your Current Subjects</p>
+                    <p>You can remove favorites by clicking the red <i class="bi bi-x-circle-fill me-2" aria-label="x icon" style="color:red"></i> under Your Current Subjects</p>
                 </div>
             </div>
         </div>

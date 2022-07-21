@@ -11,7 +11,12 @@
 #data-link { margin-bottom: 1em;}
 
 /* bar chart */
-.bar { fill: steelblue}
+.bar { 
+    fill: steelblue
+}
+.bar:hover {
+    fill: darkorange;
+}
 .btn.disabled {     
     background-color: #e9ecef;
     border: 1px solid #ced4da;
@@ -20,4 +25,11 @@
 /* pie chart */
 g.text {
     z-index: 100;
+}
+
+.btn.active { 
+    background-color: #fff; 
+    border-color: #0a58ca; 
+    color: #0a58ca;
+    border-width: 3px;
 }

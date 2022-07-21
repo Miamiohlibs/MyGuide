@@ -1,18 +1,20 @@
 <!-- begin partials/guides -->
-<% guides.forEach(g => { %>
-  <li class="my-3 d-flex">
-    <% let url = g.friendly_url %>
-    <% if (url === null) { url = g.url } %>
-    <% if (g.favorite ) { %>
-      <span class="favorite-indicator favorite me-2" data-resourceType="guide" data-resourceId="<%- g.id %>">&#9733;</span>
-    <% } else { %>
-      <span class="favorite-indicator not-favorite me-2" data-resourceType="guide" data-resourceId="<%- g.id %>">&#9734;</span>
-    <% } %>
-    &nbsp;
-    <a href="<%= url %>" class="col-10" data-libGuideId="<%= g.id %>"><%- g.name %></a>
-    <span class="red-arrows">
-      <i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i>
-  </span>
-  </li>
-<% }) %>
+<ul class="subjectGuides list-unstyled">
+  <% guides.forEach(g => { %>
+    <li class="my-3 d-flex">
+      <% let url = g.friendly_url %>
+      <% if (url === null) { url = g.url } %>
+      <% if (g.favorite ) { %>
+        <span class="favorite-indicator favorite me-2" data-resourceType="guide" data-resourceId="<%- g.id %>" tabindex="0" title="Remove from favorites" aria-label="Remove <%- g.name %> from my favorite guides" aria-role="button" aria-pressed="true" aria-describedby="fav-desc">&#9733;</span>
+      <% } else { %>
+        <span class="favorite-indicator not-favorite me-2" data-resourceType="guide" data-resourceId="<%- g.id %>" tabindex="0" title="Add to favorites" aria-label="Add <%- g.name %> to my favorite guides" aria-role="button" aria-pressed="false" aria-describedby="fav-desc">&#9734;</span>
+      <% } %>
+      &nbsp;
+      <a href="<%= url %>" class="col-10" data-libGuideId="<%= g.id %>"><%- g.name %></a>
+      <span class="red-arrows">
+        <i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i>
+    </span>
+    </li>
+  <% }) %>
+</ul>
 <!-- end partials/guides -->

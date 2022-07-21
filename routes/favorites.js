@@ -13,12 +13,19 @@ router.get('/subjects', async (req, res) => {
   let subjects = subjController.getSubjects();
   const userFavoritesController = new UserFavoritesController(userId);
   let favs = await userFavoritesController.getFavorites();
-  res.render('favorite-subjects', {
+  let params = {
     favorites: favs,
     subjects: subjects,
     config: config.get('viewConfigs'),
-  });
+  };
+  if (req.query.hasOwnProperty('added')) {
+    params.msg = 'Added ' + req.query.added + ' to favorites';
+  } else if (req.query.hasOwnProperty('removed')) {
+    params.msg = 'Removed ' + req.query.removed + ' from favorites';
+  }
+  res.render('favorite-subjects', params);
 });
+
 router.post('/subjects/add', async (req, res) => {
   const userDataController = new UserDataController(req);
   let user = await userDataController.getUserData();
@@ -28,8 +35,9 @@ router.post('/subjects/add', async (req, res) => {
     'subject',
     req.body.subjectToAdd
   );
-  res.redirect('/favorites/subjects');
+  res.redirect('/favorites/subjects?added=' + req.body.subjectToAdd);
 });
+
 router.post('/subjects/remove', async (req, res) => {
   const userDataController = new UserDataController(req);
   let user = await userDataController.getUserData();
@@ -39,7 +47,7 @@ router.post('/subjects/remove', async (req, res) => {
     'subject',
     req.body.subjectToRemove
   );
-  res.redirect('/favorites/subjects');
+  res.redirect('/favorites/subjects?removed=' + req.body.subjectToRemove);
 });
 router.post('/databases/add', async (req, res) => {
   const userDataController = new UserDataController(req);
