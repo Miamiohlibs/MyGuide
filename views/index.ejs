@@ -150,7 +150,8 @@
                   <li class="nav-item m-2" role="presentation">
                     <% let tabId=s.replace( /[^a-zA-Z0-9]+/g, '_' ); %>
                       <button class="text-start nav-link text-light ps-3 border-0" id="<%= tabId %>-tab-mobile"
-                        data-bs-toggle="tab" data-bs-target="#<%= tabId %>" role="tab" aria-controls="<%= s %>">
+                        data-bs-toggle="tab" data-bs-target="#<%= tabId %>" role="tab" aria-controls="<%= s %>"
+                        aria-selected="false">
                         <i class="bi bi-caret-right-fill mr-1"></i>
                         <%= s %>
                       </button>
@@ -198,7 +199,8 @@
               <li class="nav-item m-2" role="presentation">
                 <% let tabId=s.replace( /[^a-zA-Z0-9]+/g, '_' ); %>
                   <button class="text-start nav-link text-light ps-3 border-0" id="<%= tabId %>-tab"
-                    data-bs-toggle="tab" data-bs-target="#<%= tabId %>" role="tab" aria-controls="<%= s %>">
+                    data-bs-toggle="tab" data-bs-target="#<%= tabId %>" role="tab" aria-controls="<%= s %>"
+                    aria-selected="false">
                     <i class="bi bi-caret-right-fill mr-1"></i>
                     <%= s %>
                   </button>
