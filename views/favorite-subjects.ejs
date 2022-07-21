@@ -43,7 +43,7 @@
             <form action="/favorites/subjects/add" method="POST">
                 <label for="subjectToAdd" class="card-header text-white">Add a Favorite Subject:</label>
                 <div class="input-group card-body">
-                    <select name="subjectToAdd" class="form-select select2">
+                    <select name="subjectToAdd" class="form-select select2" aria-label="Scroll or type to select subject to add">
                         <option value="" disabled>Select a Subject to Add it as a Favorite</option>
                         <% subjects.forEach((s)=> { %>
                             <option value="<%= s %>">
