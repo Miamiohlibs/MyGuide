@@ -29,4 +29,7 @@ router.get('/json', async (req, res) => {
   res.send({ circ: circData, user: user });
 });
 
+router.get('/test', (req, res) => {
+  res.render('test');
+});
 module.exports = router;
