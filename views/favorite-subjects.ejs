@@ -84,13 +84,17 @@
     display: inline-block;
   } */
   
+  .favorite-subject-selector input, .favorite-subject-selector .listbox, .favorite-subject-selector label {
+    font-size: 18px;
+  }
+
   .combobox {
     /* width: 250px; */
     padding: 10px 35px 10px 5px;
     border: 1px solid #fff;
     box-sizing: border-box;
     position: relative;
-    font-size: 14px;
+    /* font-size: 14px; */
     text-align: left;
     background-color: #fff;
     color: #212E59;
@@ -159,11 +163,11 @@
 <body class="container">
     <div class="row">
         <div class="top-border-red-shadow shadow-sm">
-            <section class="bands">
+            <section class="favorite-subject-selector">
                 <form action="/favorites/subjects/add" method="POST">
                     <label for="subjectToAdd" class="card-header text-white">Add a Favorite Subject:</label>
                     <div class="input-group card-body">
-                        <input type="text" name="subjectToAdd" class="combobox form-control" id="combobox-single" aria-label="Add a favorite subject" aria-describedby="add-subj-note">
+                        <input type="text" name="subjectToAdd" class="combobox form-control" id="combobox-single" aria-label="Add a favorite subject" aria-describedby="add-subj-note" placeholder="&#xf0d7; Type or pulldown to select subject to add to favorites" style="font-family:Arial, FontAwesome">
                         <span id="add-subj-note" style="display:none">Select a subject to add by selecting an item from the combobox, or start typing to search for subjects to add</span>
                         <i aria-hidden="true" class="fa trigger fa-caret-down" data-trigger="single"></i>
               <div class="listbox">
@@ -241,7 +245,7 @@
         var box = {
           'single': new Combobo({
             input: '#combobox-single',
-            list: '.bands .listbox',
+            list: '.favorite-subject-selector .listbox',
             activeClass: 'active',
             noResultsText: 'No results found.',
             optionValue: 'foo'
