@@ -20,17 +20,22 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" />
     <!-- Or for RTL support -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
-        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.rtl.min.css" />    
 
     <script>
         $(document).ready(function() {
             $('.fav-removal-button').click(function() {
                 $(this).text('').addClass('spinner-grow');
             });
-            $('#add-subject-button').click(function() {
-                let selectedSubject = $('select[name="subjectToAdd"]').val();
-                $('#favorite-subjects-list').append('<li class="text-success fw-bold"><button class="spinner-grow btn btn-sm border-0 me-2 text-success">...</button>Adding... ' + selectedSubject + '</li>');
+            $('#add-subject-button').click(function(e) {
+                let selectedSubject = $('input[name="subjectToAdd"]').val();
+                if (selectedSubject == undefined || selectedSubject == '' || selectedSubject == null) {
+                    e.preventDefault();
+                    alert('Please select a subject to add.');
+                } else {
+                    $('#favorite-subjects-list').append('<li class="text-success fw-bold"><button class="spinner-grow btn btn-sm border-0 me-2 text-success">...</button>Adding... ' + selectedSubject + '</li>');
+
+                }
             });
             /* get width of combobox and set listbox width to same*/
             ResizeListbox();
@@ -104,7 +109,7 @@
     <div class="row">
         <div class="top-border-red-shadow shadow-sm">
             <section class="favorite-subject-selector">
-                <form action="/favorites/subjects/add" method="POST">
+                <form action="/favorites/subjects/add" autocomplete="off" method="POST">
                     <label for="subjectToAdd" class="card-header text-white">Add a Favorite Subject:</label>
                     <div class="input-group card-body">
                         <input type="text" name="subjectToAdd" class="combobox form-control" id="combobox-single" aria-label="Add a favorite subject" aria-describedby="add-subj-note" placeholder="&#xf0d7; Type or pulldown to select subject to add to favorites" style="font-family:Arial, FontAwesome">
