@@ -34,9 +34,15 @@
                 $('#favorite-subjects-list').append('<li class="text-success fw-bold"><button class="spinner-grow btn btn-sm border-0 me-2 text-success">...</button>Adding... ' + selectedSubject + '</li>');
             });
             /* get width of combobox and set listbox width to same*/
+            ResizeListbox();
+            $(window).resize(function() {
+                ResizeListbox();
+            });
+        });
+        function ResizeListbox() {
             var width = $('#combobox-single').outerWidth();
             $('.listbox').css('width', width);
-        });
+        }
     </script>
 </head>
 <h1 class="mt-4 h3 text-danger text-lg-center text-center">MyGuide Favorites</h1>
