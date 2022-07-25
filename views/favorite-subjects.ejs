@@ -20,104 +20,57 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" />
     <!-- Or for RTL support -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
-        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.rtl.min.css" />    
 
     <script>
         $(document).ready(function() {
-            // $('.select2').select2({theme: 'bootstrap-5'});
             $('.fav-removal-button').click(function() {
                 $(this).text('').addClass('spinner-grow');
             });
-            $('#add-subject-button').click(function() {
-                let selectedSubject = $('select[name="subjectToAdd"]').val();
-                $('#favorite-subjects-list').append('<li class="text-success fw-bold"><button class="spinner-grow btn btn-sm border-0 me-2 text-success">...</button>Adding... ' + selectedSubject + '</li>');
+            $('#add-subject-button').click(function(e) {
+                let selectedSubject = $('input[name="subjectToAdd"]').val();
+                if (selectedSubject == undefined || selectedSubject == '' || selectedSubject == null) {
+                    e.preventDefault();
+                    alert('Please select a subject to add.');
+                } else {
+                    $('#favorite-subjects-list').append('<li class="text-success fw-bold"><button class="spinner-grow btn btn-sm border-0 me-2 text-success">...</button>Adding... ' + selectedSubject + '</li>');
+
+                }
             });
             /* get width of combobox and set listbox width to same*/
+            ResizeListbox();
+            $(window).resize(function() {
+                ResizeListbox();
+            });
+        });
+        function ResizeListbox() {
             var width = $('#combobox-single').outerWidth();
             $('.listbox').css('width', width);
-        });
+        }
     </script>
 </head>
 <h1 class="mt-4 h3 text-danger text-lg-center text-center">MyGuide Favorites</h1>
 <style>
-
-  
-  /* label {
-    display: block;
-  } */
-  
-  /* button {
-    padding: 6px;
-    font-size: 18px;
-    background: #212E59;
-    color: #fff;
-    border: 0;
-    display: block;
-    margin: 0 auto;
-    margin-top: 15px;
-    width: 250px;
-    box-sizing: border-box;
-    box-shadow: 0 0 5px #000;
-    transition: all 750ms;
-  } */
-  
-  /* button:hover {
-    background-color: #3E57A8;
-    transition: all 750ms;
-    box-shadow: 0 0 12px #000;
-  } */
-  
-  /* button:active {
-    box-shadow: none;
-    transition: all 750ms;
-  } */
-  
-  /* .wrp {
-    width: 250px;
-    margin: 0 auto;
-    text-align: left;
-  } */
-  
-  /* .combo-wrap {
-    position: relative;
-    display: inline-block;
-  } */
-  
   .favorite-subject-selector input, .favorite-subject-selector .listbox, .favorite-subject-selector label {
     font-size: 18px;
   }
 
   .combobox {
-    /* width: 250px; */
     padding: 10px 35px 10px 5px;
     border: 1px solid #fff;
     box-sizing: border-box;
     position: relative;
-    /* font-size: 14px; */
     text-align: left;
     background-color: #fff;
     color: #212E59;
     box-shadow: 0 0 5px #000;
   }
   
-  /* .fa-caret-down {
-    position: absolute;
-    font-size: 19px;
-    line-height: 40px;
-    top: 0;
-    right: 0;
-    padding: 0 10px;
-    color: #fff;
-    background-color: #212E59;
-  } */
-  
   .listbox {
     display: none; /* prevents listbox from displaying on page when not selected*/
     position: absolute;
     top: 40px; /* the height of the input */
     left: 0;
-    /* width: 250px; */
     box-sizing: border-box;
     padding: 0;
     background: #fff;
@@ -150,21 +103,13 @@
   .listbox .underline {
     text-decoration: underline;
   }
-  
-  /* .optgroup-label {
-    font-weight: bold;
-    font-size: 22px;
-    border-bottom: 5px solid;
-  } */
-  
-
 </style>
 
 <body class="container">
     <div class="row">
         <div class="top-border-red-shadow shadow-sm">
             <section class="favorite-subject-selector">
-                <form action="/favorites/subjects/add" method="POST">
+                <form action="/favorites/subjects/add" autocomplete="off" method="POST">
                     <label for="subjectToAdd" class="card-header text-white">Add a Favorite Subject:</label>
                     <div class="input-group card-body">
                         <input type="text" name="subjectToAdd" class="combobox form-control" id="combobox-single" aria-label="Add a favorite subject" aria-describedby="add-subj-note" placeholder="&#xf0d7; Type or pulldown to select subject to add to favorites" style="font-family:Arial, FontAwesome">
