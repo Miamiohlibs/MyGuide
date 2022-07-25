@@ -22,9 +22,10 @@
     <!-- Or for RTL support -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
         
+
     <script>
         $(document).ready(function() {
-            $('.select2').select2({theme: 'bootstrap-5'});
+            // $('.select2').select2({theme: 'bootstrap-5'});
             $('.fav-removal-button').click(function() {
                 $(this).text('').addClass('spinner-grow');
             });
@@ -32,28 +33,155 @@
                 let selectedSubject = $('select[name="subjectToAdd"]').val();
                 $('#favorite-subjects-list').append('<li class="text-success fw-bold"><button class="spinner-grow btn btn-sm border-0 me-2 text-success">...</button>Adding... ' + selectedSubject + '</li>');
             });
+            /* get width of combobox and set listbox width to same*/
+            var width = $('#combobox-single').outerWidth();
+            $('.listbox').css('width', width);
         });
     </script>
 </head>
 <h1 class="mt-4 h3 text-danger text-lg-center text-center">MyGuide Favorites</h1>
+<style>
+
+  
+  /* label {
+    display: block;
+  } */
+  
+  /* button {
+    padding: 6px;
+    font-size: 18px;
+    background: #212E59;
+    color: #fff;
+    border: 0;
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 250px;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px #000;
+    transition: all 750ms;
+  } */
+  
+  /* button:hover {
+    background-color: #3E57A8;
+    transition: all 750ms;
+    box-shadow: 0 0 12px #000;
+  } */
+  
+  /* button:active {
+    box-shadow: none;
+    transition: all 750ms;
+  } */
+  
+  /* .wrp {
+    width: 250px;
+    margin: 0 auto;
+    text-align: left;
+  } */
+  
+  /* .combo-wrap {
+    position: relative;
+    display: inline-block;
+  } */
+  
+  .favorite-subject-selector input, .favorite-subject-selector .listbox, .favorite-subject-selector label {
+    font-size: 18px;
+  }
+
+  .combobox {
+    /* width: 250px; */
+    padding: 10px 35px 10px 5px;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    position: relative;
+    /* font-size: 14px; */
+    text-align: left;
+    background-color: #fff;
+    color: #212E59;
+    box-shadow: 0 0 5px #000;
+  }
+  
+  /* .fa-caret-down {
+    position: absolute;
+    font-size: 19px;
+    line-height: 40px;
+    top: 0;
+    right: 0;
+    padding: 0 10px;
+    color: #fff;
+    background-color: #212E59;
+  } */
+  
+  .listbox {
+    display: none; /* prevents listbox from displaying on page when not selected*/
+    position: absolute;
+    top: 40px; /* the height of the input */
+    left: 0;
+    /* width: 250px; */
+    box-sizing: border-box;
+    padding: 0;
+    background: #fff;
+    z-index: 99;
+    text-align: left;
+    box-shadow: 0 3px 12px #000;
+    max-height: 250px;
+    overflow-y: auto;
+  }
+  
+  .listbox.open {
+    display: block;
+  }
+  
+  .listbox .option {
+    padding: 4px 6px;
+    cursor: default;
+  }
+  
+  .listbox .option.selected {
+    color: #fff;
+    background-color: forestgreen;
+  }
+  
+  .listbox .option.active {
+    color: #fff;
+    background-color: #212E59;
+  }
+  
+  .listbox .underline {
+    text-decoration: underline;
+  }
+  
+  /* .optgroup-label {
+    font-weight: bold;
+    font-size: 22px;
+    border-bottom: 5px solid;
+  } */
+  
+
+</style>
 
 <body class="container">
     <div class="row">
         <div class="top-border-red-shadow shadow-sm">
-            <form action="/favorites/subjects/add" method="POST">
-                <label for="subjectToAdd" class="card-header text-white">Add a Favorite Subject:</label>
-                <div class="input-group card-body">
-                    <select name="subjectToAdd" class="form-select select2" aria-label="Scroll or type to select subject to add">
-                        <option value="" disabled>Select a Subject to Add it as a Favorite</option>
-                        <% subjects.forEach((s)=> { %>
-                            <option value="<%= s %>">
-                                <%= s %>
-                            </option>
-                            <% }); %>
-                    </select>
-                    <input type="submit" value="Add Subject to My Favorites" class="input-group-text btn btn-warning" id="add-subject-button">
-                </div>
-            </form>
+            <section class="favorite-subject-selector">
+                <form action="/favorites/subjects/add" method="POST">
+                    <label for="subjectToAdd" class="card-header text-white">Add a Favorite Subject:</label>
+                    <div class="input-group card-body">
+                        <input type="text" name="subjectToAdd" class="combobox form-control" id="combobox-single" aria-label="Add a favorite subject" aria-describedby="add-subj-note" placeholder="&#xf0d7; Type or pulldown to select subject to add to favorites" style="font-family:Arial, FontAwesome">
+                        <span id="add-subj-note" style="display:none">Select a subject to add by selecting an item from the combobox, or start typing to search for subjects to add</span>
+                        <i aria-hidden="true" class="fa trigger fa-caret-down" data-trigger="single"></i>
+              <div class="listbox">
+                <% subjects.forEach((s)=> { %>
+                    <option class="option">
+                        <%= s %>
+                    </option>
+                    <% }); %>
+              </div>
+                        <input type="submit" value="Add Subject to My Favorites" class="input-group-text btn btn-warning" id="add-subject-button">
+                    </div>
+                </form>
+            </section>
+
         </div>
 
 
@@ -110,6 +238,37 @@
                 <i class="bi bi-house me-2 shadow"></i>Return to MyGuide</button>
         </a>
     </div>
+
+    <script src="/js/combobo.js" charset="utf-8"></script>
+    <script>
+      (function () {
+        var box = {
+          'single': new Combobo({
+            input: '#combobox-single',
+            list: '.favorite-subject-selector .listbox',
+            activeClass: 'active',
+            noResultsText: 'No results found.',
+            optionValue: 'foo'
+          })
+        };
+
+        window.box = box;
+
+        // handle trigger clicks to toggle state of its combobox
+        Array.prototype.slice.call(
+          document.querySelectorAll('.trigger')
+        ).forEach(function (trigger) {
+          var instName = trigger.getAttribute('data-trigger');
+          var inst = box[instName];
+          trigger.addEventListener('click', function (e) {
+            e.stopPropagation();
+            console.log('clicked!?!?!');
+            console.log(inst.isOpen);
+            inst[inst.isOpen ? 'closeList' : 'openList']();
+          });
+        });
+      }());
+    </script>
 </body>
 </html>
 
