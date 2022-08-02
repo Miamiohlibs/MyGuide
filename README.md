@@ -13,6 +13,8 @@ Note: this project integrates closely with campus resources and will require som
 ## Configuration
 
 - copy `config/default_sample.json` to `config/default.json`
+- copy `config/fakeUserConf_sample.json` to `config/fakeUserConf.json`
+
 - customize configs for your environment
 
   - if running on a server, note the path to an OpenSSL key/cert pair on your server
@@ -22,6 +24,23 @@ Note: this project integrates closely with campus resources and will require som
   - the `allowedUsersCommaSeparated` defines which users can start/stop the service on the command line using the './killapp' and './restart' scripts. This setting is a comma separated list, not a true JSON array, e.g.: `"root,fred,wilma"`
 
   - CAS.exposeStatsOutsideCas -- default `false`. If set to `true`, the `/stats/` routes (for data and visualizations) will be available to non-logged in users.
+
+### fakeUserConf
+
+- for testing on localhost or when you don't want to use an authenticated user, you can test with a fake user. To use a fake user, in `config/default.json`, set `app.useFakeUser` to `true`. When this is set to true, MyGuide will read from settings in `config/fakeUserConf.json` to determine which fakeUser to use and whether to use fake Circulation information as well. The fake Circ info can be set directly in `fakeUserConf.json`. Each fakeUser will have its own files in the `fakeUsers/` directory. You can create or modify the fakeUsers to test MyGuide with different subjects or user parameters. fakeUser files should be based on how what data is passed to MyGuide by your authentication system. The fields in the fakeUser should correspond to fields in `config/cas_field_map.json`
+
+### cas_field_map
+
+`config/cas_field_map.json` defines the relationships between CAS user attributes and the user attributes used by MyGuide. Each entry gives a MyGuide label for a user attribute and has two properties: `field` and `fieldType`. The field will be the path within the CAS data structure to find the matching CAS field. `fieldType` will be one of three expected data types: `string`, `array`, or `arrayOfOne` -- `arrayOfOne` indicates data that is given as an array but expects an array of length=1.
+
+Example:
+
+```
+"userType": {
+        "field": "attributes.muohioeduPrimaryAffiliation",
+        "fieldType": "arrayOfOne"
+    },
+```
 
 ## Initial Setup
 

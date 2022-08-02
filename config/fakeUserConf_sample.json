@@ -1,0 +1,21 @@
+{
+    "useFakeCirc": true,
+    "fakeCircData": {
+        "moneyOwed": "$9.00",
+        "numHolds": "4",
+        "numCheckouts": "6",
+        "circSystem": "Sierra"
+    },
+    "fakeUserId": "polly",
+    "fakeUsers": [
+        {
+            "id": "ken",
+            "file": "ken-CAS.json"
+        },
+        {
+            "id": "polly",
+            "file": "polly-CAS.json",
+            "notes": "language student"
+        }
+    ]
+}

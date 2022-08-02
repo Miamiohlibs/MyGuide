@@ -6,6 +6,7 @@ const SierraDataGetter = require('../models/circulation/sierra/SierraDataGetter'
 const CircConnectionHandler = require('../models/circulation/CircConnectionHandler');
 const approot = require('app-root-path');
 const Logger = require(approot + '/helpers/Logger');
+const fakeUserConf = require('../config/fakeUserConf.json');
 
 module.exports = class CirculationController {
   constructor() {
@@ -21,6 +22,13 @@ module.exports = class CirculationController {
   async getUserData(userId) {
     if (!useCirc) {
       return {};
+    }
+    if (
+      config.get('app.useFakeUser') === true &&
+      fakeUserConf.useFakeCirc == true
+    ) {
+      let circData = fakeUserConf.fakeCircData;
+      return circData;
     }
     try {
       let connection = new CircConnectionHandler(this.circDataGetter);

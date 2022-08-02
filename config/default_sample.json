@@ -8,8 +8,8 @@
         "authType": "CAS",
         "subjectConfigFilename": "name_of_file_in_config_dir.json",
         "useCirc": false,
-        "useFakeUser": false,
-        "fakeUserFile": "polly-CAS.json",
+        "useFakeUser": true,
+        "FakeUserNote": "configure fakeUser in config/fakeUserConf.json",
         "useFavorites": false,
         "salt": "just a random string to use when needed"
     },

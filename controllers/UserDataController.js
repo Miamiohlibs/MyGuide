@@ -14,6 +14,7 @@ const _ = require('lodash');
 const UserFavoritesController = require('./UserFavoritesController');
 let appConf = config.get('app');
 const useFavorites = appConf.useFavorites || false;
+const fakeUserConf = require('../config/fakeUserConf.json');
 
 module.exports = class UserDataController {
   constructor(req) {
@@ -22,9 +23,14 @@ module.exports = class UserDataController {
       case 'CAS':
         // get real or fake user data
         if (config.get('app.useFakeUser') === true) {
+          let fakeUserId = fakeUserConf.fakeUserId;
+          let fakeUserFile = fakeUserConf.fakeUsers.filter(
+            (p) => p.id === fakeUserId
+          )[0].file;
+          console.log(fakeUserId, fakeUserFile);
           this.rawUserData = require(__dirname +
             '/../fakeUsers/' +
-            config.get('app.fakeUserFile'));
+            fakeUserFile);
         } else if (global.onServer) {
           this.rawUserData = req.session.cas;
         }
