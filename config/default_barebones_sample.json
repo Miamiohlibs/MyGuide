@@ -1,0 +1,14 @@
+{
+    "mode": "dev",
+    "allowedUsersCommaSeparated": "root",
+    "app": {
+        "port": "9909",
+        "onServer": true,
+        "salt": "test salt"
+    },
+    "server": {
+        "hostname": "servername.xxx.domain.tld",
+        "key": "/etc/ssl/certs/servername.xxx.domain.tld.key",
+        "cert": "/etc/ssl/certs/servername.xxx.domain.tld.crt"
+    }
+}
