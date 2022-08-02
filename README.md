@@ -52,7 +52,7 @@ There are a lot of configurations to set up to run MyGuide. You can do a more ab
 
 - copy `config/default.json` to a safe place if you've been setting it up.
 - copy `config/default_barebones_sample.json` to `config/default.json`
-- set the port, servername, and the path to the SSL certificate and key files
+- set the port, servername, and the path to the SSL certificate and key files in `config/default.json`
 - run `node install-test`
 - that will start a very simple web server; go to `{yourserver}:{PORT}/install`; if Apache is configured to serve content from the app, you should see a message reading: "If you can read this, the app is serving the install page."
 
