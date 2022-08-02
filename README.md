@@ -45,7 +45,20 @@ Example:
 ## Initial Setup
 
 - run `npm install` to install Node package dependencies
-- Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (Youc can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
+
+### abbreviated test setup
+
+There are a lot of configurations to set up to run MyGuide. You can do a more abbreviated test just to make sure that Apache is correctly configured to serve content from the app. To do this:
+
+- copy `config/default.json` to a safe place if you've been setting it up.
+- copy `config/default_barebones_sample.json` to `config/default.json`
+- set the port, servername, and the path to the SSL certificate and key files
+- run `node install-test`
+- that will start a very simple web server; go to `{yourserver}:{PORT}/install`; if Apache is configured to serve content from the app, you should see a message reading: "If you can read this, the app is serving the install page."
+
+### full setup
+
+- Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (You can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
 
 ## Starting/Stopping the Process
 

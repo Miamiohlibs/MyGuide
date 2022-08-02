@@ -23,7 +23,9 @@ app.use(
 );
 
 app.get('/install', (req, res) => {
-  res.send('If you can read this, the app is serving the install page.');
+  res.send(
+    '<style>body{ text-align:center; padding: 1em; border: 6px solid white; height: 2em;font-size: 145%; font-weight:bold; margin: auto; margin-top: 2em;width: 60%; background-color: lightgreen}</style><body>If you can read this, the app is serving the install page.</body>'
+  );
 });
 
 global.onServer =
