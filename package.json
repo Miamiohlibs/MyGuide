@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "dev": "nodemon app.js",
-    "scss": "node-sass scss/main.scss public/css/main.css",
-    "scss-dev": "node-sass scss/main.scss public/css/main.css --watch",
+    "scss": "sass scss/main.scss public/css/main.css",
+    "scss-dev": "sass scss/main.scss public/css/main.css --watch",
     "start": "node app",
     "server": "node app --name=MyGuide"
   },
@@ -39,12 +39,12 @@
     "mocha": "^9.2.2",
     "mongoose": "^6.3.3",
     "node-cas-client": "^1.0.0",
-    "node-sass": "^7.0.1",
     "sha256": "^0.2.0",
     "util": "^0.12.4",
     "winston": "^3.7.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "sass": "^1.54.1"
   }
 }
