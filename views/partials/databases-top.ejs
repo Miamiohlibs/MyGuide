@@ -5,9 +5,9 @@
     <% let url = d.friendly_url %>
     <% if (url === null) { url = d.url } %>
     <% if (d.favorite) { %>
-      <span class="favorite-indicator favorite me-2" data-resourceType="database" data-resourceId="<%- d.id %>" tabindex="0" title="Remove from favorites" aria-label="Remove <%- d.name %> from my favorite guides" aria-role="button" aria-pressed="true" aria-describedby="fav-desc">&#9733;</span>
+      <span class="favorite-indicator favorite me-2" data-resourceType="database" data-resourceId="<%- d.id %>" tabindex="0" title="Remove from favorites" aria-label="Remove <%- d.name %> from my favorite guides" role="button" aria-pressed="true" aria-describedby="fav-desc">&#9733;</span>
     <% } else { %>
-      <span class="favorite-indicator not-favorite me-2" data-resourceType="database" data-resourceId="<%- d.id %>" tabindex="0" title="Add to favorites" aria-label="Add <%- d.name %> to my favorite guides" aria-role="button" aria-pressed="false" aria-describedby="fav-desc">&#9734;</span>
+      <span class="favorite-indicator not-favorite me-2" data-resourceType="database" data-resourceId="<%- d.id %>" tabindex="0" title="Add to favorites" aria-label="Add <%- d.name %> to my favorite guides" role="button" aria-pressed="false" aria-describedby="fav-desc">&#9734;</span>
     <% } %>
     &nbsp;
     <a href="<%= url %>" class="col-10"><%- d.name %></a>
