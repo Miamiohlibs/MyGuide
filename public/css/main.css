@@ -11027,4 +11027,60 @@ input[value=x]:hover {
   display: block;
 }
 
+/* Favorite Subjects page, including Combobo combobox*/
+.favorite-subject-selector input {
+  font-size: 18px;
+}
+.favorite-subject-selector .listbox {
+  font-size: 18px;
+}
+.favorite-subject-selector label {
+  font-size: 18px;
+}
+
+.combobox {
+  padding: 10px 35px 10px 5px;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  position: relative;
+  text-align: left;
+  background-color: #fff;
+  color: #212E59;
+  box-shadow: 0 0 5px #000;
+}
+
+.listbox {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  box-sizing: border-box;
+  padding: 0;
+  background: #fff;
+  z-index: 99;
+  text-align: left;
+  box-shadow: 0 3px 12px #000;
+  max-height: 250px;
+  overflow-y: auto;
+}
+.listbox .option {
+  padding: 4px 6px;
+  cursor: default;
+}
+.listbox .option.selected {
+  color: #fff;
+  background-color: forestgreen;
+}
+.listbox .option.active {
+  color: #fff;
+  background-color: #212E59;
+}
+.listbox .underline {
+  text-decoration: underline;
+}
+
+.listbox.open {
+  display: block;
+}
+
 /*# sourceMappingURL=main.css.map */
