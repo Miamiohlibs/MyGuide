@@ -9,6 +9,7 @@
         "subjectConfigFilename": "name_of_file_in_config_dir.json",
         "useCirc": false,
         "useFakeUser": true,
+	"skipCasIfFakeUser": true,
         "FakeUserNote": "configure fakeUser in config/fakeUserConf.json",
         "useFavorites": false,
         "salt": "just a random string to use when needed"
