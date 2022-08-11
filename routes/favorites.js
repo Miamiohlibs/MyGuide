@@ -2,6 +2,7 @@ const config = require('config');
 const UserDataController = require('../controllers/UserDataController');
 const UserFavoritesController = require('../controllers/UserFavoritesController');
 const SubjectController = require('../controllers/SubjectController');
+const validateInput = require('../helpers/favoritesValidation');
 
 const router = require('express').Router();
 
@@ -27,6 +28,12 @@ router.get('/subjects', async (req, res) => {
 });
 
 router.post('/subjects/add', async (req, res) => {
+  let valid = validateInput(req.body.subjectToAdd, 'subject');
+  if (!valid) {
+    res.status(400);
+    res.send('Invalid subject');
+    return;
+  }
   const userDataController = new UserDataController(req);
   let user = await userDataController.getUserData();
   userId = user.person.userId;
@@ -50,6 +57,12 @@ router.post('/subjects/remove', async (req, res) => {
   res.redirect('/favorites/subjects?removed=' + req.body.subjectToRemove);
 });
 router.post('/databases/add', async (req, res) => {
+  let valid = validateInput(req.body.resourceId, 'database');
+  if (!valid) {
+    res.status(400);
+    res.send('Invalid database id');
+    return;
+  }
   const userDataController = new UserDataController(req);
   let user = await userDataController.getUserData();
   userId = user.person.userId;
@@ -86,6 +99,12 @@ router.post('/databases/remove', async (req, res) => {
   }
 });
 router.post('/guides/add', async (req, res) => {
+  let valid = validateInput(req.body.resourceId, 'guide');
+  if (!valid) {
+    res.status(400);
+    res.send('Invalid guide id');
+    return;
+  }
   const userDataController = new UserDataController(req);
   let user = await userDataController.getUserData();
   userId = user.person.userId;
