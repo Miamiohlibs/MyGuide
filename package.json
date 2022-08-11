@@ -22,6 +22,7 @@
     "colors": "1.4.0",
     "combobo": "^2.0.4",
     "config": "^3.3.6",
+    "content-security-policy": "^0.3.4",
     "cookie-parser": "^1.4.5",
     "dayjs": "^1.11.2",
     "ejs": "^3.1.7",
