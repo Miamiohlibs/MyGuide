@@ -30,11 +30,17 @@ app.use(
   })
 );
 
+if (config.has('app.skipCasIfFakeUser') && config.get('app.skipCasIfFakeUser') === true && config.has('app.useFakeUser') && config.get('app.useFakeUser') === true) { 
+    global.skipLogin = true;
+} else { 
+    global.skipLogin = false;
+}
+
 global.onServer =
   config.has('app.onServer') && config.get('app.onServer') === true;
 logger.debug('On Server: ' + global.onServer);
 
-if (global.onServer === true) {
+if (global.onServer === true && global.skipLogin === false) {
   if (config.get('app.authType') == 'CAS') {
     app.use(
       session({
