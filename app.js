@@ -10,6 +10,7 @@ const csp = require('content-security-policy');
 const https = require('https');
 const MemoryStore = require('memorystore')(session);
 const salt = config.get('app.salt') || 'you should set salt in config file';
+const helmet = require('helmet');
 
 let indexRouter = require('./routes/index');
 let favoritesRouter = require('./routes/favorites');
@@ -21,6 +22,7 @@ const cspPolicy = require('./helpers/contentSecurityPolicy');
 const localCSP = csp.getCSP(cspPolicy);
 app.use(localCSP);
 
+app.use(helmet.frameguard());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
