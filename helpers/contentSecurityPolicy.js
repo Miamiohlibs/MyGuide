@@ -24,9 +24,7 @@ for (let i = 0; i < attrArray.length; i++) {
 
 const cspPolicy = {
   'frame-ancestors': 'none',
-  'default-src':
-    "'self' 'unsafe-inline' cdnjs.cloudflare.com cdn.jsdelivr.net" +
-    defaultSrcAdditions,
+  'default-src': "'self'" + defaultSrcAdditions,
   'img-src': "'self'" + imgSrcAdditions,
   'script-src':
     "'self' 'unsafe-inline' 'unsafe-eval' cdnjs.cloudflare.com cdn.jsdelivr.net" +
