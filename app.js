@@ -3,11 +3,11 @@ const logger = require('./helpers/Logger');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
-const https = require('https');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-// const MemoryStore = require('session-memory-store')(session);
+const bodyParser = require('body-parser');
+const csp = require('content-security-policy');
+const https = require('https');
 const MemoryStore = require('memorystore')(session);
 const salt = config.get('app.salt') || 'you should set salt in config file';
 
@@ -16,6 +16,13 @@ let favoritesRouter = require('./routes/favorites');
 let statsRouter = require('./routes/stats');
 
 const app = express();
+
+const cspPolicy = {
+  'frame-ancestors': 'none',
+};
+const localCSP = csp.getCSP(cspPolicy);
+app.use(localCSP);
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
@@ -30,10 +37,15 @@ app.use(
   })
 );
 
-if (config.has('app.skipCasIfFakeUser') && config.get('app.skipCasIfFakeUser') === true && config.has('app.useFakeUser') && config.get('app.useFakeUser') === true) { 
-    global.skipLogin = true;
-} else { 
-    global.skipLogin = false;
+if (
+  config.has('app.skipCasIfFakeUser') &&
+  config.get('app.skipCasIfFakeUser') === true &&
+  config.has('app.useFakeUser') &&
+  config.get('app.useFakeUser') === true
+) {
+  global.skipLogin = true;
+} else {
+  global.skipLogin = false;
 }
 
 global.onServer =
