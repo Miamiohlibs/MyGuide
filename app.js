@@ -17,9 +17,7 @@ let statsRouter = require('./routes/stats');
 
 const app = express();
 
-const cspPolicy = {
-  'frame-ancestors': 'none',
-};
+const cspPolicy = require('./helpers/contentSecurityPolicy');
 const localCSP = csp.getCSP(cspPolicy);
 app.use(localCSP);
 
