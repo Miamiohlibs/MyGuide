@@ -23,17 +23,18 @@ for (let i = 0; i < attrArray.length; i++) {
 }
 
 const cspPolicy = {
-  'frame-ancestors': 'none',
+  'frame-ancestors': "'none'",
   'default-src': "'self'" + defaultSrcAdditions,
-  'img-src': "'self'" + imgSrcAdditions,
+  'img-src': "'self' data: w3.org/svg/2000" + imgSrcAdditions,
   'script-src':
-    "'self' 'unsafe-inline' 'unsafe-eval' cdnjs.cloudflare.com cdn.jsdelivr.net" +
+    "'self' 'unsafe-inline' 'unsafe-eval' cdnjs.cloudflare.com cdn.jsdelivr.net d3js.org ajax.googleapis.com" +
     scriptSrcAdditions,
   'style-src':
     "'self' 'unsafe-inline' cdnjs.cloudflare.com cdn.jsdelivr.net" +
     styleSrcAdditions,
   'font-src': "'self' cdn.jsdelivr.net cdnjs.cloudflare.com" + fontSrcAdditions,
   'frame-src': "'self'" + frameSrcAdditions,
+  'object-src': "'none'",
 };
 
 module.exports = cspPolicy;
