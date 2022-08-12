@@ -9,7 +9,7 @@
         "subjectConfigFilename": "name_of_file_in_config_dir.json",
         "useCirc": false,
         "useFakeUser": true,
-	"skipCasIfFakeUser": true,
+        "skipCasIfFakeUser": true,
         "FakeUserNote": "configure fakeUser in config/fakeUserConf.json",
         "useFavorites": false,
         "salt": "just a random string to use when needed"
@@ -17,7 +17,14 @@
     "server": {
         "hostname": "fully-qualified.domain.org",
         "key": "/path/to/cert.key",
-        "cert": "/path/to/cert.crt"
+        "cert": "/path/to/cert.crt",
+        "csp": {
+            "note": "Content Security Policy (CSP) is a computer security standard introduced to prevent cross-site scripting (XSS) attacks. Add to the following all servers from which your local settings will call scripts, etc.. This may include Google Analytics, LibCal, LibGuides, adn other sources. Include just the fully qualified domains, separated by spaces.",
+            "defaultSrcAdditions": "",
+            "scriptSrcAdditions": "",
+            "imgSrcAdditions": "",
+            "frameSrcAdditions": ""
+        }
     },
     "LibGuides": {
         "api_key": "supersekritkeystring",

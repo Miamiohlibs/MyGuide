@@ -60,6 +60,32 @@ There are a lot of configurations to set up to run MyGuide. You can do a more ab
 
 - Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (You can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
 
+## Content Security Policy
+
+A Content Security Policy (CSP) is a computer security standard introduced to prevent cross-site scripting (XSS) attacks. MyGuide includes some basic CSP settings, but additional local permissions will likely be needed. In `config/default.json`, add to the server.csp settings to permit calls to specific servers for externally sourced scripts, stylesheets, images, etc. Here is an example of what those settings might look like:
+
+```
+        "csp": {
+            "scriptSrcAdditions": "api3.libcal.com v2.libanswers.com",
+            "imgSrcAdditions": "libapps.s3.amazonaws.com lcimages.s3.amazonaws.com",
+            "frameSrcAdditions": "api3.libcal.com libanswers.lib.miamioh.edu"
+        }
+```
+
+The `scriptSrcAdditions` allow the LibCal and LibAnswers servers to permit certain SpringShare widgets to operate.
+
+The `imgSrcAdditions` allow librarian photos to load from the Libapps server on Amazon AWS.
+
+The `frameSrcAdditions` allow for LibCal to supply popup widgets for our librarian scheduling buttons.
+
+These same settings may work for you, or your institutions content may be stored on different servers. To find out which calls are being blocked by the content security policy, use the "Inspect > Console" feature in your web browser to find a message similar to this one:
+
+```
+Refused to frame 'https://api3.libcal.com/' because it violates the following Content Security Policy directive: "frame-src 'self' libanswers.lib.miamioh.edu".
+```
+
+To resolve this issue, add `api3.libcal.com` to the `frameSrcAdditions` setting. Be sure to leave a space between each server indicated in these settings.
+
 ## Starting/Stopping the Process
 
 `./restart` will kill an existing MyGuide instance (if any) and start a fresh process.
