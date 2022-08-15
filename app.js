@@ -6,23 +6,23 @@ const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const csp = require('content-security-policy');
 const https = require('https');
 const MemoryStore = require('memorystore')(session);
 const salt = config.get('app.salt') || 'you should set salt in config file';
 const helmet = require('helmet');
 
+const app = express();
+
+/* content secuirity policy and related headers */
+const cspPolicy = require('./helpers/contentSecurityPolicy');
+app.use(helmet.frameguard());
+app.use(helmet.contentSecurityPolicy({ directives: cspPolicy }));
+
+/* routers */
 let indexRouter = require('./routes/index');
 let favoritesRouter = require('./routes/favorites');
 let statsRouter = require('./routes/stats');
 
-const app = express();
-
-const cspPolicy = require('./helpers/contentSecurityPolicy');
-const localCSP = csp.getCSP(cspPolicy);
-app.use(localCSP);
-
-app.use(helmet.frameguard());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
@@ -37,6 +37,7 @@ app.use(
   })
 );
 
+/* fake user settings */
 if (
   config.has('app.skipCasIfFakeUser') &&
   config.get('app.skipCasIfFakeUser') === true &&
