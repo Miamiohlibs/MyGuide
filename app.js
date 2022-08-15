@@ -10,14 +10,13 @@ const https = require('https');
 const MemoryStore = require('memorystore')(session);
 const salt = config.get('app.salt') || 'you should set salt in config file';
 const helmet = require('helmet');
-const csp = require('helmet-csp');
 
 const app = express();
 
 /* content secuirity policy and related headers */
 const cspPolicy = require('./helpers/contentSecurityPolicy');
 app.use(helmet.frameguard());
-app.use(csp({ directives: cspPolicy }));
+app.use(helmet.contentSecurityPolicy({ directives: cspPolicy }));
 
 /* routers */
 let indexRouter = require('./routes/index');

@@ -29,7 +29,6 @@
     "express-session": "^1.17.2",
     "fs-extra": "^10.1.0",
     "helmet": "^5.1.1",
-    "helmet-csp": "^3.4.0",
     "https": "^1.0.0",
     "jest": "^27.4.5",
     "js-base64": "^3.7.2",
