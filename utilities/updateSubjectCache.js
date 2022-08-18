@@ -25,7 +25,7 @@ const subjects = require(rootdir + '/cache/Subjects');
 const filenamify = require(rootdir + '/utilities/filenamify');
 const subjectConfigFilename = config.get('app.subjectConfigFilename');
 const subjectConfigPath = path.join(rootdir, 'config', subjectConfigFilename);
-console.log('subjectConfigPath: ', subjectConfigPath);
+// console.log('subjectConfigPath: ', subjectConfigPath);
 // read the subject config file
 const subjectConfig = JSON.parse(fs.readFileSync(subjectConfigPath, 'utf8'));
 
@@ -34,10 +34,22 @@ const LibAppsDataFilter = require(rootdir +
   '/models/libGuides/LibAppsDataFilter');
 const f = new LibAppsDataFilter();
 
+// create a cache file for all university subjects
 subjectConfig.forEach((subject) => {
-  let libguides = subject.libguides;
+  writeSubjectFile(subject);
+});
+
+// create a cache file for each individual libguide subject if it doesn't already exist
+// this will ensure that librarians see their own liaison subjects
+allLibguideOnlySubjects = getLibguideOnlySubjects();
+allLibguideOnlySubjects.forEach((subject) => {
+  writeSubjectFile(subject);
+});
+
+function writeSubjectFile(subjectData) {
+  let libguides = subjectData.libguides;
   let libguidesData = getLibGuidesData(libguides);
-  let subjectNames = getAllSubjectNames(subject);
+  let subjectNames = getAllSubjectNames(subjectData);
   subjectNames.forEach((subjectName) => {
     // write out the libguidesdata to a file based on the subjectName
     let filename = filenamify(subjectName);
@@ -48,7 +60,22 @@ subjectConfig.forEach((subject) => {
       fs.writeFileSync(filepath, JSON.stringify(libguidesData, null, 2));
     }
   });
-});
+}
+
+function getLibguideOnlySubjects() {
+  const allLibguideSubjects = subjects.map((subject) => subject.name);
+  const allUnivSubjects = subjectConfig.map((subject) => subject.name);
+  return allLibguideSubjects
+    .filter((subject) => {
+      return allUnivSubjects.indexOf(subject) === -1;
+    })
+    .map((subject) => {
+      return {
+        name: subject,
+        libguides: [subject],
+      };
+    });
+}
 
 function getLibGuidesData(libguides) {
   if (libguides !== undefined && libguides !== null) {
