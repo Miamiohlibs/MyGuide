@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# cd into script directory
+cd "$(dirname "$0")"
+
 # create a "die" function
 die() { echo "$*" 1>&2 ; exit 1; }
 
