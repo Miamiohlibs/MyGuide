@@ -4,6 +4,7 @@ const CircController = require('../controllers/CirculationController');
 const circController = new CircController();
 const fs = require('fs');
 const logUsage = require('../models/usageLog/logUser');
+const logUrl = require('../models/usageLog/logUrl');
 
 const router = require('express').Router();
 
@@ -20,6 +21,7 @@ router.get('/', async (req, res) => {
     config: config.get('viewConfigs'),
   });
   logUsage(user);
+  logUrl(req);
 });
 
 router.get('/json', async (req, res) => {
