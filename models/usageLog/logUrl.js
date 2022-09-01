@@ -9,6 +9,7 @@ const logUrl = function (req) {
   data = {
     url: req.url,
     method: req.method,
+    query: req.query,
     timestamp: dayjs().format('YYYY-MM-DD HH:mm:ss'),
   };
   fs.appendFile(outputPath, '\n' + JSON.stringify(data));
