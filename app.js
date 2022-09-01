@@ -86,6 +86,10 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('*', (req, res, next) => {
+  logger.info({ url: req.url, method: req.method });
+  return next();
+});
 app.use('/', indexRouter);
 app.use('/favorites', favoritesRouter);
 app.use('/stats', statsRouter);
