@@ -47,5 +47,10 @@
   "devDependencies": {
     "nodemon": "^2.0.16",
     "sass": "^1.54.1"
+  },
+  "overrides": {
+    "node-cas-client": {
+      "xml2js": "^0.5.0"
+    }
   }
 }
