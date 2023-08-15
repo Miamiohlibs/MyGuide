@@ -7,11 +7,12 @@ describe('CircConnectionHandler: constructor', () => {
     expect(typeof connection.circDataGetter).toBe('function');
   });
 
-  it('should throw an error if the argument is not a function', () => {
-    expect(() => new CircConnectionHandler('string input')).toThrow(Error);
-    // why this goofy syntax? see:
-    //https://medium.com/@afolabiwaheed/how-to-test-a-function-thats-expected-to-throw-error-in-jest-2419cc7c6462
-  });
+  // actually it should be a string after all
+  // it('should throw an error if the argument is not a function', () => {
+  //   expect(() => new CircConnectionHandler('string input')).toThrow(Error);
+  //   // why this goofy syntax? see:
+  //   //https://medium.com/@afolabiwaheed/how-to-test-a-function-thats-expected-to-throw-error-in-jest-2419cc7c6462
+  // });
 });
 
 describe('CircConnectionHandler: getUserData', () => {
