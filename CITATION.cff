@@ -1,0 +1,34 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: MyGuide
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Ken
+    family-names: Irwin
+    email: irwinkr@miamioh.edu
+    name-particle: Ken
+    orcid: 'https://orcid.org/0000-0002-5445-7175'
+    affiliation: Miami University
+identifiers:
+  - type: url
+    value: 'https://github.com/Miamiohlibs/MyGuide'
+    description: GitHub Repository
+repository-code: 'https://github.com/Miamiohlibs/MyGuide'
+abstract: >-
+  An open-source, personalized library dashboard drawing 
+  on Springshare LibGuides, circulation data, and local
+  campus information systems to create a custom library 
+  research dashboard for each user.
+keywords:
+  - libraries
+  - springshare
+  - libguides
+  - dashboard
+license: GPL-3.0
+version: 2.0.1
+date-released: '2023-08-15'
