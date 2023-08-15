@@ -36,7 +36,7 @@ module.exports = class CirculationController {
       res.circSystem = circSystem; //adds in system name for viewer
       return res;
     } catch (err) {
-      Logger({
+      Logger.error({
         message: 'Error getting user data in Circulation Controller',
         errorMessage: err.message,
         error: err,
