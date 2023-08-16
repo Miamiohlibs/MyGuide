@@ -5,6 +5,8 @@ const circController = new CircController();
 const fs = require('fs');
 const logUsage = require('../models/usageLog/logUser');
 const logUrl = require('../models/usageLog/logUrl');
+const pjson = require('../package.json');
+const version = pjson.version;
 
 const router = require('express').Router();
 
@@ -15,6 +17,7 @@ router.get('/', async (req, res) => {
   // res.send(userInfo);
   // res.render('dashboard', { user: userInfo, settings: settings });
   res.render('index', {
+    myGuideVersion: version,
     user: user,
     circ: circData,
     fs: fs,
@@ -28,7 +31,7 @@ router.get('/json', async (req, res) => {
   const userDataController = new UserDataController(req);
   let user = await userDataController.getUserData();
   let circData = await circController.getUserData(user.person.userId);
-  res.send({ circ: circData, user: user });
+  res.send({ myGuideVersion: version, circ: circData, user: user });
 });
 
 router.get('/test', (req, res) => {
