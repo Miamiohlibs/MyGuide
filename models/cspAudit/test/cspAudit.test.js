@@ -62,10 +62,48 @@ describe('cspAudit: limitToRelevantFields', () => {
   });
 });
 
-// describe('cspAudit: extractUrls', () => {
-//     it('should return an array of all the urls in the data', () => {
-//         const csp = new CspAudit(testData);
-//         let urls = csp.extractUrls();
-//         expect(urls).toEqual([
-//         ]);
-// });
+describe('cspAudit: extractUrls', () => {
+  it('should return an array of all the urls from a string', () => {
+    const data = 'http://example.com, bobs your uncle https://example.net/blog';
+    const csp = new CspAudit(data);
+    let urls = csp.extractUrls(data);
+    expect(urls).toEqual(['example.com', 'example.net/blog']);
+  });
+  it('should return an array of all the urls from an array', () => {
+    const data = [
+      'http://example.com, bobs',
+      'your uncle https://example.net/blog',
+    ];
+    const csp = new CspAudit();
+    let urls = csp.extractUrls(data);
+    expect(urls).toEqual(['example.com', 'example.net/blog']);
+  });
+  it('should find urls with http, https, ftp, or no protocol', () => {
+    const data =
+      'http://example.com, https://example.net, ftp://example.org, //example.co.uk';
+    const csp = new CspAudit();
+    let urls = csp.extractUrls(data);
+    expect(urls).toEqual([
+      'example.com',
+      'example.net',
+      'example.org',
+      'example.co.uk',
+    ]);
+  });
+  it('should find urls of many lengths', () => {
+    const data =
+      'http://deep.organization.example.com, https://example.net, ftp://example.org, //example.co.uk, http://example.com/longer/path, https://example.net/longer/path, ftp://example.org/longer/path, //example.co.uk/longer/path.jpg';
+    const csp = new CspAudit();
+    let urls = csp.extractUrls(data);
+    expect(urls).toEqual([
+      'deep.organization.example.com',
+      'example.net',
+      'example.org',
+      'example.co.uk',
+      'example.com/longer/path',
+      'example.net/longer/path',
+      'example.org/longer/path',
+      'example.co.uk/longer/path.jpg',
+    ]);
+  });
+});

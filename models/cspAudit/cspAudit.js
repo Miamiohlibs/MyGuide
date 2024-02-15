@@ -16,4 +16,24 @@ module.exports = class CspAudit {
       );
     });
   }
+
+  extractUrls(data) {
+    if (Array.isArray(data)) {
+      data = data.flat().join(' ');
+    } else {
+      data = data;
+    }
+    const urlRegex =
+      /(http|ftp|https)*:*\/\/(([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))/gi;
+    const matches = data.matchAll(urlRegex);
+    const urls = [];
+    for (const match of matches) {
+      urls.push(match[2]);
+    }
+    return urls;
+  }
+
+  organizeUrlsByType() {}
+  getDomainsByType() {}
+  compareDomainsToWhitelist() {}
 };
