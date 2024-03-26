@@ -1,6 +1,8 @@
 const fs = require('fs');
 const getUsageData = require('../helpers/getUsageData');
 const router = require('express').Router();
+const pjson = require('../package.json');
+const version = pjson.version;
 
 /* Graphing Routes */
 
@@ -8,14 +10,20 @@ router.get('/', (req, res) => {
   res.redirect('/stats/usage');
 });
 router.get('/usage', (req, res) => {
-  res.render('stats-graphUsage', { page: 'usage' });
+  res.render('stats-graphUsage', { page: 'usage', myGuideVersion: version });
 });
 router.get('/repeatUsers', (req, res) => {
   // res.send('Test');
-  res.render('stats-graphRepeats', { page: 'repeatUsers' });
+  res.render('stats-graphRepeats', {
+    page: 'repeatUsers',
+    myGuideVersion: version,
+  });
 });
 router.get('/subjects', (req, res) => {
-  res.render('stats-graphSubjects', { page: 'subjectGraph' });
+  res.render('stats-graphSubjects', {
+    page: 'subjectGraph',
+    myGuideVersion: version,
+  });
 });
 
 /* JSON stats routes */
