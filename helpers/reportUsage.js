@@ -12,6 +12,25 @@ reportUsage = function (data, increment, options = {}) {
   data = applyDataLimiters(data, opts);
   console.log(opts);
 
+  if (increment == 'all') {
+    let json = {
+      startDate: opts.firstDate,
+      endDate: opts.endDate,
+      increment: increment,
+      population: opts.limitByUserType,
+      totalUses: data.length,
+      distinctUsers: usage.distinctUsers(data),
+      details: [
+        {
+          period: opts.firstDate + ' to ' + opts.endDate,
+          periodUses: data.length,
+          periodDistinctUsers: usage.distinctUsers(data),
+        },
+      ],
+    };
+    return json;
+  }
+
   let statsResults = usage.getStatsByTimePeriod(
     increment,
     data,
