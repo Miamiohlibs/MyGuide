@@ -3,7 +3,8 @@ const UserDataController = require('../controllers/UserDataController');
 const UserFavoritesController = require('../controllers/UserFavoritesController');
 const SubjectController = require('../controllers/SubjectController');
 const validateInput = require('../helpers/favoritesValidation');
-
+const pjson = require('../package.json');
+const version = pjson.version;
 const router = require('express').Router();
 
 router.get('/subjects', async (req, res) => {
@@ -18,6 +19,7 @@ router.get('/subjects', async (req, res) => {
     favorites: favs,
     subjects: subjects,
     config: config.get('viewConfigs'),
+    myGuideVersion: version,
   };
   if (req.query.hasOwnProperty('added')) {
     params.msg = 'Added ' + req.query.added + ' to favorites';
