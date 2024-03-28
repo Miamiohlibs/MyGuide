@@ -13,6 +13,13 @@ router.get('/', (req, res) => {
 router.get('/usage', (req, res) => {
   res.render('stats-graphUsage', { page: 'usage', myGuideVersion: version });
 });
+router.get('/favorites', (req, res) => {
+  res.render('stats-graphFavorites', {
+    page: 'favorites',
+    myGuideVersion: version,
+  });
+});
+
 router.get('/repeatUsers', (req, res) => {
   // res.send('Test');
   res.render('stats-graphRepeats', {

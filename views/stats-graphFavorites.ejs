@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('partials/stats-head-elements', {myGuideVersion}) %>
+    <script src="/js/d3-v4-tip.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bumbeishvili/d3-tip-for-v6@4/d3-tip.min.css">
+    <script src="/js/createHorizontalBarChart.js"></script>
+    <link rel="stylesheet" href="/css/stats.css">
+    
+</head>
+
+<%- include('./partials/stats-nav.ejs', { page: page } ) %>
+
+<body class="container">
+    <!-- <div id="options">
+        <div class="row">
+
+        <ul id="population-selector" class="btn-group col-lg-6">
+            <li CLASS="btn disabled">Population:</li>
+            <li class="btn btn-primary active" data-population="all">All Users</li>
+            <li class="btn btn-primary " data-population="student">Student</li>
+            <li class="btn btn-primary" data-population="faculty">Faculty</li>
+            <li class="btn btn-primary" data-population="staff">Staff</li>
+        </ul>
+
+        <ul id="increment-selector" class="btn-group col-lg-6">
+            <li class="btn disabled">Time Frame:</li>
+            <li class="btn btn-primary active" data-increment="day">Daily</li>
+            <li class="btn btn-primary " data-increment="month">Monthly</li>
+            <li class="btn btn-primary" data-increment="year">Yearly</li>
+            <li class="btn btn-primary" data-increment="all">All</li>
+        </ul>
+
+        <ul id="dataLevel-selector" class="btn-group col-lg-4">
+            <li CLASS="btn disabled">Data Level:</li>
+            <li class="btn btn-primary active" data-level="periodUses">Total Uses</li>
+            <li class="btn btn-primary " data-level="periodDistinctUsers">Distinct Users</li>
+        </ul>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label for="startDate" class="input-group-text">Start date:</label>
+                </div>
+               
+                <input type="date" class="form-control dateField" id="startDate" name="startDate" value="2021-08-31"
+               min="2021-08-31">
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label for="endDate" class="input-group-text">End date:</label>
+            </div>
+            <input type="date" class="form-control dateField" id="endDate" name="endDate" value=""
+      min="2021-08-31">
+      </div>
+      </div>
+    </div>
+    </div> -->
+    <svg id="subject-graph" height="500" width="600"></svg>
+    <div id="data-link-subj"></div>
+    <div id="rawData-subj"></div>
+    <script>
+            $(document).ready(function() {
+            function updateChart() {
+                doChart({});
+            }
+
+            function doChart(o) {
+                $('#subject-graph').empty();
+                // console.log($.param(o) )
+                queryUrl = '/stats/favoritesData?'+$.param(o);
+                $('#data-link-subj').html('<a href="'+queryUrl+'">Link to Raw Data</a>');
+                jQuery.getJSON(queryUrl, function(data) {
+                // console.log('Favorites data', data);
+                let options = {
+                    margin: {top: 100, right: 10, bottom: 0, left: 250},
+                    rowHeight: 20,  
+                    xValueProp: 'subject', 
+                    yValueProp: 'count', 
+                    width: 500,   // width of the overall svg element
+                    chartTitle: "Users' Favorite Subjects",
+                    chartSelector: '#subject-graph',
+                }
+                createHorizontalBarChart(data.details, options);
+                
+                $('#rawData-subj').html('<pre>' + JSON.stringify(data,null,2) + '</pre>')
+                });
+
+                
+            }
+
+            doChart({});
+        });
+    </script>
+</body>
+</html>

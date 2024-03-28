@@ -6,7 +6,8 @@ function createHorizontalBarChart(data, options) {
     xValueProp = options.xValueProp,
     yValueProp = options.yValueProp,
     width = options.width || 1000,
-    chartTitle = options.chartTitle || '';
+    chartTitle = options.chartTitle || '',
+    chartSelector = options.chartSelector || 'svg';
 
   //calculate chartHeight, chartWidth, and overall height
   var chartHeight = data.length * rowHeight,
@@ -26,7 +27,7 @@ function createHorizontalBarChart(data, options) {
   // append the svg object to the body of the page
   // append a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
-  var svg = d3.select('svg').attr('height', height);
+  var svg = d3.select(chartSelector).attr('height', height);
   var g = svg
     .append('g')
     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');

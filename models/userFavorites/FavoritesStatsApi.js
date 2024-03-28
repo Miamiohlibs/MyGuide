@@ -16,7 +16,7 @@ module.exports = class FavoriteStatsApi {
       usersWithFavDatabases: this.getUsersWithFavDatabases().length,
       usersWithFavSubjects: this.getUsersWithFavSubjects().length,
       usersWithFavGuides: this.getUsersWithFavGuides().length,
-      favoriteSubjects: this.getFavSubjects(),
+      details: this.getFavSubjects(),
     };
   }
 
