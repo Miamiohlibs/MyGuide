@@ -29,7 +29,7 @@ router.get('/repeatUsers', (req, res) => {
 });
 router.get('/subjects', (req, res) => {
   res.render('stats-graphSubjects', {
-    page: 'subjectGraph',
+    page: 'subjects',
     myGuideVersion: version,
   });
 });
