@@ -13,14 +13,17 @@ function createBarChart(data, options = {}) {
     (xAxisLabel = options.xAxisLabel || ''),
     (yValueProp = options.yValueProp),
     (yAxisLabel = options.yAxisLabel || ''),
+    (titleOffsetX = options.titleOffsetX || 50),
+    (titleOffsetY = options.titleOffsetY || 50),
+    (xAxisLabelRotation = options.xAxisLabelRotation || -65),
     (chartTitle = options.chartTitle || '');
 
   // Chart Title
   svg
     .append('text')
     .attr('transform', 'translate(' + halfMargin + ',0)') // margin/2
-    .attr('x', 50)
-    .attr('y', 50)
+    .attr('x', titleOffsetX)
+    .attr('y', titleOffsetY)
     .attr('font-size', '24px')
     .text(chartTitle);
 
@@ -91,6 +94,7 @@ function createBarChart(data, options = {}) {
   // add x-axis label
   g.append('g') // create group for x-axis
     .attr('class', 'axis axis--x') // add class to x-axis
+    // .attr('transform', 'translate(0,' + height + ')') // position at bottom of chart
     .attr('transform', 'translate(0,' + height + ')') // position at bottom of chart
     .call(xAxisGenerator) // render x-axis
     .append('text')
@@ -99,6 +103,14 @@ function createBarChart(data, options = {}) {
     .attr('text-anchor', 'end')
     .attr('stroke', 'black')
     .text(xAxisLabel);
+
+  //rotate x-axis labels
+  g.select('.axis--x')
+    .selectAll('.tick text')
+    .style('text-anchor', 'end')
+    .attr('dx', '-.8em')
+    .attr('dy', '.15em')
+    .attr('transform', 'rotate(' + xAxisLabelRotation + ')');
 
   g.select('.axis--x')
     .selectAll('tick')

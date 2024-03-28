@@ -12,11 +12,22 @@ module.exports = class FavoriteStatsApi {
 
   getStats() {
     return {
-      totalUsers: this.getTotalUsers(),
-      usersWithFavDatabases: this.getUsersWithFavDatabases().length,
-      usersWithFavSubjects: this.getUsersWithFavSubjects().length,
-      usersWithFavGuides: this.getUsersWithFavGuides().length,
-      details: this.getFavSubjects(),
+      overall: [
+        { name: 'Total Users', value: this.getTotalUsers() },
+        {
+          name: 'Users with Favorite Databases',
+          value: this.getUsersWithFavDatabases().length,
+        },
+        {
+          name: 'Users with Favorite Subjects',
+          value: this.getUsersWithFavSubjects().length,
+        },
+        {
+          name: 'Users with Favorite Guides',
+          value: this.getUsersWithFavGuides().length,
+        },
+      ],
+      favoriteSubjects: this.getFavSubjects(),
     };
   }
 
