@@ -1,5 +1,6 @@
 const fs = require('fs');
 const getUsageData = require('../helpers/getUsageData');
+const getFavStats = require('../helpers/getFavoritesStats');
 const router = require('express').Router();
 const pjson = require('../package.json');
 const version = pjson.version;
@@ -61,6 +62,12 @@ router.get('/subjectData', (req, res) => {
   let stats = getSubjectStats(data, req.query);
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify({ stats }));
+});
+
+router.get('/favoritesData', async (req, res) => {
+  data = await getFavStats();
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(data));
 });
 
 module.exports = router;
