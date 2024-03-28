@@ -6,8 +6,17 @@ const Crud = mongoose.model('userFavorites');
 const Logger = require(approot + '/helpers/Logger');
 
 module.exports = class FavoriteStatsApi {
-  loadJson(data) {
-    this.data = JSON.parse(data);
+  async GetAllUserFavorites() {
+    try {
+      await db.connect();
+      let userFavs = await Crud.find();
+      await db.disconnect();
+      this.data = userFavs;
+      return;
+    } catch (err) {
+      Logger.error(err);
+      return { success: false, message: err.message, error: err };
+    }
   }
 
   getStats() {
@@ -71,36 +80,4 @@ module.exports = class FavoriteStatsApi {
     subjectCounts.sort((a, b) => b.count - a.count);
     return subjectCounts;
   }
-  async GetAllUserFavorites() {
-    try {
-      await db.connect();
-      let userFavs = await Crud.find();
-      await db.disconnect();
-      return userFavs;
-    } catch (err) {
-      Logger.error(err);
-      return { success: false, message: err.message, error: err };
-    }
-  }
-
-  //   duplicateStringAndIntegerValuesInArray = (array) => {
-  //     // the code seems inconsistent as to whether it expects
-  //     // an array of strings or integers
-  //     // so I'm going to try both
-  //     // this is a bit of a hack
-
-  //     let newArray = [];
-  //     array.forEach((item) => {
-  //       if (typeof item === 'string') {
-  //         newArray.push(item);
-  //         if (!isNaN(parseInt(item))) {
-  //           newArray.push(parseInt(item));
-  //         }
-  //       } else if (typeof item === 'number') {
-  //         newArray.push(item);
-  //         newArray.push(item.toString());
-  //       }
-  //     });
-  //     return [...new Set(newArray)]; // prevents true duplicates
-  //   };
 };

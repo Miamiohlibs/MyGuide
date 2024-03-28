@@ -4,10 +4,7 @@ const fs = require('fs').promises;
 
 const getFavStats = async function () {
   try {
-    const data = await favs.GetAllUserFavorites();
-    let json = JSON.stringify(data);
-    // console.log(json);
-    favs.loadJson(json);
+    await favs.GetAllUserFavorites();
     return favs.getStats();
   } catch (err) {
     console.error(err);
