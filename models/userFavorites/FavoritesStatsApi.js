@@ -4,6 +4,8 @@ const db = require(approot + '/helpers/database');
 require(approot + '/models/userFavorites/UserFavorites');
 const Crud = mongoose.model('userFavorites');
 const Logger = require(approot + '/helpers/Logger');
+const guides = require(approot + '/cache/Guides');
+const databases = require(approot + '/cache/Databases');
 
 module.exports = class FavoriteStatsApi {
   async GetAllUserFavorites() {
@@ -36,7 +38,9 @@ module.exports = class FavoriteStatsApi {
           value: this.getUsersWithFavGuides().length,
         },
       ],
-      favoriteSubjects: this.getFavSubjects(),
+      favoriteSubjects: this.getFavCounts('favoriteSubjects'),
+      favoriteDatabases: this.getFavCounts('favoriteDatabases'),
+      favoriteGuides: this.getFavCounts('favoriteGuides'),
     };
   }
 
@@ -56,28 +60,41 @@ module.exports = class FavoriteStatsApi {
     return this.data.filter((user) => user.favoriteGuides.length > 0);
   }
 
-  getFavSubjects() {
-    let allSubjects = this.data
-      .map((user) => user.favoriteSubjects)
+  getFavCounts(type) {
+    let allItems = this.data
+      .map((user) => user[type])
       .flat()
       .sort();
-    // return an array with a count of each subject
 
-    let subjectCounts = [];
-    allSubjects.forEach((subj) => {
-      let index = subjectCounts.findIndex((item) => item.subject == subj);
+    let itemCounts = [];
+    allItems.forEach((subj) => {
+      let index = itemCounts.findIndex((item) => item['item'] == subj);
       // console.log(subj, index);
       // console.log(subj);
       if (index == -1) {
-        subjectCounts.push({
-          subject: subj,
+        itemCounts.push({
+          item: subj,
           count: 1,
         });
       } else {
-        subjectCounts[index].count++;
+        itemCounts[index].count++;
       }
     });
-    subjectCounts.sort((a, b) => b.count - a.count);
-    return subjectCounts;
+    itemCounts.sort((a, b) => b.count - a.count);
+
+    if (type == 'favoriteGuides') {
+      itemCounts.map((g) => {
+        let result = guides.find((guide) => guide.id == g.item);
+        g.item = result.name;
+      });
+    }
+    if (type == 'favoriteDatabases') {
+      itemCounts.map((db) => {
+        let result = databases.find((database) => database.id == db.item);
+        db.item = result.name;
+      });
+    }
+
+    return itemCounts;
   }
 };
