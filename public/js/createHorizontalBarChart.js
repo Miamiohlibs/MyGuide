@@ -5,6 +5,8 @@ function createHorizontalBarChart(data, options) {
     rowHeight = options.rowHeight || 20,
     xValueProp = options.xValueProp,
     yValueProp = options.yValueProp,
+    titleOffsetX = options.titleOffsetX || 50,
+    titleOffsetY = options.titleOffsetY || 50,
     width = options.width || 1000,
     chartTitle = options.chartTitle || '',
     chartSelector = options.chartSelector || 'svg';
@@ -75,8 +77,8 @@ function createHorizontalBarChart(data, options) {
   svg
     .append('text')
     .attr('transform', 'translate(' + margin.left + ',0)') // margin/2
-    .attr('x', 50)
-    .attr('y', 50)
+    .attr('x', titleOffsetX)
+    .attr('y', titleOffsetY)
     .attr('font-size', '24px')
     .text(chartTitle);
 

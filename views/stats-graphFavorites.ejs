@@ -24,6 +24,15 @@
         <div id="data-link-subj"></div>
         <div id="rawData-subj"></div>
     </div>
+    <div id="db-container">
+        <svg id="db-graph" height="500" width="600"></svg>
+        <div id="data-link-db"></div>
+        <div id="rawData-db"></div>
+    </div>
+    <div id="guides-container">
+        <svg id="guides-graph" height="500" width="600"></svg>
+        <div id="data-link-guides"></div>
+        <div id="rawData-guides"></div>
    </div>
 
     <script>
@@ -64,6 +73,29 @@
                 }
                 createHorizontalBarChart(data.favoriteSubjects, subjectOptions);
                 
+                let dbOptions = {
+                    margin: {top: 100, right: 100, bottom: 0, left: 300},
+                    rowHeight: 20,  
+                    xValueProp: 'item', 
+                    yValueProp: 'count', 
+                    width: 600,   // width of the overall svg element
+                    titleOffsetX: -250,
+                    chartTitle: "Users' Favorite Databases",
+                    chartSelector: '#db-graph',
+                }
+                createHorizontalBarChart(data.favoriteDatabases, dbOptions);
+
+                let guideOptions = {
+                    margin: {top: 100, right: 100, bottom: 0, left: 300},
+                    rowHeight: 20,  
+                    xValueProp: 'item', 
+                    yValueProp: 'count', 
+                    width: 600,   // width of the overall svg element
+                    titleOffsetX: -250,
+                    chartTitle: "Users' Favorite Guides",
+                    chartSelector: '#guides-graph',
+                }
+                createHorizontalBarChart(data.favoriteGuides, guideOptions);
                 $('#rawData-subj').html('<pre>' + JSON.stringify(data,null,2) + '</pre>')
                 });
 
