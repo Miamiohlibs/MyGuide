@@ -13,27 +13,47 @@
 <%- include('./partials/stats-nav.ejs', { page: page } ) %>
 
 <body class="container">
-   <div class="d-flex flex-row">
-    <div id="overall-container">
+<div id="data-link-subj" style="margin:1em;"></div>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="subjects-tab" data-bs-toggle="tab" data-bs-target="#subjects" type="button" role="tab" aria-controls="subjects" aria-selected="false">Subjects</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="databases-tab" data-bs-toggle="tab" data-bs-target="#databases" type="button" role="tab" aria-controls="databases" aria-selected="false">Databases</button>
+    </li>
+      <li class="nav-item" role="presentation">
+      <button class="nav-link" id="guides-tab" data-bs-toggle="tab" data-bs-target="#guides" type="button" role="tab" aria-controls="guides" aria-selected="false">Guides</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <svg id="overall-graph" height="500" width="400"></svg>
         <div id="data-link-overall"></div>
         <div id="rawData-overall"></div>
     </div>
-    <div id="subject-container">
+    <div class="tab-pane fade" id="subjects" role="tabpanel" aria-labelledby="subjects-tab">
         <svg id="subject-graph" height="500" width="600"></svg>
         <div id="data-link-subj"></div>
         <div id="rawData-subj"></div>
     </div>
-    <div id="db-container">
+    <div class="tab-pane fade" id="databases" role="tabpanel" aria-labelledby="databases-tab">
         <svg id="db-graph" height="500" width="600"></svg>
         <div id="data-link-db"></div>
         <div id="rawData-db"></div>
     </div>
-    <div id="guides-container">
+    <div class="tab-pane fade" id="guides" role="tabpanel" aria-labelledby="guides-tab">
         <svg id="guides-graph" height="500" width="600"></svg>
         <div id="data-link-guides"></div>
         <div id="rawData-guides"></div>
-   </div>
+    </div>
+  </div>
+
+<!-- ********************************** -->
+
 
     <script>
             $(document).ready(function() {
@@ -61,6 +81,7 @@
                     canvasSelector: '#overall-graph',
                 }
                 createBarChart(data.overall, options);
+                $('#rawData-overall').html('<pre>' + JSON.stringify(data.overall,null,2) + '</pre>');
 
                 let subjectOptions = {
                     margin: {top: 100, right: 10, bottom: 0, left: 250},
@@ -72,6 +93,7 @@
                     chartSelector: '#subject-graph',
                 }
                 createHorizontalBarChart(data.favoriteSubjects, subjectOptions);
+                $('#rawData-subj').html('<pre>' + JSON.stringify(data.favoriteSubjects,null,2) + '</pre>');
                 
                 let dbOptions = {
                     margin: {top: 100, right: 100, bottom: 0, left: 300},
@@ -83,8 +105,10 @@
                     chartTitle: "Users' Favorite Databases",
                     chartSelector: '#db-graph',
                 }
+                
                 createHorizontalBarChart(data.favoriteDatabases, dbOptions);
-
+                $('#rawData-db').html('<pre>' + JSON.stringify(data.favoriteDatabases,null,2) + '</pre>');
+            
                 let guideOptions = {
                     margin: {top: 100, right: 100, bottom: 0, left: 300},
                     rowHeight: 20,  
@@ -96,7 +120,7 @@
                     chartSelector: '#guides-graph',
                 }
                 createHorizontalBarChart(data.favoriteGuides, guideOptions);
-                $('#rawData-subj').html('<pre>' + JSON.stringify(data,null,2) + '</pre>')
+                $('#rawData-guides').html('<pre>' + JSON.stringify(data.favoriteGuides,null,2) + '</pre>')
                 });
 
                 
