@@ -49,7 +49,7 @@ router.get('/json', async (req, res) => {
   const userDataController = new UserDataController(req);
   let user = await userDataController.getUserData();
   let circData = await circController.getUserData(user.person.userId);
-  res.send({ myGuideVersion: version, circ: circData, user: user, cas: casData });
+  res.send({ myGuideVersion: version, circ: circData, user: user });
 });
 
 router.get('/test', (req, res) => {
