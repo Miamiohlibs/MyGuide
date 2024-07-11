@@ -1,12 +1,21 @@
 <html>
  <head>
   <title>Error</title>
+  <%- include('partials/header-includes.ejs'); %>
  </head>
- <body>
+ <body class="container">
   <h1>MyGuide Error</h1>
   <h2>Page unable to load</h2>
-  <a class="btn" href="/logout">Logout</a>
-  <div id="message"></div>
-  <div id="details"></div>
+  <a class="btn btn-primary text-white my-3" href="/logout">Logout</a>
+  <div id="message" class="alert alert-warning">
+    <% if (message !== undefined) { %>
+    <%= message %>
+    <% } %> 
+  </div>
+  <div id="details" class="alert alert-info">
+    <% if (details !== undefined) { %>
+    <%= details %>
+    <% } %> 
+  </div>
  </body>
 </html>
