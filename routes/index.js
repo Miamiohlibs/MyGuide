@@ -12,11 +12,12 @@ const logger = require('../helpers/Logger');
 const router = require('express').Router();
 
 router.get('/', async (req, res) => {
+  let user, circData
   try{   
   logger.debug(req.session.cas);
   const userDataController = new UserDataController(req);
-  const user = await userDataController.getUserData();
-  let circData = await circController.getUserData(user.person.userId);
+  user = await userDataController.getUserData();
+  circData = await circController.getUserData(user.person.userId);
 } catch (err) {
   // res.send(userInfo);
   // res.render('dashboard', { user: userInfo, settings: settings });
@@ -25,7 +26,6 @@ router.get('/', async (req, res) => {
     logger.debug(err);
     res.send('Unable to load MyGuide');
     res.end();
-//    res.render('error', {message: '<h1>MyGuide is down. We are working to fix the issue as soon as possible.</h1><h2>');
 }
 
 try {
@@ -39,10 +39,8 @@ try {
   logUsage(user);
   logUrl(req);
 } catch (err) {
-//    res.render('error', {message: '<h1>MyGuide is down. We are working to fix the issue as soon as possible.</h1><h2>'} );
-    res.render('error');
-//    res.send('Unable to load MyGuide');
-//    res.end();
+    logger.debug('Error rendering page:', err);
+    res.render('error', {message: 'Could not render MyGuide page', details: err });
 }
 });
 
