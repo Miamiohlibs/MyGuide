@@ -3,10 +3,12 @@ const getUsageData = require('../helpers/getUsageData');
 const router = require('express').Router();
 const pjson = require('../package.json');
 const version = pjson.version;
+const logger = require('../helpers/Logger');
 
 /* Graphing Routes */
 
 router.get('/', (req, res) => {
+  logger.debug('re-routing to stats/usage');
   res.redirect('/stats/usage');
 });
 router.get('/usage', (req, res) => {

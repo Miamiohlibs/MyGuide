@@ -1,8 +1,9 @@
+const approot = require('app-root-path');
 const LibAppsDataFilter = require('../libGuides/LibAppsDataFilter');
 const f = new LibAppsDataFilter();
 const path = require('path');
 const fs = require('fs');
-const Logger = require('../../helpers/Logger');
+const Logger = require(approot + '/helpers/Logger');
 
 module.exports = class UserLibGuidesData {
   constructor(

@@ -15,6 +15,7 @@ const UserFavoritesController = require('./UserFavoritesController');
 let appConf = config.get('app');
 const useFavorites = appConf.useFavorites || false;
 const fakeUserConf = require('../config/fakeUserConf.json');
+const logger = require('../helpers/Logger');
 
 module.exports = class UserDataController {
   constructor(req) {
@@ -34,7 +35,7 @@ module.exports = class UserDataController {
         } else if (global.onServer) {
           this.rawUserData = req.session.cas;
         }
-
+	    logger.debug('UserDataController read raw user: ' + JSON.stringify(req.session.cas.user));
         // read and parse json file config/cas_field_map.json
         let userDataMap = require('../config/cas_field_map.json');
         this.userDataGetter = new CasDataGetter(userDataMap);
@@ -67,7 +68,9 @@ module.exports = class UserDataController {
       favorites,
       rawUserData: this.rawUserData,
     };
-
+    logger.debug(
+      'user from UserDataController line 71: ' + JSON.stringify(user)
+    );
     let userSubjectInfo = new UserSubjectInfo(user, subjectMap);
     userSubjectInfo.addSubjectsFromMajors();
     userSubjectInfo.addSubjectsFromCourses();

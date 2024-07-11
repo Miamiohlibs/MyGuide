@@ -90,6 +90,31 @@ app.use('/', indexRouter);
 app.use('/favorites', favoritesRouter);
 app.use('/stats', statsRouter);
 
+// Define the error-handling middleware
+function errorHandler(err, req, res, next) {
+  if (err) {
+    // Log the error (you can use your logger here)
+    logger.error('Error:', err);
+
+    // Check if the error is related to CAS
+    if (err.message && err.message.includes('CAS')) {
+      // Handle CAS-specific errors
+      res.status(401).send('CAS authentication failed. Please try again.');
+    } else {
+      // Handle other types of errors
+      res.status(500).send('Internal Server Error');
+    }
+  } else {
+    next();
+  }
+}
+
+// Add the error-handling middleware after your routes
+app.use(errorHandler);
+
+
+
+
 const PORT = config.get('app.port') || '4000';
 if (global.onServer === true) {
   const server = config.get('server');
@@ -114,3 +139,4 @@ if (global.onServer === true) {
     );
   });
 }
+
