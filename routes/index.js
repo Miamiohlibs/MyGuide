@@ -40,8 +40,9 @@ try {
   logUrl(req);
 } catch (err) {
 //    res.render('error', {message: '<h1>MyGuide is down. We are working to fix the issue as soon as possible.</h1><h2>'} );
-    res.send('Unable to load MyGuide');
-    res.end();
+    res.render('error');
+//    res.send('Unable to load MyGuide');
+//    res.end();
 }
 });
 
@@ -50,7 +51,7 @@ router.get('/json', async (req, res) => {
   const userDataController = new UserDataController(req);
   let user = await userDataController.getUserData();
   let circData = await circController.getUserData(user.person.userId);
-  res.send({ myGuideVersion: version, cas: casData, circ: circData, user: user, isThisThingOn: true });
+  res.send({ myGuideVersion: version, circ: circData, user: user, cas: casData });
 });
 
 router.get('/test', (req, res) => {
