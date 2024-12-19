@@ -1,5 +1,6 @@
-const Librarians = require('./cache/Librarians');
-const cspPolicy = require('./helpers/contentSecurityPolicy');
+const approot = require('app-root-path');
+const Librarians = require(approot + '/cache/Librarians');
+const cspPolicy = require(approot + '/helpers/contentSecurityPolicy');
 
 function elementsInFirstArray(a, b) {
   return a.filter((element) => !b.includes(element));
