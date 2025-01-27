@@ -29,10 +29,8 @@ describe('subjectAudit: loadData', () => {
   it('should return false with message if data is bad', () => {
     const subjectAuditInstance = new subjectAudit(badJsonPath);
     let validity = subjectAuditInstance.loadData();
-    expect(validity.valid).toBe(false);
-    expect(validity.errorMessage).toBe(
-      'Unexpected token , in JSON at position 123'
-    );
+      expect(validity.valid).toBe(false);
+      expect(validity.errorMessage).toMatch(/Unexpected token , in JSON at position 123|Expected double-quoted property name in JSON at position 123/);
   });
 });
 
