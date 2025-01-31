@@ -6,4 +6,4 @@ sierra:
   server: fakeserver.univ.edu
   apiPath: /iii/sierra-api
   endpoints:
-    token: /v5/token
+    token: /v6/token

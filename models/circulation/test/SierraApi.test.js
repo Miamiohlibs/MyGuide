@@ -17,7 +17,7 @@ describe('SierraApi: constructor', () => {
   });
   it('should assign the passed conf variables to this.conf', () => {
     expect(api.conf.credentials.apiKey).toBe('fakeApiKey');
-    expect(api.conf.endpoints.token).toBe('/v5/token');
+    expect(api.conf.endpoints.token).toBe('/v6/token');
   });
   it('should save a correctly encoded key from the provided credentials', () => {
     let decodedKey = Base64.decode(api.encodedKey);
@@ -113,7 +113,7 @@ describe('SierraApi: getToken()', () => {
     expect(axios).toHaveBeenCalledTimes(1);
     expect(axios).toHaveBeenCalledWith({
       method: 'post',
-      url: 'https://fakeserver.univ.edu/iii/sierra-api/v5/token',
+      url: 'https://fakeserver.univ.edu/iii/sierra-api/v6/token',
       headers: {
         Authorization: 'Basic ZmFrZUFwaUtleTpmYWtlQ2xpZW50U2VjcmV0',
       },
@@ -133,9 +133,9 @@ describe('SierraApi: findPatron', () => {
     });
     response = await api.patronFind({ fakeParams: 'params' });
   });
-  it('should make a call to /v5/patrons/find and return its response', () => {
+  it('should make a call to /v6/patrons/find and return its response', () => {
     expect(querySpy).toHaveBeenCalledTimes(1);
-    expect(querySpy).toHaveBeenCalledWith('/v5/patrons/find', {
+    expect(querySpy).toHaveBeenCalledWith('/v6/patrons/find', {
       fakeParams: 'params',
     });
     expect(JSON.stringify(response)).toBe(
@@ -153,9 +153,9 @@ describe('SierraApi: patronQuery', () => {
     });
     response = await api.patronQuery('checkouts', '12345');
   });
-  it('should make a call to /v5/patrons/12345/checkouts and return its response', () => {
+  it('should make a call to /v6/patrons/12345/checkouts and return its response', () => {
     expect(querySpy).toHaveBeenCalledTimes(1);
-    expect(querySpy).toHaveBeenCalledWith('/v5/patrons/12345/checkouts');
+    expect(querySpy).toHaveBeenCalledWith('/v6/patrons/12345/checkouts');
     expect(JSON.stringify(response)).toBe(
       JSON.stringify({ data: { total: 3 } })
     );

@@ -28,12 +28,12 @@ module.exports = class SierraApi {
   }
 
   async patronFind(params) {
-    return await this.query('/v5/patrons/find', params);
+    return await this.query('/v6/patrons/find', params);
   }
 
   async patronQuery(queryType, patronId) {
     // QueryTypes: checkouts, holds, fines
-    let endpoint = '/v5/patrons/' + patronId + '/' + queryType;
+    let endpoint = '/v6/patrons/' + patronId + '/' + queryType;
     return await this.query(endpoint);
   }
 
