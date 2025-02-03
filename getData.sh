@@ -53,7 +53,6 @@ if hash json_pp 2>/dev/null; then
 else 
     CONTENT=$(curl  -gL $URL --header "Authorization: Bearer ${TOKEN}" )
 fi
-echo $CONTENT
 echo "const subjects = $CONTENT;" > $FILE
 echo "module.exports = subjects;" >> $FILE
 
