@@ -59,7 +59,25 @@ There are a lot of configurations to set up to run MyGuide. You can do a more ab
 
 ### full setup
 
-- Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (You can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
+Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (You can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
+
+### custom views/look-and-feel
+
+#### custom images
+
+In `config/default.json` in the `viewConfigs` object, you can set one or more custom logos by filename. All custom logos should be kept in the `/public/img` folder and the filenames should begin with "custom-" to distinguish them from files native to the repo:
+
+- `myguideCustomLogo` - App icon. If this is set, it will replace the MyGuide logo with the compass rose that is the native logo for the app.
+- `organizationLogo` - the logo for your organization. If set, it will appear at the bottom of the page.
+- `organizationMobileLogo` - the logo for your organization on mobile devices. If set, it will appear at the top of the "hamburger" navigation menu on mobile devices.
+
+#### featured content
+
+In `config/default.json` in the `featuredContent` object, you can set a file that will show a "Featured Content" block in the app at the bottom (mobile) or lower right (large screen) of the main page. You can use this for announcements or other content that is not tied to the app itself. This block will display if `display` is set to `true` and the indicated file is found in the `/views/partials/` folder. The filename should begin with "custom-" to distinguish it from other files in the folder.
+
+#### custom links
+
+In `config/default.json` in the `viewConfigs` section there are settings for `techHelpLink` and `refHelpLink`. Use these to set the URL and text for links to technical help and reference help. If these are set, they will appear in the footer of the app.
 
 ## Content Security Policy
 
