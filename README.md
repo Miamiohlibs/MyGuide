@@ -26,6 +26,8 @@ Note: this project integrates closely with campus resources and will require som
 
   - CAS.exposeStatsOutsideCas -- default `false`. If set to `true`, the `/stats/` routes (for data and visualizations) will be available to non-logged in users.
 
+  - Google Analytics -- set the `googleAnalyticsTrackingId` in the `viewConfigs` object in `config/default.json` to your add your Google Analytics tracking ID to enable tracking of user interactions with the app.
+
 ### fakeUserConf
 
 - for testing on localhost or when you don't want to use an authenticated user, you can test with a fake user. To use a fake user, in `config/default.json`, set `app.useFakeUser` to `true`. When this is set to true, MyGuide will read from settings in `config/fakeUserConf.json` to determine which fakeUser to use and whether to use fake Circulation information as well. The fake Circ info can be set directly in `fakeUserConf.json`. Each fakeUser will have its own files in the `fakeUsers/` directory. You can create or modify the fakeUsers to test MyGuide with different subjects or user parameters. fakeUser files should be based on how what data is passed to MyGuide by your authentication system. The fields in the fakeUser should correspond to fields in `config/cas_field_map.json`
