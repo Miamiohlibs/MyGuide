@@ -83,6 +83,30 @@ In `config/default.json` in the `viewConfigs` section there are settings for `te
 
 In the `/views/partials/` folder, you can create a file called `custom-alert.ejs` to display a dismissible custom alert at the top of the page. You can create this file by copying the `custom-alert-sample.ejs` file in that directory to `custom-alert.ejs` and modify the text to suit.
 
+#### custom subjects
+
+When mapping subjects to LibGuides content, you may have a subject area for which no LibGuide exists but for which you want some content in the app. For example, there may not be a LibGuide for library employees, but you may want to show some content specifically for library employees. To do this, create a file in the `/cache/custom` folder with the subject as the filename, e.g. `Library.json`. You can model the content of this file on other cached subject files.
+
+Then in the subject map (identified in `default/config` in app.subjectConfigFilename) include that subject in the subject map. For example, an employee in the art and architectures library might want to see both sources for both art and library research, so the entry in the subject map might look like this:
+
+```
+{
+        "name": "Art/Arch Library",
+        "libguides": [
+            "Art and Architecture",
+            "Library"
+        ],
+        "deptCodes": [
+            {
+                "deptCode": "ula",
+                "deptName": "Art/Arch Library"
+            }
+        ]
+    },
+```
+
+The `Library` entry in the `libGuides` array will add a "Library" tab to the app for users in the Art/Arch Library department.
+
 ## Content Security Policy
 
 A Content Security Policy (CSP) is a computer security standard introduced to prevent cross-site scripting (XSS) attacks. MyGuide includes some basic CSP settings, but additional local permissions will likely be needed. In `config/default.json`, add to the server.csp settings to permit calls to specific servers for externally sourced scripts, stylesheets, images, etc. Here is an example of what those settings might look like:
