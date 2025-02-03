@@ -7,6 +7,7 @@ Note: this project integrates closely with campus resources and will require som
 ## Requirements
 
 - server running Node.js
+- command line tools including `bash` and `jq`
 - access to SpringShare's LibGuides + LibGuides API
 - an authentication system (currently only supports CAS, but modules could be written for other systems)
 

@@ -29,6 +29,16 @@ AUTH="&site_id=$SITE_ID&key=$KEY"
 BAK="./cache/Subjects.bak.js"
 FILE="./cache/Subjects.js"
 
+# get token from LibGuide
+TOKEN=$(curl --location --request POST 'https://lgapi-us.libapps.com/1.2/oauth/token' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode "client_id=${SITE_ID}" \
+  --data-urlencode "client_secret=${KEY}" \
+  --data-urlencode "grant_type=client_credentials" | jq -r '.access_token')
+if [ -z "$TOKEN" ] || [ $TOKEN = "" ] # if key is missing or empty
+    then die "Fatal error: LibGuides access token not received"
+fi
+
 # if Subjects file exists already, create backup before downloading a new one
 if [ -f ${FILE} ]
 then
@@ -36,45 +46,46 @@ then
 fi
 
 # fetch subjects from LibGuides
-URL="https://lgapi-us.libapps.com/1.1/subjects?$AUTH"
+URL="https://lgapi-us.libapps.com/1.2/subjects"
 echo $URL
 if hash json_pp 2>/dev/null; then
-    CONTENT=$(curl -gL $URL | json_pp)
+    CONTENT=$(curl  -gL $URL --header "Authorization: Bearer ${TOKEN}"  | json_pp)
 else 
-    CONTENT=$(curl -gL $URL)
+    CONTENT=$(curl  -gL $URL --header "Authorization: Bearer ${TOKEN}" )
 fi
+echo $CONTENT
 echo "const subjects = $CONTENT;" > $FILE
 echo "module.exports = subjects;" >> $FILE
 
 # fetch Librarians from LibGuides
 FILE="./cache/LibrariansTemp.js"
-URL="https://lgapi-us.libapps.com/1.1/accounts?expand[]=subjects&expand[]=profile$AUTH"
+URL="https://lgapi-us.libapps.com/1.2/accounts?expand[]=subjects&expand[]=profile"
 if hash json_pp 2>/dev/null; then
-    CONTENT=$(curl -gL $URL | json_pp)
+    CONTENT=$(curl -gL $URL --header "Authorization: Bearer ${TOKEN}"| json_pp)
 else 
-    CONTENT=$(curl -gL $URL)
+    CONTENT=$(curl -gL $URL --header "Authorization: Bearer ${TOKEN}")
 fi
 echo "const librarians = $CONTENT;" > $FILE
 echo "module.exports = librarians;" >> $FILE
 
 # fetch Guides from LibGuides
 FILE="./cache/Guides.js"
-URL="https://lgapi-us.libapps.com/1.1/guides?expand=subjects,tags$AUTH"
+URL="https://lgapi-us.libapps.com/1.2/guides?expand=subjects,tags"
 if hash json_pp 2>/dev/null; then
-    CONTENT=$(curl -gL $URL | json_pp)
+    CONTENT=$(curl -gL $URL --header "Authorization: Bearer ${TOKEN}" | json_pp)
 else 
-    CONTENT=$(curl -gL $URL)
+    CONTENT=$(curl -gL $URL --header "Authorization: Bearer ${TOKEN}")
 fi
 echo "const guides = $CONTENT;" > $FILE
 echo "module.exports = guides;" >> $FILE
 
 # fetch Databases from LibGuides
 FILE="./cache/Databases.js"
-URL="https://lgapi-us.libapps.com/1.1/assets?asset_types[]=10&expand=subjects,friendly_url$AUTH"
+URL="https://lgapi-us.libapps.com/1.2/assets?asset_types[]=10&expand=subjects,friendly_url"
 if hash json_pp 2>/dev/null; then
-    CONTENT=$(curl -gL $URL | json_pp)
+    CONTENT=$(curl -gL $URL --header "Authorization: Bearer ${TOKEN}" | json_pp)
 else 
-    CONTENT=$(curl -gL $URL)
+    CONTENT=$(curl -gL $URL --header "Authorization: Bearer ${TOKEN}")
 fi
 echo "const databases = $CONTENT;" > $FILE
 echo "module.exports = databases;" >> $FILE
