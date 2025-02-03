@@ -79,6 +79,10 @@ In `config/default.json` in the `featuredContent` object, you can set a file tha
 
 In `config/default.json` in the `viewConfigs` section there are settings for `techHelpLink` and `refHelpLink`. Use these to set the URL and text for links to technical help and reference help. If these are set, they will appear in the footer of the app.
 
+#### custom alert
+
+In the `/views/partials/` folder, you can create a file called `custom-alert.ejs` to display a dismissible custom alert at the top of the page. You can create this file by copying the `custom-alert-sample.ejs` file in that directory to `custom-alert.ejs` and modify the text to suit.
+
 ## Content Security Policy
 
 A Content Security Policy (CSP) is a computer security standard introduced to prevent cross-site scripting (XSS) attacks. MyGuide includes some basic CSP settings, but additional local permissions will likely be needed. In `config/default.json`, add to the server.csp settings to permit calls to specific servers for externally sourced scripts, stylesheets, images, etc. Here is an example of what those settings might look like:
