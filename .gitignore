@@ -7,7 +7,7 @@ config/*
 custom-header-info.ejs
 custom-alert.ejs
 custom-featured-content.ejs
-custom-google-analytics.ejs
+
 
 #images
 public/img/custom*
