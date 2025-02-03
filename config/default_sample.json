@@ -29,6 +29,7 @@
     "LibGuides": {
         "api_key": "supersekritkeystring",
         "site_id": "000",
+        "base_url": "https://lgapi-us.libapps.com", // or your API server if different
         "allowedGroupIds": [
             0,
             1

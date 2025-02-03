@@ -36,6 +36,7 @@
     "memorystore": "^1.6.7",
     "mongoose": "^7.8.3",
     "node-cas-client": "^1.0.0",
+    "qs": "^6.14.0",
     "sha256": "^0.2.0",
     "util": "^0.12.4",
     "winston": "^3.7.2"
