@@ -10,7 +10,7 @@ reportUsage = function (data, increment, options = {}) {
 
   opts = getOpts(data, options);
   data = applyDataLimiters(data, opts);
-  console.log(opts);
+  // console.log(opts);
 
   if (increment == 'all') {
     let json = {

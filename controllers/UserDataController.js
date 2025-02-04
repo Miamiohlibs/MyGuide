@@ -15,6 +15,8 @@ const UserFavoritesController = require('./UserFavoritesController');
 let appConf = config.get('app');
 const useFavorites = appConf.useFavorites || false;
 const fakeUserConf = require('../config/fakeUserConf.json');
+const approot = require('app-root-path');
+const Logger = require(approot + '/helpers/Logger');
 
 module.exports = class UserDataController {
   constructor(req) {
@@ -27,7 +29,7 @@ module.exports = class UserDataController {
           let fakeUserFile = fakeUserConf.fakeUsers.filter(
             (p) => p.id === fakeUserId
           )[0].file;
-          console.log(fakeUserId, fakeUserFile);
+          Logger.log('Using fake user:', fakeUserId, fakeUserFile);
           this.rawUserData = require(__dirname +
             '/../fakeUsers/' +
             fakeUserFile);
