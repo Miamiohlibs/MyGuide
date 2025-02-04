@@ -172,6 +172,20 @@ There are a few "hidden" urls with statistical information with MyGuide usages s
 
 When the `/usage` and /`repeatUsers` stats views load, they include a "Raw Data" link configured to retreive the same JSON data that created the graphs. You can use that as a short-cut to configuring stats queries.
 
+## Server Migration Guide
+
+When migrating the MyGuide app to a new server, you will need to copy or update the following files/configurations:
+
+- obtain new SSL certificate and key files
+- get permission from CAS server to use new server's URL
+- `config/default.json`
+  - `allowedUsersCommaSeparated`
+  - `app.port`
+  - `server.key` and `server.cert` paths
+- copy over custom images in `/public/img` folder
+- copy over custom files in `/views/partials` folder
+- copy over custom subjects in `/cache/custom` folder
+
 ## Credits
 
 Developed by Ken Irwin at Miami University, 2020-present. Visual design of the main dashboard layout by Meng Qu.
