@@ -178,10 +178,12 @@ When migrating the MyGuide app to a new server, you will need to copy or update 
 
 - obtain new SSL certificate and key files
 - get permission from CAS server to use new server's URL
-- `config/default.json`
+- copy config files
+- Update `config/default.json`:
   - `allowedUsersCommaSeparated`
   - `app.port`
   - `server.key` and `server.cert` paths
+  - `viewConfigs.googleAnalyticsTrackingId` (if applicable)
 - copy over custom images in `/public/img` folder
 - copy over custom files in `/views/partials` folder
 - copy over custom subjects in `/cache/custom` folder
