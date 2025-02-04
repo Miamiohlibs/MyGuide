@@ -26,6 +26,8 @@ Note: this project integrates closely with campus resources and will require som
 
   - CAS.exposeStatsOutsideCas -- default `false`. If set to `true`, the `/stats/` routes (for data and visualizations) will be available to non-logged in users.
 
+  - Google Analytics -- set the `googleAnalyticsTrackingId` in the `viewConfigs` object in `config/default.json` to your add your Google Analytics tracking ID to enable tracking of user interactions with the app.
+
 ### fakeUserConf
 
 - for testing on localhost or when you don't want to use an authenticated user, you can test with a fake user. To use a fake user, in `config/default.json`, set `app.useFakeUser` to `true`. When this is set to true, MyGuide will read from settings in `config/fakeUserConf.json` to determine which fakeUser to use and whether to use fake Circulation information as well. The fake Circ info can be set directly in `fakeUserConf.json`. Each fakeUser will have its own files in the `fakeUsers/` directory. You can create or modify the fakeUsers to test MyGuide with different subjects or user parameters. fakeUser files should be based on how what data is passed to MyGuide by your authentication system. The fields in the fakeUser should correspond to fields in `config/cas_field_map.json`
@@ -47,7 +49,7 @@ Example:
 
 - run `npm install` to install Node package dependencies
 
-### abbreviated test setup
+### Abbreviated test setup
 
 There are a lot of configurations to set up to run MyGuide. You can do a more abbreviated test just to make sure that Apache is correctly configured to serve content from the app. To do this:
 
@@ -57,9 +59,59 @@ There are a lot of configurations to set up to run MyGuide. You can do a more ab
 - run `node install-test`
 - that will start a very simple web server; go to `{yourserver}:{PORT}/install`; if Apache is configured to serve content from the app, you should see a message reading: "If you can read this, the app is serving the install page."
 
-### full setup
+### CAS setup test
 
-- Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (You can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
+If you have a CAS server set up, you can test the CAS authentication by running `npm run cas`. This will start a simple web app that lets you test the CAS authentication setup in `config/default.json`. If you authenticate successfully, you will see a page that shows the user data that was passed to the app. If you see that data, you can be confident that the app is correctly configured to receive data from your CAS server.
+
+### Full setup
+
+Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (You can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
+
+### Custom views/look-and-feel
+
+#### Custom images
+
+In `config/default.json` in the `viewConfigs` object, you can set one or more custom logos by filename. All custom logos should be kept in the `/public/img` folder and the filenames should begin with "custom-" to distinguish them from files native to the repo:
+
+- `myguideCustomLogo` - App icon. If this is set, it will replace the MyGuide logo with the compass rose that is the native logo for the app.
+- `organizationLogo` - the logo for your organization. If set, it will appear at the bottom of the page.
+- `organizationMobileLogo` - the logo for your organization on mobile devices. If set, it will appear at the top of the "hamburger" navigation menu on mobile devices.
+
+#### Featured content
+
+In `config/default.json` in the `featuredContent` object, you can set a file that will show a "Featured Content" block in the app at the bottom (mobile) or lower right (large screen) of the main page. You can use this for announcements or other content that is not tied to the app itself. This block will display if `display` is set to `true` and the indicated file is found in the `/views/partials/` folder. The filename should begin with "custom-" to distinguish it from other files in the folder.
+
+#### Custom links
+
+In `config/default.json` in the `viewConfigs` section there are settings for `techHelpLink` and `refHelpLink`. Use these to set the URL and text for links to technical help and reference help. If these are set, they will appear in the footer of the app.
+
+#### Custom alert message
+
+In the `/views/partials/` folder, you can create a file called `custom-alert.ejs` to display a dismissible custom alert at the top of the page. You can create this file by copying the `custom-alert-sample.ejs` file in that directory to `custom-alert.ejs` and modify the text to suit.
+
+#### Custom subjects
+
+When mapping subjects to LibGuides content, you may have a subject area for which no LibGuide exists but for which you want some content in the app. For example, there may not be a LibGuide for library employees, but you may want to show some content specifically for library employees. To do this, create a file in the `/cache/custom` folder with the subject as the filename, e.g. `Library.json`. You can model the content of this file on other cached subject files.
+
+Then in the subject map (identified in `default/config` in app.subjectConfigFilename) include that subject in the subject map. For example, an employee in the art and architectures library might want to see both sources for both art and library research, so the entry in the subject map might look like this:
+
+```
+{
+        "name": "Art/Arch Library",
+        "libguides": [
+            "Art and Architecture",
+            "Library"
+        ],
+        "deptCodes": [
+            {
+                "deptCode": "ula",
+                "deptName": "Art/Arch Library"
+            }
+        ]
+    },
+```
+
+The `Library` entry in the `libGuides` array will add a "Library" tab to the app for users in the Art/Arch Library department.
 
 ## Content Security Policy
 
@@ -119,6 +171,22 @@ There are a few "hidden" urls with statistical information with MyGuide usages s
   - breakpoint - set the point above which N-or-more uses will be grouped together, e.g. "10+ uses"; default: `10`
 
 When the `/usage` and /`repeatUsers` stats views load, they include a "Raw Data" link configured to retreive the same JSON data that created the graphs. You can use that as a short-cut to configuring stats queries.
+
+## Server Migration Guide
+
+When migrating the MyGuide app to a new server, you will need to copy or update the following files/configurations:
+
+- obtain new SSL certificate and key files
+- get permission from CAS server to use new server's URL
+- copy config files
+- Update `config/default.json`:
+  - `allowedUsersCommaSeparated`
+  - `app.port`
+  - `server.key` and `server.cert` paths
+  - `viewConfigs.googleAnalyticsTrackingId` (if applicable)
+- copy over custom images in `/public/img` folder
+- copy over custom files in `/views/partials` folder
+- copy over custom subjects in `/cache/custom` folder
 
 ## Credits
 

@@ -8,5 +8,6 @@ custom-header-info.ejs
 custom-alert.ejs
 custom-featured-content.ejs
 
+
 #images
 public/img/custom*
