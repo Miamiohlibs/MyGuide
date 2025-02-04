@@ -1,6 +1,8 @@
 const approot = require('app-root-path');
 const Librarians = require(approot + '/cache/Librarians');
 const cspPolicy = require(approot + '/helpers/contentSecurityPolicy');
+const approot = require('app-root-path');
+const Logger = require(approot + '/helpers/Logger');
 
 function elementsInFirstArray(a, b) {
   return a.filter((element) => !b.includes(element));
@@ -68,7 +70,7 @@ async function categorizeUrlsFromObjects(objectsArray) {
 
     return categorizedDomains;
   } catch (error) {
-    console.error('Error categorizing URLs from objects:', error);
+    Logger.error({ message: 'Error categorizing URLs from objects', error });
     return { images: {}, javascripts: {}, webpages: {} };
   }
 }
@@ -79,20 +81,20 @@ categorizeUrlsFromObjects(Librarians)
     jsSrcDomains = Object.keys(categorizedDomains.javascripts);
     webSrcDomains = Object.keys(categorizedDomains.webpages);
 
-    console.log(
+    Logger.log(
       // list imgSrcDomains not in cspPolicy.imgSrc
       'Image domains missing from cspPolicy.imgSrc:',
       elementsInFirstArray(imgSrcDomains, cspPolicy.imgSrc)
     );
-    console.log(
+    Logger.log(
       'Script domains missing from cspPolicy.scriptSrc:',
       elementsInFirstArray(jsSrcDomains, cspPolicy.scriptSrc)
     );
-    console.log(
+    Logger.log(
       'Webpage domains missing from cspPolicy.defaultSrc:',
       elementsInFirstArray(webSrcDomains, cspPolicy.defaultSrc)
     );
   })
   .catch((error) => {
-    console.error('Error categorizing URLs from objects:', error);
+    Logger.error({ message: 'Error categorizing URLs from objects', error });
   });
