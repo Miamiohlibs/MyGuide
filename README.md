@@ -49,7 +49,7 @@ Example:
 
 - run `npm install` to install Node package dependencies
 
-### abbreviated test setup
+### Abbreviated test setup
 
 There are a lot of configurations to set up to run MyGuide. You can do a more abbreviated test just to make sure that Apache is correctly configured to serve content from the app. To do this:
 
@@ -59,13 +59,17 @@ There are a lot of configurations to set up to run MyGuide. You can do a more ab
 - run `node install-test`
 - that will start a very simple web server; go to `{yourserver}:{PORT}/install`; if Apache is configured to serve content from the app, you should see a message reading: "If you can read this, the app is serving the install page."
 
-### full setup
+### CAS setup test
+
+If you have a CAS server set up, you can test the CAS authentication by running `npm run cas`. This will start a simple web app that lets you test the CAS authentication setup in `config/default.json`. If you authenticate successfully, you will see a page that shows the user data that was passed to the app. If you see that data, you can be confident that the app is correctly configured to receive data from your CAS server.
+
+### Full setup
 
 Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (You can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
 
-### custom views/look-and-feel
+### Custom views/look-and-feel
 
-#### custom images
+#### Custom images
 
 In `config/default.json` in the `viewConfigs` object, you can set one or more custom logos by filename. All custom logos should be kept in the `/public/img` folder and the filenames should begin with "custom-" to distinguish them from files native to the repo:
 
@@ -73,19 +77,19 @@ In `config/default.json` in the `viewConfigs` object, you can set one or more cu
 - `organizationLogo` - the logo for your organization. If set, it will appear at the bottom of the page.
 - `organizationMobileLogo` - the logo for your organization on mobile devices. If set, it will appear at the top of the "hamburger" navigation menu on mobile devices.
 
-#### featured content
+#### Featured content
 
 In `config/default.json` in the `featuredContent` object, you can set a file that will show a "Featured Content" block in the app at the bottom (mobile) or lower right (large screen) of the main page. You can use this for announcements or other content that is not tied to the app itself. This block will display if `display` is set to `true` and the indicated file is found in the `/views/partials/` folder. The filename should begin with "custom-" to distinguish it from other files in the folder.
 
-#### custom links
+#### Custom links
 
 In `config/default.json` in the `viewConfigs` section there are settings for `techHelpLink` and `refHelpLink`. Use these to set the URL and text for links to technical help and reference help. If these are set, they will appear in the footer of the app.
 
-#### custom alert
+#### Custom alert message
 
 In the `/views/partials/` folder, you can create a file called `custom-alert.ejs` to display a dismissible custom alert at the top of the page. You can create this file by copying the `custom-alert-sample.ejs` file in that directory to `custom-alert.ejs` and modify the text to suit.
 
-#### custom subjects
+#### Custom subjects
 
 When mapping subjects to LibGuides content, you may have a subject area for which no LibGuide exists but for which you want some content in the app. For example, there may not be a LibGuide for library employees, but you may want to show some content specifically for library employees. To do this, create a file in the `/cache/custom` folder with the subject as the filename, e.g. `Library.json`. You can model the content of this file on other cached subject files.
 
