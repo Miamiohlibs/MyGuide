@@ -1,4 +1,5 @@
 const config = require('config');
+const approot = require('app-root-path');
 const Logger = require('../helpers/Logger');
 const Databases = require('../cache/Databases');
 const Guides = require('../cache/Guides');
@@ -11,7 +12,7 @@ subjectNames = Subjects.map((subject) => subject.name);
 
 function validateInput(input, type) {
   if (type === 'database') {
-    console.log('Validating db id: ' + input, dbIds.includes(parseInt(input)));
+    // console.log('Validating db id: ' + input, dbIds.includes(parseInt(input)));
     return dbIds.includes(parseInt(input));
   } else if (type === 'guide') {
     return guideIds.includes(parseInt(input));

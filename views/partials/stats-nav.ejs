@@ -16,6 +16,12 @@
     <% subjectActive = 'active'; %>
     <% subjectAriaCurrent = 'aria-current="page"'  %>
 <% } %>
+
+<% let favoritesActive = ''; favoritesAriaCurrent = ''; %>
+<% if (page == 'favorites') {  %>
+    <% favoritesActive = 'active'; %>
+    <% favoritesAriaCurrent = 'aria-current="page"'  %>
+<% } %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">MyGuide Usage</a>
@@ -27,6 +33,7 @@
           <a class="nav-link <%- graphActive %>" <%- graphAriaCurrent %> href="/stats/usage">Stats Graph</a>
           <a class="nav-link <%- repeatActive %>" <%- repeatAriaCurrent %> href="/stats/repeatUsers">Repeat Users</a>
           <a class="nav-link <%- subjectActive %>" <%- subjectAriaCurrent %> href="/stats/subjects">Subject Analysis</a>
+          <a class="nav-link <%- favoritesActive %>" <%- favoritesAriaCurrent %> href="/stats/favorites">Favorites</a>
         </div>
       </div>
     </div>

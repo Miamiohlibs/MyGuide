@@ -1,4 +1,6 @@
 const SierraApi = require('./SierraApi');
+const approot = require('app-root-path');
+const Logger = require(approot + '/helpers/Logger');
 
 module.exports = class SierraDataGetter {
   constructor(conf) {
@@ -12,7 +14,7 @@ module.exports = class SierraDataGetter {
     try {
       await this.sierra.getToken();
     } catch (err) {
-      console.error('Error getting accessToken:', err);
+      Logger.error({ message: 'Error getting accessToken', error: err });
     }
 
     try {
@@ -23,7 +25,10 @@ module.exports = class SierraDataGetter {
       this.getAccountLink();
       return this.user.display;
     } catch (err) {
-      console.error('Error getting patron info from Sierra');
+      Logger.error({
+        message: 'Error getting patron info from Sierra',
+        error: err,
+      });
     }
   }
 
@@ -45,7 +50,7 @@ module.exports = class SierraDataGetter {
       this.user.numericId = res.data.id;
       this.user.display.moneyOwed = res.data.moneyOwed;
     } catch (err) {
-      console.log(err);
+      Logger.error({ message: err.message, error: err });
     }
   }
   async getNumCheckouts() {
@@ -53,7 +58,7 @@ module.exports = class SierraDataGetter {
       let res = await this.sierra.patronQuery('checkouts', this.user.numericId);
       this.user.display.numCheckouts = res.data.total;
     } catch (err) {
-      console.log(err);
+      Logger.error({ message: err.message, error: err });
     }
   }
   async getNumHolds() {
@@ -61,7 +66,7 @@ module.exports = class SierraDataGetter {
       let res = await this.sierra.patronQuery('holds', this.user.numericId);
       this.user.display.numHolds = res.data.total;
     } catch (err) {
-      console.log(err);
+      Logger.error({ message: err.message, error: err });
     }
   }
   getAccountLink() {

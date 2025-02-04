@@ -1,5 +1,6 @@
 const fs = require('fs');
 const getUsageData = require('../helpers/getUsageData');
+const getFavStats = require('../helpers/getFavoritesStats');
 const router = require('express').Router();
 const pjson = require('../package.json');
 const version = pjson.version;
@@ -12,6 +13,13 @@ router.get('/', (req, res) => {
 router.get('/usage', (req, res) => {
   res.render('stats-graphUsage', { page: 'usage', myGuideVersion: version });
 });
+router.get('/favorites', (req, res) => {
+  res.render('stats-graphFavorites', {
+    page: 'favorites',
+    myGuideVersion: version,
+  });
+});
+
 router.get('/repeatUsers', (req, res) => {
   // res.send('Test');
   res.render('stats-graphRepeats', {
@@ -21,7 +29,7 @@ router.get('/repeatUsers', (req, res) => {
 });
 router.get('/subjects', (req, res) => {
   res.render('stats-graphSubjects', {
-    page: 'subjectGraph',
+    page: 'subjects',
     myGuideVersion: version,
   });
 });
@@ -61,6 +69,12 @@ router.get('/subjectData', (req, res) => {
   let stats = getSubjectStats(data, req.query);
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify({ stats }));
+});
+
+router.get('/favoritesData', async (req, res) => {
+  data = await getFavStats();
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(data));
 });
 
 module.exports = router;

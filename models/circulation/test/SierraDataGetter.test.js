@@ -24,7 +24,7 @@ const patronQuerySpy = jest
 describe('SierraDataGetter: constructor', () => {
   it('should take in a config file and set it to this.conf', () => {
     expect(getter.conf.credentials.apiKey).toBe('fakeApiKey');
-    expect(getter.conf.endpoints.token).toBe('/v5/token');
+    expect(getter.conf.endpoints.token).toBe('/v6/token');
   });
   it('should initialize a new SierraApi with that config', () => {
     expect(getter.sierra).toBeInstanceOf(SierraApi);

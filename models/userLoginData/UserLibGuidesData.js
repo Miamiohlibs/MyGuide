@@ -2,6 +2,7 @@ const LibAppsDataFilter = require('../libGuides/LibAppsDataFilter');
 const f = new LibAppsDataFilter();
 const path = require('path');
 const fs = require('fs');
+const approot = require('app-root-path');
 const Logger = require('../../helpers/Logger');
 
 module.exports = class UserLibGuidesData {
@@ -82,8 +83,8 @@ module.exports = class UserLibGuidesData {
       this.favorites.favoriteGuides !== undefined &&
       contents.guides !== undefined
     ) {
-      console.log(contents);
-      console.log('ended contents');
+      // console.log(contents);
+      // console.log('ended contents');
       contents.guides.forEach((guide) => {
         guide.favorite = this.favorites.favoriteGuides.includes(guide.id);
       });

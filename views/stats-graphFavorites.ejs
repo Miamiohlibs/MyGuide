@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('partials/stats-head-elements', {myGuideVersion}) %>
+    <script src="/js/d3-v4-tip.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bumbeishvili/d3-tip-for-v6@4/d3-tip.min.css">
+    <script src="/js/createHorizontalBarChart.js"></script>
+    <script src="/js/createBarChart.js"></script>
+    <link rel="stylesheet" href="/css/stats.css">
+    
+</head>
+
+<%- include('./partials/stats-nav.ejs', { page: page } ) %>
+
+<body class="container">
+<div id="data-link-subj" style="margin:1em;"></div>
+
+<ul class="nav nav-pills" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="subjects-tab" data-bs-toggle="tab" data-bs-target="#subjects" type="button" role="tab" aria-controls="subjects" aria-selected="false">Subjects</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="databases-tab" data-bs-toggle="tab" data-bs-target="#databases" type="button" role="tab" aria-controls="databases" aria-selected="false">Databases</button>
+    </li>
+      <li class="nav-item" role="presentation">
+      <button class="nav-link" id="guides-tab" data-bs-toggle="tab" data-bs-target="#guides" type="button" role="tab" aria-controls="guides" aria-selected="false">Guides</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <svg id="overall-graph" height="500" width="400"></svg>
+        <div id="data-link-overall"></div>
+        <div id="rawData-overall"></div>
+    </div>
+    <div class="tab-pane fade" id="subjects" role="tabpanel" aria-labelledby="subjects-tab">
+        <svg id="subject-graph" height="500" width="600"></svg>
+        <div id="data-link-subj"></div>
+        <div id="rawData-subj"></div>
+    </div>
+    <div class="tab-pane fade" id="databases" role="tabpanel" aria-labelledby="databases-tab">
+        <svg id="db-graph" height="500" width="600"></svg>
+        <div id="data-link-db"></div>
+        <div id="rawData-db"></div>
+    </div>
+    <div class="tab-pane fade" id="guides" role="tabpanel" aria-labelledby="guides-tab">
+        <svg id="guides-graph" height="500" width="600"></svg>
+        <div id="data-link-guides"></div>
+        <div id="rawData-guides"></div>
+    </div>
+  </div>
+
+<!-- ********************************** -->
+
+
+    <script>
+            $(document).ready(function() {
+            function updateChart() {
+                doChart({});
+            }
+
+            function doChart(o) {
+                $('#subject-graph').empty();
+                // console.log($.param(o) )
+                queryUrl = '/stats/favoritesData?'+$.param(o);
+                $('#data-link-subj').html('<a href="'+queryUrl+'">Link to Raw Data</a>');
+                jQuery.getJSON(queryUrl, function(data) {
+                // console.log('Favorites data', data);
+                let options = {
+                    margin: 150,
+                    xValueProp: 'name', 
+                    yValueProp: 'value',
+                    xAxisLabel: 'Favorite Type',
+                    yAxisLabel: 'Number of Users', 
+                    xAxisLabelRotation: -25,
+                    width: 500,   // width of the overall svg element
+                    chartTitle: "Users with Favorite by Type",
+                    titleOffsetX: -10,
+                    canvasSelector: '#overall-graph',
+                }
+                createBarChart(data.overall, options);
+                $('#rawData-overall').html('<pre>' + JSON.stringify(data.overall,null,2) + '</pre>');
+
+                let subjectOptions = {
+                    margin: {top: 100, right: 10, bottom: 0, left: 250},
+                    rowHeight: 20,  
+                    xValueProp: 'item', 
+                    yValueProp: 'count', 
+                    width: 500,   // width of the overall svg element
+                    chartTitle: "Users' Favorite Subjects",
+                    chartSelector: '#subject-graph',
+                }
+                createHorizontalBarChart(data.favoriteSubjects, subjectOptions);
+                $('#rawData-subj').html('<pre>' + JSON.stringify(data.favoriteSubjects,null,2) + '</pre>');
+                
+                let dbOptions = {
+                    margin: {top: 100, right: 100, bottom: 0, left: 300},
+                    rowHeight: 20,  
+                    xValueProp: 'item', 
+                    yValueProp: 'count', 
+                    width: 600,   // width of the overall svg element
+                    titleOffsetX: -250,
+                    chartTitle: "Users' Favorite Databases",
+                    chartSelector: '#db-graph',
+                }
+                
+                createHorizontalBarChart(data.favoriteDatabases, dbOptions);
+                $('#rawData-db').html('<pre>' + JSON.stringify(data.favoriteDatabases,null,2) + '</pre>');
+            
+                let guideOptions = {
+                    margin: {top: 100, right: 100, bottom: 0, left: 300},
+                    rowHeight: 20,  
+                    xValueProp: 'item', 
+                    yValueProp: 'count', 
+                    width: 600,   // width of the overall svg element
+                    titleOffsetX: -250,
+                    chartTitle: "Users' Favorite Guides",
+                    chartSelector: '#guides-graph',
+                }
+                createHorizontalBarChart(data.favoriteGuides, guideOptions);
+                $('#rawData-guides').html('<pre>' + JSON.stringify(data.favoriteGuides,null,2) + '</pre>')
+                });
+
+                
+            }
+
+            doChart({});
+        });
+    </script>
+</body>
+</html>

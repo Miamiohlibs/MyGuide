@@ -34,7 +34,9 @@ router.get('/json', async (req, res) => {
   res.send({ myGuideVersion: version, circ: circData, user: user });
 });
 
-router.get('/test', (req, res) => {
-  res.render('test');
+router.get('/test', async (req, res) => {
+    const userDataController = new UserDataController(req);
+    let casResponse = await userDataController.rawUserData;
+    res.json(casResponse);
 });
 module.exports = router;
