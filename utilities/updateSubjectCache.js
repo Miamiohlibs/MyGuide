@@ -87,7 +87,7 @@ function getLibGuidesData(libguides) {
     rightGroups = f.removeWrongGroups(pubGuides, allowedGroups);
 
     gds = f.getBestBySubject(rightGroups, libguides);
-    dbs = f.getBestBySubject(databases, libguides, true);
+    dbs = f.getBestBySubject(databases, libguides, true); // true = topOnly
     let results = {
       metadata: {
         sizeof: {
