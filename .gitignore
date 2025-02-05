@@ -7,6 +7,7 @@ config/*
 custom-header-info.ejs
 custom-alert.ejs
 custom-featured-content.ejs
+ecosystem.config.js
 
 
 #images
