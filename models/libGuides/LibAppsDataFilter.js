@@ -49,7 +49,7 @@ module.exports = class LibAppsDataFilter {
 
   findByTag(list, searchTags, inverse = false) {
     //when inverse = true, return items WITHOUT the specified tag
-    if (typeof searchTags === 'string' || searchTags instanceof String) {
+    if (!Array.isArray(searchTags)) {
       searchTags = [searchTags];
     }
     // console.log('length:', list.length);
@@ -84,7 +84,7 @@ module.exports = class LibAppsDataFilter {
       if (item.subjects !== undefined) {
         if (topOnly) {
           var temp = item.subjects.filter(
-            (s) => s.name === subject && s.featured === '1'
+            (s) => s.name === subject && s.featured === 1
           );
         } else {
           var temp = item.subjects.filter((s) => s.name === subject);
@@ -148,8 +148,9 @@ module.exports = class LibAppsDataFilter {
       return false;
     });
     if (libn.length > 0 && libn[0].hasOwnProperty('subjects')) {
-      return libn[0].subjects.map((item) => item.name)
-	    .filter(item => item !==undefined );
+      return libn[0].subjects
+        .map((item) => item.name)
+        .filter((item) => item !== undefined);
     }
     return [];
   }
