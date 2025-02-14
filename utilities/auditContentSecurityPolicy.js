@@ -1,8 +1,14 @@
 const approot = require('app-root-path');
 const Librarians = require(approot + '/cache/Librarians');
 const cspPolicy = require(approot + '/helpers/contentSecurityPolicy');
-const approot = require('app-root-path');
-const Logger = require(approot + '/helpers/Logger');
+
+/* 
+  This script compares the domains in the CSP policy with the domains in the Librarians array.
+  If there are any domains in the Librarians array that are not in the CSP policy, it will log them.
+
+  Note: because this script runs on the command line, were not using the logger -- we want output
+  to be visible to the user, not logged.
+*/
 
 function elementsInFirstArray(a, b) {
   return a.filter((element) => !b.includes(element));
@@ -70,7 +76,7 @@ async function categorizeUrlsFromObjects(objectsArray) {
 
     return categorizedDomains;
   } catch (error) {
-    Logger.error({ message: 'Error categorizing URLs from objects', error });
+    console.error({ message: 'Error categorizing URLs from objects', error });
     return { images: {}, javascripts: {}, webpages: {} };
   }
 }
@@ -81,20 +87,20 @@ categorizeUrlsFromObjects(Librarians)
     jsSrcDomains = Object.keys(categorizedDomains.javascripts);
     webSrcDomains = Object.keys(categorizedDomains.webpages);
 
-    Logger.log(
+    console.info(
       // list imgSrcDomains not in cspPolicy.imgSrc
       'Image domains missing from cspPolicy.imgSrc:',
       elementsInFirstArray(imgSrcDomains, cspPolicy.imgSrc)
     );
-    Logger.log(
+    console.info(
       'Script domains missing from cspPolicy.scriptSrc:',
       elementsInFirstArray(jsSrcDomains, cspPolicy.scriptSrc)
     );
-    Logger.log(
+    console.info(
       'Webpage domains missing from cspPolicy.defaultSrc:',
       elementsInFirstArray(webSrcDomains, cspPolicy.defaultSrc)
     );
   })
   .catch((error) => {
-    Logger.error({ message: 'Error categorizing URLs from objects', error });
+    console.error({ message: 'Error categorizing URLs from objects', error });
   });

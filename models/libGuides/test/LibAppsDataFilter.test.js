@@ -91,9 +91,9 @@ describe('LibAppsDataFilter: removeUnpublishedGuides', () => {
 });
 
 describe('LibAppsDataFilter: removeWrongGroups', () => {
-  let allowedGroupsRestricted = ['0'];
-  let allowedGroupsPermissive = ['0', '16880'];
-  let allowedGroupsModerate = ['0', '12345'];
+  let allowedGroupsRestricted = [0];
+  let allowedGroupsPermissive = [0, 16880];
+  let allowedGroupsModerate = [0, 12345];
   it('should find eight members of group zero', () => {
     let result = obj.removeWrongGroups(guides, allowedGroupsRestricted);
     expect(result.length).toBe(8);
@@ -129,13 +129,13 @@ describe('LibAppsDataFilter: find (LibGuides) Subject by Name', () => {
   englishSubj = obj.findSubjectByName(subjects, ['English']);
   it('should find one libguide subject: English = 8447', () => {
     expect(englishSubj.length).toBe(1);
-    expect(englishSubj[0].id).toBe('8447');
+    expect(englishSubj[0].id).toBe(8447);
   });
   musicEdSubj = obj.findSubjectByName(subjects, ['Music', 'Education']);
   it('should find two subjects for Music Education', () => {
     expect(musicEdSubj.length).toBe(2);
-    expect(musicEdSubj[0].id).toBe('8429');
-    expect(musicEdSubj[1].id).toBe('4596');
+    expect(musicEdSubj[0].id).toBe(8429);
+    expect(musicEdSubj[1].id).toBe(4596);
   });
 });
 
@@ -144,14 +144,14 @@ describe('LibAppsDataFilter: findByTag', () => {
   taggedACCinv = obj.findByTag(guides, 'ACC495', true);
   taggedArr = obj.findByTag(guides, ['ACC495', 'ENG121']);
   taggedArrInv = obj.findByTag(guides, ['ACC495', 'ENG121'], true);
-  taggedACCbyID = obj.findByTag(guides, '682640');
-  taggedACCbyIDinv = obj.findByTag(guides, '682640', true);
-  taggedEitherByID = obj.findByTag(guides, ['682640', '15716']);
-  taggedEitherByIDinv = obj.findByTag(guides, ['682640', '15716'], true);
+  taggedACCbyID = obj.findByTag(guides, 682640);
+  taggedACCbyIDinv = obj.findByTag(guides, 682640, true);
+  taggedEitherByID = obj.findByTag(guides, [682640, 15716]);
+  taggedEitherByIDinv = obj.findByTag(guides, [682640, 15716], true);
 
   it('should find two libguides with tag ACC495', () => {
     expect(taggedACC.length).toBe(2);
-    expect(taggedACC[0].id).toBe('22054');
+    expect(taggedACC[0].id).toBe(22054);
   });
   it('should find seven libguides WITHOUT tag ACC495', () => {
     expect(taggedACCinv.length).toBe(7);
@@ -159,7 +159,7 @@ describe('LibAppsDataFilter: findByTag', () => {
 
   it('should find two libguides with tag 695364', () => {
     expect(taggedACCbyID.length).toBe(2);
-    expect(taggedACCbyID[0].id).toBe('22054');
+    expect(taggedACCbyID[0].id).toBe(22054);
   });
   it('should find seven libguides WITHOUT tag 695364', () => {
     expect(taggedACCbyIDinv.length).toBe(7);
@@ -167,7 +167,7 @@ describe('LibAppsDataFilter: findByTag', () => {
 
   it('should find one libguide with tag in [695364,ENG121]', () => {
     expect(taggedArr.length).toBe(2);
-    expect(taggedArr[0].id).toBe('22054');
+    expect(taggedArr[0].id).toBe(22054);
   });
   it('should find eight libguides WITHOUT tag in [695364,ENG121]', () => {
     expect(taggedArrInv.length).toBe(7);
@@ -175,7 +175,7 @@ describe('LibAppsDataFilter: findByTag', () => {
 
   it('should find three libguide with tag in [ACC495,15716]', () => {
     expect(taggedEitherByID.length).toBe(3);
-    expect(taggedEitherByID[0].id).toBe('22054');
+    expect(taggedEitherByID[0].id).toBe(22054);
   });
   it('should find eight libguides WITHOUT tag in [695364,15716]', () => {
     expect(taggedEitherByIDinv.length).toBe(6);
@@ -205,14 +205,14 @@ describe('LibAppsDataFilter: mapTags', () => {
     let acc = tagMap.get('ACC495');
     expect(Array.isArray(acc)).toBe(true);
     expect(acc.length).toBe(2);
-    expect(acc[0].id).toBe('22054');
+    expect(acc[0].id).toBe(22054);
   });
 
   it('the value for ENG 101 should be an array with one object', () => {
     let eng = tagMap.get('ENG101');
     expect(Array.isArray(eng)).toBe(true);
     expect(eng.length).toBe(1);
-    expect(eng[0].id).toBe('22054');
+    expect(eng[0].id).toBe(22054);
   });
 });
 

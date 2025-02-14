@@ -67,6 +67,12 @@ If you have a CAS server set up, you can test the CAS authentication by running 
 
 Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (You can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
 
+#### Running the app
+
+The recommended way to run the app in production is to use a process manager like `pm2`. To start the app with `pm2`, run `pm2 start app.js`. To stop the app, run `pm2 stop app.js`. To restart the app, run `pm2 restart app.js`. If you are running more than one instance of the app, you can use the `--name` flag to give each instance a unique name, e.g. `pm2 start app.js --name myguide-production`.
+
+The cached data needs to be updated periodically. To do this, run `./getData` to fetch the latest data from the LibGuides API. You can set up a cron job to run this command at regular intervals. You will need to restart the pm2 process after updating the data. Restarting the process will also require users to re-authenticate at their next visit, so it is best to do this during off-peak hours and not more frequently than necessary. Once a week may be sufficient; you may want to do so more or less frequently depending on how often your LibGuides content changes. You can set pm2 to run the `./getData` script and restart the app at the same time by creating a script that runs both commands and setting that script to run in pm2. See the `ecosystem.config-sample.js` file for an example of how to set up a pm2 process to run the `./getData` script and restart the app.
+
 ### Custom views/look-and-feel
 
 #### Custom images
@@ -115,19 +121,19 @@ The `Library` entry in the `libGuides` array will add a "Library" tab to the app
 
 ## Content Security Policy
 
-A Content Security Policy (CSP) is a computer security standard introduced to prevent cross-site scripting (XSS) attacks. MyGuide includes some basic CSP settings, but additional local permissions will likely be needed. In `config/default.json`, add to the server.csp settings to permit calls to specific servers for externally sourced scripts, stylesheets, images, etc. Here is an example of what those settings might look like:
+A Content Security Policy (CSP) is a computer security standard introduced to prevent cross-site scripting (XSS) attacks. MyGuide includes some basic CSP settings, but additional local permissions will likely be needed. In `config/default.json`, add to the server.csp settings to permit calls to specific servers for externally sourced scripts, stylesheets, images, etc. If a content is being blocked from loading, add a config to allow the content to load from the specific server needed. Here is an example of what those settings might look like:
 
 ```
         "csp": {
             "scriptSrcAdditions": "api3.libcal.com v2.libanswers.com",
-            "imgSrcAdditions": "libapps.s3.amazonaws.com lcimages.s3.amazonaws.com",
+            "imgSrcAdditions": "libapps.s3.amazonaws.com *.cloudfront.net",
             "frameSrcAdditions": "api3.libcal.com libanswers.lib.miamioh.edu"
         }
 ```
 
 The `scriptSrcAdditions` allow the LibCal and LibAnswers servers to permit certain SpringShare widgets to operate.
 
-The `imgSrcAdditions` allow librarian photos to load from the Libapps server on Amazon AWS.
+The `imgSrcAdditions` allow LibApps widgets to load images called for in their scripts.
 
 The `frameSrcAdditions` allow for LibCal to supply popup widgets for our librarian scheduling buttons.
 
