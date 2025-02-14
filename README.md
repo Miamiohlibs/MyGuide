@@ -133,7 +133,7 @@ A Content Security Policy (CSP) is a computer security standard introduced to pr
 
 The `scriptSrcAdditions` allow the LibCal and LibAnswers servers to permit certain SpringShare widgets to operate.
 
-The `imgSrcAdditions` allow librarian photos to load from the Libapps server on Amazon AWS.
+The `imgSrcAdditions` allow librarian photos to load from the Libapps server on Amazon AWS. Note: this is deprecated as of version 2.0.4 -- Librarian photos are now stored locally in the `/public/img/cache/` folder, so image calls to external servers should not be needed.
 
 The `frameSrcAdditions` allow for LibCal to supply popup widgets for our librarian scheduling buttons.
 
