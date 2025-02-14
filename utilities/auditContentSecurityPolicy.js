@@ -1,7 +1,7 @@
 const approot = require('app-root-path');
 const Librarians = require(approot + '/cache/Librarians');
 const cspPolicy = require(approot + '/helpers/contentSecurityPolicy');
-const approot = require('app-root-path');
+// const approot = require('app-root-path');
 const Logger = require(approot + '/helpers/Logger');
 
 function elementsInFirstArray(a, b) {
