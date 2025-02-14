@@ -22,7 +22,7 @@
             "note": "Content Security Policy (CSP) is a computer security standard introduced to prevent cross-site scripting (XSS) attacks. Add to the following all servers from which your local settings will call scripts, etc.. This may include Google Analytics, LibCal, LibGuides, and other sources. Include just the fully qualified domains as an array of strings",
             "defaultSrcAdditions": [],
             "scriptSrcAdditions": [],
-            "imgSrcAdditions": [],
+            "imgSrcAdditions": [], // currently recommended: "*.cloudfront.net" to load widget images
             "frameSrcAdditions": []
         }
     },

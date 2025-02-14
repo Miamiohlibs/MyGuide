@@ -121,19 +121,19 @@ The `Library` entry in the `libGuides` array will add a "Library" tab to the app
 
 ## Content Security Policy
 
-A Content Security Policy (CSP) is a computer security standard introduced to prevent cross-site scripting (XSS) attacks. MyGuide includes some basic CSP settings, but additional local permissions will likely be needed. In `config/default.json`, add to the server.csp settings to permit calls to specific servers for externally sourced scripts, stylesheets, images, etc. Here is an example of what those settings might look like:
+A Content Security Policy (CSP) is a computer security standard introduced to prevent cross-site scripting (XSS) attacks. MyGuide includes some basic CSP settings, but additional local permissions will likely be needed. In `config/default.json`, add to the server.csp settings to permit calls to specific servers for externally sourced scripts, stylesheets, images, etc. If a content is being blocked from loading, add a config to allow the content to load from the specific server needed. Here is an example of what those settings might look like:
 
 ```
         "csp": {
             "scriptSrcAdditions": "api3.libcal.com v2.libanswers.com",
-            "imgSrcAdditions": "libapps.s3.amazonaws.com lcimages.s3.amazonaws.com",
+            "imgSrcAdditions": "libapps.s3.amazonaws.com *.cloudfront.net",
             "frameSrcAdditions": "api3.libcal.com libanswers.lib.miamioh.edu"
         }
 ```
 
 The `scriptSrcAdditions` allow the LibCal and LibAnswers servers to permit certain SpringShare widgets to operate.
 
-The `imgSrcAdditions` allow librarian photos to load from the Libapps server on Amazon AWS.
+The `imgSrcAdditions` allow LibApps widgets to load images called for in their scripts.
 
 The `frameSrcAdditions` allow for LibCal to supply popup widgets for our librarian scheduling buttons.
 

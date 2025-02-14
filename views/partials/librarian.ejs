@@ -17,8 +17,8 @@
       <% }) %>
     <% } %>
     <p><%- libn.title %></p>
-    <% if (libn.profile.image.url != '') { %>
-      <img class="d-block mb-3" src="<%= libn.profile.image.url %>" alt="<%= libn.first_name%>
+    <% if (libn.profile.image.file != '') { %>
+      <img class="d-block mb-3" src="/img/cache/<%= libn.profile.image.file %>" alt="<%= libn.first_name%>
         <%= libn.last_name %>"
         style="max-width:120px; height: auto;">
     <% } %>

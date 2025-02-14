@@ -95,6 +95,9 @@ node ./helpers/runCleanCache > ./cache/Librarians.js
 # create each subject's file in ./cache/subjects/
 node utilities/updateSubjectCache.js 
 
+# cache local copy of libguides images in ./public/img/cache
+node ./utilities/cacheLibGuidesImages.js
+
 # node ./utilities/compareLGSubjects.js
 # no equivalent script built yet
 # do we need it?
