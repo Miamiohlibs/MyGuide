@@ -8,13 +8,19 @@ module.exports = class AlamApi {
     this.urlPrefix = 'https://' + conf.server + conf.apiPath;
   }
 
-  async query(endpoint, user, params = {}, method = 'get') {
+  async query(endpoint, params = {}, method = 'get') {
     params.apiKey = this.apiKey;
     let json = await axios({
-      method: method,
-      url: this.urlPrefix + '/' + user + endpoint,
-      params: params,
+      method,
+      url: this.urlPrefix + endpoint,
+      params,
     });
     return json;
+  }
+
+  async patronQuery(queryType, patronId) {
+    // QueryTypes: checkouts, holds, fines
+    let endpoint = '/v1/users/' + patronId + '/' + queryType;
+    return await this.query(this.urlPrefix + endpoint);
   }
 };
