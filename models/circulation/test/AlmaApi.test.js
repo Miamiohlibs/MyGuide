@@ -50,6 +50,18 @@ describe('AlmaApi: query', () => {
       JSON.stringify({ data: { fake: 'data' } })
     );
   });
+  it('should take an empty endpoint and return a value', async () => {
+    response = await api.query('', 'fakeUser');
+    expect(axios).toHaveBeenCalledTimes(1);
+    expect(axios).toHaveBeenCalledWith({
+      method: 'get',
+      url: 'https://api-eu.hosted.exlibrisgroup.com/almaws/v1/users/fakeUser',
+      params: { apiKey: 'fakeApiKey' },
+    });
+    expect(JSON.stringify(response)).toBe(
+      JSON.stringify({ data: { fake: 'data' } })
+    );
+  });
 
   //   it('should make a GET query with just an endpoint + params and return a value', async () => {
   //     response = await api.query('/fake/endpoint2', { fakeParam: 'data' });
