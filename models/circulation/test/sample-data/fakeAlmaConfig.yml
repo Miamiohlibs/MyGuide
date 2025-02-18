@@ -3,4 +3,4 @@ alma:
   credentials:
     apiKey: fakeApiKey
   server: api-eu.hosted.exlibrisgroup.com
-  apiPath: /almaws/v1/users
+  apiPath: /almaws
