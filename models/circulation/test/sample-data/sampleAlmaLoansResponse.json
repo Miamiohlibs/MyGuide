@@ -1,0 +1,375 @@
+{
+    "item_loan": [
+        {
+            "loan_id": "964245440008518",
+            "circ_desk": {},
+            "return_circ_desk": {},
+            "library": {
+                "value": "king",
+                "desc": "King Library"
+            },
+            "user_id": "FAKEYKL",
+            "item_barcode": "35054014663328",
+            "due_date": "2025-07-02T03:59:00Z",
+            "loan_status": "ACTIVE",
+            "loan_date": "2020-07-14T17:07:00Z",
+            "returned_by": {
+                "value": ""
+            },
+            "process_status": "RENEW",
+            "mms_id": "991008212839708518",
+            "holding_id": "2223148040008518",
+            "item_id": "2323148020008518",
+            "title": "The vegetarian table : Mexico / by Victoria Wise ; photography by Deborah Jones ; food styling by Sandra Cook",
+            "author": "Wise, Victoria",
+            "location_code": {
+                "value": "kngli",
+                "name": "Second Floor, Stacks"
+            },
+            "item_policy": {
+                "value": "999",
+                "description": "Default"
+            },
+            "call_number": "TX837 .W56 1995",
+            "last_renew_date": "2025-01-13T18:27:59.186Z",
+            "last_renew_status": {
+                "value": "403827###---###7###---###;",
+                "desc": "Time frame when loan renewal is allowed is 7 days before due date"
+            }
+        },
+        {
+            "loan_id": "964249280008518",
+            "circ_desk": {},
+            "return_circ_desk": {},
+            "library": {
+                "value": "king",
+                "desc": "King Library"
+            },
+            "user_id": "FAKEYKL",
+            "item_barcode": "35054014312652",
+            "due_date": "2025-07-02T03:59:00Z",
+            "loan_status": "ACTIVE",
+            "loan_date": "2023-06-30T17:06:00Z",
+            "returned_by": {
+                "value": ""
+            },
+            "process_status": "RENEW",
+            "mms_id": "991007331299708518",
+            "holding_id": "2250950750008518",
+            "item_id": "2350950740008518",
+            "title": "The secret garden the original Broadway cast album / all songs written by Lucy Simon and Marsha Norman",
+            "author": "Simon, Lucy",
+            "location_code": {
+                "value": "knmcd",
+                "name": "Ground Floor, IMC--Ask at Desk"
+            },
+            "item_policy": {
+                "value": "26",
+                "description": "Local use"
+            },
+            "call_number": "SH 277",
+            "last_renew_date": "2025-01-13T18:27:59.226Z",
+            "last_renew_status": {
+                "value": "403827###---###7###---###;",
+                "desc": "Time frame when loan renewal is allowed is 7 days before due date"
+            }
+        },
+        {
+            "loan_id": "964251340008518",
+            "circ_desk": {},
+            "return_circ_desk": {},
+            "library": {
+                "value": "king",
+                "desc": "King Library"
+            },
+            "user_id": "FAKEYKL",
+            "item_barcode": "35054015930668",
+            "due_date": "2025-07-02T03:59:00Z",
+            "loan_status": "ACTIVE",
+            "loan_date": "2021-01-03T17:01:00Z",
+            "returned_by": {
+                "value": ""
+            },
+            "process_status": "RENEW",
+            "mms_id": "991007311509708518",
+            "holding_id": "2233375870008518",
+            "item_id": "2333375860008518",
+            "title": "The debt to pleasure : a novel / John Lanchester",
+            "author": "Lanchester, John",
+            "location_code": {
+                "value": "kngli",
+                "name": "Second Floor, Stacks"
+            },
+            "item_policy": {
+                "value": "999",
+                "description": "Default"
+            },
+            "call_number": "PR6062.A4863 D43 1996",
+            "last_renew_date": "2025-01-13T18:27:59.267Z",
+            "last_renew_status": {
+                "value": "403827###---###7###---###;",
+                "desc": "Time frame when loan renewal is allowed is 7 days before due date"
+            }
+        },
+        {
+            "loan_id": "964372640008518",
+            "circ_desk": {},
+            "return_circ_desk": {},
+            "library": {
+                "value": "mid",
+                "desc": "Middletown Library"
+            },
+            "user_id": "FAKEYKL",
+            "item_barcode": "35054034673919",
+            "due_date": "2025-07-01T23:00:00Z",
+            "loan_status": "ACTIVE",
+            "loan_date": "2019-09-17T20:09:00Z",
+            "returned_by": {
+                "value": ""
+            },
+            "process_status": "RENEW",
+            "mms_id": "991011074749708518",
+            "holding_id": "2218654470008518",
+            "item_id": "2318654460008518",
+            "title": "Becoming Nicole : the transformation of an American family / Amy Ellis Nutt",
+            "author": "Nutt, Amy Ellis",
+            "location_code": {
+                "value": "mdli",
+                "name": "Books"
+            },
+            "item_policy": {
+                "value": "999",
+                "description": "Default"
+            },
+            "call_number": "HQ77.95.U6 N87 2015",
+            "last_renew_date": "2025-01-13T18:28:49.032Z",
+            "last_renew_status": {
+                "value": "401193;",
+                "desc": "Renewed Successfully"
+            }
+        },
+        {
+            "loan_id": "964396320008518",
+            "circ_desk": {},
+            "return_circ_desk": {},
+            "library": {
+                "value": "king",
+                "desc": "King Library"
+            },
+            "user_id": "FAKEYKL",
+            "item_barcode": "35054033676103",
+            "due_date": "2025-01-30T04:59:00Z",
+            "loan_status": "ACTIVE",
+            "loan_date": "2016-02-10T22:02:00Z",
+            "returned_by": {
+                "value": ""
+            },
+            "process_status": "RENEW",
+            "mms_id": "991007016889708518",
+            "holding_id": "2214897180008518",
+            "item_id": "2314897170008518",
+            "title": "My side of the mountain trilogy / written and illustrated by Jean Craighead George",
+            "author": "George, Jean Craighead,",
+            "location_code": {
+                "value": "imju",
+                "name": "Ground Floor, IMC, Juvenile"
+            },
+            "item_policy": {
+                "value": "22",
+                "description": "Juvenile monograph"
+            },
+            "call_number": "PZ7.G2933 My 2000",
+            "last_renew_date": "2025-01-13T18:27:59.146Z",
+            "last_renew_status": {
+                "value": "403827###---###7###---###;401166;",
+                "desc": "Time frame when loan renewal is allowed is 7 days before due date;Item renew period exceeded;"
+            }
+        },
+        {
+            "loan_id": "964400220008518",
+            "circ_desk": {},
+            "return_circ_desk": {},
+            "library": {
+                "value": "king",
+                "desc": "King Library"
+            },
+            "user_id": "FAKEYKL",
+            "item_barcode": "35054033655099",
+            "due_date": "2025-01-21T04:59:00Z",
+            "loan_status": "ACTIVE",
+            "loan_date": "2024-03-26T21:03:00Z",
+            "returned_by": {
+                "value": ""
+            },
+            "process_status": "RENEW",
+            "mms_id": "991006183929708518",
+            "holding_id": "2213106440008518",
+            "item_id": "2313106390008518",
+            "title": "The wire. producers, Ed Burns, George Pelecanos, Karen L. Thorson ; Blown Deadline Productions ; a presentation of Home Box Office",
+            "description": "disc 5",
+            "location_code": {
+                "value": "imme",
+                "name": "Ground Floor, IMC--Ask at Desk"
+            },
+            "item_policy": {
+                "value": "2",
+                "description": "Audiovisuals"
+            },
+            "call_number": "PN1997.2 .W57403 2008",
+            "last_renew_date": "2025-01-13T18:27:58.566Z",
+            "last_renew_status": {
+                "value": "401193;",
+                "desc": "Renewed Successfully"
+            }
+        },
+        {
+            "loan_id": "964400240008518",
+            "circ_desk": {},
+            "return_circ_desk": {},
+            "library": {
+                "value": "king",
+                "desc": "King Library"
+            },
+            "user_id": "FAKEYKL",
+            "item_barcode": "35054033655081",
+            "due_date": "2025-01-21T04:59:00Z",
+            "loan_status": "ACTIVE",
+            "loan_date": "2024-03-26T21:03:00Z",
+            "returned_by": {
+                "value": ""
+            },
+            "process_status": "RENEW",
+            "mms_id": "991006183929708518",
+            "holding_id": "2213106440008518",
+            "item_id": "2313106400008518",
+            "title": "The wire. producers, Ed Burns, George Pelecanos, Karen L. Thorson ; Blown Deadline Productions ; a presentation of Home Box Office",
+            "description": "disc 4",
+            "location_code": {
+                "value": "imme",
+                "name": "Ground Floor, IMC--Ask at Desk"
+            },
+            "item_policy": {
+                "value": "2",
+                "description": "Audiovisuals"
+            },
+            "call_number": "PN1997.2 .W57403 2008",
+            "last_renew_date": "2025-01-13T18:27:58.642Z",
+            "last_renew_status": {
+                "value": "401193;",
+                "desc": "Renewed Successfully"
+            }
+        },
+        {
+            "loan_id": "964400260008518",
+            "circ_desk": {},
+            "return_circ_desk": {},
+            "library": {
+                "value": "king",
+                "desc": "King Library"
+            },
+            "user_id": "FAKEYKL",
+            "item_barcode": "35054033655073",
+            "due_date": "2025-01-21T04:59:00Z",
+            "loan_status": "ACTIVE",
+            "loan_date": "2024-03-26T21:03:00Z",
+            "returned_by": {
+                "value": ""
+            },
+            "process_status": "RENEW",
+            "mms_id": "991006183929708518",
+            "holding_id": "2213106440008518",
+            "item_id": "2313106410008518",
+            "title": "The wire. producers, Ed Burns, George Pelecanos, Karen L. Thorson ; Blown Deadline Productions ; a presentation of Home Box Office",
+            "description": "disc 3",
+            "location_code": {
+                "value": "imme",
+                "name": "Ground Floor, IMC--Ask at Desk"
+            },
+            "item_policy": {
+                "value": "2",
+                "description": "Audiovisuals"
+            },
+            "call_number": "PN1997.2 .W57403 2008",
+            "last_renew_date": "2025-01-13T18:27:58.718Z",
+            "last_renew_status": {
+                "value": "401193;",
+                "desc": "Renewed Successfully"
+            }
+        },
+        {
+            "loan_id": "964400280008518",
+            "circ_desk": {},
+            "return_circ_desk": {},
+            "library": {
+                "value": "king",
+                "desc": "King Library"
+            },
+            "user_id": "FAKEYKL",
+            "item_barcode": "35054033655065",
+            "due_date": "2025-01-21T04:59:00Z",
+            "loan_status": "ACTIVE",
+            "loan_date": "2024-03-26T21:03:00Z",
+            "returned_by": {
+                "value": ""
+            },
+            "process_status": "RENEW",
+            "mms_id": "991006183929708518",
+            "holding_id": "2213106440008518",
+            "item_id": "2313106420008518",
+            "title": "The wire. producers, Ed Burns, George Pelecanos, Karen L. Thorson ; Blown Deadline Productions ; a presentation of Home Box Office",
+            "description": "disc 2",
+            "location_code": {
+                "value": "imme",
+                "name": "Ground Floor, IMC--Ask at Desk"
+            },
+            "item_policy": {
+                "value": "2",
+                "description": "Audiovisuals"
+            },
+            "call_number": "PN1997.2 .W57403 2008",
+            "last_renew_date": "2025-01-13T18:27:58.792Z",
+            "last_renew_status": {
+                "value": "401193;",
+                "desc": "Renewed Successfully"
+            }
+        },
+        {
+            "loan_id": "964400320008518",
+            "circ_desk": {},
+            "return_circ_desk": {},
+            "library": {
+                "value": "king",
+                "desc": "King Library"
+            },
+            "user_id": "FAKEYKL",
+            "item_barcode": "35054033655032",
+            "due_date": "2025-01-21T04:59:00Z",
+            "loan_status": "ACTIVE",
+            "loan_date": "2024-03-20T20:03:00Z",
+            "returned_by": {
+                "value": ""
+            },
+            "process_status": "RENEW",
+            "mms_id": "991006183879708518",
+            "holding_id": "2241184690008518",
+            "item_id": "2341184650008518",
+            "title": "The wire. Home Box Office ; created by David Simon ; produced by Nina Kostroff-Noble",
+            "description": "disc 4",
+            "location_code": {
+                "value": "imme",
+                "name": "Ground Floor, IMC--Ask at Desk"
+            },
+            "item_policy": {
+                "value": "2",
+                "description": "Audiovisuals"
+            },
+            "call_number": "PN1997.2 .W57402 2008",
+            "last_renew_date": "2025-01-13T18:27:58.942Z",
+            "last_renew_status": {
+                "value": "401193;",
+                "desc": "Renewed Successfully"
+            }
+        }
+    ],
+    "total_record_count": 14
+}
