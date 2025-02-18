@@ -28,7 +28,7 @@ module.exports = class AlamApi {
       case 'fines':
         queryPath = '/fees';
         break;
-      case 'loans':
+      case 'checkouts':
         queryPath = '/loans';
         break;
       default:

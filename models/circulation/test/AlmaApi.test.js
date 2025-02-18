@@ -4,7 +4,7 @@ const fs = require('fs');
 const sampleUser = require('./sample-data/sampleAlmaUserResponse.json');
 const sampleFines = require('./sample-data/sampleAlmaFinesResponse.json');
 const sampleHolds = require('./sample-data/sampleAlmaHoldsResponse.json');
-const sampleLoans = require('./sample-data/sampleAlmaLoansResponse.json');
+const sampleCheckouts = require('./sample-data/sampleAlmaCheckoutsResponse.json');
 // const Base64 = require('js-base64').Base64;
 const axios = require('axios');
 const { sample } = require('lodash');
@@ -120,22 +120,22 @@ describe('AlmaApi: patronQuery (holds)', () => {
   });
 });
 
-describe('AlmaApi: patronQuery (loans)', () => {
+describe('AlmaApi: patronQuery (checkouts)', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
     api = new AlmaApi(fakeAlmaConf.alma);
     fineQuerySpy = jest
       .spyOn(api, 'query')
       .mockImplementation((url, params) => {
-        return { data: sampleLoans };
+        return { data: sampleCheckouts };
       });
-    response = await api.patronQuery('loans', 'fakeykl');
+    response = await api.patronQuery('checkouts', 'fakeykl');
   });
 
   it('should make a call to /v1/users/fakeykl/loans and return its response', () => {
     expect(fineQuerySpy).toHaveBeenCalledTimes(1);
     expect(fineQuerySpy).toHaveBeenCalledWith('/v1/users/fakeykl/loans');
-    expect(response.data).toEqual(sampleLoans);
+    expect(response.data).toEqual(sampleCheckouts);
     expect(response.data.total_record_count).toEqual(14);
   });
 });
