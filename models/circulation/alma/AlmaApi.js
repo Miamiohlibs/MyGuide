@@ -19,8 +19,22 @@ module.exports = class AlamApi {
   }
 
   async patronQuery(queryType, patronId) {
-    // QueryTypes: checkouts, holds, fines
-    let endpoint = '/v1/users/' + patronId + '/' + queryType;
-    return await this.query(this.urlPrefix + endpoint);
+    // QueryTypes: loans, holds, fines, users (users has no path -- just leave off an arg)
+    let queryPath = '';
+    switch (queryType) {
+      case 'holds':
+        queryPath = '/requests';
+        break;
+      case 'fines':
+        queryPath = '/fees';
+        break;
+      case 'loans':
+        queryPath = '/loans';
+        break;
+      default:
+        break;
+    }
+    let endpoint = '/v1/users/' + patronId + queryPath;
+    return await this.query(endpoint);
   }
 };
