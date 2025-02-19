@@ -19,7 +19,7 @@ module.exports = class AlamApi {
   }
 
   async patronQuery(queryType, patronId) {
-    // QueryTypes: loans, holds, fines, users (users has no path -- just leave off an arg)
+    // QueryTypes: holds, fines, checkouts, users (users has no path -- just leave off an arg)
     let queryPath = '';
     switch (queryType) {
       case 'holds':
