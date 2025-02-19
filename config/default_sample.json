@@ -22,7 +22,8 @@
             "note": "Content Security Policy (CSP) is a computer security standard introduced to prevent cross-site scripting (XSS) attacks. Add to the following all servers from which your local settings will call scripts, etc.. This may include Google Analytics, LibCal, LibGuides, and other sources. Include just the fully qualified domains as an array of strings",
             "defaultSrcAdditions": [],
             "scriptSrcAdditions": [],
-            "imgSrcAdditions": [], // currently recommended: "*.cloudfront.net" to load widget images
+            "_imgSrcAdditionsNote": "// currently recommended: '*.cloudfront.net' to load widget images",
+            "imgSrcAdditions": [], 
             "frameSrcAdditions": []
         }
     },
@@ -41,11 +42,39 @@
         "serverPath": "https://casserver.yourorg.edu",
         "exposeStatsOutsideCas": false
     },
+    "_circSystemNote": "currently supports values 'Alma' and 'Sierra'",
+    "circSystem": "Alma",
+    "sierra": {
+        "credentials": {
+            "apiKey": "your-sierra-api-key",
+            "clientSecret": "your-client-secret"
+        },
+        "server": "your.sierra.server.edu",
+        "apiPath": "/iii/sierra-api",
+        "endpoints": {
+            "token": "/v6/token"
+        }
+    },
+    "alma": {
+        "credentials": {
+          "apiKey": "your-alma-api-key"
+        },
+        "server": "api-eu.hosted.exlibrisgroup.com",
+        "apiPath": "/almaws"
+    },
     "database": {
         "use": "dev",
         "dev": {
             "host": "localhost",
             "connection": "mongodb://localhost:27017/MyGuide?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false",
+            "config": {
+                "useNewUrlParser": true,
+                "useUnifiedTopology": true
+            }
+        },
+        "prod": {
+            "host": "your.cluster.mongodb.net",
+            "connection": "mongodb+srv://user:password@your.cluster.mongodb.net/MyGuideProd?retryWrites=true&w=majority",
             "config": {
                 "useNewUrlParser": true,
                 "useUnifiedTopology": true
