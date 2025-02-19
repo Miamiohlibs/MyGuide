@@ -42,17 +42,25 @@
         "serverPath": "https://casserver.yourorg.edu",
         "exposeStatsOutsideCas": false
     },
-    "circSystem": "Sierra",
+    "_circSystemNote": "currently supports values 'Alma' and 'Sierra'",
+    "circSystem": "Alma",
     "sierra": {
         "credentials": {
-            "apiKey": "6ptSactEH4mcMcm45cJYjKeY5Zge",
-            "clientSecret": "68UYZ!u8t@U6PiNBus7p"
+            "apiKey": "your-sierra-api-key",
+            "clientSecret": "your-client-secret"
         },
-        "server": "holmes.lib.miamioh.edu",
+        "server": "your.sierra.server.edu",
         "apiPath": "/iii/sierra-api",
         "endpoints": {
             "token": "/v6/token"
         }
+    },
+    "alma": {
+        "credentials": {
+          "apiKey": "your-alma-api-key"
+        },
+        "server": "api-eu.hosted.exlibrisgroup.com",
+        "apiPath": "/almaws"
     },
     "database": {
         "use": "dev",
