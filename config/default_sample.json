@@ -42,8 +42,7 @@
         "serverPath": "https://casserver.yourorg.edu",
         "exposeStatsOutsideCas": false
     },
-    "_circSystemNote": "currently supports values 'Alma' and 'Sierra'",
-    "circSystem": "Alma",
+    "circSystem": "Sierra",
     "sierra": {
         "credentials": {
             "apiKey": "your-sierra-api-key",
@@ -54,13 +53,6 @@
         "endpoints": {
             "token": "/v6/token"
         }
-    },
-    "alma": {
-        "credentials": {
-          "apiKey": "your-alma-api-key"
-        },
-        "server": "api-eu.hosted.exlibrisgroup.com",
-        "apiPath": "/almaws"
     },
     "database": {
         "use": "dev",
