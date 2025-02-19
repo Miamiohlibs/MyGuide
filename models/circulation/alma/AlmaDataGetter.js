@@ -59,7 +59,10 @@ module.exports = class AlmaDataGetter {
   async getFines() {
     try {
       let res = await this.alma.patronQuery('fines', this.user.id);
-      this.user.display.fines = res.data.total_sum;
+      this.user.display.fines = 0;
+      if (res.data.total_sum > 0) {
+        this.user.display.fines = res.data.total_sum;
+      }
     } catch (err) {
       Logger.error({
         message: 'Error getting fines from Alma: ' + err.message,
