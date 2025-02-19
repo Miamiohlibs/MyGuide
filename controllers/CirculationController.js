@@ -1,8 +1,10 @@
 const config = require('config');
-const useCirc = config.get('app.useCirc');
-const sierraConf = config.get('sierra');
-const circSystem = config.get('circSystem');
+const useCirc = config.get('app.useCirc'); // true/false
+const hasSierra = config.has('sierra');
+const hasAlma = config.has('alma');
+const circSystem = config.get('circSystem'); // Sierra/Alma
 const SierraDataGetter = require('../models/circulation/sierra/SierraDataGetter');
+const AlmaDataGetter = require('../models/circulation/alma/AlmaDataGetter');
 const CircConnectionHandler = require('../models/circulation/CircConnectionHandler');
 const approot = require('app-root-path');
 const Logger = require(approot + '/helpers/Logger');
@@ -12,7 +14,20 @@ module.exports = class CirculationController {
   constructor() {
     switch (circSystem) {
       case 'Sierra':
-        this.circDataGetter = new SierraDataGetter(sierraConf);
+        if (!hasSierra) {
+          throw new Error('Sierra config not found');
+        } else {
+          this.ilsConf = config.get('sierra');
+        }
+        this.circDataGetter = new SierraDataGetter(this.ilsConf);
+        break;
+      case 'Alma':
+        if (!hasAlma) {
+          throw new Error('Alma config not found');
+        } else {
+          this.ilsConf = config.get('alma');
+        }
+        this.circDataGetter = new AlmaDataGetter(this.ilsConf);
         break;
       default:
         throw new Error('circ system not found');
