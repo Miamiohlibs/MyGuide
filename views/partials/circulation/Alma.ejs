@@ -1,4 +1,4 @@
-<!-- begin circulation/Sierra info-->
+<!-- begin circulation/Alma info-->
 <div id="circulation-data">
     <ul class="list-unstyled">
       <li id="checkout-out">Items Checked Out: <%= data.numCheckouts %>
@@ -7,12 +7,12 @@
       </li>
       <li id="money-owed" class="hideable">
         <% 
-        // format fines per config.internationalization, but fail over to no formatting if it errors
-        let formattedFines;
-        try { formattedFines = new Intl.NumberFormat(config.internationalization.defaultLanguage, { style: 'currency', currency: config.internationalization.currency }).format(data.moneyOwed)  }
-        catch (err) { formattedFines = data.moneyOwed } 
+            // format fines per config.internationalization, but fail over to no formatting if it errors
+            let formattedFines;
+            try { formattedFines = new Intl.NumberFormat(config.internationalization.defaultLanguage, { style: 'currency', currency: config.internationalization.currency }).format(data.fines)  }
+            catch (err) { formattedFines = data.fines } 
         %>
-        <% if (data.moneyOwed == 0) { %>
+        <% if (data.fines == '0') { %>
           Money Owed: <%- formattedFines %>
         <% } else { %>
           <% moneyClass = 'danger'; moneyButtonText = 'Money Owed' %>
@@ -29,6 +29,6 @@
         <% } %>
       </li>
     </ul>
-    <div id="sierra-account-link"><a class="btn btn-primary" href="<%- data.accountLink %>">Full Account Info </a></div>  
+    <!--div id="sierra-account-link"><a class="btn btn-primary" href="<%- data.accountLink %>">Full Account Info </a></div-->  
 </div>
-<!-- end circulation/Sierra info-->
+<!-- end circulation/Alma info-->

@@ -42,6 +42,7 @@
         "serverPath": "https://casserver.yourorg.edu",
         "exposeStatsOutsideCas": false
     },
+    "_circSystemNote": "permitted values for circSystem: Sierra, Alma",
     "circSystem": "Sierra",
     "sierra": {
         "credentials": {
@@ -53,6 +54,13 @@
         "endpoints": {
             "token": "/v6/token"
         }
+    },
+    "alma": {
+        "credentials": {
+          "apiKey": "your-alma-api-key"
+        },
+        "server": "api-eu.hosted.exlibrisgroup.com",
+        "apiPath": "/almaws"
     },
     "database": {
         "use": "dev",
@@ -75,6 +83,12 @@
     },
     "viewConfigs": {
         "myGuideServiceName": "myGuide",
+        "internationalization": {
+            "defaultLanguage": "en-US",
+            "currency": "USD",
+            "_languageNote": "See https://www.andiamo.co.uk/resources/iso-language-codes/ for a list of language codes",
+            "_currencyNote": "See https://www.iban.com/currency-codes for a list of currency codes"
+        },
         "organization": {
             "name": "Your University Libraries",
             "url": "https://your-url.edu"

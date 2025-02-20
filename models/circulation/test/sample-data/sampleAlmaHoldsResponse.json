@@ -1,0 +1,75 @@
+{
+    "user_request": [
+        {
+            "title": "The best 10-minute plays",
+            "description": "2012",
+            "volume": "",
+            "issue": "",
+            "part": "",
+            "barcode": "35054032214161",
+            "user_primary_id": "FAKEYKL",
+            "request_id": "1578120560008518",
+            "additional_id": "157-812-056",
+            "request_type": "HOLD",
+            "request_sub_type": {
+                "value": "PATRON_PHYSICAL",
+                "desc": "Patron physical item request"
+            },
+            "mms_id": "991003616289708518",
+            "pickup_location": "King Library",
+            "pickup_location_type": "LIBRARY",
+            "pickup_location_library": "king",
+            "managed_by_library": "King Library",
+            "managed_by_circulation_desk": "King Circulation",
+            "managed_by_library_code": "king",
+            "managed_by_circulation_desk_code": "DEFAULT_CIRC_DESK",
+            "material_type": {
+                "value": "OTHER",
+                "desc": "Other"
+            },
+            "date_of_publication": "",
+            "request_status": "ON_HOLD_SHELF",
+            "request_date": "2025-02-17Z",
+            "request_time": "2025-02-17T19:28:56.837Z",
+            "task_name": "On Hold Shelf",
+            "expiry_date": "2025-03-11Z",
+            "item_id": "2351283570008518"
+        },
+        {
+            "title": "Daisy Jones & the Six : a novel / Taylor Jenkins Reid",
+            "author": "Reid, Taylor Jenkins, author.",
+            "volume": "",
+            "issue": "",
+            "part": "",
+            "barcode": "35054035250824",
+            "user_primary_id": "FAKEYKL",
+            "request_id": "1578120480008518",
+            "additional_id": "157-812-048",
+            "request_type": "HOLD",
+            "request_sub_type": {
+                "value": "PATRON_PHYSICAL",
+                "desc": "Patron physical item request"
+            },
+            "mms_id": "991016416839708518",
+            "pickup_location": "King Library",
+            "pickup_location_type": "LIBRARY",
+            "pickup_location_library": "king",
+            "managed_by_library": "Hamilton Library",
+            "managed_by_circulation_desk": "Hamilton Library",
+            "managed_by_library_code": "ham",
+            "managed_by_circulation_desk_code": "DEFAULT_CIRC_DESK",
+            "material_type": {
+                "value": "BOOK",
+                "desc": "Book"
+            },
+            "date_of_publication": "",
+            "request_status": "IN_PROCESS",
+            "request_date": "2025-02-17Z",
+            "request_time": "2025-02-17T19:25:55.283Z",
+            "task_name": "Pickup From Shelf",
+            "expiry_date": "2025-02-25Z",
+            "item_id": "238134790008518"
+        }
+    ],
+    "total_record_count": 2
+}

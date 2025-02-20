@@ -1,0 +1,372 @@
+{
+    "gender": {
+        "value": "",
+        "desc": ""
+    },
+    "password": "",
+    "status": {
+        "value": "ACTIVE",
+        "desc": "Active"
+    },
+    "record_type": {
+        "value": "PUBLIC",
+        "desc": "Public"
+    },
+    "primary_id": "FAKEYKL",
+    "middle_name": "",
+    "last_name": "Fakey Katherine L",
+    "full_name": "Fakey Katherine L",
+    "created_by": "System",
+    "created_date": "1993-02-23Z",
+    "last_modified_by": "Random Fake Circworker",
+    "last_modified_date": "2025-01-13Z",
+    "user_title": {
+        "value": "",
+        "desc": ""
+    },
+    "job_category": {
+        "value": "CirculationDeskOperator",
+        "desc": "Circulation Desk Operator"
+    },
+    "job_description": "",
+    "user_group": {
+        "value": "2",
+        "desc": "Faculty & Unclassified Staff"
+    },
+    "campus_code": {
+        "desc": ""
+    },
+    "web_site_url": "",
+    "cataloger_level": {
+        "value": "00",
+        "desc": "[00] Default Level"
+    },
+    "preferred_language": {
+        "value": "en",
+        "desc": "English"
+    },
+    "expiry_date": "2025-07-01Z",
+    "account_type": {
+        "value": "EXTERNAL",
+        "desc": "External"
+    },
+    "external_id": "SIS_temp",
+    "force_password_change": "false",
+    "status_date": "2024-08-06Z",
+    "last_patron_activity_date": "2025-02-04Z",
+    "contact_info": {
+        "address": [
+            {
+                "line1": "Library, King",
+                "line2": "Oxford, OH, 45056",
+                "city": "",
+                "country": {
+                    "value": "",
+                    "desc": ""
+                },
+                "state_province": "",
+                "postal_code": "",
+                "address_note": "",
+                "address_type": [
+                    {
+                        "value": "home",
+                        "desc": "Home"
+                    },
+                    {
+                        "value": "work",
+                        "desc": "Work"
+                    },
+                    {
+                        "value": "school",
+                        "desc": "School"
+                    },
+                    {
+                        "value": "alternative",
+                        "desc": "Alternative"
+                    }
+                ],
+                "preferred": true,
+                "segment_type": "External"
+            },
+            {
+                "line1": "1234 Main St",
+                "line2": "Oxford, OH, 45056",
+                "city": "",
+                "country": {
+                    "value": "",
+                    "desc": ""
+                },
+                "state_province": "",
+                "postal_code": "",
+                "address_note": "",
+                "address_type": [
+                    {
+                        "value": "home",
+                        "desc": "Home"
+                    },
+                    {
+                        "value": "work",
+                        "desc": "Work"
+                    },
+                    {
+                        "value": "school",
+                        "desc": "School"
+                    },
+                    {
+                        "value": "alternative",
+                        "desc": "Alternative"
+                    }
+                ],
+                "preferred": false,
+                "segment_type": "External"
+            }
+        ],
+        "email": [
+            {
+                "email_address": "fakeykl@miamioh.edu",
+                "email_type": [
+                    {
+                        "value": "alternative",
+                        "desc": "Alternative"
+                    },
+                    {
+                        "value": "personal",
+                        "desc": "Personal"
+                    },
+                    {
+                        "value": "school",
+                        "desc": "School"
+                    },
+                    {
+                        "value": "work",
+                        "desc": "Work"
+                    }
+                ],
+                "preferred": true,
+                "segment_type": "External"
+            }
+        ],
+        "phone": [
+            {
+                "phone_number": "+5138675309",
+                "phone_type": [
+                    {
+                        "value": "home",
+                        "desc": "Home"
+                    },
+                    {
+                        "value": "mobile",
+                        "desc": "Mobile"
+                    },
+                    {
+                        "value": "office",
+                        "desc": "Office"
+                    },
+                    {
+                        "value": "officeFax",
+                        "desc": "Office fax"
+                    }
+                ],
+                "preferred": true,
+                "preferred_sms": false,
+                "segment_type": "External"
+            },
+            {
+                "phone_number": "+15135318008",
+                "phone_type": [
+                    {
+                        "value": "home",
+                        "desc": "Home"
+                    },
+                    {
+                        "value": "mobile",
+                        "desc": "Mobile"
+                    },
+                    {
+                        "value": "office",
+                        "desc": "Office"
+                    },
+                    {
+                        "value": "officeFax",
+                        "desc": "Office fax"
+                    }
+                ],
+                "preferred": false,
+                "preferred_sms": false,
+                "segment_type": "External"
+            }
+        ]
+    },
+    "user_identifier": [],
+    "user_role": [
+        {
+            "status": {
+                "value": "ACTIVE",
+                "desc": "Active"
+            },
+            "scope": {
+                "value": "01OHIOLINK_MU",
+                "desc": "Miami University"
+            },
+            "role_type": {
+                "value": "200",
+                "desc": "Patron"
+            },
+            "parameter": []
+        },
+        {
+            "status": {
+                "value": "ACTIVE",
+                "desc": "Active"
+            },
+            "scope": {
+                "value": "01OHIOLINK_MU",
+                "desc": "Miami University"
+            },
+            "role_type": {
+                "value": "251",
+                "desc": "Course Reserves Viewer"
+            },
+            "parameter": []
+        },
+        {
+            "status": {
+                "value": "ACTIVE",
+                "desc": "Active"
+            },
+            "scope": {
+                "value": "king",
+                "desc": "King Library"
+            },
+            "role_type": {
+                "value": "32",
+                "desc": "Circulation Desk Operator"
+            },
+            "expiry_date": "2025-07-01Z",
+            "parameter": [
+                {
+                    "type": {
+                        "value": "CirculationDesk"
+                    },
+                    "scope": {
+                        "value": "king",
+                        "desc": "King Library"
+                    },
+                    "value": {
+                        "value": "DEFAULT_CIRC_DESK",
+                        "desc": "King Circulation"
+                    }
+                },
+                {
+                    "type": {
+                        "value": "CantEditRestrictedUsers"
+                    },
+                    "scope": {
+                        "value": "king",
+                        "desc": "King Library"
+                    },
+                    "value": {
+                        "value": "false"
+                    }
+                }
+            ]
+        }
+    ],
+    "user_block": [],
+    "user_note": [
+        {
+            "note_type": {
+                "value": "LIBRARY",
+                "desc": "Library"
+            },
+            "note_text": "TOT CHKOUT: 1723",
+            "user_viewable": false,
+            "popup_note": false,
+            "created_by": "System",
+            "created_date": "2024-07-31T10:59:00Z",
+            "segment_type": "External"
+        },
+        {
+            "note_type": {
+                "value": "LIBRARY",
+                "desc": "Library"
+            },
+            "note_text": "TOT RENWAL: 2790",
+            "user_viewable": false,
+            "popup_note": false,
+            "created_by": "System",
+            "created_date": "2024-07-31T10:59:00Z",
+            "segment_type": "External"
+        },
+        {
+            "note_type": {
+                "value": "LIBRARY",
+                "desc": "Library"
+            },
+            "note_text": "CUR CHKOUT: 15",
+            "user_viewable": false,
+            "popup_note": false,
+            "created_by": "System",
+            "created_date": "2024-07-31T10:59:00Z",
+            "segment_type": "External"
+        },
+        {
+            "note_type": {
+                "value": "LIBRARY",
+                "desc": "Library"
+            },
+            "note_text": "CL RTRND: 0",
+            "user_viewable": false,
+            "popup_note": false,
+            "created_by": "System",
+            "created_date": "2024-07-31T10:59:00Z",
+            "segment_type": "External"
+        },
+        {
+            "note_type": {
+                "value": "LIBRARY",
+                "desc": "Library"
+            },
+            "note_text": "NOTE(PATRON): 787001000027",
+            "user_viewable": false,
+            "popup_note": false,
+            "created_by": "System",
+            "created_date": "2024-07-31T10:59:00Z",
+            "segment_type": "External"
+        }
+    ],
+    "user_statistic": [
+        {
+            "statistic_category": {
+                "value": "oth",
+                "desc": "Other"
+            },
+            "segment_type": "External"
+        },
+        {
+            "statistic_category": {
+                "value": "oxf",
+                "desc": "Oxford"
+            },
+            "segment_type": "External"
+        },
+        {
+            "statistic_category": {
+                "value": "ol",
+                "desc": "OhioLINK"
+            },
+            "segment_type": "External"
+        },
+        {
+            "statistic_category": {
+                "value": "ol",
+                "desc": "OhioLINK"
+            },
+            "segment_type": "External"
+        }
+    ],
+    "pref_first_name": "",
+    "pref_middle_name": "",
+    "pref_last_name": "",
+    "pref_name_suffix": ""
+}
