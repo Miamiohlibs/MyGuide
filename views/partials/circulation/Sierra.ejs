@@ -6,8 +6,14 @@
       <li id="circ-holds">Items Requested: <%= data.numHolds %>
       </li>
       <li id="money-owed" class="hideable">
-        <% if (data.moneyOwed == '0') { %>
-          Money Owed: <%- data.moneyOwed %>
+        <% 
+        // format fines per config.internationalization, but fail over to no formatting if it errors
+        let formattedFines;
+        try { formattedFines = new Intl.NumberFormat(config.internationalization.defaultLanguage, { style: 'currency', currency: config.internationalization.currency }).format(data.moneyOwed)  }
+        catch (err) { formattedFines = data.moneyOwed } 
+        %>
+        <% if (data.moneyOwed == 0) { %>
+          Money Owed: <%- formattedFines %>
         <% } else { %>
           <% moneyClass = 'danger'; moneyButtonText = 'Money Owed' %>
           <span class="hidden"> 
@@ -17,7 +23,7 @@
           </span>
           <div class="collapse" id="collapseExample">
             <div class="card card-body">
-              Money owed: $<%- data.moneyOwed %>
+              Money owed: <%- formattedFines %>
             </div>
           </div>
         <% } %>

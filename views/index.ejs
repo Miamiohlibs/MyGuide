@@ -265,7 +265,7 @@
         <div class="card-body d-print-none collapse" id="collapseCirc">
           <% fakeCirc=false %>
                   <% if (circ !=undefined && circ.hasOwnProperty('circSystem')) { %>
-                    <%- include('partials/circulation/'+circ.circSystem+'.ejs', {data: circ}) %>
+                    <%- include('partials/circulation/'+circ.circSystem+'.ejs', {data: circ, config}) %>
                       <% } else { %>
                         <p>No data avalable</p>
                         <% } %>

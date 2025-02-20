@@ -83,6 +83,12 @@
     },
     "viewConfigs": {
         "myGuideServiceName": "myGuide",
+        "internationalization": {
+            "defaultLanguage": "en-US",
+            "currency": "USD",
+            "_languageNote": "See https://www.andiamo.co.uk/resources/iso-language-codes/ for a list of language codes",
+            "_currencyNote": "See https://www.iban.com/currency-codes for a list of currency codes"
+        },
         "organization": {
             "name": "Your University Libraries",
             "url": "https://your-url.edu"
