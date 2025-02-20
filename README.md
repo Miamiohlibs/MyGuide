@@ -131,6 +131,10 @@ Then in the subject map (identified in `default/config` in app.subjectConfigFile
 
 The `Library` entry in the `libGuides` array will add a "Library" tab to the app for users in the Art/Arch Library department.
 
+#### Internationalization: Currency
+
+MyGuide supports internationalization of the currency symbol used in the app (used in displaying fines if a circulation system is configured). To set the currency symbol, in `config/default.json` in the `viewConfigs` object, set the `internationalization.defaultLanguage` (e.g. "en-US") and `internationalization.currency` (e.g. "USD") options. The currency will be formatted according to the locale using javascript's [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat) object.
+
 ## Content Security Policy
 
 A Content Security Policy (CSP) is a computer security standard introduced to prevent cross-site scripting (XSS) attacks. MyGuide includes some basic CSP settings, but additional local permissions will likely be needed. In `config/default.json`, add to the server.csp settings to permit calls to specific servers for externally sourced scripts, stylesheets, images, etc. If a content is being blocked from loading, add a config to allow the content to load from the specific server needed. Here is an example of what those settings might look like:
