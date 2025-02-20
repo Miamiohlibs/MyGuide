@@ -6,10 +6,11 @@ Note: this project integrates closely with campus resources and will require som
 
 ## Requirements
 
-- server running Node.js
+- server running Node.js (18.20.4 or higher)
 - command line tools including `bash` and `jq`
 - access to SpringShare's LibGuides + LibGuides API
 - an authentication system (currently only supports CAS, but modules could be written for other systems)
+- optional: Sierra ILS
 
 ## Configuration
 
@@ -65,7 +66,18 @@ If you have a CAS server set up, you can test the CAS authentication by running 
 
 ### Full setup
 
-Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (You can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.
+Once you've configured the LibGuides portion of the `config/default.json` file, you can run `./getData` to fetch subject, librarian, guide, and database data from the LibGuides API. (You can check on those files in the `./cache` folder. Additional subject subject mapping will be required before you can create the cached subject files, however.)
+
+#### Circ/ILS setup
+
+Optionally, MyGuide can display library circulation information for each user; currently, the only supported ILS is Sierra. You will need a SierraAPI key and clientSecret, which you can set up in the To set this up in the Sierra Administration Application using a web browser. The API Key should have the "Patrons Read" role; no other permissions/roles will be needed for the user. By default, the URL is:
+https://your.sierra.server/sierra/admin/
+
+Once you have the needed credentials in `config/default.json`:
+
+- set `app.useCirc` to `true`
+- set `circSystem` to `"Sierra"`
+- configure the `sierra` object with your Sierra API credentials following the example shown in the `config/default_sample.json` file.
 
 #### Running the app
 

@@ -45,10 +45,10 @@
     "circSystem": "Sierra",
     "sierra": {
         "credentials": {
-            "apiKey": "6ptSactEH4mcMcm45cJYjKeY5Zge",
-            "clientSecret": "68UYZ!u8t@U6PiNBus7p"
+            "apiKey": "your-sierra-api-key",
+            "clientSecret": "your-client-secret"
         },
-        "server": "holmes.lib.miamioh.edu",
+        "server": "your.sierra.server.edu",
         "apiPath": "/iii/sierra-api",
         "endpoints": {
             "token": "/v6/token"
