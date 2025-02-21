@@ -1,7 +1,7 @@
 const config = require('config');
 const UserDataHandler = require('../models/userLoginData/UserDataHandler');
 const CasDataGetter = require('../models/userLoginData/cas/CasDataGetter');
-const UserLoginInfo = require('../models/userLoginData/UserLoginInfo');
+// const UserLoginInfo = require('../models/userLoginData/UserLoginInfo');
 const UserSubjectInfo = require('../models/userLoginData/UserSubjectInfo');
 const UserLibGuidesData = require('../models/userLoginData/UserLibGuidesData');
 const authType = config.get('app.authType');
@@ -49,11 +49,11 @@ module.exports = class UserDataController {
 
   async getUserData() {
     let dataHandler = new UserDataHandler(this.userDataGetter);
-    let userLoginInfo = dataHandler.getUserData(this.rawUserData);
+    this.userLoginInfo = dataHandler.getUserData(this.rawUserData);
     let favorites = {};
     if (useFavorites) {
       const userFavoritesController = new UserFavoritesController(
-        userLoginInfo.userId
+        this.userLoginInfo.userId
       );
       favorites = (await userFavoritesController.getFavorites()) || {
         userId: userFavoritesController.hashId,
@@ -65,7 +65,7 @@ module.exports = class UserDataController {
       // console.log('favorites: ' + JSON.stringify(favorites));
     }
     let user = {
-      attr: userLoginInfo,
+      attr: this.userLoginInfo,
       favorites,
       rawUserData: this.rawUserData,
     };
@@ -80,11 +80,11 @@ module.exports = class UserDataController {
     let subjectList = userSubjectInfo.returnSubjectList();
     let liaisonList = libAppsDataFilter.getSubjectsByExpertEmail(
       librarians,
-      userLoginInfo.email
+      this.userLoginInfo.email
     );
 
     if (liaisonList.length > 0) {
-      userLoginInfo.liaisons = liaisonList;
+      this.userLoginInfo.liaisons = liaisonList;
     }
     // merge liaisonList with subjectList and return unique list
     let subjectListWithLiaisons = liaisonList.concat(subjectList);
@@ -96,7 +96,7 @@ module.exports = class UserDataController {
     );
 
     let finishedUserData = {
-      person: userLoginInfo,
+      person: this.userLoginInfo,
       uniqueSubjects: uniqueSubjectList,
       subjectData: userLibGuides,
       userLoginInfo: user.rawUserData,
