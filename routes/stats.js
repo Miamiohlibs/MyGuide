@@ -1,9 +1,39 @@
 const fs = require('fs');
 const getUsageData = require('../helpers/getUsageData');
 const getFavStats = require('../helpers/getFavoritesStats');
+const UserDataController = require('../controllers/UserDataController');
 const router = require('express').Router();
 const pjson = require('../package.json');
 const version = pjson.version;
+const config = require('config');
+
+// Authorization middleware for stats routes
+let allowedUsers = [];
+if (config.has('allowedStatsUsersCommaSeparated')) {
+  allowedUsers = config.get('allowedStatsUsersCommaSeparated').split(',');
+}
+
+router.use(async (req, res, next) => {
+  const userDataController = new UserDataController(req);
+  const user = await userDataController.getUserData();
+  if (allowedUsers.includes(user.person.userId)) {
+    next();
+  } else {
+    res.status(403).render('error', {
+      myGuideVersion: version,
+      fs: fs,
+      gaTrackingId: config.get('viewConfigs.googleAnalyticsTrackingId'),
+      config: config.get('viewConfigs'),
+      error: {
+        status: '403',
+        statusText: 'Forbidden',
+        message: `User "${user.person.userId}" is not authorized to view this page.`,
+        more_information:
+          'The permitted users are defined in the configuration file. Please contact the system administrator if you believe you should have access to this page.',
+      },
+    });
+  }
+});
 
 /* Graphing Routes */
 

@@ -35,8 +35,8 @@ router.get('/json', async (req, res) => {
 });
 
 router.get('/test', async (req, res) => {
-    const userDataController = new UserDataController(req);
-    let casResponse = await userDataController.rawUserData;
-    res.json(casResponse);
+  const userDataController = new UserDataController(req);
+  let casResponse = await userDataController.rawUserData;
+  res.json(casResponse);
 });
 module.exports = router;

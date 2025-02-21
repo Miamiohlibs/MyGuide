@@ -1,6 +1,7 @@
 {
     "mode": "dev",
-    "allowedUsersCommaSeparated": "root",
+    "allowedUsersCommaSeparated": "root,fakeUser",
+    "allowedStatsUsersCommaSeparated": "fakeUser,anotherUser",
     "app": {
         "port": "9909",
         "onServer": false,
