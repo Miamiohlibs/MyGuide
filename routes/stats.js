@@ -19,11 +19,19 @@ router.use(async (req, res, next) => {
   if (allowedUsers.includes(user.person.userId)) {
     next();
   } else {
-    res
-      .status(403)
-      .send(
-        `Forbidden: user ${user.person.userId} is not authorized to view this page.`
-      );
+    res.status(403).render('error', {
+      myGuideVersion: version,
+      fs: fs,
+      gaTrackingId: config.get('viewConfigs.googleAnalyticsTrackingId'),
+      config: config.get('viewConfigs'),
+      error: {
+        status: '403',
+        statusText: 'Forbidden',
+        message: `User "${user.person.userId}" is not authorized to view this page.`,
+        more_information:
+          'The permitted users are defined in the configuration file. Please contact the system administrator if you believe you should have access to this page.',
+      },
+    });
   }
 });
 
