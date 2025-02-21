@@ -5,9 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "jest",
+    "dev": "nodemon app.js",
     "cas": "node cas.js --note=TestCASauthAndNothingElse",
     "circTest": "node utilities/checkCircConnection.js",
-    "dev": "nodemon app.js",
+    "installTest": "node install-test.js",
     "scss": "sass scss/main.scss public/css/main.css",
     "scss-dev": "sass scss/main.scss public/css/main.css --watch",
     "start": "node app",
