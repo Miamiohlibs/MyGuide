@@ -6,9 +6,13 @@ const router = require('express').Router();
 const pjson = require('../package.json');
 const version = pjson.version;
 const config = require('config');
-const allowedUsers = config.get('allowedStatsUsersCommaSeparated').split(',');
 
 // Authorization middleware for stats routes
+let allowedUsers = [];
+if (config.has('allowedStatsUsersCommaSeparated')) {
+  allowedUsers = config.get('allowedStatsUsersCommaSeparated').split(',');
+}
+
 router.use(async (req, res, next) => {
   const userDataController = new UserDataController(req);
   const user = await userDataController.getUserData();
