@@ -57,6 +57,21 @@ describe('AlmaApi: query', () => {
   });
 });
 
+describe('AlmaApi: listUsers -- connection test', () => {
+  // note: we don't actually need the listUsers function, this is just and easy way
+  // to test the connection wit no parameters
+  beforeEach(async () => {
+    jest.clearAllMocks();
+    api = new AlmaApi(fakeAlmaConf.alma);
+    listUsersSpy = jest.spyOn(api, 'query').mockImplementation(() => {});
+    response = await api.listUsers();
+  });
+  it('should call /v1/users once', () => {
+    expect(listUsersSpy).toHaveBeenCalledTimes(1);
+    expect(listUsersSpy).toHaveBeenCalledWith('/v1/users');
+  });
+});
+
 describe('AlmaApi: patronQuery (user)', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
