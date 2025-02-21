@@ -1,9 +1,27 @@
 const fs = require('fs');
 const getUsageData = require('../helpers/getUsageData');
 const getFavStats = require('../helpers/getFavoritesStats');
+const UserDataController = require('../controllers/UserDataController');
 const router = require('express').Router();
 const pjson = require('../package.json');
 const version = pjson.version;
+const config = require('config');
+const allowedUsers = config.get('allowedStatsUsersCommaSeparated').split(',');
+
+// Authorization middleware for stats routes
+router.use(async (req, res, next) => {
+  const userDataController = new UserDataController(req);
+  const user = await userDataController.getUserData();
+  if (allowedUsers.includes(user.person.userId)) {
+    next();
+  } else {
+    res
+      .status(403)
+      .send(
+        `Forbidden: user ${user.person.userId} is not authorized to view this page.`
+      );
+  }
+});
 
 /* Graphing Routes */
 

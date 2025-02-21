@@ -188,7 +188,12 @@ To resolve this issue, add `api3.libcal.com` to the `frameSrcAdditions` setting.
 
 ## Statistics
 
-There are a few "hidden" urls with statistical information with MyGuide usages statistics -- they are not linked from the main public interface, but they are accessible by all users.
+The `/stats` route and pages linked from it offer some summary statistics and their supporting
+raw data describing the use of MyGuide over time. The statistical functions are a bit clunky
+once there's a lot of data, and using them can tend to slow down the app. For this reason, the
+stats are available only to users listed in the `allowedStatsUsersCommaSeparated` list in
+`config/default.json`. If you find that the stats are slowing down the app, you may wish to
+restart the app.
 
 ### Visualizations
 
@@ -228,6 +233,7 @@ When migrating the MyGuide app to a new server, you will need to copy or update 
 - copy over custom images in `/public/img` folder
 - copy over custom files in `/views/partials` folder
 - copy over custom subjects in `/cache/custom` folder
+- copy over the `/logs/usageLog.txt` file to preserve stats data
 
 ## Credits
 
