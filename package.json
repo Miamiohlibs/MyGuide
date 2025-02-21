@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "cas": "node cas.js --note=TestCASauthAndNothingElse",
+    "circTest": "node utilities/checkCircConnection.js",
     "dev": "nodemon app.js",
     "scss": "sass scss/main.scss public/css/main.css",
     "scss-dev": "sass scss/main.scss public/css/main.css --watch",

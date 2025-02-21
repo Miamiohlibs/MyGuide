@@ -6,6 +6,8 @@ const hasSierraConf = config.has('sierra');
 const hasAlmaConf = config.has('alma');
 
 /* 
+   Run this script with `npm run circTest` from the command line.
+   
    This script is a commmand-line utility to check the connection to the Sierra and Alma APIs.
    It will let you test the API independent of the rest of the application.
    If the config files are set up correctly, it will return a message that the connection is 

@@ -93,6 +93,11 @@ Once you have the needed credentials in `config/default.json`:
 - set `circSystem` to `"Alma"`
 - configure the `alma` object with your Alma API credentials following the example shown in the `config/default_sample.json` file.
 
+##### Testing Circulation Configuration
+
+You can test the circulation configuration by running `npm run circTest`. This will initiate a
+command-line application to the ILS and display the circulation information a user.
+
 #### Running the app
 
 The recommended way to run the app in production is to use a process manager like `pm2`. To start the app with `pm2`, run `pm2 start app.js`. To stop the app, run `pm2 stop app.js`. To restart the app, run `pm2 restart app.js`. If you are running more than one instance of the app, you can use the `--name` flag to give each instance a unique name, e.g. `pm2 start app.js --name myguide-production`.
