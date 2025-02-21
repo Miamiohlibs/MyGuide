@@ -21,6 +21,7 @@ const Logger = require(approot + '/helpers/Logger');
 module.exports = class UserDataController {
   constructor(req) {
     this.rawUserData = {};
+    this.warnings = [];
     switch (authType) {
       case 'CAS':
         // get real or fake user data
@@ -48,29 +49,42 @@ module.exports = class UserDataController {
   }
 
   async getUserData() {
-    let dataHandler = new UserDataHandler(this.userDataGetter);
-    this.userLoginInfo = dataHandler.getUserData(this.rawUserData);
-    let favorites = {};
-    if (useFavorites) {
-      const userFavoritesController = new UserFavoritesController(
-        this.userLoginInfo.userId
-      );
-      favorites = (await userFavoritesController.getFavorites()) || {
-        userId: userFavoritesController.hashId,
-        favoriteSubjects: [],
-        favoriteGuides: [],
-        favoriteDatabases: [],
-      };
-
-      // console.log('favorites: ' + JSON.stringify(favorites));
+    // get user data from login system
+    try {
+      let dataHandler = new UserDataHandler(this.userDataGetter);
+      this.userLoginInfo = dataHandler.getUserData(this.rawUserData);
+    } catch (err) {
+      Logger.error(err);
+      throw new Error('Error getting user data', err);
     }
-    let user = {
-      attr: this.userLoginInfo,
-      favorites,
-      rawUserData: this.rawUserData,
-    };
 
-    let userSubjectInfo = new UserSubjectInfo(user, subjectMap);
+    // get user favorites from database
+    try {
+      this.favorites = {};
+      if (useFavorites) {
+        const userFavoritesController = new UserFavoritesController(
+          this.userLoginInfo.userId
+        );
+        this.favorites = (await userFavoritesController.getFavorites()) || {
+          userId: userFavoritesController.hashId,
+          favoriteSubjects: [],
+          favoriteGuides: [],
+          favoriteDatabases: [],
+        };
+        // console.log('favorites: ' + JSON.stringify(favorites));
+      }
+      this.user = {
+        attr: this.userLoginInfo,
+        favorites: this.favorites,
+        rawUserData: this.rawUserData,
+      };
+    } catch (err) {
+      Logger.error(err);
+      this.warnings.push('Error getting user favorites');
+    }
+
+    // assemble user subjects from majors, courses, depts, and favorites
+    let userSubjectInfo = new UserSubjectInfo(this.user, subjectMap);
     userSubjectInfo.addSubjectsFromMajors();
     userSubjectInfo.addSubjectsFromCourses();
     userSubjectInfo.addSubjectsFromDepts();
@@ -92,15 +106,15 @@ module.exports = class UserDataController {
 
     let userLibGuides = new UserLibGuidesData(
       uniqueSubjectList,
-      user.favorites
+      this.user.favorites
     );
 
     let finishedUserData = {
       person: this.userLoginInfo,
       uniqueSubjects: uniqueSubjectList,
       subjectData: userLibGuides,
-      userLoginInfo: user.rawUserData,
-      favorites: user.favorites,
+      userLoginInfo: this.user.rawUserData,
+      favorites: this.user.favorites,
     };
     return finishedUserData;
   }
