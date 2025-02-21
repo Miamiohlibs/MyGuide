@@ -115,6 +115,7 @@ module.exports = class UserDataController {
       subjectData: userLibGuides,
       userLoginInfo: this.user.rawUserData,
       favorites: this.user.favorites,
+      warnings: this.warnings,
     };
     return finishedUserData;
   }
