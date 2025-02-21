@@ -10,7 +10,7 @@ Note: this project integrates closely with campus resources and will require som
 - command line tools including `bash` and `jq`
 - access to SpringShare's LibGuides + LibGuides API
 - an authentication system (currently only supports CAS, but modules could be written for other systems)
-- optional: Sierra ILS
+- optional: Sierra or Alma ILS
 
 ## Configuration
 
@@ -57,7 +57,7 @@ There are a lot of configurations to set up to run MyGuide. You can do a more ab
 - copy `config/default.json` to a safe place if you've been setting it up.
 - copy `config/default_barebones_sample.json` to `config/default.json`
 - set the port, servername, and the path to the SSL certificate and key files in `config/default.json`
-- run `node install-test`
+- run `npm run installTest`
 - that will start a very simple web server; go to `{yourserver}:{PORT}/install`; if Apache is configured to serve content from the app, you should see a message reading: "If you can read this, the app is serving the install page."
 
 ### CAS setup test
@@ -70,7 +70,11 @@ Once you've configured the LibGuides portion of the `config/default.json` file, 
 
 #### Circ/ILS setup
 
-Optionally, MyGuide can display library circulation information for each user; currently, the only supported ILS is Sierra. You will need a SierraAPI key and clientSecret, which you can set up in the To set this up in the Sierra Administration Application using a web browser. The API Key should have the "Patrons Read" role; no other permissions/roles will be needed for the user. By default, the URL is:
+Optionally, MyGuide can display library circulation information for each user. Currently, the only supported ILSes are Sierra and Alma.
+
+##### Sierra Config
+
+You will need a SierraAPI `key` and `clientSecret`, which you can set up in the To set this up in the Sierra Administration Application using a web browser. The API Key should have the "Patrons Read" role; no other permissions/roles will be needed for the user. By default, the URL is:
 https://your.sierra.server/sierra/admin/
 
 Once you have the needed credentials in `config/default.json`:
@@ -78,6 +82,21 @@ Once you have the needed credentials in `config/default.json`:
 - set `app.useCirc` to `true`
 - set `circSystem` to `"Sierra"`
 - configure the `sierra` object with your Sierra API credentials following the example shown in the `config/default_sample.json` file.
+
+##### Alma Config
+
+You will need an Alma API key, which you can set up in the [ExLibris Developer Network](https://developers.exlibrisgroup.com/manage/) using a web browser. Go to Build My APIs > API Keys. You will need a key with read permissions for the Users API.
+
+Once you have the needed credentials in `config/default.json`:
+
+- set `app.useCirc` to `true`
+- set `circSystem` to `"Alma"`
+- configure the `alma` object with your Alma API credentials following the example shown in the `config/default_sample.json` file.
+
+##### Testing Circulation Configuration
+
+You can test the circulation configuration by running `npm run circTest`. This will initiate a
+command-line application to the ILS and display the circulation information a user.
 
 #### Running the app
 

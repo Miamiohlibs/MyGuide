@@ -23,6 +23,7 @@ module.exports = class AlmaDataGetter {
         message: 'Error getting patron info from Alma',
         error: err,
       });
+      throw err;
     }
   }
 
@@ -43,6 +44,7 @@ module.exports = class AlmaDataGetter {
         message: 'Error getting checkouts from Alma: ' + err.message,
         error: err,
       });
+      throw err;
     }
   }
   async getNumHolds() {
@@ -54,6 +56,7 @@ module.exports = class AlmaDataGetter {
         message: 'Error getting holds from Alma: ' + err.message,
         error: err,
       });
+      throw err;
     }
   }
   async getFines() {
@@ -68,6 +71,7 @@ module.exports = class AlmaDataGetter {
         message: 'Error getting fines from Alma: ' + err.message,
         error: err,
       });
+      throw err;
     }
   }
   //   getAccountLink() {
