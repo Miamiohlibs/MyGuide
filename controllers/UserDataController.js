@@ -74,14 +74,14 @@ module.exports = class UserDataController {
             favoriteGuides: [],
             favoriteDatabases: [],
             userType: '',
+            dummyData: true,
           };
         // console.log('favorites: ' + JSON.stringify(favorites));
       }
       try {
-        let favCount = this.favorites.favoriteSubjects
-          .concat(this.favorites.favoriteGuides)
-          .concat(this.favorites.favoriteDatabases).length;
-        if (favCount > 0) {
+        if (this.favorites.hasOwnProperty('dummyData')) {
+          delete this.favorites.dummyData;
+        } else {
           if (this.userLoginInfo.userType != this.favorites.userType) {
             console.log('User Type mismatch. Updating...');
             await this.userFavoritesController.updateUserType();
