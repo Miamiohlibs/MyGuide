@@ -8,6 +8,11 @@ const UserFavoritesSchema = new Schema({
     required: true,
     unique: true,
   },
+  userType: {
+    type: String,
+    required: false,
+    default: '',
+  },
   favoriteGuides: {
     type: [Number],
     required: true,

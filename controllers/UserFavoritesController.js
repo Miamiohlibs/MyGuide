@@ -6,9 +6,11 @@ const Logger = require(approot + '/helpers/Logger');
 const HashId = require(approot + '/helpers/hashId');
 
 module.exports = class userFavoritesController {
-  constructor(userId) {
+  constructor(userId, userType = null) {
     this.userId = userId;
     this.hashId = HashId(userId);
+    this.userType = userType;
+    console.log('UserFavoritesController:', this.hashId, this.userType);
   }
 
   async getFavorites() {
@@ -27,7 +29,7 @@ module.exports = class userFavoritesController {
   }
   async updateFavoriteAdd(favType, favId) {
     try {
-      await api.UpdateFavoritesAdd(this.hashId, favType, favId);
+      await api.UpdateFavoritesAdd(this.hashId, favType, favId, this.userType);
       return { success: true };
     } catch (err) {
       Logger.error({ message: err.message, error: err });
@@ -38,6 +40,14 @@ module.exports = class userFavoritesController {
     try {
       await api.UpdateFavoritesRemove(this.hashId, favType, favId);
       return { success: true };
+    } catch (err) {
+      Logger.error({ message: err.message, error: err });
+      return { success: false, message: err.message, error: err };
+    }
+  }
+  async updateUserType() {
+    try {
+      return await api.UpdateUserType(this.hashId, this.userType);
     } catch (err) {
       Logger.error({ message: err.message, error: err });
       return { success: false, message: err.message, error: err };
