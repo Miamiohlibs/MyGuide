@@ -17,14 +17,16 @@ module.exports = class FavoritesApi {
       return { success: false, message: err.message, error: err };
     }
   }
-  async UpdateFavoritesAdd(userId, favType, favId) {
+  async UpdateFavoritesAdd(userId, favType, favId, userType) {
     try {
       await db.connect();
       let attr = this.BuildUpdateAttr(favType, favId);
       // console.log('updating in API:', userId, attr);
+      let update = { $addToSet: attr, updated: Date.now(), userType };
+      // console.log('update:', update);
       await Crud.findOneAndUpdate(
         { userId: userId },
-        { $addToSet: attr, updated: Date.now() },
+        { $addToSet: attr, updated: Date.now(), userType },
         { upsert: true }
       );
       await db.disconnect();
@@ -49,6 +51,23 @@ module.exports = class FavoritesApi {
       return { success: true };
     } catch (err) {
       Logger.error(err);
+      return { success: false, message: err.message, error: err };
+    }
+  }
+
+  async UpdateUserType(hashId, userType) {
+    try {
+      await db.connect();
+      let outcome = await Crud.findOneAndUpdate(
+        { userId: hashId },
+        { $set: { userType: userType, updated: Date.now() } }
+        // { upsert: true }
+      );
+      await db.disconnect();
+      return { success: true, outcome: outcome };
+    } catch (err) {
+      Logger.error(err);
+      console.log(err);
       return { success: false, message: err.message, error: err };
     }
   }

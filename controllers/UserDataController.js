@@ -53,6 +53,7 @@ module.exports = class UserDataController {
     try {
       let dataHandler = new UserDataHandler(this.userDataGetter);
       this.userLoginInfo = dataHandler.getUserData(this.rawUserData);
+      console.log('userLoginInfo: ' + JSON.stringify(this.userLoginInfo));
     } catch (err) {
       Logger.error(err);
       throw new Error('Error getting user data', err);
@@ -62,17 +63,43 @@ module.exports = class UserDataController {
     try {
       this.favorites = {};
       if (useFavorites) {
-        const userFavoritesController = new UserFavoritesController(
-          this.userLoginInfo.userId
+        this.userFavoritesController = new UserFavoritesController(
+          this.userLoginInfo.userId,
+          this.userLoginInfo.userType
         );
-        this.favorites = (await userFavoritesController.getFavorites()) || {
-          userId: userFavoritesController.hashId,
-          favoriteSubjects: [],
-          favoriteGuides: [],
-          favoriteDatabases: [],
-        };
+        this.favorites =
+          (await this.userFavoritesController.getFavorites()) || {
+            userId: this.userFavoritesController.hashId,
+            favoriteSubjects: [],
+            favoriteGuides: [],
+            favoriteDatabases: [],
+            userType: '',
+            dummyData: true,
+          };
         // console.log('favorites: ' + JSON.stringify(favorites));
       }
+      try {
+        if (this.favorites.hasOwnProperty('dummyData')) {
+          delete this.favorites.dummyData;
+        } else {
+          if (this.userLoginInfo.userType != this.favorites.userType) {
+            Logger.info(
+              'User Type mismatch. Updating... UserId: ' +
+                this.userLoginInfo.userId +
+                '; Old UserType: ' +
+                this.favorites.userType +
+                '; New UserType: ' +
+                this.userLoginInfo.userType
+            );
+            await this.userFavoritesController.updateUserType();
+          }
+        }
+      } catch (err) {
+        Logger.error(err);
+        console.error(err);
+        this.warnings.push('could not get favorites');
+      }
+
       this.user = {
         attr: this.userLoginInfo,
         favorites: this.favorites,
