@@ -83,7 +83,14 @@ module.exports = class UserDataController {
           delete this.favorites.dummyData;
         } else {
           if (this.userLoginInfo.userType != this.favorites.userType) {
-            console.log('User Type mismatch. Updating...');
+            Logger.info(
+              'User Type mismatch. Updating... UserId: ' +
+                this.userLoginInfo.userId +
+                '; Old UserType: ' +
+                this.favorites.userType +
+                '; New UserType: ' +
+                this.userLoginInfo.userType
+            );
             await this.userFavoritesController.updateUserType();
           }
         }

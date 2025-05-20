@@ -29,6 +29,7 @@ module.exports = class userFavoritesController {
   }
   async updateFavoriteAdd(favType, favId) {
     try {
+      Logger.info('updateFavoriteAdd:', favType, favId, this.userType);
       await api.UpdateFavoritesAdd(this.hashId, favType, favId, this.userType);
       return { success: true };
     } catch (err) {

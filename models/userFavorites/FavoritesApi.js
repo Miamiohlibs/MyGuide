@@ -20,8 +20,10 @@ module.exports = class FavoritesApi {
   async UpdateFavoritesAdd(userId, favType, favId, userType) {
     try {
       await db.connect();
-      let attr = this.BuildUpdateAttr(favType, favId, userType);
+      let attr = this.BuildUpdateAttr(favType, favId);
       // console.log('updating in API:', userId, attr);
+      let update = { $addToSet: attr, updated: Date.now(), userType };
+      // console.log('update:', update);
       await Crud.findOneAndUpdate(
         { userId: userId },
         { $addToSet: attr, updated: Date.now(), userType },
