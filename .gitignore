@@ -8,7 +8,7 @@ custom-header-info.ejs
 custom-alert.ejs
 custom-featured-content.ejs
 ecosystem.config.js
-
+localnote-*
 
 #images
 public/img/custom*
