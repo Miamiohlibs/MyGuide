@@ -1,11 +1,10 @@
 const config = require('config');
 const approot = require('app-root-path');
-subjFile = config.get('app.subjectConfigFilename');
-const Subjects = require(approot + '/config/' + subjFile);
+// subjFile = config.get('app.subjectConfigFilename');
 
 module.exports = class SubjectsByKey {
-  constructor() {
-    this.subjects = Subjects;
+  constructor(subjectConfig) {
+    this.subjects = subjectConfig || [];
     // console.log('SubjectsByKey: ', this.subjects);
   }
 
@@ -14,20 +13,41 @@ module.exports = class SubjectsByKey {
   }
 
   getSubjectByRegCode(regCodeToFind) {
-    return this.subjects.find((entry) =>
-      entry.regCodes?.some((rc) => rc.regCode === regCodeToFind)
+    if (!regCodeToFind) {
+      return {};
+    }
+    return (
+      this.subjects.find((entry) =>
+        entry.regCodes?.some(
+          (rc) => rc.regCode.toUpperCase() === regCodeToFind.toUpperCase()
+        )
+      ) || {}
     );
   }
 
   getSubjectByMajorCode(majorCodeToFind) {
-    return this.subjects.find((entry) =>
-      entry.majorCodes?.some((mc) => mc.majorCode === majorCodeToFind)
+    if (!majorCodeToFind) {
+      return {};
+    }
+    return (
+      this.subjects.find((entry) =>
+        entry.majorCodes?.some(
+          (mc) => mc.majorCode.toUpperCase() === majorCodeToFind.toUpperCase()
+        )
+      ) || {}
     );
   }
 
   getSubjectByDeptCode(subjectCodeToFind) {
-    return this.subjects.find((entry) =>
-      entry.deptCodes?.some((dc) => dc.deptCode === subjectCodeToFind)
+    if (!subjectCodeToFind) {
+      return {};
+    }
+    return (
+      this.subjects.find((entry) =>
+        entry.deptCodes?.some(
+          (dc) => dc.deptCode.toUpperCase() === subjectCodeToFind.toUpperCase()
+        )
+      ) || {}
     );
   }
 };
