@@ -63,7 +63,7 @@ router.get('/resources/majorCodes/:code', async (req, res) => {
   });
 
   if (output) {
-    res.status(200).json(output);
+    res.status(200).json(apiWrapper(output, req));
   } else {
     res.status(404).json({ message: 'Subject not found' });
   }
@@ -84,7 +84,7 @@ router.get('/resources/deptCodes/:code', async (req, res) => {
   });
 
   if (output) {
-    res.status(200).json(output);
+    res.status(200).json(apiWrapper(output, req));
   } else {
     res.status(404).json({ message: 'Subject not found' });
   }
