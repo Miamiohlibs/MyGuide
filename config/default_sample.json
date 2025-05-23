@@ -112,6 +112,11 @@
             "organizationLogo": "imaginary-white-text.png",
             "organizationMobileLogo": "imaginary-dark-on-white.png"
         },
+        "circMemo": {
+            "show": false,
+            "header": "Library Account Memo",
+            "content": "Memo text goes here. We used it when we were migrating from one ILS to another and accounts were offline for a few weeks."
+        },
         "featuredContent": {
             "display": false,
             "hints": [
