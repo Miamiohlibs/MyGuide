@@ -20,6 +20,7 @@ app.use(helmet.contentSecurityPolicy({ directives: cspPolicy }));
 
 /* routers */
 let indexRouter = require('./routes/index');
+let apiRouter = require('./routes/api');
 let favoritesRouter = require('./routes/favorites');
 let statsRouter = require('./routes/stats');
 
@@ -89,6 +90,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', indexRouter);
 app.use('/favorites', favoritesRouter);
 app.use('/stats', statsRouter);
+app.use('/api', apiRouter);
 
 const PORT = config.get('app.port') || '4000';
 if (global.onServer === true) {
