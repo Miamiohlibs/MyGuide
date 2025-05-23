@@ -4,6 +4,9 @@ const approot = require('app-root-path');
 
 module.exports = class SubjectsByKey {
   constructor(subjectConfig) {
+    if (!subjectConfig) {
+      throw new Error('No subjectConfig provided to SubjectsByKey');
+    }
     this.subjects = subjectConfig || [];
     // console.log('SubjectsByKey: ', this.subjects);
   }
