@@ -39,8 +39,10 @@ app.use(
 );
 
 // api will use key-based authentication instead of CAS session
-const apiKeyAuth = require('./middleware/api-keyAuth');
-app.use('/api', apiKeyAuth, apiRouter);
+if (config.get('app.useApi') === true) {
+  const apiKeyAuth = require('./middleware/api-keyAuth');
+  app.use('/api', apiKeyAuth, apiRouter);
+}
 
 /* fake user settings */
 if (
