@@ -38,6 +38,10 @@ app.use(
   })
 );
 
+// api will use key-based authentication instead of CAS session
+const apiKeyAuth = require('./middleware/api-keyAuth');
+app.use('/api', apiKeyAuth, apiRouter);
+
 /* fake user settings */
 if (
   config.has('app.skipCasIfFakeUser') &&
@@ -90,7 +94,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', indexRouter);
 app.use('/favorites', favoritesRouter);
 app.use('/stats', statsRouter);
-app.use('/api', apiRouter);
 
 const PORT = config.get('app.port') || '4000';
 if (global.onServer === true) {
