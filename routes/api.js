@@ -90,7 +90,9 @@ router.get('/resources/deptCodes/:code', async (req, res) => {
   }
 });
 
-// router.get('/subjects', async (req, res) => {});
+router.get('/subjects', async (req, res) => {
+  res.status(200).json(apiWrapper(subjects, req));
+});
 
 // router.get('/subjects/regCodes/', async (req, res) => {});
 
