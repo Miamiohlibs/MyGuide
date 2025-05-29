@@ -32,12 +32,17 @@ router.get('/', async (req, res) => {
     let circData = await circController.getUserData(user.person.userId);
     // res.send(userInfo);
     // res.render('dashboard', { user: userInfo, settings: settings });
+    let viewConfigs = { ...config.get('viewConfigs') };
+    let useCirc = config.get('app.useCirc');
+    viewConfigs.useCirc = useCirc;
+    console.log('viewConfigs: ', viewConfigs);
+    console.log('useCirc: ', useCirc);
     res.render('index', {
       myGuideVersion: version,
       user: user,
       circ: circData,
       fs: fs,
-      config: config.get('viewConfigs'),
+      config: viewConfigs,
     });
     logUsage(user);
     logUrl(req);
