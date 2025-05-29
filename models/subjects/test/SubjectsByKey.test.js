@@ -60,10 +60,12 @@ describe('SubjectsByKey: getSubjectByRegCode', () => {
     const subject = subjectsByKey.getSubjectByRegCode('ZZZ');
     expect(subject).toEqual({});
   });
-  it('should return an empty object if no regCode sent', () => {
+  it('should throw and error if no regCode sent', () => {
     const subjectsByKey = new SubjectsByKey(config);
-    const subject = subjectsByKey.getSubjectByRegCode();
-    expect(subject).toEqual({});
+    // const subject = subjectsByKey.getSubjectByRegCode();
+    expect(() => subjectsByKey.getSubjectByRegCode()).toThrow(
+      'No regCode provided to getSubjectByRegCode'
+    );
   });
 });
 
@@ -97,8 +99,9 @@ describe('SubjectsByKey: getSubjectByMajorCode', () => {
   });
   it('should return an empty object if no majorCode sent', () => {
     const subjectsByKey = new SubjectsByKey(config);
-    const subject = subjectsByKey.getSubjectByMajorCode();
-    expect(subject).toEqual({});
+    expect(() => subjectsByKey.getSubjectByMajorCode()).toThrow(
+      'No majorCode provided to getSubjectByMajorCode'
+    );
   });
 });
 
@@ -130,9 +133,10 @@ describe('SubjectsByKey: getSubjectByDeptCode', () => {
     const subject = subjectsByKey.getSubjectByDeptCode('ZZZ');
     expect(subject).toEqual({});
   });
-  it('should return an empty object if no deptCode sent', () => {
+  it('should throw an error if no deptCode sent', () => {
     const subjectsByKey = new SubjectsByKey(config);
-    const subject = subjectsByKey.getSubjectByDeptCode();
-    expect(subject).toEqual({});
+    expect(() => subjectsByKey.getSubjectByDeptCode()).toThrow(
+      'No subjectCode provided to getSubjectByDeptCode'
+    );
   });
 });

@@ -17,7 +17,7 @@ module.exports = class SubjectsByKey {
 
   getSubjectByRegCode(regCodeToFind) {
     if (!regCodeToFind) {
-      return {};
+      throw new Error('No regCode provided to getSubjectByRegCode');
     }
     return (
       this.subjects.find((entry) =>
@@ -30,7 +30,7 @@ module.exports = class SubjectsByKey {
 
   getSubjectByMajorCode(majorCodeToFind) {
     if (!majorCodeToFind) {
-      return {};
+      throw new Error('No majorCode provided to getSubjectByMajorCode');
     }
     return (
       this.subjects.find((entry) =>
@@ -43,7 +43,7 @@ module.exports = class SubjectsByKey {
 
   getSubjectByDeptCode(subjectCodeToFind) {
     if (!subjectCodeToFind) {
-      return {};
+      throw new Error('No subjectCode provided to getSubjectByDeptCode');
     }
     return (
       this.subjects.find((entry) =>
