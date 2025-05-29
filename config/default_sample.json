@@ -13,6 +13,7 @@
         "skipCasIfFakeUser": true,
         "FakeUserNote": "configure fakeUser in config/fakeUserConf.json",
         "useFavorites": false,
+        "useApi": true, // true requires apiAuth.id and apiAuth.apiKey to be set below
         "salt": "just a random string to use when needed"
     },
     "server": {
@@ -62,6 +63,10 @@
         },
         "server": "api-eu.hosted.exlibrisgroup.com",
         "apiPath": "/almaws"
+    },
+    "apiAuth": {
+        "id": "", // set an ID for the MyGuide API
+        "apiKey": "", // set an API key for the MyGuide API
     },
     "database": {
         "use": "dev",
