@@ -20,6 +20,7 @@ app.use(helmet.contentSecurityPolicy({ directives: cspPolicy }));
 
 /* routers */
 let indexRouter = require('./routes/index');
+let apiRouter = require('./routes/api');
 let favoritesRouter = require('./routes/favorites');
 let statsRouter = require('./routes/stats');
 
@@ -36,6 +37,12 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+// api will use key-based authentication instead of CAS session
+if (config.get('app.useApi') === true) {
+  const apiKeyAuth = require('./middleware/api-keyAuth');
+  app.use('/api', apiKeyAuth, apiRouter);
+}
 
 /* fake user settings */
 if (

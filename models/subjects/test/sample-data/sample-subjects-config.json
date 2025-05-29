@@ -1,0 +1,179 @@
+[
+    {
+        "name": "Accountancy",
+        "libguides": [
+            "Accountancy"
+        ],
+        "regCodes": [
+            {
+                "regCode": "ACC",
+                "regName": "Accountancy"
+            }
+        ],
+        "majorCodes": [
+            {
+                "majorCode": "BU01",
+                "majorName": "Accountancy"
+            }
+        ],
+        "deptCodes": [
+            {
+                "deptCode": "acc",
+                "deptName": "Accountancy"
+            }
+        ]
+    },
+    {
+        "name": "Accounting Technology",
+        "libguides": [
+            "Accountancy"
+        ],
+        "majorCodes": [
+            {
+                "majorCode": "BUKA",
+                "majorName": "Accounting Technology"
+            },
+            {
+                "majorCode": "RCKA",
+                "majorName": "Accounting Technology"
+            },
+            {
+                "majorCode": "BU8C",
+                "majorName": "Accounting Technology Program"
+            }
+        ]
+    },
+    {
+        "name": "Adolescent Education",
+        "libguides": [
+            "Education"
+        ],
+        "majorCodes": [
+            {
+                "majorCode": "EA18",
+                "majorName": "Adolescent Education"
+            }
+        ]
+    },
+    {
+        "name": "Adv Manufacturing & Mater Eval",
+        "libguides": [
+            "Engineering"
+        ],
+        "majorCodes": [
+            {
+                "majorCode": "AP5C",
+                "majorName": "Adv Manufacturing & Mater Eval"
+            },
+            {
+                "majorCode": "C027",
+                "majorName": "Adv Manufacturing & Mater Eval"
+            }
+        ]
+    },
+    {
+        "name": "Advanced Business Analytics",
+        "libguides": [
+            "Business",
+            "Information Systems and Analytics"
+        ],
+        "majorCodes": [
+            {
+                "majorCode": "C022",
+                "majorName": "Advanced Business Analytics"
+            }
+        ]
+    },
+    {
+        "name": "Advanced Studio Art",
+        "libguides": [
+            "Art and Architecture"
+        ],
+        "majorCodes": [
+            {
+                "majorCode": "C003",
+                "majorName": "Advanced Studio Art"
+            }
+        ]
+    },
+    {
+        "name": "American & World Cultures",
+        "libguides": [
+            "Area Studies"
+        ],
+        "regCodes": [
+            {
+                "regCode": "IDS",
+                "regName": "Interdisciplinary"
+            }
+        ],
+        "deptCodes": [
+            {
+                "deptCode": "caw",
+                "deptName": "American & World Cultures"
+            }
+        ]
+    },
+    {
+        "name": "American Studies",
+        "libguides": [
+            "American Studies"
+        ],
+        "regCodes": [
+            {
+                "regCode": "AMS",
+                "regName": "American Studies"
+            }
+        ],
+        "majorCodes": [
+            {
+                "majorCode": "AS12",
+                "majorName": "American Studies"
+            }
+        ],
+        "deptCodes": [
+            {
+                "deptCode": "ams",
+                "deptName": "American Studies"
+            }
+        ]
+    },
+    {
+        "name": "Analytics",
+        "libguides": [
+            "Statistics",
+            "Information Systems and Analytics",
+            "Geography"
+        ],
+        "majorCodes": [
+            {
+                "majorCode": "APAN",
+                "majorName": "Analytics"
+            },
+            {
+                "majorCode": "C021",
+                "majorName": "Analytics"
+            },
+            {
+                "majorCode": "EAAN",
+                "majorName": "Analytics"
+            },
+            {
+                "majorCode": "RCAN",
+                "majorName": "Analytics"
+            },
+            {
+                "majorCode": "FAAN",
+                "majorName": "Analytics"
+            },
+            {
+                "majorCode": "BUAN",
+                "majorName": "Analytics"
+            },
+            {
+                "majorCode": "ASAN",
+                "majorName": "Analytics"
+            }
+        ]
+    }
+]
