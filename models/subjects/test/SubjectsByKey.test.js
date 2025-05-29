@@ -4,7 +4,7 @@ const SubjectsByKey = require('../SubjectsByKey');
 
 describe('SubjectsByKey', () => {
   it('should return an object of class SubjectsByKey', () => {
-    expect(new SubjectsByKey() instanceof SubjectsByKey).toBe(true);
+    expect(new SubjectsByKey(config) instanceof SubjectsByKey).toBe(true);
   });
   it('should take a config object', () => {
     const subjectsByKey = new SubjectsByKey(config);
@@ -17,10 +17,10 @@ describe('SubjectsByKey', () => {
     expect(subjectsByKey.subjects[0]).toHaveProperty('name');
     expect(subjectsByKey.subjects[0].name).toBe('Accountancy');
   });
-  it('should return an empty array if no configFile sent', () => {
-    const subjectsByKey = new SubjectsByKey();
-    expect(subjectsByKey.subjects).toBeInstanceOf(Array);
-    expect(subjectsByKey.subjects.length).toBe(0);
+  it('should throw an error if no configFile sent', () => {
+    expect(() => new SubjectsByKey()).toThrow(
+      'No subjectConfig provided to SubjectsByKey'
+    );
   });
 });
 
