@@ -28,8 +28,9 @@ describe('LibAppsDataFilter: databases', () => {
 
 describe('LibAppsDataFilter: filterBySubject: Databases', () => {
   english = obj.filterBySubject(databases, 'English'); // 5
-  topEnglish = obj.filterBySubject(databases, 'English', true); // 1
   bws = obj.filterBySubject(databases, 'Black World Studies'); // 2
+
+  // re-write these tests for the top/nonTop divide
 
   it('should find five English databases', () => {
     expect(english.length).toBe(5);
@@ -37,9 +38,19 @@ describe('LibAppsDataFilter: filterBySubject: Databases', () => {
   it('should find two BWS databases', () => {
     expect(bws.length).toBe(2);
   });
-  it('should fine one top English database', () => {
-    expect(topEnglish.length).toBe(1);
-    expect(topEnglish[0].name).toBe('19th Century Index');
+  it('should fine one top English database and 4 non-top', () => {
+    expect(english[0].name).toBe('19th Century Index');
+    expect(english[0]).toHaveProperty('isTopForSubject');
+    expect(english[0].isTopForSubject).toBe(true);
+    expect(english[1].isTopForSubject).toBe(false);
+    expect(english[2].isTopForSubject).toBe(false);
+    expect(english[3].isTopForSubject).toBe(false);
+    expect(english[4].isTopForSubject).toBe(false);
+  });
+  it('should find no top BWS databases and two non-top', () => {
+    expect(bws[0]).toHaveProperty('isTopForSubject');
+    expect(bws[0].isTopForSubject).toBe(false);
+    expect(bws[1].isTopForSubject).toBe(false);
   });
 });
 
