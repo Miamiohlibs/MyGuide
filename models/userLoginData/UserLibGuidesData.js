@@ -22,8 +22,8 @@ module.exports = class UserLibGuidesData {
     this.subjectCachePath = subjectCachePath;
     this.customPath = customPath;
     this.subjectData = [];
-    this.getSubjectFiles();
-    return this.subjectData;
+    // this.getSubjectFiles();
+    // return this.subjectData;
   }
 
   getSubjectFiles() {
@@ -38,7 +38,7 @@ module.exports = class UserLibGuidesData {
       this.subjectData.push({
         name: subject,
         resources: fileContents,
-        kenTest: true,
+        // kenTest: true,
       });
     });
   }
@@ -94,7 +94,7 @@ module.exports = class UserLibGuidesData {
       contents.databases !== undefined
     ) {
       contents.databases.forEach((database) => {
-        database.testString = 'bogusKen';
+        // database.testString = 'bogusKen';
         database.favorite =
           this.favorites.favoriteDatabases.includes(database.id) ||
           this.favorites.favoriteDatabases.includes(database.id.toString());

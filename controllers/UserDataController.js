@@ -131,10 +131,12 @@ module.exports = class UserDataController {
     let subjectListWithLiaisons = liaisonList.concat(subjectList);
     let uniqueSubjectList = _.uniq(subjectListWithLiaisons);
 
-    let userLibGuides = new UserLibGuidesData(
+    let userLibGuidesObject = new UserLibGuidesData(
       uniqueSubjectList,
       this.user.favorites
     );
+    userLibGuidesObject.getSubjectFiles();
+    let userLibGuides = userLibGuidesObject.subjectData;
 
     let finishedUserData = {
       person: this.userLoginInfo,
