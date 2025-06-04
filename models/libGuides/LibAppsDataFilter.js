@@ -81,22 +81,25 @@ module.exports = class LibAppsDataFilter {
   filterBySubject(resourceList, subject, reportTopForSubject = false) {
     var results = [];
     resourceList.forEach(function (item) {
+      // if there are subjects defined for the item,
+      // find the one that matches the requested subject
+      // if there are no subjects, skip the item
       if (item.subjects !== undefined) {
-        if (reportTopForSubject) {
-          var isTopForSubject = item.subjects.find(
-            (s) => s.name === subject && s.featured === 1
-          );
-          item.isTopForSubject = isTopForSubject;
-          // console.log('testing');
-        }
+        // determine if item matches the requested subject
         var itemMatchingSubject = item.subjects.filter(
           (s) => s.name === subject
         );
+
+        // if the item has subjects and matches the requested subject
+        // add it to the results
+        // if requested, also check to see if it a featured/top item for that subject
         if (item.subjects !== undefined) {
           if (itemMatchingSubject.length > 0) {
-            isTopForSubject =
-              itemMatchingSubject[0].featured === 1 ? true : false;
-            item.isTopForSubject = isTopForSubject;
+            if (reportTopForSubject) {
+              let isTopForSubject =
+                itemMatchingSubject[0].featured === 1 ? true : false;
+              item.isTopForSubject = isTopForSubject;
+            }
             results.push(item);
           }
         }

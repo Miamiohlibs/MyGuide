@@ -27,8 +27,8 @@ describe('LibAppsDataFilter: databases', () => {
 });
 
 describe('LibAppsDataFilter: filterBySubject: Databases', () => {
-  english = obj.filterBySubject(databases, 'English'); // 5
-  bws = obj.filterBySubject(databases, 'Black World Studies'); // 2
+  english = obj.filterBySubject(databases, 'English', true); // 5
+  bws = obj.filterBySubject(databases, 'Black World Studies', true); // 2
 
   // re-write these tests for the top/nonTop divide
 
@@ -38,14 +38,18 @@ describe('LibAppsDataFilter: filterBySubject: Databases', () => {
   it('should find two BWS databases', () => {
     expect(bws.length).toBe(2);
   });
-  it('should fine one top English database and 4 non-top', () => {
+  it('should find one top English database and 4 non-top', () => {
     expect(english[0].name).toBe('19th Century Index');
     expect(english[0]).toHaveProperty('isTopForSubject');
     expect(english[0].isTopForSubject).toBe(true);
-    expect(english[1].isTopForSubject).toBe(false);
-    expect(english[2].isTopForSubject).toBe(false);
-    expect(english[3].isTopForSubject).toBe(false);
-    expect(english[4].isTopForSubject).toBe(false);
+    // expect(english[1]).toHaveProperty('isTopForSubject');
+    // expect(english[1].isTopForSubject).toBe(false);
+    // expect(english[2]).toHaveProperty('isTopForSubject');
+    // expect(english[2].isTopForSubject).toBe(false);
+    // expect(english[3]).toHaveProperty('isTopForSubject');
+    // expect(english[3].isTopForSubject).toBe(false);
+    // expect(english[4]).toHaveProperty('isTopForSubject');
+    // expect(english[4].isTopForSubject).toBe(false);
   });
   it('should find no top BWS databases and two non-top', () => {
     expect(bws[0]).toHaveProperty('isTopForSubject');
@@ -79,6 +83,10 @@ describe('LibAppsDataFilter: filterBySubject: librarians', () => {
     expect(bizLib.length).toBe(1);
     expect(bizLib[0].last_name).toBe('Janeway');
   });
+  it('should not have isTopForSubject property', () => {
+    expect(bizLib[0]).not.toHaveProperty('isTopForSubject');
+    expect(langLib[0]).not.toHaveProperty('isTopForSubject');
+  });
 });
 
 describe('LibAppsDataFilter: guides', () => {
@@ -91,6 +99,9 @@ describe('LibAppsDataFilter: guides', () => {
   });
   it('should find nine guides', () => {
     expect(guides.length).toBe(9);
+  });
+  it('should not have isTopForSubject property', () => {
+    expect(guides[0]).not.toHaveProperty('isTopForSubject');
   });
 });
 
