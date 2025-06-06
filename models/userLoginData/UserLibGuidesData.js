@@ -103,4 +103,19 @@ module.exports = class UserLibGuidesData {
 
     return contents;
   }
+
+  separateTopAndFavDatabases(contents) {
+    const databases = contents.databases;
+    let aboveFold = databases.filter((db) => db.isTopForSubject || db.favorite);
+    let belowFold = databases.filter(
+      (db) => !db.isTopForSubject && !db.favorite
+    );
+    contents.databases = {
+      aboveFold: aboveFold,
+      belowFold: belowFold,
+      isArray: Array.isArray(databases),
+      length: databases.length,
+    };
+    return contents;
+  }
 };
