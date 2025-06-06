@@ -1,6 +1,17 @@
 <!-- begin partials/databases-top -->
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Top and Favorite Databases
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+
+
 <ul class="topDatabases list-unstyled">
-  <% databases.forEach(d => { %>
+  <% databases.aboveFold.forEach(d => { %>
   <li class="my-3 d-flex">
     <% let url = d.friendly_url %>
     <% if (url === null) { url = d.url } %>
@@ -16,6 +27,44 @@
   </span>
 
 </li>
+
   <% }) %>
 </ul>
+</div>
+</div>
+</div>
+<div class="accordion-item">
+<h2 class="accordion-header" id="headingTwo">
+  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+    Additional Subject Databases
+  </button>
+</h2>
+<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+  <div class="accordion-body">
+
+<ul>
+  <% databases.belowFold.forEach(d => { %>
+    <li class="my-3 d-flex">
+      <% let url = d.friendly_url %>
+      <% if (url === null) { url = d.url } %>
+      <% if (d.favorite) { %>
+        <span class="favorite-indicator favorite me-2" data-resourceType="database" data-resourceId="<%- d.id %>" tabindex="0" title="Remove from favorites" aria-label="Remove <%- d.name %> from my favorite guides" role="button" aria-pressed="true" aria-describedby="fav-desc">&#9733;</span>
+      <% } else { %>
+        <span class="favorite-indicator not-favorite me-2" data-resourceType="database" data-resourceId="<%- d.id %>" tabindex="0" title="Add to favorites" aria-label="Add <%- d.name %> to my favorite guides" role="button" aria-pressed="false" aria-describedby="fav-desc">&#9734;</span>
+      <% } %>
+      &nbsp;
+      <a href="<%= url %>" class="col-10"><%- d.name %></a>
+      <span class="red-arrows">
+        <i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i>
+    </span>
+  
+  </li>
+    <% }) %>
+</ul>
+
+</div>
+</div>
+</div>
+
+</div>
 <!-- end partials/databases-top -->
