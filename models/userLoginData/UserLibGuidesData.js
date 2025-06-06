@@ -35,6 +35,7 @@ module.exports = class UserLibGuidesData {
       }
       let fileContents = this.getFileContents(filename);
       fileContents = this.markFavoriteGuidesAndDatabases(fileContents);
+      fileContents = this.separateTopAndFavDatabases(fileContents);
       this.subjectData.push({
         name: subject,
         resources: fileContents,
