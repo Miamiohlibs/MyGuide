@@ -81,7 +81,7 @@
               <div class="card-body">
                 <% if ( parseInt (subj.resources.metadata.sizeof.databases.aboveFold)> 0) %>
                 <% { %>
-                  <%- include('databases-top', {databases: subj.resources.databases}) %>
+                  <%- include('databases-top', {databases: subj.resources.databases, subjName: subj.name}) %>
                 <% } %>
                 <% /* this section commented out bc all dbs are now shown */ %>
                 <% if (subj.resources.subjects && 

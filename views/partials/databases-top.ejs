@@ -1,12 +1,12 @@
 <!-- begin partials/databases-top -->
-<div class="accordion" id="accordionExample">
+<div class="accordion accordion-flush" id="accordion-<%= subjName %>">
   <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+    <h2 class="accordion-header" id="headingTop-<%= subjName %>">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTop-<%= subjName %>" aria-expanded="true" aria-controls="collapseTop-<%= subjName %>">
         Top and Favorite Databases
       </button>
     </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    <div id="collapseTop-<%= subjName %>" class="accordion-collapse collapse show" aria-labelledby="headingTop-<%= subjName %>" data-bs-parent="#accordion-<%= subjName %>">
       <div class="accordion-body">
 
 
@@ -34,12 +34,12 @@
 </div>
 </div>
 <div class="accordion-item">
-<h2 class="accordion-header" id="headingTwo">
-  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+<h2 class="accordion-header" id="headingOther-<%= subjName %>">
+  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOther-<%= subjName %>" aria-expanded="false" aria-controls="collapseOther-<%= subjName %>">
     Additional Subject Databases
   </button>
 </h2>
-<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+<div id="collapseOther-<%= subjName %>" class="accordion-collapse collapse" aria-labelledby="headingOther-<%= subjName %>" data-bs-parent="#accordion-<%= subjName %>">
   <div class="accordion-body">
 
 <ul>
