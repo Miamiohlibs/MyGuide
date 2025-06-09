@@ -1,5 +1,5 @@
 <!-- begin partials/databases-top -->
-<div class="accordion accordion-flush" id="accordion-<%= subjName %>">
+<div class="accordion" id="accordion-<%= subjName %>">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingTop-<%= subjName %>">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTop-<%= subjName %>" aria-expanded="true" aria-controls="collapseTop-<%= subjName %>">
@@ -12,22 +12,7 @@
 
 <ul class="topDatabases list-unstyled">
   <% databases.aboveFold.forEach(d => { %>
-  <li class="my-3 d-flex">
-    <% let url = d.friendly_url %>
-    <% if (url === null) { url = d.url } %>
-    <% if (d.favorite) { %>
-      <span class="favorite-indicator favorite me-2" data-resourceType="database" data-resourceId="<%- d.id %>" tabindex="0" title="Remove from favorites" aria-label="Remove <%- d.name %> from my favorite guides" role="button" aria-pressed="true" aria-describedby="fav-desc">&#9733;</span>
-    <% } else { %>
-      <span class="favorite-indicator not-favorite me-2" data-resourceType="database" data-resourceId="<%- d.id %>" tabindex="0" title="Add to favorites" aria-label="Add <%- d.name %> to my favorite guides" role="button" aria-pressed="false" aria-describedby="fav-desc">&#9734;</span>
-    <% } %>
-    &nbsp;
-    <a href="<%= url %>" class="col-10"><%- d.name %></a>
-    <span class="red-arrows">
-      <i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i>
-  </span>
-
-</li>
-
+    <%- include('database-item', {d: d}) %>
   <% }) %>
 </ul>
 </div>
@@ -36,7 +21,7 @@
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingOther-<%= subjName %>">
   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOther-<%= subjName %>" aria-expanded="false" aria-controls="collapseOther-<%= subjName %>">
-    Additional Subject Databases
+    Additional <%= subjName %> Databases
   </button>
 </h2>
 <div id="collapseOther-<%= subjName %>" class="accordion-collapse collapse" aria-labelledby="headingOther-<%= subjName %>" data-bs-parent="#accordion-<%= subjName %>">
@@ -44,21 +29,7 @@
 
 <ul>
   <% databases.belowFold.forEach(d => { %>
-    <li class="my-3 d-flex">
-      <% let url = d.friendly_url %>
-      <% if (url === null) { url = d.url } %>
-      <% if (d.favorite) { %>
-        <span class="favorite-indicator favorite me-2" data-resourceType="database" data-resourceId="<%- d.id %>" tabindex="0" title="Remove from favorites" aria-label="Remove <%- d.name %> from my favorite guides" role="button" aria-pressed="true" aria-describedby="fav-desc">&#9733;</span>
-      <% } else { %>
-        <span class="favorite-indicator not-favorite me-2" data-resourceType="database" data-resourceId="<%- d.id %>" tabindex="0" title="Add to favorites" aria-label="Add <%- d.name %> to my favorite guides" role="button" aria-pressed="false" aria-describedby="fav-desc">&#9734;</span>
-      <% } %>
-      &nbsp;
-      <a href="<%= url %>" class="col-10"><%- d.name %></a>
-      <span class="red-arrows">
-        <i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i>
-    </span>
-  
-  </li>
+    <%- include('database-item', {d: d}) %>
     <% }) %>
 </ul>
 
