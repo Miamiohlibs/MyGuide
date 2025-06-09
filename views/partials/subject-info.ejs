@@ -78,7 +78,7 @@
               <div class="card-header px-4 py-3 shadow-sm">
                 <h4 class="mb-0"><i class="bi bi-sort-alpha-down me-2 shadow"></i>&nbsp;Databases</h4>
               </div>
-              <div class="card-body">
+              <div class="card-body" id="databasesCardBody" style="padding: 0px">
                 <% if (subj.resources.databases.aboveFold.length == 0) { %>
                   <%- include('databases-other', {databases: subj.resources.databases, subjName: subj.name, subjects: subj}) %>
 
