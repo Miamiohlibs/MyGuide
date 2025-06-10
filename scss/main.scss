@@ -3,8 +3,7 @@
 // Editted by Meng Qu on May 4th, 2021
 // When developing, run `npm run scss && npm run dev` in terminal to have real-time watch
 
-@use '../node_modules/bootstrap/scss/bootstrap';
-@use "../node_modules/bootstrap/scss/variables";
+@import '../node_modules/bootstrap/scss/bootstrap';
 
 $my-guide-gold: #fac014;
 $my-guide-red: #c3142d;
@@ -37,11 +36,11 @@ h4 {
 
 div.bg-gray-800 {
   border-radius: 0 0 1rem 1rem;
-  background-color: variables.$gray-800;
+  background-color: $gray-800;
 }
 div.offcanvas {
   border-radius: 1 rem;
-  background-color: variables.$gray-800;
+  background-color: $gray-800;
 }
 
 nav.navbar.col-xl-2 {
@@ -51,7 +50,7 @@ nav.navbar.col-xl-2 {
 
 a,
 link {
-  color: variables.$gray-800 !important;
+  color: $gray-800 !important;
 }
 a[data-bs-toggle='collapse'] {
   display: block;
@@ -94,7 +93,7 @@ h4 i,
   width: 32px;
   font-size: larger;
   background-color: white;
-  color: variables.$gray-800;
+  color: $gray-800;
 }
 
 a.logout {
@@ -119,7 +118,7 @@ a.logout {
 
 .nav-link.active {
   border-radius: 1rem;
-  color: variables.$gray-800 !important;
+  color: $gray-800 !important;
 }
 
 .nav-link,
@@ -209,7 +208,7 @@ a:hover ~ span.red-arrows {
     content: '';
     display: inline-block;
     width: 15px;
-    background: variables.$gray-800;
+    background: $gray-800;
     height: 25px;
     border-bottom-right-radius: 20px;
     z-index: 2;
@@ -222,7 +221,7 @@ a:hover ~ span.red-arrows {
     content: '';
     display: inline-block;
     width: 15px;
-    background: variables.$gray-800;
+    background: $gray-800;
     height: 25px;
     border-top-right-radius: 20px;
     z-index: 2;
