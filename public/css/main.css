@@ -12179,6 +12179,7 @@ input[value=x]:hover {
   display: block;
 }
 
+/* Accrodion for Top Databases / Other Databases */
 .other-db-button.collapsed, .accordion-top-db-button {
   color: var(--bs-primary-text-emphasis) !important;
   background-color: #fff !important;
