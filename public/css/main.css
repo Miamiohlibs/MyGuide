@@ -12179,9 +12179,17 @@ input[value=x]:hover {
   display: block;
 }
 
-.other-db-button.collapsed {
+.other-db-button.collapsed, .accordion-top-db-button {
   color: var(--bs-primary-text-emphasis) !important;
+  background-color: #fff !important;
+}
+
+.other-db-button.collapsed {
   text-decoration-line: underline;
+}
+
+.accordion-top-db-button::after {
+  background-image: none !important;
 }
 
 /*# sourceMappingURL=main.css.map */
