@@ -8,34 +8,29 @@
     </h2>
     <div id="collapseTop-<%= subjName %>" class="accordion-collapse collapse show" aria-labelledby="headingTop-<%= subjName %>">
       <div class="accordion-body">
-
-
-<ul class="topDatabases list-unstyled">
-  <% databases.aboveFold.forEach(d => { %>
-    <%- include('database-item', {d: d}) %>
-  <% }) %>
-</ul>
-</div>
-</div>
-</div>
-<div class="accordion-item">
-<h2 class="accordion-header" id="headingOther-<%= subjName %>">
-  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOther-<%= subjName %>" aria-expanded="false" aria-controls="collapseOther-<%= subjName %>">
-    Additional <%= subjName %> Databases
-  </button>
-</h2>
-<div id="collapseOther-<%= subjName %>" class="accordion-collapse collapse" aria-labelledby="headingOther-<%= subjName %>" data-bs-parent="#accordion-<%= subjName %>">
-  <div class="accordion-body">
-
-<ul>
-  <% databases.belowFold.forEach(d => { %>
-    <%- include('database-item', {d: d}) %>
-    <% }) %>
-</ul>
-
-</div>
-</div>
-</div>
-
+        <ul class="topDatabases list-unstyled">
+          <% databases.aboveFold.forEach(d => { %>
+            <%- include('database-item', {d: d}) %>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOther-<%= subjName %>">
+      <button class="accordion-button collapsed other-db-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOther-<%= subjName %>" aria-expanded="false" aria-controls="collapseOther-<%= subjName %>">
+        Additional <%= subjName %> Databases
+      </button>
+    </h2>
+    <div id="collapseOther-<%= subjName %>" class="accordion-collapse collapse" aria-labelledby="headingOther-<%= subjName %>" data-bs-parent="#accordion-<%= subjName %>">
+      <div class="accordion-body">
+        <ul>
+          <% databases.belowFold.forEach(d => { %>
+            <%- include('database-item', {d: d}) %>
+            <% }) %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- end partials/databases-top -->
