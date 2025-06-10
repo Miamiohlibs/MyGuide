@@ -350,6 +350,9 @@ input[value='x']:hover {
 }
 .other-db-button.collapsed{
   text-decoration-line: underline;
+  &:hover {
+    color: $my-guide-red !important;
+  }
 }
 
 .accordion-top-db-button::after {

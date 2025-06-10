@@ -12187,6 +12187,9 @@ input[value=x]:hover {
 .other-db-button.collapsed {
   text-decoration-line: underline;
 }
+.other-db-button.collapsed:hover {
+  color: #c3142d !important;
+}
 
 .accordion-top-db-button::after {
   background-image: none !important;
