@@ -12179,4 +12179,9 @@ input[value=x]:hover {
   display: block;
 }
 
+.other-db-button.collapsed {
+  color: var(--bs-primary-text-emphasis) !important;
+  text-decoration-line: underline;
+}
+
 /*# sourceMappingURL=main.css.map */
