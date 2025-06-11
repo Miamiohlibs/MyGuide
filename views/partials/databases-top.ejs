@@ -8,7 +8,7 @@
     </h2>
     <div id="collapseTop-<%= subjNoSpaces %>" class="accordion-collapse collapse show" aria-labelledby="headingTop-<%= subjNoSpaces %>">
       <div class="accordion-body">
-        <ul class="topDatabases list-unstyled">
+        <ul class="list-unstyled" id="topDatabasesList">
           <% databases.aboveFold.forEach(d => { %>
             <%- include('database-item', {d: d}) %>
           <% }) %>
@@ -24,7 +24,7 @@
     </h2>
     <div id="collapseOther-<%= subjNoSpaces %>" class="accordion-collapse collapse" aria-labelledby="headingOther-<%= subjNoSpaces %>" data-bs-parent="#accordion-<%= subjNoSpaces %>">
       <div class="accordion-body">
-        <ul>
+        <ul class="list-unstyled" id="otherDatabasesList">
           <% databases.belowFold.forEach(d => { %>
             <%- include('database-item', {d: d}) %>
             <% }) %>
