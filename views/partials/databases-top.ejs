@@ -1,12 +1,12 @@
 <!-- begin partials/databases-top -->
-<div class="accordion" id="accordion-<%= subjName %>">
+<div class="accordion" id="accordion-<%= subjNoSpaces %>">
   <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTop-<%= subjName %>">
+    <h2 class="accordion-header" id="headingTop-<%= subjNoSpaces %>">
       <div class="accordion-button accordion-top-db-button">
         Top and Favorite Databases
       </div>
     </h2>
-    <div id="collapseTop-<%= subjName %>" class="accordion-collapse collapse show" aria-labelledby="headingTop-<%= subjName %>">
+    <div id="collapseTop-<%= subjNoSpaces %>" class="accordion-collapse collapse show" aria-labelledby="headingTop-<%= subjNoSpaces %>">
       <div class="accordion-body">
         <ul class="topDatabases list-unstyled">
           <% databases.aboveFold.forEach(d => { %>
@@ -17,12 +17,12 @@
     </div>
   </div>
   <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOther-<%= subjName %>">
-      <button class="accordion-button collapsed other-db-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOther-<%= subjName %>" aria-expanded="false" aria-controls="collapseOther-<%= subjName %>">
+    <h2 class="accordion-header" id="headingOther-<%= subjNoSpaces %>">
+      <button class="accordion-button collapsed other-db-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOther-<%= subjNoSpaces %>" aria-expanded="false" aria-controls="collapseOther-<%= subjNoSpaces %>">
         Additional <%= subjName %> Databases
       </button>
     </h2>
-    <div id="collapseOther-<%= subjName %>" class="accordion-collapse collapse" aria-labelledby="headingOther-<%= subjName %>" data-bs-parent="#accordion-<%= subjName %>">
+    <div id="collapseOther-<%= subjNoSpaces %>" class="accordion-collapse collapse" aria-labelledby="headingOther-<%= subjNoSpaces %>" data-bs-parent="#accordion-<%= subjNoSpaces %>">
       <div class="accordion-body">
         <ul>
           <% databases.belowFold.forEach(d => { %>
