@@ -78,19 +78,28 @@ module.exports = class LibAppsDataFilter {
     });
   }
 
-  filterBySubject(resourceList, subject, topOnly = false) {
+  filterBySubject(resourceList, subject, reportTopForSubject = false) {
     var results = [];
     resourceList.forEach(function (item) {
+      // if there are subjects defined for the item,
+      // find the one that matches the requested subject
+      // if there are no subjects, skip the item
       if (item.subjects !== undefined) {
-        if (topOnly) {
-          var temp = item.subjects.filter(
-            (s) => s.name === subject && s.featured === 1
-          );
-        } else {
-          var temp = item.subjects.filter((s) => s.name === subject);
-        }
+        // determine if item matches the requested subject
+        var itemMatchingSubject = item.subjects.filter(
+          (s) => s.name === subject
+        );
+
+        // if the item has subjects and matches the requested subject
+        // add it to the results
+        // if requested, also check to see if it a featured/top item for that subject
         if (item.subjects !== undefined) {
-          if (temp.length > 0) {
+          if (itemMatchingSubject.length > 0) {
+            if (reportTopForSubject) {
+              let isTopForSubject =
+                itemMatchingSubject[0].featured === 1 ? true : false;
+              item.isTopForSubject = isTopForSubject;
+            }
             results.push(item);
           }
         }
@@ -108,7 +117,7 @@ module.exports = class LibAppsDataFilter {
     return matches;
   }
 
-  getBestBySubject(resourceList, subjects, topOnly = false) {
+  getBestBySubject(resourceList, subjects, reportTopForSubject = false) {
     // expects resourceList to be an object listing database, librarians, or libguides
     // expect subjects to be an array of subject areas in order of best fit, e.g.:
     // subjects = ['English','Languages']
@@ -121,7 +130,11 @@ module.exports = class LibAppsDataFilter {
     for (var i = 0; i < subjects.length; i++) {
       if (found === false) {
         // console.log('checking', subjects[i])
-        let response = this.filterBySubject(resourceList, subjects[i], topOnly);
+        let response = this.filterBySubject(
+          resourceList,
+          subjects[i],
+          reportTopForSubject
+        );
         // console.log(response)
         if (response.length > 0) {
           var done = response;

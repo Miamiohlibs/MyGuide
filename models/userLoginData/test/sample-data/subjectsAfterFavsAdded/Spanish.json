@@ -1,0 +1,999 @@
+{
+    "metadata": {
+        "sizeof": {
+            "librarians": 1,
+            "guides": 1,
+            "databases": 14
+        }
+    },
+    "subjects": [
+        {
+            "id": "197868",
+            "name": "Spanish and Portuguese",
+            "parent_id": "0",
+            "slug": "spanish-portuguese",
+            "slug_id": "2226568"
+        }
+    ],
+    "librarians": [
+        {
+            "created": "2009-03-27 22:59:37",
+            "created_by": 0,
+            "email": "gibsonke@miamioh.edu",
+            "first_name": "Katie",
+            "id": 8191,
+            "last_name": "Gibson",
+            "login_fail_cnt": 0,
+            "nickname": "",
+            "profile": {
+                "account_id": 8191,
+                "box": {
+                    "title": "Subject Guide"
+                },
+                "connect": {
+                    "address": "203 King Library",
+                    "email": "gibsonke@miamioh.edu",
+                    "facebook": "",
+                    "linkedin": "",
+                    "phone": "513-529-0190",
+                    "skype": "",
+                    "twitter": "",
+                    "website": ""
+                },
+                "created": "2014-05-26 13:56:34",
+                "customer_id": 583,
+                "display": {
+                    "disp_connect_general": "1",
+                    "disp_widget_la": "1",
+                    "disp_widget_lc": "1",
+                    "disp_widget_other": "1"
+                },
+                "en_page": 1,
+                "id": 5522,
+                "image": {
+                    "file": "Gibson.png",
+                    "show": 1,
+                    "url": "//d2jv02qf7xgjwx.cloudfront.net/accounts/8191/profiles/5522/Gibson.png"
+                },
+                "page": {
+                    "redirect": "",
+                    "working": ""
+                },
+                "pronouns": "she/her",
+                "public_id": "58aa3206-7cdb-11ed-9922-0ad758b798c3",
+                "updated": "2023-02-06 13:48:34",
+                "url": "https://libguides.lib.miamioh.edu/prf.php?id=58aa3206-7cdb-11ed-9922-0ad758b798c3",
+                "widget_la": "\n",
+                "widget_lc": "<script src=\"//api3.libcal.com/js/myscheduler.min.js?002\"></script>\n<script>\njQuery(function(){\n   jQuery(\"#mySched31734\").LibCalMySched({ iid: 425, uid: 31734, gid: 0,  width: 500, height: 450 });\n});\n</script>\n<!-- Place the following link anywhere in your page. Make sure the id \"mySched31734\" matches with the above code: jQuery(\"#mySched31734\")  //-->\n<button id=\"mySched31734\" href=\"#\" class=\"mysched\">Schedule Appointment</button>\n<!-- Below is optional button styling  //-->\n",
+                "widget_other": ""
+            },
+            "signature": "",
+            "subjects": [
+                {
+                    "id": 8452,
+                    "name": "Area Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 11160,
+                    "name": "Asian Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 11173,
+                    "name": "Asian-American Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 8442,
+                    "name": "Black World Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 197867,
+                    "name": "French",
+                    "slug_id": 2226566
+                },
+                {
+                    "id": 197870,
+                    "name": "German",
+                    "slug_id": 2226570
+                },
+                {
+                    "id": 75002,
+                    "name": "Global and Intercultural Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 8454,
+                    "name": "International Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 197869,
+                    "name": "Italian",
+                    "slug_id": 2226569
+                },
+                {
+                    "id": 8445,
+                    "name": "Languages",
+                    "slug_id": 0
+                },
+                {
+                    "id": 11162,
+                    "name": "Latin American Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 11159,
+                    "name": "Middle East and Islamic Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 11171,
+                    "name": "Russian, Eastern European, and Eurasian Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "slug_id": 2226568
+                },
+                {
+                    "id": 205333,
+                    "name": "Western (Individualized Studies)",
+                    "slug_id": 2383676
+                }
+            ],
+            "title": "Humanities Librarian",
+            "updated": "2020-06-29 12:24:25",
+            "uuid": "d34db637-780e-11e9-8e95-12e47270be0e",
+            "isTopForSubject": false
+        }
+    ],
+    "guides": [
+        {
+            "count_hit": 379,
+            "created": "2009-05-20 00:52:20",
+            "description": "",
+            "friendly_url": "https://libguides.lib.miamioh.edu/SPN",
+            "group_id": 0,
+            "id": 22085,
+            "name": "Spanish and Portuguese",
+            "nav_type": 1,
+            "owner_id": 8191,
+            "published": "2015-08-26 17:29:49",
+            "redirect_url": "",
+            "site_id": 594,
+            "slug": "SPN",
+            "slug_id": 22367,
+            "status": 1,
+            "status_label": "Published",
+            "subjects": [
+                {
+                    "id": 8445,
+                    "name": "Languages",
+                    "slug_id": 0
+                },
+                {
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "slug_id": 2226568
+                }
+            ],
+            "thumbnail_url": "",
+            "type_id": 3,
+            "type_label": "Subject Guide",
+            "updated": "2025-04-22 18:27:16",
+            "url": "https://libguides.lib.miamioh.edu/c.php?g=22085",
+            "isTopForSubject": false,
+            "favorite": false
+        }
+    ],
+    "databases": [
+        {
+            "az_vendor_id": 11066,
+            "created": "2011-02-18 23:58:58",
+            "description": "CLASE indexes documents published in Latin American journals specializing in the social sciences and humanities. PERIODICA covers journals specializing in science and technology. Together, they offer access to citations from documents published in scholarly journals published in the Spanish, Portuguese, French, and English languages from countries in Latin America and the Caribbean. No full-text.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/clase-periodica",
+            "id": 744126,
+            "meta": {
+                "desc_pos": 1,
+                "enable_proxy": 1,
+                "more_info": "",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "Clase and Periodica",
+            "owner_id": 70645,
+            "site_id": 594,
+            "slug_id": 1818517,
+            "subjects": [
+                {
+                    "content_id": 744126,
+                    "featured": 0,
+                    "id": 197867,
+                    "name": "French",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226566,
+                    "subject_id": 197867
+                },
+                {
+                    "content_id": 744126,
+                    "featured": 0,
+                    "id": 8445,
+                    "name": "Languages",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8445
+                },
+                {
+                    "content_id": 744126,
+                    "featured": 0,
+                    "id": 11162,
+                    "name": "Latin American Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 11162
+                },
+                {
+                    "content_id": 744126,
+                    "featured": 0,
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226568,
+                    "subject_id": 197868
+                }
+            ],
+            "type_id": 10,
+            "updated": "2021-08-27 19:48:20",
+            "url": "https://newfirstsearch.oclc.org/dbname=ClasePeriodica;done=referer;FSIP",
+            "isTopForSubject": false,
+            "favorite": true
+        },
+        {
+            "az_vendor_id": 1111,
+            "created": "2011-02-18 23:58:58",
+            "description": "Interdisciplinary and comprehensive full-text database of the newspapers, magazines and journals of the African American, Caribbean, African, Arab and Middle Eastern, Asian and Pacific Islander, European and Eastern European, Hispanic, and Native peoples press.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/ethnic-newswatch",
+            "id": 744182,
+            "meta": {
+                "desc_pos": 1,
+                "enable_proxy": 1,
+                "more_info": "",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "Ethnic NewsWatch",
+            "owner_id": 70645,
+            "site_id": 594,
+            "slug_id": 1818602,
+            "subjects": [
+                {
+                    "content_id": 744182,
+                    "featured": 0,
+                    "id": 8436,
+                    "name": "Anthropology",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8436
+                },
+                {
+                    "content_id": 744182,
+                    "featured": 0,
+                    "id": 11160,
+                    "name": "Asian Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 11160
+                },
+                {
+                    "content_id": 744182,
+                    "featured": 0,
+                    "id": 11173,
+                    "name": "Asian-American Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 11173
+                },
+                {
+                    "content_id": 744182,
+                    "featured": 0,
+                    "id": 8442,
+                    "name": "Black World Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8442
+                },
+                {
+                    "content_id": 744182,
+                    "featured": 0,
+                    "id": 8443,
+                    "name": "History",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8443
+                },
+                {
+                    "content_id": 744182,
+                    "featured": 0,
+                    "id": 8454,
+                    "name": "International Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8454
+                },
+                {
+                    "content_id": 744182,
+                    "featured": 0,
+                    "id": 8445,
+                    "name": "Languages",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8445
+                },
+                {
+                    "content_id": 744182,
+                    "featured": 0,
+                    "id": 11162,
+                    "name": "Latin American Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 11162
+                },
+                {
+                    "content_id": 744182,
+                    "featured": 0,
+                    "id": 25116,
+                    "name": "Media, Journalism, and Film",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 25116
+                },
+                {
+                    "content_id": 744182,
+                    "featured": 0,
+                    "id": 4602,
+                    "name": "Political Science",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 4013,
+                    "subject_id": 4602
+                },
+                {
+                    "content_id": 744182,
+                    "featured": 0,
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226568,
+                    "subject_id": 197868
+                },
+                {
+                    "content_id": 744182,
+                    "featured": 0,
+                    "id": 8440,
+                    "name": "Women's Gender and Sexuality Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8440
+                }
+            ],
+            "type_id": 10,
+            "updated": "2022-03-17 17:21:16",
+            "url": "https://www.proquest.com/ethnicnewswatch/advanced?accountid=12434",
+            "isTopForSubject": false,
+            "favorite": false
+        },
+        {
+            "az_vendor_id": 1110,
+            "created": "2011-02-18 23:58:58",
+            "description": "Film & Television Literature Index is an index to articles in popular and scholarly journals about film and television. The publications indexed include international film journals, popular and trade journals, and reference books, and subject coverage includes film &amp; television theory, preservation &amp; restoration, writing, production, cinematography, technical aspects, and reviews.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/film-and-television-literature-index-full-text",
+            "id": 744190,
+            "meta": {
+                "desc_pos": 1,
+                "enable_proxy": 1,
+                "more_info": "For reviews see Academic Search Complete or Readers Guide Retrospective; for scholarly articles see also the MLA International Bibliography.",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "Film and Television Literature Index with Full Text",
+            "owner_id": 70645,
+            "site_id": 594,
+            "slug_id": 1818612,
+            "subjects": [
+                {
+                    "content_id": 744190,
+                    "featured": 0,
+                    "id": 175759,
+                    "name": "Disability Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 1874198,
+                    "subject_id": 175759
+                },
+                {
+                    "content_id": 744190,
+                    "featured": 1,
+                    "id": 197867,
+                    "name": "French",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226566,
+                    "subject_id": 197867
+                },
+                {
+                    "content_id": 744190,
+                    "featured": 1,
+                    "id": 197870,
+                    "name": "German",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226570,
+                    "subject_id": 197870
+                },
+                {
+                    "content_id": 744190,
+                    "featured": 1,
+                    "id": 197869,
+                    "name": "Italian",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226569,
+                    "subject_id": 197869
+                },
+                {
+                    "content_id": 744190,
+                    "featured": 0,
+                    "id": 8445,
+                    "name": "Languages",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8445
+                },
+                {
+                    "content_id": 744190,
+                    "featured": 0,
+                    "id": 25116,
+                    "name": "Media, Journalism, and Film",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 25116
+                },
+                {
+                    "content_id": 744190,
+                    "featured": 1,
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226568,
+                    "subject_id": 197868
+                }
+            ],
+            "type_id": 10,
+            "updated": "2021-08-30 19:22:12",
+            "url": "https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=f3h",
+            "isTopForSubject": true,
+            "favorite": false
+        },
+        {
+            "az_vendor_id": 1110,
+            "created": "2011-02-18 23:58:58",
+            "description": "Fuente Academica provides full-text (including .pdf) for scholarly Spanish language journals from Spain and Latin America. This multidisciplinary database offers full-text content to many academic areas including business and economics, medical sciences, political science, law, computer science, library and information sciences, literature, linguistics, history, philosophy, and theology.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/fuente-academica",
+            "id": 744193,
+            "meta": {
+                "desc_pos": 1,
+                "enable_proxy": 1,
+                "more_info": "",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "Fuente Academica",
+            "owner_id": 70645,
+            "site_id": 594,
+            "slug_id": 1818618,
+            "subjects": [
+                {
+                    "content_id": 744193,
+                    "featured": 0,
+                    "id": 8445,
+                    "name": "Languages",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8445
+                },
+                {
+                    "content_id": 744193,
+                    "featured": 0,
+                    "id": 11162,
+                    "name": "Latin American Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 11162
+                },
+                {
+                    "content_id": 744193,
+                    "featured": 0,
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226568,
+                    "subject_id": 197868
+                }
+            ],
+            "type_id": 10,
+            "updated": "2022-04-20 18:30:16",
+            "url": "https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=zbh",
+            "isTopForSubject": false,
+            "favorite": true
+        },
+        {
+            "az_vendor_id": 1113,
+            "created": "2011-02-18 23:58:59",
+            "description": "Latin American Women Writers contains full-text prose, poetry and drama by Latin American Women. Authors are from Mexico and South and Central America. Materials are in Spanish and Portuguese as well as French, Italian and English.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/latin-american-women-writers",
+            "id": 744248,
+            "meta": {
+                "desc_pos": 1,
+                "enable_proxy": 1,
+                "more_info": "",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "Latin American Women Writers",
+            "owner_id": 70645,
+            "site_id": 594,
+            "slug_id": 1818706,
+            "subjects": [
+                {
+                    "content_id": 744248,
+                    "featured": 0,
+                    "id": 8447,
+                    "name": "English",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8447
+                },
+                {
+                    "content_id": 744248,
+                    "featured": 0,
+                    "id": 197867,
+                    "name": "French",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226566,
+                    "subject_id": 197867
+                },
+                {
+                    "content_id": 744248,
+                    "featured": 0,
+                    "id": 8443,
+                    "name": "History",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8443
+                },
+                {
+                    "content_id": 744248,
+                    "featured": 0,
+                    "id": 8445,
+                    "name": "Languages",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8445
+                },
+                {
+                    "content_id": 744248,
+                    "featured": 0,
+                    "id": 11162,
+                    "name": "Latin American Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 11162
+                },
+                {
+                    "content_id": 744248,
+                    "featured": 0,
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226568,
+                    "subject_id": 197868
+                },
+                {
+                    "content_id": 744248,
+                    "featured": 0,
+                    "id": 8440,
+                    "name": "Women's Gender and Sexuality Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8440
+                }
+            ],
+            "type_id": 10,
+            "updated": "2021-08-30 20:35:17",
+            "url": "https://lit.alexanderstreet.com/laww",
+            "isTopForSubject": false,
+            "favorite": false
+        },
+        {
+            "az_vendor_id": 1113,
+            "created": "2011-02-18 23:58:59",
+            "description": "Contains the full-text of poetry, fiction, and drama written in English and Spanish by hundreds of Chicano, Cuban, Puerto Rican, Dominican, and other Latin authors working in the United States.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/latino-literature",
+            "id": 744249,
+            "meta": {
+                "desc_pos": 1,
+                "enable_proxy": 1,
+                "more_info": "",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "Latino Literature",
+            "owner_id": 70645,
+            "site_id": 594,
+            "slug_id": 1818707,
+            "subjects": [
+                {
+                    "content_id": 744249,
+                    "featured": 0,
+                    "id": 8447,
+                    "name": "English",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8447
+                },
+                {
+                    "content_id": 744249,
+                    "featured": 0,
+                    "id": 8443,
+                    "name": "History",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8443
+                },
+                {
+                    "content_id": 744249,
+                    "featured": 0,
+                    "id": 8445,
+                    "name": "Languages",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8445
+                },
+                {
+                    "content_id": 744249,
+                    "featured": 0,
+                    "id": 11162,
+                    "name": "Latin American Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 11162
+                },
+                {
+                    "content_id": 744249,
+                    "featured": 0,
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226568,
+                    "subject_id": 197868
+                }
+            ],
+            "type_id": 10,
+            "updated": "2021-08-30 20:35:48",
+            "url": "https://lit.alexanderstreet.com/lali",
+            "isTopForSubject": false,
+            "favorite": false
+        },
+        {
+            "az_vendor_id": 1111,
+            "created": "2011-02-18 23:58:59",
+            "description": "Abstracts and indexes the international literature in linguistics and related disciplines in the language sciences covering all aspects of the study of language including phonetics, phonology, morphology, syntax, and semantics. Complete coverage is given to various fields of linguistics including descriptive, historical, comparative, theoretical and geographical linguistics. No full-text.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/linguistics-language-behavior-abstracts",
+            "id": 744260,
+            "meta": {
+                "desc_pos": 1,
+                "enable_proxy": 1,
+                "more_info": "",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "Linguistics & Language Behavior Abstracts",
+            "owner_id": 70645,
+            "site_id": 594,
+            "slug_id": 1818714,
+            "subjects": [
+                {
+                    "content_id": 744260,
+                    "featured": 1,
+                    "id": 197867,
+                    "name": "French",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226566,
+                    "subject_id": 197867
+                },
+                {
+                    "content_id": 744260,
+                    "featured": 1,
+                    "id": 197870,
+                    "name": "German",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226570,
+                    "subject_id": 197870
+                },
+                {
+                    "content_id": 744260,
+                    "featured": 0,
+                    "id": 8445,
+                    "name": "Languages",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8445
+                },
+                {
+                    "content_id": 744260,
+                    "featured": 1,
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226568,
+                    "subject_id": 197868
+                },
+                {
+                    "content_id": 744260,
+                    "featured": 0,
+                    "id": 8457,
+                    "name": "Speech Pathology and Audiology",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8457
+                }
+            ],
+            "type_id": 10,
+            "updated": "2021-08-31 14:41:16",
+            "url": "https://search.proquest.com/llba?accountid=12434",
+            "isTopForSubject": true,
+            "favorite": false
+        },
+        {
+            "az_vendor_id": 1110,
+            "created": "2011-02-18 23:58:59",
+            "description": "An index to scholarly articles, books and book chapters, and dissertations published internationally on modern (Medieval to today) languages, literatures, folklore, and linguistics (including composition and rhetoric since 2000). Coverage has varied but now includes literature from all over the world--Africa, Asia, Australia, Europe, and North and South America. Folklore is represented by folk literature, music, art, rituals, and belief systems. Linguistics and language materials range from history and theory of linguistics, comparative linguistics, semantics, stylistics, and syntax to translation. Other topics include literary theory and criticism, dramatic arts (film, radio, television, theater), and history of printing and publishing. Some full-text.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/mla-international-bibliography",
+            "id": 744278,
+            "meta": {
+                "desc_pos": 1,
+                "enable_proxy": 1,
+                "more_info": "",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "MLA International Bibliography",
+            "owner_id": 70645,
+            "site_id": 594,
+            "slug_id": 1818745,
+            "subjects": [
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 11160,
+                    "name": "Asian Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 11160
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 11173,
+                    "name": "Asian-American Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 11173
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 8447,
+                    "name": "English",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8447
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 197867,
+                    "name": "French",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226566,
+                    "subject_id": 197867
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 197870,
+                    "name": "German",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226570,
+                    "subject_id": 197870
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 197869,
+                    "name": "Italian",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226569,
+                    "subject_id": 197869
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 0,
+                    "id": 8445,
+                    "name": "Languages",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8445
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226568,
+                    "subject_id": 197868
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 8439,
+                    "name": "Theatre",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8439
+                }
+            ],
+            "type_id": 10,
+            "updated": "2021-08-31 15:14:42",
+            "url": "https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=mzh",
+            "isTopForSubject": true,
+            "favorite": false
+        }
+    ]
+}

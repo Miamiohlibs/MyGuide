@@ -78,17 +78,20 @@
               <div class="card-header px-4 py-3 shadow-sm">
                 <h4 class="mb-0"><i class="bi bi-sort-alpha-down me-2 shadow"></i>&nbsp;Databases</h4>
               </div>
-              <div class="card-body">
-                <% if ( parseInt (subj.resources.metadata.sizeof.databases)> 0)
-                  { %>
-                  <%- include('databases-top', {databases:
-                    subj.resources.databases}) %>
-                    <% } %>
-                      <% if (subj.resources.subjects &&
-                        subj.resources.subjects.length> 0) { %>
-                        <%- include('databases-all', {subjects:
-                          subj.resources.subjects}); %>
-                          <% }%>
+              <div class="card-body" id="databasesCardBody" style="padding: 0px">
+                <% if (subj.resources.databases.aboveFold.length == 0) { %>
+                  <%- include('databases-other', {databases: subj.resources.databases, subjName: subj.name, subjects: subj}) %>
+
+                <% } else { %> 
+                  <%- include('databases-top', {databases: subj.resources.databases, subjName: subj.name, subjNoSpaces: subj.name.replace(" ","_")}) %>
+                <% } %>
+                <% /* this section commented out bc all dbs are now shown */ %>
+                <% if (subj.resources.subjects && 
+                      subj.resources.subjects.length> 0) { %>
+                     <%- // include('databases-all', {subjects:
+                        //   subj.resources.subjects}); 
+                      %>
+                <% }%>
               </div>
             </div>
           </div>

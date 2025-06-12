@@ -1,21 +1,36 @@
 <!-- begin partials/databases-top -->
-<ul class="topDatabases list-unstyled">
-  <% databases.forEach(d => { %>
-  <li class="my-3 d-flex">
-    <% let url = d.friendly_url %>
-    <% if (url === null) { url = d.url } %>
-    <% if (d.favorite) { %>
-      <span class="favorite-indicator favorite me-2" data-resourceType="database" data-resourceId="<%- d.id %>" tabindex="0" title="Remove from favorites" aria-label="Remove <%- d.name %> from my favorite guides" role="button" aria-pressed="true" aria-describedby="fav-desc">&#9733;</span>
-    <% } else { %>
-      <span class="favorite-indicator not-favorite me-2" data-resourceType="database" data-resourceId="<%- d.id %>" tabindex="0" title="Add to favorites" aria-label="Add <%- d.name %> to my favorite guides" role="button" aria-pressed="false" aria-describedby="fav-desc">&#9734;</span>
-    <% } %>
-    &nbsp;
-    <a href="<%= url %>" class="col-10"><%- d.name %></a>
-    <span class="red-arrows">
-      <i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i><i class="bi bi-caret-right"></i>
-  </span>
-
-</li>
-  <% }) %>
-</ul>
+<div class="accordion" id="accordion-<%= subjNoSpaces %>">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTop-<%= subjNoSpaces %>">
+      <div class="accordion-button accordion-top-db-button">
+        Top and Favorite Databases
+      </div>
+    </h2>
+    <div id="collapseTop-<%= subjNoSpaces %>" class="accordion-collapse collapse show" aria-labelledby="headingTop-<%= subjNoSpaces %>">
+      <div class="accordion-body">
+        <ul class="list-unstyled" id="topDatabasesList">
+          <% databases.aboveFold.forEach(d => { %>
+            <%- include('database-item', {d: d}) %>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOther-<%= subjNoSpaces %>">
+      <button class="accordion-button collapsed other-db-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOther-<%= subjNoSpaces %>" aria-expanded="false" aria-controls="collapseOther-<%= subjNoSpaces %>">
+        Additional <%= subjName %> Databases
+      </button>
+    </h2>
+    <div id="collapseOther-<%= subjNoSpaces %>" class="accordion-collapse collapse" aria-labelledby="headingOther-<%= subjNoSpaces %>" data-bs-parent="#accordion-<%= subjNoSpaces %>">
+      <div class="accordion-body">
+        <ul class="list-unstyled" id="otherDatabasesList">
+          <% databases.belowFold.forEach(d => { %>
+            <%- include('database-item', {d: d}) %>
+            <% }) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- end partials/databases-top -->

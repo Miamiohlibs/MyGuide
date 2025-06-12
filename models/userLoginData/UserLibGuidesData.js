@@ -22,8 +22,8 @@ module.exports = class UserLibGuidesData {
     this.subjectCachePath = subjectCachePath;
     this.customPath = customPath;
     this.subjectData = [];
-    this.getSubjectFiles();
-    return this.subjectData;
+    // this.getSubjectFiles();
+    // return this.subjectData;
   }
 
   getSubjectFiles() {
@@ -35,10 +35,11 @@ module.exports = class UserLibGuidesData {
       }
       let fileContents = this.getFileContents(filename);
       fileContents = this.markFavoriteGuidesAndDatabases(fileContents);
+      fileContents = this.separateTopAndFavDatabases(fileContents);
       this.subjectData.push({
         name: subject,
         resources: fileContents,
-        kenTest: true,
+        // kenTest: true,
       });
     });
   }
@@ -94,13 +95,28 @@ module.exports = class UserLibGuidesData {
       contents.databases !== undefined
     ) {
       contents.databases.forEach((database) => {
-        database.testString = 'bogusKen';
+        // database.testString = 'bogusKen';
         database.favorite =
           this.favorites.favoriteDatabases.includes(database.id) ||
           this.favorites.favoriteDatabases.includes(database.id.toString());
       });
     }
 
+    return contents;
+  }
+
+  separateTopAndFavDatabases(contents) {
+    const databases = contents.databases;
+    let aboveFold = databases.filter((db) => db.isTopForSubject || db.favorite);
+    let belowFold = databases.filter(
+      (db) => !db.isTopForSubject && !db.favorite
+    );
+    contents.databases = {
+      aboveFold: aboveFold,
+      belowFold: belowFold,
+      isArray: Array.isArray(databases),
+      length: databases.length,
+    };
     return contents;
   }
 };

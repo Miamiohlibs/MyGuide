@@ -1,0 +1,648 @@
+{
+    "metadata": {
+        "sizeof": {
+            "librarians": 1,
+            "guides": 1,
+            "databases": 5
+        }
+    },
+    "subjects": [
+        {
+            "id": "197870",
+            "name": "German",
+            "parent_id": "0",
+            "slug": "subject-german",
+            "slug_id": "2226570"
+        }
+    ],
+    "librarians": [
+        {
+            "created": "2009-03-27 22:59:37",
+            "created_by": 0,
+            "email": "gibsonke@miamioh.edu",
+            "first_name": "Katie",
+            "id": 8191,
+            "last_name": "Gibson",
+            "login_fail_cnt": 0,
+            "nickname": "",
+            "profile": {
+                "account_id": 8191,
+                "box": {
+                    "title": "Subject Guide"
+                },
+                "connect": {
+                    "address": "203 King Library",
+                    "email": "gibsonke@miamioh.edu",
+                    "facebook": "",
+                    "linkedin": "",
+                    "phone": "513-529-0190",
+                    "skype": "",
+                    "twitter": "",
+                    "website": ""
+                },
+                "created": "2014-05-26 13:56:34",
+                "customer_id": 583,
+                "display": {
+                    "disp_connect_general": "1",
+                    "disp_widget_la": "1",
+                    "disp_widget_lc": "1",
+                    "disp_widget_other": "1"
+                },
+                "en_page": 1,
+                "id": 5522,
+                "image": {
+                    "file": "Gibson.png",
+                    "show": 1,
+                    "url": "//d2jv02qf7xgjwx.cloudfront.net/accounts/8191/profiles/5522/Gibson.png"
+                },
+                "page": {
+                    "redirect": "",
+                    "working": ""
+                },
+                "pronouns": "she/her",
+                "public_id": "58aa3206-7cdb-11ed-9922-0ad758b798c3",
+                "updated": "2023-02-06 13:48:34",
+                "url": "https://libguides.lib.miamioh.edu/prf.php?id=58aa3206-7cdb-11ed-9922-0ad758b798c3",
+                "widget_la": "\n",
+                "widget_lc": "<script src=\"//api3.libcal.com/js/myscheduler.min.js?002\"></script>\n<script>\njQuery(function(){\n   jQuery(\"#mySched31734\").LibCalMySched({ iid: 425, uid: 31734, gid: 0,  width: 500, height: 450 });\n});\n</script>\n<!-- Place the following link anywhere in your page. Make sure the id \"mySched31734\" matches with the above code: jQuery(\"#mySched31734\")  //-->\n<button id=\"mySched31734\" href=\"#\" class=\"mysched\">Schedule Appointment</button>\n<!-- Below is optional button styling  //-->\n",
+                "widget_other": ""
+            },
+            "signature": "",
+            "subjects": [
+                {
+                    "id": 8452,
+                    "name": "Area Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 11160,
+                    "name": "Asian Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 11173,
+                    "name": "Asian-American Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 8442,
+                    "name": "Black World Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 197867,
+                    "name": "French",
+                    "slug_id": 2226566
+                },
+                {
+                    "id": 197870,
+                    "name": "German",
+                    "slug_id": 2226570
+                },
+                {
+                    "id": 75002,
+                    "name": "Global and Intercultural Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 8454,
+                    "name": "International Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 197869,
+                    "name": "Italian",
+                    "slug_id": 2226569
+                },
+                {
+                    "id": 8445,
+                    "name": "Languages",
+                    "slug_id": 0
+                },
+                {
+                    "id": 11162,
+                    "name": "Latin American Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 11159,
+                    "name": "Middle East and Islamic Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 11171,
+                    "name": "Russian, Eastern European, and Eurasian Studies",
+                    "slug_id": 0
+                },
+                {
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "slug_id": 2226568
+                },
+                {
+                    "id": 205333,
+                    "name": "Western (Individualized Studies)",
+                    "slug_id": 2383676
+                }
+            ],
+            "title": "Humanities Librarian",
+            "updated": "2020-06-29 12:24:25",
+            "uuid": "d34db637-780e-11e9-8e95-12e47270be0e",
+            "isTopForSubject": false
+        }
+    ],
+    "guides": [
+        {
+            "count_hit": 81,
+            "created": "2009-06-09 22:37:25",
+            "description": "",
+            "friendly_url": "https://libguides.lib.miamioh.edu/german",
+            "group_id": 0,
+            "id": 22097,
+            "name": "German",
+            "nav_type": 1,
+            "owner_id": 8191,
+            "published": "2009-06-10 22:50:30",
+            "redirect_url": "",
+            "site_id": 594,
+            "slug": "german",
+            "slug_id": 22378,
+            "status": 1,
+            "status_label": "Published",
+            "subjects": [
+                {
+                    "id": 197870,
+                    "name": "German",
+                    "slug_id": 2226570
+                },
+                {
+                    "id": 8445,
+                    "name": "Languages",
+                    "slug_id": 0
+                }
+            ],
+            "thumbnail_url": "",
+            "type_id": 3,
+            "type_label": "Subject Guide",
+            "updated": "2025-02-07 15:14:34",
+            "url": "https://libguides.lib.miamioh.edu/c.php?g=22097",
+            "isTopForSubject": false,
+            "favorite": false
+        }
+    ],
+    "databases": [
+        {
+            "az_vendor_id": 1110,
+            "created": "2011-02-18 23:58:58",
+            "description": "Film & Television Literature Index is an index to articles in popular and scholarly journals about film and television. The publications indexed include international film journals, popular and trade journals, and reference books, and subject coverage includes film &amp; television theory, preservation &amp; restoration, writing, production, cinematography, technical aspects, and reviews.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/film-and-television-literature-index-full-text",
+            "id": 744190,
+            "meta": {
+                "desc_pos": 1,
+                "enable_proxy": 1,
+                "more_info": "For reviews see Academic Search Complete or Readers Guide Retrospective; for scholarly articles see also the MLA International Bibliography.",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "Film and Television Literature Index with Full Text",
+            "owner_id": 70645,
+            "site_id": 594,
+            "slug_id": 1818612,
+            "subjects": [
+                {
+                    "content_id": 744190,
+                    "featured": 0,
+                    "id": 175759,
+                    "name": "Disability Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 1874198,
+                    "subject_id": 175759
+                },
+                {
+                    "content_id": 744190,
+                    "featured": 1,
+                    "id": 197867,
+                    "name": "French",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226566,
+                    "subject_id": 197867
+                },
+                {
+                    "content_id": 744190,
+                    "featured": 1,
+                    "id": 197870,
+                    "name": "German",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226570,
+                    "subject_id": 197870
+                },
+                {
+                    "content_id": 744190,
+                    "featured": 1,
+                    "id": 197869,
+                    "name": "Italian",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226569,
+                    "subject_id": 197869
+                },
+                {
+                    "content_id": 744190,
+                    "featured": 0,
+                    "id": 8445,
+                    "name": "Languages",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8445
+                },
+                {
+                    "content_id": 744190,
+                    "featured": 0,
+                    "id": 25116,
+                    "name": "Media, Journalism, and Film",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 25116
+                },
+                {
+                    "content_id": 744190,
+                    "featured": 1,
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226568,
+                    "subject_id": 197868
+                }
+            ],
+            "type_id": 10,
+            "updated": "2021-08-30 19:22:12",
+            "url": "https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=f3h",
+            "isTopForSubject": true,
+            "favorite": true
+        },
+        {
+            "az_vendor_id": 4517,
+            "created": "2011-02-18 23:58:58",
+            "description": "A cumulative index to the journal German Life and Letters, with names and subject indexes. Limited full-text availability.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/german-life-and-letters",
+            "id": 744199,
+            "meta": {
+                "desc_pos": 1,
+                "enable_proxy": 1,
+                "more_info": "",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "German Life and Letters",
+            "owner_id": 70645,
+            "site_id": 594,
+            "slug_id": 1818629,
+            "subjects": [
+                {
+                    "content_id": 744199,
+                    "featured": 0,
+                    "id": 197870,
+                    "name": "German",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226570,
+                    "subject_id": 197870
+                },
+                {
+                    "content_id": 744199,
+                    "featured": 0,
+                    "id": 8445,
+                    "name": "Languages",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8445
+                }
+            ],
+            "type_id": 10,
+            "updated": "2021-08-30 19:46:37",
+            "url": "https://onlinelibrary.wiley.com/loi/14680483",
+            "isTopForSubject": false,
+            "favorite": false
+        },
+        {
+            "az_vendor_id": 1111,
+            "created": "2011-02-18 23:58:59",
+            "description": "Abstracts and indexes the international literature in linguistics and related disciplines in the language sciences covering all aspects of the study of language including phonetics, phonology, morphology, syntax, and semantics. Complete coverage is given to various fields of linguistics including descriptive, historical, comparative, theoretical and geographical linguistics. No full-text.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/linguistics-language-behavior-abstracts",
+            "id": 744260,
+            "meta": {
+                "desc_pos": 1,
+                "enable_proxy": 1,
+                "more_info": "",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "Linguistics & Language Behavior Abstracts",
+            "owner_id": 70645,
+            "site_id": 594,
+            "slug_id": 1818714,
+            "subjects": [
+                {
+                    "content_id": 744260,
+                    "featured": 1,
+                    "id": 197867,
+                    "name": "French",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226566,
+                    "subject_id": 197867
+                },
+                {
+                    "content_id": 744260,
+                    "featured": 1,
+                    "id": 197870,
+                    "name": "German",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226570,
+                    "subject_id": 197870
+                },
+                {
+                    "content_id": 744260,
+                    "featured": 0,
+                    "id": 8445,
+                    "name": "Languages",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8445
+                },
+                {
+                    "content_id": 744260,
+                    "featured": 1,
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226568,
+                    "subject_id": 197868
+                },
+                {
+                    "content_id": 744260,
+                    "featured": 0,
+                    "id": 8457,
+                    "name": "Speech Pathology and Audiology",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8457
+                }
+            ],
+            "type_id": 10,
+            "updated": "2021-08-31 14:41:16",
+            "url": "https://search.proquest.com/llba?accountid=12434",
+            "isTopForSubject": true,
+            "favorite": false
+        },
+        {
+            "az_vendor_id": 1110,
+            "created": "2011-02-18 23:58:59",
+            "description": "An index to scholarly articles, books and book chapters, and dissertations published internationally on modern (Medieval to today) languages, literatures, folklore, and linguistics (including composition and rhetoric since 2000). Coverage has varied but now includes literature from all over the world--Africa, Asia, Australia, Europe, and North and South America. Folklore is represented by folk literature, music, art, rituals, and belief systems. Linguistics and language materials range from history and theory of linguistics, comparative linguistics, semantics, stylistics, and syntax to translation. Other topics include literary theory and criticism, dramatic arts (film, radio, television, theater), and history of printing and publishing. Some full-text.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/mla-international-bibliography",
+            "id": 744278,
+            "meta": {
+                "desc_pos": 1,
+                "enable_proxy": 1,
+                "more_info": "",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "MLA International Bibliography",
+            "owner_id": 70645,
+            "site_id": 594,
+            "slug_id": 1818745,
+            "subjects": [
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 11160,
+                    "name": "Asian Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 11160
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 11173,
+                    "name": "Asian-American Studies",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 11173
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 8447,
+                    "name": "English",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8447
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 197867,
+                    "name": "French",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226566,
+                    "subject_id": 197867
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 197870,
+                    "name": "German",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226570,
+                    "subject_id": 197870
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 197869,
+                    "name": "Italian",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226569,
+                    "subject_id": 197869
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 0,
+                    "id": 8445,
+                    "name": "Languages",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8445
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226568,
+                    "subject_id": 197868
+                },
+                {
+                    "content_id": 744278,
+                    "featured": 1,
+                    "id": 8439,
+                    "name": "Theatre",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8439
+                }
+            ],
+            "type_id": 10,
+            "updated": "2021-08-31 15:14:42",
+            "url": "https://search.ebscohost.com/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=mzh",
+            "isTopForSubject": true,
+            "favorite": true
+        },
+        {
+            "az_vendor_id": 4515,
+            "created": "2023-07-05 19:40:42",
+            "description": "Developed cooperatively with scholars and librarians worldwide, Oxford Bibliographies offers exclusive, authoritative research guides across a variety of subject areas. Combining the best features of an annotated bibliography and a high-level encyclopedia, this cutting-edge resource directs researchers to the best available scholarship across a wide variety of subjects.",
+            "enable_hidden": false,
+            "friendly_url": "https://libguides.lib.miamioh.edu/Literary_and_Critical_Theory",
+            "id": 72470666,
+            "meta": {
+                "desc_pos": "1",
+                "enable_proxy": 1,
+                "more_info": "",
+                "target": "0",
+                "tn_alt_text": "",
+                "tn_height": "",
+                "tn_url": "",
+                "tn_width": ""
+            },
+            "name": "Oxford Bibliographies Online: Literary and Critical Theory",
+            "owner_id": 8191,
+            "site_id": 594,
+            "slug_id": 2984016,
+            "subjects": [
+                {
+                    "content_id": 72470666,
+                    "featured": 2,
+                    "id": 8447,
+                    "name": "English",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 0,
+                    "subject_id": 8447
+                },
+                {
+                    "content_id": 72470666,
+                    "featured": 2,
+                    "id": 197867,
+                    "name": "French",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226566,
+                    "subject_id": 197867
+                },
+                {
+                    "content_id": 72470666,
+                    "featured": 2,
+                    "id": 197870,
+                    "name": "German",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226570,
+                    "subject_id": 197870
+                },
+                {
+                    "content_id": 72470666,
+                    "featured": 2,
+                    "id": 197869,
+                    "name": "Italian",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226569,
+                    "subject_id": 197869
+                },
+                {
+                    "content_id": 72470666,
+                    "featured": 2,
+                    "id": 197868,
+                    "name": "Spanish and Portuguese",
+                    "ordering": 0,
+                    "parent_id": 0,
+                    "site_id": 594,
+                    "slug_id": 2226568,
+                    "subject_id": 197868
+                }
+            ],
+            "type_id": 10,
+            "updated": "2024-02-05 21:59:52",
+            "url": "https://www.oxfordbibliographies.com/browse?module_0=obo-9780190221911",
+            "isTopForSubject": false,
+            "favorite": false
+        }
+    ]
+}
