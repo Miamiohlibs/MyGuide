@@ -83,7 +83,7 @@
                   <%- include('databases-other', {databases: subj.resources.databases, subjName: subj.name, subjects: subj}) %>
 
                 <% } else { %> 
-                  <%- include('databases-top', {databases: subj.resources.databases, subjName: subj.name, subjNoSpaces: subj.name.replace(" ","_")}) %>
+                  <%- include('databases-top', {databases: subj.resources.databases, subjName: subj.name, subjNoSpaces: subj.name.replaceAll(" ","_")}) %>
                 <% } %>
                 <% /* this section commented out bc all dbs are now shown */ %>
                 <% if (subj.resources.subjects && 
