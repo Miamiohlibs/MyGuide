@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "app-root-path": "^3.0.0",
-    "axios": "^1.7.9",
+    "axios": "^1.9.0",
     "body-parser": "^1.20.0",
     "colors": "^1.4.0",
     "config": "^3.3.6",
