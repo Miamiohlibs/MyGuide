@@ -62,7 +62,8 @@
           "apiKey": "your-alma-api-key"
         },
         "server": "api-eu.hosted.exlibrisgroup.com",
-        "apiPath": "/almaws"
+        "apiPath": "/almaws",
+        "accountLink": "https://your-alma-server.hosted.exlibrisgroup.com/discovery/account?vid=YOURCATALOGID&sectionoverview&lang=en",
     },
     "apiAuth": {
         "id": "", // set an ID for the MyGuide API

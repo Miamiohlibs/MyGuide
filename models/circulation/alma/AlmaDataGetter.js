@@ -8,6 +8,7 @@ module.exports = class AlmaDataGetter {
     // console.log('initializing: ' + conf.server);
     this.conf = conf;
     this.alma = new AlmaApi(this.conf);
+    console.log('AlmaDataGetter initialized with server:', this.alma);
   }
 
   async getUserData(userId) {
@@ -16,7 +17,7 @@ module.exports = class AlmaDataGetter {
       await this.getNumCheckouts();
       await this.getNumHolds();
       await this.getFines();
-      //       this.getAccountLink();
+      this.getAccountLink();
       return this.user.display;
     } catch (err) {
       Logger.error({
@@ -74,8 +75,9 @@ module.exports = class AlmaDataGetter {
       throw err;
     }
   }
-  //   getAccountLink() {
-  //     this.user.display.accountLink =
-  //       'https://' + this.conf.server + '/patroninfo.html';
-  //   }
+  getAccountLink() {
+    // in the config file, there should be an alma.accountLink
+    // that's the link to the patron account login page
+    this.user.display.accountLink = this.alma.conf.accountLink || '';
+  }
 };
