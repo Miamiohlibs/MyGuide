@@ -29,6 +29,8 @@
         <% } %>
       </li>
     </ul>
-    <!--div id="sierra-account-link"><a class="btn btn-primary" href="<%- data.accountLink %>">Full Account Info </a></div-->  
+    <% if (data.accountLink && data.accountLink.length > 0) { %>
+        <div id="sierra-account-link"><a class="btn btn-primary" href="<%- data.accountLink %>">Full Account Info </a></div>  
+    <% } %>
 </div>
 <!-- end circulation/Alma info-->
