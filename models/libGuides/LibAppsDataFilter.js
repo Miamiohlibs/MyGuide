@@ -108,7 +108,7 @@ module.exports = class LibAppsDataFilter {
     return matches;
   }
 
-  getBestBySubject(resourceList, subjects, topOnly = false) {
+  getBestBySubject(resourceList, subjects, topOnly = false, dbSort = false) {
     // expects resourceList to be an object listing database, librarians, or libguides
     // expect subjects to be an array of subject areas in order of best fit, e.g.:
     // subjects = ['English','Languages']
@@ -160,7 +160,7 @@ module.exports = class LibAppsDataFilter {
     // but changes 0 to 1000 so non-featured come last in the list
     dbs.map((db) => {
       let relevantDbSubjectEntry = db.subjects.find(
-        (subj) => subj.name == subjects[0]
+        (subj) => subj.name == subjects[0].name
       );
       if (relevantDbSubjectEntry.featured == 0) {
         db.sortable = 1000;
