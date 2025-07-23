@@ -133,6 +133,9 @@ module.exports = class LibAppsDataFilter {
     if (done === undefined) {
       return [];
     } else {
+      if (dbSort) {
+        done = this.sortDatabases(done, subjects);
+      }
       return done;
     }
   }
@@ -158,23 +161,26 @@ module.exports = class LibAppsDataFilter {
   addSubjectSortVariable(dbs, subjects) {
     // adds a "sortable" value on the database object equal to the featured value for the first subject
     // but changes 0 to 1000 so non-featured come last in the list
-    dbs.map((db) => {
-      let relevantDbSubjectEntry = db.subjects.find(
-        (subj) => subj.name == subjects[0].name
-      );
-      if (relevantDbSubjectEntry.featured == 0) {
+    return dbs.map((db) => {
+      // console.log('db has subjects: ', db.hasOwnProperty('subjects'));
+      // console.log('first subject name: ', db.subjects[0].name);
+      // console.log(`looking for ${subjects[0]} among the subjects`);
+      let relevantDbSubjectEntry = db.subjects?.find((subj) => {
+        return subj.name == subjects[0];
+      });
+      if (relevantDbSubjectEntry?.featured == 0) {
         db.sortable = 1000;
       } else {
-        db.sortable = relevantDbSubjectEntry.featured;
+        db.sortable = relevantDbSubjectEntry?.featured;
       }
+      return db;
     });
-    return dbs;
   }
 
   sortDatabases(dbs, subjects) {
     // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
     // then do an alpha sort of featured == 0 and append to the end
-
+    console.log('SortDBs: ' + subjects.join(';') + ': ' + dbs.length);
     const output = [];
     const sortable = this.addSubjectSortVariable(dbs, subjects);
 
@@ -186,7 +192,7 @@ module.exports = class LibAppsDataFilter {
       delete obj.sortable;
     });
     output.push(sortable);
-
+    // console.log(output);
     // // alpha sort of featured == 0
     // zeros.sort((a, b) => {
     //   return a.name.localeCompare(b.name);
