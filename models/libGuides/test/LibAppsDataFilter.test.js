@@ -8,7 +8,9 @@ guides = require('./sample-data/libapps/guides-sample');
 subjects = require('./sample-data/libapps/subj-sample');
 const {
   sortableDbs,
-  expectedSort,
+  expectedSortByEnglish,
+  expectedSortBySpanish,
+  expectedSortByBoth,
 } = require('./sample-data/libapps/db-sort-sample.js');
 
 describe('LibAppsDataFilter', () => {
@@ -254,13 +256,21 @@ describe('LibAppsDataFilter: getSubjectsByExpertEmail', () => {
 });
 
 describe('sortDatabases', () => {
-  it('should correctly sort database numerically and then alphabetically', () => {
-    // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
-    // then do an alpha sort of featured == 0 and append to the end
-
-    const sortedData = obj.sortDatabases(sortableDbs);
-    expect(sortedData).toEqual(expectedSort);
+  // sort databases by featured status and by name for the relevant subject(s)
+  // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
+  // then do an alpha sort of featured == 0 and append to the end
+  it('should correctly sort English databases numerically and then alphabetically', () => {
+    const sortedData = obj.sortDatabases(sortableDbs, ['English']);
+    expect(sortedData).toEqual(expectedSortByEnglish);
   });
+  it('should correctly sort Spanish databases numerically and then alphabetically', () => {
+    const sortedData = obj.sortDatabases(sortableDbs, ['Spanish']);
+    expect(sortedData).toEqual(expectedSortBySpanish);
+  });
+  // it('should correctly sort [English+Spanish] databases numerically and then alphabetically', () => {
+  //   const sortedData = obj.sortDatabases(sortableDbs, ['English', 'Spanish']);
+  //   expect(sortedData).toEqual(expectedSortByEnglish);
+  // });
 });
 
 // WE SHOULD HAVE A UNIT TESTS FOR getBestBySubject -- needs some stubs or fakes and I don't want to learn how!!!!!

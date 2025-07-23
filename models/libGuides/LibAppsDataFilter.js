@@ -155,27 +155,45 @@ module.exports = class LibAppsDataFilter {
     return [];
   }
 
-  sortDatabases(dbs) {
+  addSubjectSortVariable(dbs, subjects) {
+    // adds a "sortable" value on the database object equal to the featured value for the first subject
+    // but changes 0 to 1000 so non-featured come last in the list
+    dbs.map((db) => {
+      let relevantDbSubjectEntry = db.subjects.find(
+        (subj) => subj.name == subjects[0]
+      );
+      if (relevantDbSubjectEntry.featured == 0) {
+        db.sortable = 1000;
+      } else {
+        db.sortable = relevantDbSubjectEntry.featured;
+      }
+    });
+    return dbs;
+  }
+
+  sortDatabases(dbs, subjects) {
     // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
     // then do an alpha sort of featured == 0 and append to the end
 
     const output = [];
-    const featured = dbs.filter((item) => item.featured > 0);
-    const zeros = dbs.filter((item) => item.featured == 0);
+    const sortable = this.addSubjectSortVariable(dbs, subjects);
 
     // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
-    featured.sort((a, b) => {
-      return a.featured - b.featured || a.name.localeCompare(b.name);
+    sortable.sort((a, b) => {
+      return a.sortable - b.sortable || a.name.localeCompare(b.name);
     });
-    output.push(featured);
-
-    // alpha sort of featured == 0
-    zeros.sort((a, b) => {
-      return a.name.localeCompare(b.name);
+    sortable.forEach((obj) => {
+      delete obj.sortable;
     });
+    output.push(sortable);
 
-    // append zeros to output
-    output.push(zeros);
+    // // alpha sort of featured == 0
+    // zeros.sort((a, b) => {
+    //   return a.name.localeCompare(b.name);
+    // });
+
+    // // append zeros to output
+    // output.push(zeros);
     return output.flat();
   }
 };
