@@ -68,6 +68,7 @@ describe('AlmaDataGetter: getUserData', () => {
       numCheckouts: 14,
       numHolds: 2,
       fines: 35.54,
+      accountLink: 'https://fake.account.link',
     });
     expect(getter.user.display.numCheckouts).toBe(14);
     expect(getter.user.display.numHolds).toBe(2);
