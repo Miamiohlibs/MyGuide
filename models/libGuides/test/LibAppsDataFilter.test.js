@@ -253,63 +253,15 @@ describe('LibAppsDataFilter: getSubjectsByExpertEmail', () => {
   });
 });
 
-describe('alphaSortByProperty', () => {
-  it('should correctly sort words alphabetically', () => {
-    const startLower = [
-      { animal: 'llama', number: 14 },
-      { animal: 'turtle', number: 3 },
-      { animal: 'otter', number: 9 },
-    ];
-    const expectedLower = [
-      { animal: 'llama', number: 14 },
-      { animal: 'otter', number: 9 },
-      { animal: 'turtle', number: 3 },
-    ];
-    const result = obj.alphaSortByProperty(startLower, 'animal');
-    expect(result).toEqual(expectedLower);
-  });
-  it('should correctly sort words alphabetically case-insensitive', () => {
-    const startMixed = [
-      { animal: 'llama', number: 14 },
-      { animal: 'turtle', number: 3 },
-      { animal: 'Otter', number: 9 },
-    ];
-    const expectedMixed = [
-      { animal: 'llama', number: 14 },
-      { animal: 'Otter', number: 9 },
-      { animal: 'turtle', number: 3 },
-    ];
-    const result = obj.alphaSortByProperty(startMixed, 'animal');
-    expect(result).toEqual(expectedMixed);
+describe('sortDatabases', () => {
+  it('should correctly sort database numerically and then alphabetically', () => {
+    // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
+    // then do an alpha sort of featured == 0 and append to the end
+
+    const sortedData = obj.sortDatabases(sortableDbs);
+    expect(sortedData).toEqual(expectedSort);
   });
 });
-
-describe('numericSortByProperty', () => {
-  const startNumeric = [
-    { animal: 'llama', number: 14 },
-    { animal: 'turtle', number: 3 },
-    { animal: 'otter', number: 9 },
-  ];
-  const expectedNumeric = [
-    { animal: 'turtle', number: 3 },
-    { animal: 'otter', number: 9 },
-    { animal: 'llama', number: 14 },
-  ];
-  it('should correctly sort objects numerically by a given property', () => {
-    const result = obj.numericSortByProperty(startNumeric, 'number');
-    expect(result).toEqual(expectedNumeric);
-  });
-});
-
-// describe('sortDatabases', () => {
-//   it('should correctly sort database numerically and then alphabetically', () => {
-//     // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
-//     // then do an alpha sort of featured == 0 and append to the end
-
-//     const sortedData = obj.sortDatabases(sortableDbs);
-//     expect(sortedData).toEqual(expectedSort);
-//   });
-// });
 
 // WE SHOULD HAVE A UNIT TESTS FOR getBestBySubject -- needs some stubs or fakes and I don't want to learn how!!!!!
 

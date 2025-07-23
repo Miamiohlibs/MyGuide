@@ -155,28 +155,6 @@ module.exports = class LibAppsDataFilter {
     return [];
   }
 
-  alphaSortByProperty(arr, property) {
-    arr.sort((a, b) => {
-      const nameA = a[property].toUpperCase(); // Case-insensitive comparison
-      const nameB = b[property].toUpperCase();
-
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0; // names must be equal
-    });
-    return arr;
-  }
-
-  numericSortByProperty(arr, property) {
-    arr.sort((a, b) => {
-      return a[property] - b[property];
-    });
-    return arr;
-  }
   sortDatabases(dbs) {
     // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
     // then do an alpha sort of featured == 0 and append to the end
@@ -186,13 +164,18 @@ module.exports = class LibAppsDataFilter {
     const zeros = dbs.filter((item) => item.featured == 0);
 
     // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
+    featured.sort((a, b) => {
+      return a.featured - b.featured || a.name.localeCompare(b.name);
+    });
+    output.push(featured);
 
     // alpha sort of featured == 0
-    const zerosSorted = this.alphaSort(zeros);
+    zeros.sort((a, b) => {
+      return a.name.localeCompare(b.name);
+    });
 
     // append zeros to output
-    output.push(zerosSorted);
-
-    return output;
+    output.push(zeros);
+    return output.flat();
   }
 };
