@@ -135,6 +135,9 @@ module.exports = class LibAppsDataFilter {
     } else {
       if (dbSort) {
         done = this.sortDatabases(done, subjects);
+      } else if (done[0].hasOwnProperty('name')) {
+        // console.log(JSON.stringify(done, null, 2));
+        done = this.alphaSortByProperty(done, 'name');
       }
       return done;
     }
@@ -162,9 +165,6 @@ module.exports = class LibAppsDataFilter {
     // adds a "sortable" value on the database object equal to the featured value for the first subject
     // but changes 0 to 1000 so non-featured come last in the list
     return dbs.map((db) => {
-      // console.log('db has subjects: ', db.hasOwnProperty('subjects'));
-      // console.log('first subject name: ', db.subjects[0].name);
-      // console.log(`looking for ${subjects[0]} among the subjects`);
       let relevantDbSubjectEntry = db.subjects?.find((subj) => {
         return subj.name == subjects[0];
       });
@@ -177,10 +177,25 @@ module.exports = class LibAppsDataFilter {
     });
   }
 
+  alphaSortByProperty(arr, property) {
+    arr.sort((a, b) => {
+      const nameA = a[property].toUpperCase(); // Case-insensitive comparison
+      const nameB = b[property].toUpperCase();
+
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0; // names must be equal
+    });
+    return arr;
+  }
+
   sortDatabases(dbs, subjects) {
     // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
     // then do an alpha sort of featured == 0 and append to the end
-    console.log('SortDBs: ' + subjects.join(';') + ': ' + dbs.length);
     const output = [];
     const sortable = this.addSubjectSortVariable(dbs, subjects);
 
@@ -192,14 +207,7 @@ module.exports = class LibAppsDataFilter {
       delete obj.sortable;
     });
     output.push(sortable);
-    // console.log(output);
-    // // alpha sort of featured == 0
-    // zeros.sort((a, b) => {
-    //   return a.name.localeCompare(b.name);
-    // });
 
-    // // append zeros to output
-    // output.push(zeros);
     return output.flat();
   }
 };

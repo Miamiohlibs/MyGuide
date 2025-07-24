@@ -254,6 +254,37 @@ describe('LibAppsDataFilter: getSubjectsByExpertEmail', () => {
   });
 });
 
+describe('alphaSortByProperty', () => {
+  it('should correctly sort words alphabetically', () => {
+    const startLower = [
+      { animal: 'llama', number: 14 },
+      { animal: 'turtle', number: 3 },
+      { animal: 'otter', number: 9 },
+    ];
+    const expectedLower = [
+      { animal: 'llama', number: 14 },
+      { animal: 'otter', number: 9 },
+      { animal: 'turtle', number: 3 },
+    ];
+    const result = obj.alphaSortByProperty(startLower, 'animal');
+    expect(result).toEqual(expectedLower);
+  });
+  it('should correctly sort words alphabetically case-insensitive', () => {
+    const startMixed = [
+      { animal: 'llama', number: 14 },
+      { animal: 'turtle', number: 3 },
+      { animal: 'Otter', number: 9 },
+    ];
+    const expectedMixed = [
+      { animal: 'llama', number: 14 },
+      { animal: 'Otter', number: 9 },
+      { animal: 'turtle', number: 3 },
+    ];
+    const result = obj.alphaSortByProperty(startMixed, 'animal');
+    expect(result).toEqual(expectedMixed);
+  });
+});
+
 describe('sortDatabases', () => {
   // sort databases by featured status and by name for the relevant subject(s)
   // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
