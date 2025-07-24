@@ -4,3 +4,4 @@ alma:
     apiKey: fakeApiKey
   server: api-eu.hosted.exlibrisgroup.com
   apiPath: /almaws
+  accountLink: https://fake.account.link

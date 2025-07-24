@@ -6,6 +6,11 @@ databases = require('./sample-data/libapps/db-sample');
 librarians = require('./sample-data/libapps/libn-sample');
 guides = require('./sample-data/libapps/guides-sample');
 subjects = require('./sample-data/libapps/subj-sample');
+const {
+  sortableDbs,
+  expectedSortByEnglish,
+  expectedSortBySpanish,
+} = require('./sample-data/libapps/db-sort-sample.js');
 
 describe('LibAppsDataFilter', () => {
   it('should return an object of class LibAppsDataFilter', () => {
@@ -246,6 +251,61 @@ describe('LibAppsDataFilter: getSubjectsByExpertEmail', () => {
     let subjects = obj.getSubjectsByExpertEmail(librarians, 'q@continuum.net');
     expect(Array.isArray(subjects)).toBe(true);
     expect(subjects.length).toBe(0);
+  });
+});
+
+describe('alphaSortByProperty', () => {
+  it('should correctly sort words alphabetically', () => {
+    const startLower = [
+      { animal: 'llama', number: 14 },
+      { animal: 'turtle', number: 3 },
+      { animal: 'otter', number: 9 },
+    ];
+    const expectedLower = [
+      { animal: 'llama', number: 14 },
+      { animal: 'otter', number: 9 },
+      { animal: 'turtle', number: 3 },
+    ];
+    const result = obj.alphaSortByProperty(startLower, 'animal');
+    expect(result).toEqual(expectedLower);
+  });
+  it('should correctly sort words alphabetically case-insensitive', () => {
+    const startMixed = [
+      { animal: 'llama', number: 14 },
+      { animal: 'turtle', number: 3 },
+      { animal: 'Otter', number: 9 },
+    ];
+    const expectedMixed = [
+      { animal: 'llama', number: 14 },
+      { animal: 'Otter', number: 9 },
+      { animal: 'turtle', number: 3 },
+    ];
+    const result = obj.alphaSortByProperty(startMixed, 'animal');
+    expect(result).toEqual(expectedMixed);
+  });
+});
+
+describe('sortDatabases', () => {
+  // sort databases by featured status and by name for the relevant subject(s)
+  // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
+  // then do an alpha sort of featured == 0 and append to the end
+  it('should correctly sort English databases numerically and then alphabetically', () => {
+    const sortedData = obj.sortDatabases(sortableDbs, ['English']);
+    expect(JSON.stringify(sortedData)).toEqual(
+      JSON.stringify(expectedSortByEnglish)
+    );
+  });
+  it('should correctly sort Spanish databases numerically and then alphabetically', () => {
+    const sortedData = obj.sortDatabases(sortableDbs, ['Spanish']);
+    expect(JSON.stringify(sortedData)).toEqual(
+      JSON.stringify(expectedSortBySpanish)
+    );
+  });
+  it('should correctly sort [English+Spanish] databases numerically and then alphabetically', () => {
+    const sortedData = obj.sortDatabases(sortableDbs, ['English', 'Spanish']);
+    expect(JSON.stringify(sortedData)).toEqual(
+      JSON.stringify(expectedSortByEnglish)
+    );
   });
 });
 

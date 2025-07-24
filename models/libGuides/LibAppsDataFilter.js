@@ -84,7 +84,7 @@ module.exports = class LibAppsDataFilter {
       if (item.subjects !== undefined) {
         if (topOnly) {
           var temp = item.subjects.filter(
-            (s) => s.name === subject && s.featured === 1
+            (s) => s.name === subject && s.featured > 0
           );
         } else {
           var temp = item.subjects.filter((s) => s.name === subject);
@@ -108,7 +108,7 @@ module.exports = class LibAppsDataFilter {
     return matches;
   }
 
-  getBestBySubject(resourceList, subjects, topOnly = false) {
+  getBestBySubject(resourceList, subjects, topOnly = false, dbSort = false) {
     // expects resourceList to be an object listing database, librarians, or libguides
     // expect subjects to be an array of subject areas in order of best fit, e.g.:
     // subjects = ['English','Languages']
@@ -133,6 +133,12 @@ module.exports = class LibAppsDataFilter {
     if (done === undefined) {
       return [];
     } else {
+      if (dbSort) {
+        done = this.sortDatabases(done, subjects);
+      } else if (done[0].hasOwnProperty('name')) {
+        // console.log(JSON.stringify(done, null, 2));
+        done = this.alphaSortByProperty(done, 'name');
+      }
       return done;
     }
   }
@@ -153,5 +159,55 @@ module.exports = class LibAppsDataFilter {
         .filter((item) => item !== undefined);
     }
     return [];
+  }
+
+  addSubjectSortVariable(dbs, subjects) {
+    // adds a "sortable" value on the database object equal to the featured value for the first subject
+    // but changes 0 to 1000 so non-featured come last in the list
+    return dbs.map((db) => {
+      let relevantDbSubjectEntry = db.subjects?.find((subj) => {
+        return subj.name == subjects[0];
+      });
+      if (relevantDbSubjectEntry?.featured == 0) {
+        db.sortable = 1000;
+      } else {
+        db.sortable = relevantDbSubjectEntry?.featured;
+      }
+      return db;
+    });
+  }
+
+  alphaSortByProperty(arr, property) {
+    arr.sort((a, b) => {
+      const nameA = a[property].toUpperCase(); // Case-insensitive comparison
+      const nameB = b[property].toUpperCase();
+
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0; // names must be equal
+    });
+    return arr;
+  }
+
+  sortDatabases(dbs, subjects) {
+    // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
+    // then do an alpha sort of featured == 0 and append to the end
+    const output = [];
+    const sortable = this.addSubjectSortVariable(dbs, subjects);
+
+    // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
+    sortable.sort((a, b) => {
+      return a.sortable - b.sortable || a.name.localeCompare(b.name);
+    });
+    sortable.forEach((obj) => {
+      delete obj.sortable;
+    });
+    output.push(sortable);
+
+    return output.flat();
   }
 };
