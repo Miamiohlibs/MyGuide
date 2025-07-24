@@ -260,11 +260,11 @@ describe('sortDatabases', () => {
   // for featured >0, sort by featured (numerical 1-infinity), then alpha by name
   // then do an alpha sort of featured == 0 and append to the end
   it('should correctly sort English databases numerically and then alphabetically', () => {
-    const sortedData = obj.sortDatabases(sortableDbs, [{ name: 'English' }]);
+    const sortedData = obj.sortDatabases(sortableDbs, ['English']);
     expect(sortedData).toEqual(expectedSortByEnglish);
   });
   it('should correctly sort Spanish databases numerically and then alphabetically', () => {
-    const sortedData = obj.sortDatabases(sortableDbs, [{ name: 'Spanish' }]);
+    const sortedData = obj.sortDatabases(sortableDbs, ['Spanish']);
     expect(sortedData).toEqual(expectedSortBySpanish);
   });
   // it('should correctly sort [English+Spanish] databases numerically and then alphabetically', () => {
