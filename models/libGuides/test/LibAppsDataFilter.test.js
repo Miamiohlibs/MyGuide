@@ -10,7 +10,6 @@ const {
   sortableDbs,
   expectedSortByEnglish,
   expectedSortBySpanish,
-  expectedSortByBoth,
 } = require('./sample-data/libapps/db-sort-sample.js');
 
 describe('LibAppsDataFilter', () => {
@@ -261,16 +260,22 @@ describe('sortDatabases', () => {
   // then do an alpha sort of featured == 0 and append to the end
   it('should correctly sort English databases numerically and then alphabetically', () => {
     const sortedData = obj.sortDatabases(sortableDbs, ['English']);
-    expect(sortedData).toEqual(expectedSortByEnglish);
+    expect(JSON.stringify(sortedData)).toEqual(
+      JSON.stringify(expectedSortByEnglish)
+    );
   });
   it('should correctly sort Spanish databases numerically and then alphabetically', () => {
     const sortedData = obj.sortDatabases(sortableDbs, ['Spanish']);
-    expect(sortedData).toEqual(expectedSortBySpanish);
+    expect(JSON.stringify(sortedData)).toEqual(
+      JSON.stringify(expectedSortBySpanish)
+    );
   });
-  // it('should correctly sort [English+Spanish] databases numerically and then alphabetically', () => {
-  //   const sortedData = obj.sortDatabases(sortableDbs, ['English', 'Spanish']);
-  //   expect(sortedData).toEqual(expectedSortByEnglish);
-  // });
+  it('should correctly sort [English+Spanish] databases numerically and then alphabetically', () => {
+    const sortedData = obj.sortDatabases(sortableDbs, ['English', 'Spanish']);
+    expect(JSON.stringify(sortedData)).toEqual(
+      JSON.stringify(expectedSortByEnglish)
+    );
+  });
 });
 
 // WE SHOULD HAVE A UNIT TESTS FOR getBestBySubject -- needs some stubs or fakes and I don't want to learn how!!!!!
